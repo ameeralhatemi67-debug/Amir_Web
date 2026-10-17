@@ -1,0 +1,6 @@
+---
+import SiteShell from '../layouts/SiteShell.astro';
+import PageContent from '../components/PageContent.astro';
+import { site } from '../data/site';
+---
+<SiteShell lang="en" title={`${site.name} | ${site.headline.en}`}><PageContent lang="en"/></SiteShell>

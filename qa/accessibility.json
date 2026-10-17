@@ -1,0 +1,1554 @@
+{
+  "combinations": 96,
+  "violations": 0,
+  "interactions": [
+    "filters",
+    "language-path preservation",
+    "theme persistence",
+    "system theme reset",
+    "keyboard skip link",
+    "reduced motion",
+    "320/360/768/1024px overflow",
+    "custom HTTP 404",
+    "JavaScript-disabled Arabic content"
+  ],
+  "failures": [],
+  "checks": [
+    {
+      "lang": "en",
+      "route": "",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "about/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "about/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "about/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "about/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "contact/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "contact/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "contact/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "contact/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "privacy/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "privacy/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "privacy/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "privacy/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "404/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "404/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "404/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "404/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hadayah-live/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hadayah-live/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hadayah-live/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hadayah-live/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/comms-hub/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/comms-hub/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/comms-hub/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/comms-hub/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/bookquest/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/bookquest/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/bookquest/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/bookquest/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/nbc/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/nbc/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/nbc/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/nbc/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hida/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hida/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hida/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/hida/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "about/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "about/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "about/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "about/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "contact/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "contact/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "contact/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "contact/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "privacy/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "privacy/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "privacy/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "privacy/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "404/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "404/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "404/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "404/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hadayah-live/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hadayah-live/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hadayah-live/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hadayah-live/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/comms-hub/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/comms-hub/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/comms-hub/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/comms-hub/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/bookquest/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/bookquest/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/bookquest/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/bookquest/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/nbc/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/nbc/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/nbc/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/nbc/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hedayah-dashboard/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hida/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hida/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(248, 250, 248)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hida/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/hida/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(17, 35, 29)"
+      },
+      "errors": []
+    }
+  ]
+}

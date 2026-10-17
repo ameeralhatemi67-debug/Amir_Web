@@ -1,0 +1,10 @@
+---
+import arrow from '../../node_modules/@tabler/icons/icons/outline/arrow-up-right.svg?raw';
+import next from '../../node_modules/@tabler/icons/icons/outline/arrow-right.svg?raw';
+import github from '../../node_modules/@tabler/icons/icons/outline/brand-github.svg?raw';
+import linkedin from '../../node_modules/@tabler/icons/icons/outline/brand-linkedin.svg?raw';
+import mail from '../../node_modules/@tabler/icons/icons/outline/mail.svg?raw';
+const { name = 'arrow' } = Astro.props as { name?: string };
+const icons: Record<string, string> = { arrow, next, github, linkedin, mail };
+---
+<span class="icon" aria-hidden="true" set:html={icons[name] || arrow} />

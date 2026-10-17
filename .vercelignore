@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.git/
+.astro/
+.local/
+.serena/
+.impeccable/
+qa/
+skill-observations/
+cross-cutting-principles.md
+.env*
+*.jks
+*.keystore
+key.properties
+dart_define*.json
+*service-account*.json
+*service_account*.json

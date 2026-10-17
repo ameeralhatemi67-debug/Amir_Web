@@ -1,0 +1,996 @@
+[
+  {
+    "url": "http://127.0.0.1:4321/en/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.96,
+        "display": "2.1 s"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.1 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 670 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.8 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 730 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/about/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 740 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/contact/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 10 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 760 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/privacy/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0,
+        "display": "Est savings of 50 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 800 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/hadayah-live/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.8 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 29 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 29 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 720 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/comms-hub/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 10 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 710 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/bookquest/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 720 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/nbc/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 13 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 13 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 720 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/hedayah-dashboard/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 740 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/hida/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.95,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 730 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.92,
+        "display": "120 ms"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 110 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.97,
+        "display": "1.4 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 58 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 480 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/about/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.99,
+        "display": "0.048"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 680 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/contact/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.93,
+        "display": "1.7 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 880 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/privacy/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 710 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hadayah-live/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.8 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 29 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 29 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 590 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/comms-hub/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 10 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 630 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/bookquest/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 620 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/nbc/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.98,
+        "display": "1.4 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 13 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 13 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 520 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hedayah-dashboard/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.98,
+        "display": "1.4 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 500 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hida/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96,
+        "display": "1.5 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 630 ms"
+      }
+    ]
+  }
+]

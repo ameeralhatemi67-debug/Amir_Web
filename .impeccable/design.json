@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T10:45:52.170Z",
+  "title": "Design System: Amir Alhatemi Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Mineral Paper",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Deep Green Ink",
+        "tonalRamp": [
+          "oklch(15% 0.035 155)",
+          "oklch(26% 0.035 155)",
+          "oklch(38% 0.035 155)",
+          "oklch(49% 0.035 155)",
+          "oklch(61% 0.035 155)",
+          "oklch(72% 0.035 155)",
+          "oklch(84% 0.035 155)",
+          "oklch(95% 0.035 155)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Green",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Quiet Green Surface",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "surface-soft": {
+        "role": "neutral",
+        "displayName": "Soft Green Surface",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Green Divider",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "warm": {
+        "role": "primary",
+        "displayName": "Warm Clay",
+        "tonalRamp": [
+          "oklch(15% 0.1 45)",
+          "oklch(26% 0.1 45)",
+          "oklch(38% 0.1 45)",
+          "oklch(49% 0.1 45)",
+          "oklch(61% 0.1 45)",
+          "oklch(72% 0.1 45)",
+          "oklch(84% 0.1 45)",
+          "oklch(95% 0.1 45)"
+        ]
+      },
+      "cool": {
+        "role": "primary",
+        "displayName": "Cool Teal",
+        "tonalRamp": [
+          "oklch(15% 0.06 195)",
+          "oklch(26% 0.06 195)",
+          "oklch(38% 0.06 195)",
+          "oklch(49% 0.06 195)",
+          "oklch(61% 0.06 195)",
+          "oklch(72% 0.06 195)",
+          "oklch(84% 0.06 195)",
+          "oklch(95% 0.06 195)"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Dark Theme · Mineral Paper",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "dark-ink": {
+        "role": "primary",
+        "displayName": "Dark Theme · Deep Green Ink",
+        "tonalRamp": [
+          "oklch(15% 0.035 155)",
+          "oklch(26% 0.035 155)",
+          "oklch(38% 0.035 155)",
+          "oklch(49% 0.035 155)",
+          "oklch(61% 0.035 155)",
+          "oklch(72% 0.035 155)",
+          "oklch(84% 0.035 155)",
+          "oklch(95% 0.035 155)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Theme · Muted Green",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Theme · Quiet Green Surface",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "dark-surface-soft": {
+        "role": "neutral",
+        "displayName": "Dark Theme · Soft Green Surface",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark Theme · Green Divider",
+        "tonalRamp": [
+          "oklch(15% 0.015 155)",
+          "oklch(26% 0.015 155)",
+          "oklch(38% 0.015 155)",
+          "oklch(49% 0.015 155)",
+          "oklch(61% 0.015 155)",
+          "oklch(72% 0.015 155)",
+          "oklch(84% 0.015 155)",
+          "oklch(95% 0.015 155)"
+        ]
+      },
+      "dark-warm": {
+        "role": "primary",
+        "displayName": "Dark Theme · Warm Clay",
+        "tonalRamp": [
+          "oklch(15% 0.1 45)",
+          "oklch(26% 0.1 45)",
+          "oklch(38% 0.1 45)",
+          "oklch(49% 0.1 45)",
+          "oklch(61% 0.1 45)",
+          "oklch(72% 0.1 45)",
+          "oklch(84% 0.1 45)",
+          "oklch(95% 0.1 45)"
+        ]
+      },
+      "dark-cool": {
+        "role": "primary",
+        "displayName": "Dark Theme · Cool Teal",
+        "tonalRamp": [
+          "oklch(15% 0.06 195)",
+          "oklch(26% 0.06 195)",
+          "oklch(38% 0.06 195)",
+          "oklch(49% 0.06 195)",
+          "oklch(61% 0.06 195)",
+          "oklch(72% 0.06 195)",
+          "oklch(84% 0.06 195)",
+          "oklch(95% 0.06 195)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Introduction display",
+        "purpose": "Compact introductory heading; responsive and language-specific variants are documented in DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Base headline",
+        "purpose": "Base second-level heading, with contextual section sizes."
+      },
+      "title": {
+        "displayName": "Base title",
+        "purpose": "Base third-level heading."
+      },
+      "body": {
+        "displayName": "English body",
+        "purpose": "Readable paragraphs and supporting narrative."
+      },
+      "label": {
+        "displayName": "Action label",
+        "purpose": "Semibold action text."
+      },
+      "arabic-body": {
+        "displayName": "Arabic body",
+        "purpose": "Native Arabic family and taller body leading."
+      }
+    },
+    "shadows": [
+      {
+        "name": "featured-screenshot",
+        "value": "0 16px 40px #102c211c",
+        "purpose": "Soft depth beneath the featured application capture."
+      },
+      {
+        "name": "gallery-screenshot",
+        "value": "0 10px 24px #102c2110",
+        "purpose": "Soft depth beneath gallery application captures."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Introduction settling and screenshot image focus."
+      },
+      {
+        "name": "micro",
+        "value": "180ms",
+        "purpose": "Image focus transform; button and filter color transitions."
+      },
+      {
+        "name": "intro-settle",
+        "value": "350ms",
+        "purpose": "Already-visible heading translates upward from 8px; disabled with reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet-max",
+        "value": "1000px"
+      },
+      {
+        "name": "phone-max",
+        "value": "700px"
+      },
+      {
+        "name": "narrow-phone-max",
+        "value": "359px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact ink-filled action with a directional SVG.",
+      "html": "<a class=\"ds-button\" href=\"#selected-work\">See my work<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:47px;padding:11px 19px;border:1px solid transparent;border-radius:8px;background:var(--ink,#19342c);color:var(--button-ink,#f8faf8);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:none}.ds-button:hover{background:var(--cool,#24666d);color:var(--button-ink,#f8faf8)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-button{transition:background-color 180ms,color 180ms}}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "description": "Secondary underlined action with a directional SVG.",
+      "html": "<a class=\"ds-link\" href=\"/en/contact/\">Contact<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--ink,#19342c);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:underline;text-decoration-color:var(--line,#cad5cd);text-underline-offset:.25em;text-decoration-thickness:1px}.ds-link:hover{color:var(--cool,#24666d);text-decoration-color:currentColor}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}"
+    },
+    {
+      "name": "Project filters",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Wrapping native buttons distinguish the active project filter.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Filter projects\"><button class=\"ds-filter\" aria-pressed=\"true\">All projects</button><button class=\"ds-filter\" aria-pressed=\"false\">Mobile</button><button class=\"ds-filter\" aria-pressed=\"false\">Web</button></div>",
+      "css": ".ds-filters{display:flex;flex-wrap:wrap;gap:8px}.ds-filter{border:0;background:transparent;color:var(--muted,#52665b);border-radius:6px;font:14px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);padding:8px 14px;min-height:42px;cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#19342c);color:var(--paper,#f8faf8)}.ds-filter:hover:not([aria-pressed=true]){background:var(--surface,#eaf0eb);color:var(--ink,#19342c)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-filter{transition:background-color 180ms,color 180ms}}"
+    },
+    {
+      "name": "Text navigation",
+      "kind": "nav",
+      "description": "Quiet navigation with a warm current-page underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/en/projects/\" aria-current=\"page\">Projects</a><a href=\"/en/about/\">About</a><a href=\"/en/contact/\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:28px}.ds-nav a{color:var(--ink,#19342c);font:15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);padding-block:12px;text-decoration:none}.ds-nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--warm,#99502d);text-underline-offset:8px}.ds-nav a:hover{color:var(--cool,#24666d)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}"
+    },
+    {
+      "name": "Tool tag",
+      "kind": "chip",
+      "refersTo": "tool-tag",
+      "description": "Passive label for a tool present in project files.",
+      "html": "<span class=\"ds-tool\">Flutter</span>",
+      "css": ".ds-tool{display:inline-block;padding:8px 15px;background:var(--surface,#eaf0eb);color:var(--ink,#19342c);border-radius:6px;font:15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif)}"
+    },
+    {
+      "name": "Contact panel",
+      "kind": "card",
+      "refersTo": "contact-band",
+      "description": "Flat tonal container with copy and a compact contact action.",
+      "html": "<section class=\"ds-contact\"><div><h2>Let’s talk about the work.</h2><p>For project questions or professional conversations, you can find me on GitHub and LinkedIn.</p></div><a class=\"ds-button\" href=\"/en/contact/\">Contact<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></section>",
+      "css": ".ds-contact{display:flex;align-items:center;justify-content:space-between;gap:48px;padding:40px;background:var(--surface,#eaf0eb);color:var(--ink,#19342c);border-radius:12px}.ds-contact h2{margin:0;font:600 32px/1.2 var(--display,'Manrope Variable',sans-serif);letter-spacing:-.03em}.ds-contact p{margin:16px 0 0;max-width:56ch;color:var(--muted,#52665b);font:17px/1.7 var(--body,'Source Sans 3 Variable',sans-serif)}.ds-contact .ds-button{flex-shrink:0}.ds-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:47px;padding:11px 19px;border:1px solid transparent;border-radius:8px;background:var(--ink,#19342c);color:var(--button-ink,#f8faf8);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:none}.ds-button:hover{background:var(--cool,#24666d);color:var(--button-ink,#f8faf8)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-button{transition:background-color 180ms,color 180ms}}@media(max-width:700px){.ds-contact{display:block;padding:28px}.ds-contact h2{font-size:29px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Software Contact Sheet",
+    "overview": "A quiet editorial frame gives real application work room to speak. Mineral-white paper, deep green ink, readable typography and uneven image groupings give the portfolio a precise, personal character. Application colors remain visible inside authentic screenshots rather than becoming a competing site palette.\n\nThe system supports English and Arabic as full peers, including native direction, generous Arabic leading and mirrored directional icons. Density comes from concise labels and supporting facts around images, with generous space between larger sections.",
+    "keyCharacteristics": [
+      "Real application imagery with honest captions.",
+      "Mineral-white and deep-green editorial framing.",
+      "Restrained variable typography and native Arabic.",
+      "Flat surfaces, soft screenshot depth and uneven grids.",
+      "Visible keyboard states and optional, minimal motion."
+    ],
+    "rules": [
+      {
+        "name": "The Image Color Rule",
+        "body": "Keep the site's framing restrained so each real application's own colors remain legible.",
+        "section": "colors"
+      },
+      {
+        "name": "The Native Reading Rule",
+        "body": "Use the Arabic family, native RTL and Arabic leading together; preserve LTR direction for technology lists.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reading Order Rule",
+        "body": "Responsive layouts retain the same content order in both languages and collapse columns rather than hiding evidence.",
+        "section": "layout"
+      },
+      {
+        "name": "The Screenshot Depth Rule",
+        "body": "Reserve the existing shadow vocabulary for screenshot framing; editorial text and navigation stay flat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use actual project captures or source-project assets and identify their provenance.",
+      "**Do** preserve readable Arabic, logical layout properties and visible keyboard focus.",
+      "**Do** use unequal screenshot groupings where image proportions support them.",
+      "**Do** preserve the dark-theme token relationships and reduced-motion behavior."
+    ],
+    "donts": [
+      "**Don't** invent application imagery, device renders or unsupported project claims.",
+      "**Don't** turn screenshot-specific colors into competing global site accents.",
+      "**Don't** turn restrained image focus into parallax, hidden content or layout movement."
+    ]
+  }
+}

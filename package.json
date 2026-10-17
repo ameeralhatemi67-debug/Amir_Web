@@ -1,0 +1,29 @@
+{
+  "name": "amir-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build && node scripts/check-static.mjs",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "check": "node scripts/check-static.mjs",
+    "audit": "node scripts/audit.mjs",
+    "secrets": "node scripts/check-secrets.mjs"
+  },
+  "dependencies": {
+    "astro": "^6.3.1",
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource-variable/source-sans-3": "^5.2.8",
+    "@fontsource/ibm-plex-sans-arabic": "^5.2.7",
+    "@tabler/icons": "^3.40.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.3",
+    "@axe-core/playwright": "^4.10.2",
+    "playwright": "^1.55.1",
+    "lighthouse": "^12.8.2",
+    "sharp": "^0.34.3"
+  }
+}

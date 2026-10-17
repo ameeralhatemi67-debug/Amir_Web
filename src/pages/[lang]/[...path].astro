@@ -1,0 +1,18 @@
+---
+import SiteShell from '../../layouts/SiteShell.astro';
+import PageContent from '../../components/PageContent.astro';
+import { copy, local, projects, site, type Locale } from '../../data/site';
+export function getStaticPaths() {
+  const pages = ['', 'projects', 'about', 'contact', 'privacy', '404', ...projects.map(project => `projects/${project.slug}`)];
+  return ['en', 'ar'].flatMap(lang => pages.map(page => ({ params: { lang, path: page || undefined }, props: { lang, page } })));
+}
+const { lang, page } = Astro.props as { lang: Locale; page: string };
+const c = copy[lang];
+const project = projects.find(item => page === `projects/${item.slug}`);
+const headings: Record<string, string> = { projects: c.projects, about: lang === 'ar' ? 'عنّي' : 'About', contact: c.contact, privacy: c.privacy, '404': c.notFound };
+const name = lang === 'ar' ? site.arabicName : site.name;
+const title = page === '' ? `${name} | ${local(site.headline, lang)}` : `${project ? local(project.name, lang) : headings[page]} | ${name}`;
+const descriptions: Record<string, string> = { projects: c.workIntro, about: c.bio, contact: c.contactIntro, privacy: c.privacyIntro, '404': c.notFoundText };
+const description = project ? local(project.pitch, lang) : descriptions[page] || local(site.description, lang);
+---
+<SiteShell lang={lang} page={page} title={title} description={description} noindex={page === '404'}><PageContent lang={lang} page={page}/></SiteShell>
