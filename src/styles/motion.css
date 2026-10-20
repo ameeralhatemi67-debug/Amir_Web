@@ -1,0 +1,65 @@
+@layer motion {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Language relight: switching languages relights the whole page, the old page dims, the new one lights dot by dot,
+       then fills in its own reading direction. Other navigations use a short cross-fade. */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 160ms; }
+    :root:active-view-transition-type(relight)::view-transition-old(root) { animation: 180ms var(--ease-out) both vt-dim; }
+    :root:active-view-transition-type(relight)::view-transition-new(root) {
+      animation: 560ms var(--ease-out) both vt-relight;
+      mask-image:
+        radial-gradient(circle at 50% 50%, #000 var(--dot-r), transparent calc(var(--dot-r) + .6px)),
+        linear-gradient(to right, #000 calc(var(--wipe) - 18%), transparent var(--wipe));
+      mask-size: 6px 6px, 100% 100%;
+      mask-repeat: repeat, no-repeat;
+      mask-composite: add;
+    }
+    :root[dir="rtl"]:active-view-transition-type(relight)::view-transition-new(root) {
+      mask-image:
+        radial-gradient(circle at 50% 50%, #000 var(--dot-r), transparent calc(var(--dot-r) + .6px)),
+        linear-gradient(to left, #000 calc(var(--wipe) - 18%), transparent var(--wipe));
+    }
+    @keyframes vt-dim { to { opacity: 0; } }
+    @keyframes vt-relight {
+      0% { --dot-r: 0px; --wipe: 0%; }
+      30% { --dot-r: 1.9px; --wipe: 0%; }
+      100% { --dot-r: 4.6px; --wipe: 120%; }
+    }
+
+    /* Row relight: the screen beside the board switches through the dot grid. */
+    .screen.is-entering {
+      mask-image: radial-gradient(circle at 50% 50%, #000 var(--dot-r), transparent calc(var(--dot-r) + .6px));
+      mask-size: 6px 6px;
+      animation: dot-in 240ms var(--ease-out) both;
+    }
+    @keyframes dot-in { from { --dot-r: .4px; } to { --dot-r: 4.6px; } }
+
+    /* The ticker crawls in reading direction and holds still while it is being read. */
+    .ticker-track { animation: ticker 70s linear infinite; }
+    :root[dir="rtl"] .ticker-track { animation-name: ticker-rtl; }
+    .ticker[data-paused] .ticker-track, .ticker:hover .ticker-track, .board-foot:focus-within .ticker-track { animation-play-state: paused; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    @keyframes ticker-rtl { to { transform: translateX(50%); } }
+
+    /* One scroll moment: screens on the wall light up as they arrive. */
+    @supports (animation-timeline: view()) {
+      .wall-link .plate img {
+        animation: dot-in linear both, lit-fallback 0s 2.5s forwards;
+        animation-timeline: view(), auto;
+        animation-range: entry 0% cover 28%, normal;
+        mask-image: radial-gradient(circle at 50% 50%, #000 var(--dot-r), transparent calc(var(--dot-r) + .6px));
+        mask-size: 6px 6px;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+    .ticker-track { animation: none !important; inline-size: auto; }
+    .ticker { mask-image: none; }
+    .ticker-group { flex-wrap: wrap; gap: 4px 32px; padding: 0; }
+    .ticker-line { white-space: normal; }
+    .ticker-group + .ticker-group { display: none; }
+    .ticker-toggle { visibility: hidden; }
+  }
+}

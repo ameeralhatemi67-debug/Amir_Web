@@ -1,0 +1,8 @@
+---
+import { local, type Fact, type Locale } from '../data/site';
+// Board grammar: a label column and a lit value column. Values are verified figures, never estimates.
+const { facts, lang, class: className } = Astro.props as { facts: Fact[]; lang: Locale; class?: string };
+---
+<dl class:list={['facts', className]}>
+  {facts.map(fact => <div class="fact"><dt>{local(fact.label, lang)}</dt><dd class="led num ltr">{fact.value}</dd></div>)}
+</dl>

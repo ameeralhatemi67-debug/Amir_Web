@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import { copy, site, url, type Locale } from '../data/site';
+// The board's closing message: the page ends at a destination.
+const { lang, page = false } = Astro.props as { lang: Locale; page?: boolean };
+const c = copy[lang];
+const ar = lang === 'ar';
+const Title = page ? 'h1' : 'h2';
+---
+<section class:list={['contact', 'wrap', { 'contact-page': page }]} aria-labelledby="contact-title">
+  <div class="contact-board">
+    <Title id="contact-title" class="contact-title led">{c.contactTitle}</Title>
+    <p class="contact-intro">{c.contactIntro}</p>
+    <ul class="contact-options">
+      <li>
+        {site.email
+          ? <a class="contact-primary" href={`mailto:${site.email}`}><Icon name="mail" /><span class="contact-kind">{c.emailAction}</span><strong class="ltr">{site.email}</strong><Icon /></a>
+          : <span class="contact-pending"><Icon name="mail" /><span class="contact-kind">{c.emailAction}</span><span class="led unlit">{c.toConfirm}</span></span>}
+      </li>
+      <li><a class="contact-link" href={site.github}><Icon name="github" /><span class="contact-kind">GitHub</span><strong class="ltr">ameeralhatemi67-debug</strong><Icon /></a></li>
+      <li><a class="contact-link" href={site.linkedin}><Icon name="linkedin" /><span class="contact-kind">LinkedIn</span><strong>{ar ? site.arabicName : site.name}</strong><Icon /></a></li>
+    </ul>
+    <p class="contact-foot">{c.noForm} <a href={url(lang, 'privacy')}>{c.privacy}</a></p>
+  </div>
+</section>

@@ -12,7 +12,7 @@ People checking Amir Alhatemi's professional work and visitors arriving from his
 
 ## Product Purpose
 
-Present six real development projects accurately, with Hadayah Live as the flagship, and provide professional contact routes.
+Present eight real development projects accurately (Hadayah Live, Comms Hub, HAYZ, NBC, BookQuest, Hedayah TV dashboard, Hida, DnFOM), with Hadayah Live as the flagship, a one-line lab strip of smaller work, and professional contact routes.
 
 ## Stack
 
@@ -20,15 +20,15 @@ Astro with fully static output. Native CSS and small browser scripts. English an
 
 ## Capabilities and Constraints
 
-Keep all six case studies, project filtering, About, Contact, Privacy and 404. No database, environment secrets, analytics or contact form. Keep source projects read-only. No push or deployment. No invented biographical facts, clients, metrics or release status. Unconfirmed owner details remain TODO comments.
+Keep all eight case studies, project filtering, About, Contact, Privacy and 404. No database, environment secrets, analytics or contact form. Keep source projects read-only. No push or deployment. No invented biographical facts, clients, metrics or release status. Unconfirmed owner details remain TODO comments.
 
 ## Brand Commitments
 
-Amir Alhatemi / أمير الحاتمي, based in Al Khobar. Approved headline: App developer building Arabic-first products. The owner rejected the first portfolio's generic appearance and now requires real screenshots or source-project assets; no AI-generated images.
+Amir Alhatemi / أمير الحاتمي, based in Al Khobar. Approved headline: App developer building Arabic-first products. The owner rejected the first portfolio's generic appearance and then called the second one plain; in October 2026 they chose The Lit Board direction. Real screenshots or source-project assets only; no AI-generated images.
 
 ## Evidence on Hand
 
-The six project repositories were inspected read-only. The owner supplied five public deployment URLs. Hida is a local departmental pilot. Missing public email, personal story, exact roles and legal URLs must not be invented.
+The eight project folders were inspected read-only and every published figure was checked against a named source file. The owner supplied five public deployment URLs. Hida is a local departmental pilot; HAYZ is a paused private build with a concept name that is not cleared; DnFOM is an MVP for an unnamed client and ships without screenshots because its prototypes contain realistic personal names. The owner will supply a portrait and a public email; personal story, exact roles and legal URLs must not be invented.
 
 ## Accessibility and Inclusion
 

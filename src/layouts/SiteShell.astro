@@ -1,46 +1,67 @@
 ---
-import '@fontsource-variable/manrope/wght.css';
-import '@fontsource-variable/source-sans-3/wght.css';
-import '@fontsource/ibm-plex-sans-arabic/arabic-400.css';
-import '@fontsource/ibm-plex-sans-arabic/arabic-500.css';
-import '@fontsource/ibm-plex-sans-arabic/arabic-600.css';
+import '@fontsource-variable/readex-pro/wght.css';
+import readexLatin from '@fontsource-variable/readex-pro/files/readex-pro-latin-wght-normal.woff2?url';
+import readexArabic from '@fontsource-variable/readex-pro/files/readex-pro-arabic-wght-normal.woff2?url';
 import '../styles/global.css';
 import { copy, local, site, url, type Locale } from '../data/site';
 const { lang, page = '', title, description = local(site.description, lang), noindex = false } = Astro.props as { lang: Locale; page?: string; title: string; description?: string; noindex?: boolean };
 const c = copy[lang];
-const other = lang === 'en' ? 'ar' : 'en';
+const ar = lang === 'ar';
+const other: Locale = ar ? 'en' : 'ar';
 const canonical = new URL(url(lang, page), site.origin).href;
 const image = `${site.origin}/images/social-${lang}.png`;
 const person = { '@context': 'https://schema.org', '@type': 'Person', name: site.name, alternateName: site.arabicName, url: site.origin, jobTitle: 'App developer', homeLocation: { '@type': 'Place', name: 'Al Khobar, Saudi Arabia' }, knowsLanguage: ['Arabic', 'English'], sameAs: [site.github, site.linkedin] };
+const fonts = ar ? ['/fonts/handjet-lit-arabic.woff2', readexArabic, '/fonts/handjet-lit-latin.woff2'] : ['/fonts/handjet-lit-latin.woff2', readexLatin];
+const navPaths = ['projects', 'about', 'contact'];
+const themes = [['system', c.system, c.themeHelp.system], ['light', c.light, c.themeHelp.light], ['dark', c.dark, c.themeHelp.dark]] as const;
 ---
 <!doctype html>
-<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+<html lang={lang} dir={ar ? 'rtl' : 'ltr'}>
   <head>
-    <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{title}</title><meta name="description" content={description}/>
-    {noindex && <meta name="robots" content="noindex, follow"/>}
-    <link rel="canonical" href={canonical}/>
-    <link rel="alternate" hreflang="en" href={`${site.origin}${url('en', page)}`}/>
-    <link rel="alternate" hreflang="ar" href={`${site.origin}${url('ar', page)}`}/>
-    <link rel="alternate" hreflang="x-default" href={`${site.origin}${url('en', page)}`}/>
-    <meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:site_name" content="Amir Alhatemi"/><meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'}/><meta property="og:locale:alternate" content={lang === 'ar' ? 'en_US' : 'ar_SA'}/><meta property="og:image" content={image}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content={lang === 'ar' ? 'أمير الحاتمي، مطوّر تطبيقات' : 'Amir Alhatemi, app developer'}/>
-    <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={image}/><meta name="twitter:image:alt" content={lang === 'ar' ? 'أمير الحاتمي، مطوّر تطبيقات' : 'Amir Alhatemi, app developer'}/>
-    <meta name="theme-color" content="#19342c"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="manifest" href="/site.webmanifest"/>
-    <script is:inline>try{const t=localStorage.getItem('amir-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
-    <script type="application/ld+json" set:html={JSON.stringify(person)}/>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={`${site.origin}${url('en', page)}`} />
+    <link rel="alternate" hreflang="ar" href={`${site.origin}${url('ar', page)}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site.origin}${url('en', page)}`} />
+    {fonts.map(href => <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />)}
+    <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:site_name" content="Amir Alhatemi" /><meta property="og:locale" content={ar ? 'ar_SA' : 'en_US'} /><meta property="og:locale:alternate" content={ar ? 'en_US' : 'ar_SA'} /><meta property="og:image" content={image} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={ar ? 'أمير الحاتمي، مطوّر تطبيقات' : 'Amir Alhatemi, app developer'} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={image} /><meta name="twitter:image:alt" content={ar ? 'أمير الحاتمي، مطوّر تطبيقات' : 'Amir Alhatemi, app developer'} />
+    <meta name="theme-color" content="#0a0e0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f6f2" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="manifest" href="/site.webmanifest" />
+    <script is:inline>document.documentElement.classList.add('js');try{const t=localStorage.getItem('amir-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}
+    // A language switch (the /en/ or /ar/ prefix changes) relights the page; other navigations keep a short cross-fade.
+    addEventListener('pagereveal',e=>{try{const f=navigation.activation&&navigation.activation.from;if(e.viewTransition&&f&&new URL(f.url).pathname.split('/')[1]!==location.pathname.split('/')[1])e.viewTransition.types.add('relight')}catch{}});</script>
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
   </head>
   <body>
     <a class="skip-link" href="#main">{c.skip}</a>
-    <header class="site-header wrap">
-      <a class="brand" href={url(lang)}>{lang === 'ar' ? site.arabicName : site.name}</a>
-      <nav aria-label={lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation'}>
-        {['projects', 'about', 'contact'].map((path, i) => <a href={url(lang, path)} aria-current={page === path || page.startsWith(`${path}/`) ? 'page' : undefined}>{c.nav[i]}</a>)}
-      </nav>
-      <div class="header-tools"><a class="language-switch" href={url(other, page)} lang={other} dir={other === 'ar' ? 'rtl' : 'ltr'} aria-label={lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}>{lang === 'ar' ? 'English' : 'العربية'}</a><label class="theme-control"><span class="sr-only">{c.theme}</span><select aria-label={c.theme} data-theme-select><option value="system">{c.system}</option><option value="light">{c.light}</option><option value="dark">{c.dark}</option></select></label></div>
+    <header class="masthead">
+      <div class="masthead-inner wrap">
+        <a class="brand" href={url(lang)}>
+          <span class="brand-primary led">{ar ? site.arabicName : site.name}</span>
+          <span class="brand-secondary led" lang={other} aria-hidden="true">{ar ? site.name : site.arabicName}</span>
+        </a>
+        <nav class="nav" aria-label={ar ? 'التنقل الرئيسي' : 'Main navigation'}>
+          {navPaths.map((path, i) => <a class="nav-link" href={url(lang, path)} aria-current={page === path || page.startsWith(`${path}/`) ? 'page' : undefined}>{c.nav[i]}</a>)}
+        </nav>
+        <div class="tools">
+          <a class="lang-switch" href={url(other, page)} hreflang={other} lang={other} dir={other === 'ar' ? 'rtl' : 'ltr'} aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>{ar ? 'English' : 'العربية'}</a>
+          <div class="theme-switch" role="group" aria-label={c.theme}>
+            {themes.map(([value, label, help]) => <button type="button" data-theme-set={value} aria-pressed={value === 'system' ? 'true' : 'false'} aria-label={`${label}: ${help}`} title={help}>{label}</button>)}
+          </div>
+        </div>
+      </div>
     </header>
-    <main id="main" tabindex="-1"><slot/></main>
-    <footer class="site-footer wrap"><div><a class="footer-name" href={url(lang)}>{c.footer}</a><p>{c.footerLine}</p></div><div class="footer-links"><a href={site.github}>GitHub</a><a href={site.linkedin}>LinkedIn</a><a href={url(lang, 'privacy')}>{c.privacy}</a></div></footer>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="footer">
+      <div class="footer-inner wrap">
+        <div class="footer-id"><a class="footer-name led" href={url(lang)}>{c.footer}</a><p>{c.footerLine}</p></div>
+        <div class="footer-links"><a href={site.github}>GitHub</a><a href={site.linkedin}>LinkedIn</a><a href={url(lang, 'privacy')}>{c.privacy}</a></div>
+      </div>
+    </footer>
     <script>
       import '../scripts/site';
     </script>

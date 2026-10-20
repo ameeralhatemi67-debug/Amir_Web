@@ -1,0 +1,81 @@
+---
+import Plate from './Plate.astro';
+import Flow from './Flow.astro';
+import Icon from './Icon.astro';
+import StagePips from './StagePips.astro';
+import { copy, local, projects, site, ticker, url, type Locale } from '../data/site';
+import { image, media, phoneFor } from '../data/project-media';
+// The information board: projects are its rows, each with an honest status light; the selected row's real screens light up beside it.
+const { lang, mode = 'home' } = Astro.props as { lang: Locale; mode?: 'home' | 'index' };
+const c = copy[lang];
+const home = mode === 'home';
+// In Arabic ticker lines, Latin product names stay on one line when the ticker wraps under reduced motion.
+const escape = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const tickerHtml = (text: string) => lang === 'ar' ? escape(text).replace(/[A-Za-z][A-Za-z0-9 .-]*[A-Za-z0-9]/g, run => `<span class="nowrap" dir="ltr">${run}</span>`) : escape(text);
+const filterKeys = Object.entries(c.filters).filter(([key]) => key === 'all' || projects.some(p => p.tags.includes(key)));
+---
+<section class:list={['board-wrap', 'wrap', `board-${mode}`]} aria-labelledby={home ? 'board-title' : undefined} aria-label={home ? undefined : c.boardLabel}>
+  <div class="board" data-board data-collection>
+    <div class="board-main">
+      {home && (
+        <header class="board-head">
+          <h1 id="board-title" class="board-title led" set:html={local(site.headline, lang).replace('Arabic-first', '<span class="nowrap">Arabic-first</span>')} />
+          <p class="board-intro">{local(site.intro, lang)}</p>
+        </header>
+      )}
+      {!home && (
+        <div class="channels" role="group" aria-label={lang === 'ar' ? 'تصفية المشاريع' : 'Filter projects'}>
+          {filterKeys.map(([key, label]) => <button type="button" class="channel" data-filter={key} aria-pressed={key === 'all' ? 'true' : 'false'}>{label}</button>)}
+        </div>
+      )}
+      <div class="rows-head" aria-hidden="true"><span>{c.project}</span><span>{c.status}</span></div>
+      <ol class="rows">
+        {projects.map((project, i) => (
+          <li data-tags={project.tags.join(' ')}>
+            <a class:list={['row', { 'is-lit': i === 0 }]} href={url(lang, `projects/${project.slug}`)} data-row={project.slug}>
+              <h2 class="row-name led">{local(project.name, lang)}</h2>
+              <span class="row-cat">{local(project.category, lang)}</span>
+              <span class:list={['row-status', { 'is-live': project.stage === 'live' }]}><StagePips stage={project.stage} paused={project.paused} lang={lang} /><span>{local(project.status, lang)}</span></span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      {!home && <p class="sr-only" aria-live="polite" data-filter-result data-result-label={c.result}></p>}
+    </div>
+
+    <div class="board-screen" data-screens>
+      {projects.map((project, i) => {
+        const m = media[project.slug] ?? {};
+        const desktop = m.screen?.desktop;
+        const phone = phoneFor(m, lang);
+        const note = desktop ? image(desktop).caption : phone ? image(phone).caption : undefined;
+        return (
+          <figure class="screen" data-screen={project.slug} hidden={i !== 0}>
+            <div class:list={['screen-stage', { 'has-desktop': desktop, 'has-phone': phone, 'has-flow': !desktop && !phone }]}>
+              {desktop && <Plate id={desktop} lang={lang} eager={i === 0} sizes="(max-width: 900px) 92vw, 540px" class="screen-desktop" />}
+              {phone && <Plate id={phone} lang={lang} eager={i === 0} sizes="(max-width: 900px) 36vw, 180px" class="screen-phone" />}
+              {!desktop && !phone && project.how && <Flow steps={project.how.steps} lang={lang} compact />}
+            </div>
+            <figcaption class="screen-cap">
+              <span class="screen-name led">{local(project.name, lang)}</span>
+              {note && <span class="screen-note">{local(note, lang)}</span>}
+              <a class="action action-outline" href={url(lang, `projects/${project.slug}`)}>{c.caseStudy}<Icon name="next" /></a>
+            </figcaption>
+          </figure>
+        );
+      })}
+    </div>
+
+    <div class="board-foot">
+      <p class="asof"><span>{c.statusesAsOf}</span> <time class="led num" datetime={site.statusDate.iso}>{site.statusDate[lang]}</time></p>
+      <div class="ticker" data-ticker>
+        <div class="ticker-track">
+          {[0, 1].map(copyIndex => <ul class="ticker-group" role="list" aria-hidden={copyIndex === 1 ? 'true' : undefined}>{ticker.map(line => <li class="ticker-line led" set:html={tickerHtml(local(line, lang))} />)}</ul>)}
+        </div>
+      </div>
+      <button type="button" class="ticker-toggle" data-ticker-toggle aria-pressed="false" data-label-pause={c.pauseTicker} data-label-play={c.playTicker} aria-label={c.pauseTicker}>
+        <Icon name="pause" class="when-playing" /><Icon name="play" class="when-paused" />
+      </button>
+    </div>
+  </div>
+</section>

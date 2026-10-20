@@ -7,7 +7,7 @@ async function files(directory) {
 }
 const all = await files('dist');
 const htmlFiles = all.filter(file => file.endsWith('.html'));
-assert.equal(htmlFiles.length, 26, 'Expected 24 localized pages, a root home, and a root 404.');
+assert.equal(htmlFiles.length, 30, 'Expected 28 localized pages (6 shared + 8 case studies, in two languages), a root home, and a root 404.');
 const problems = [];
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
@@ -32,6 +32,9 @@ for (const file of htmlFiles) {
 }
 for (const file of all.filter(file => ['.png','.jpg','.jpeg','.webp','.avif','.svg'].includes(extname(file)))) {
   if ((await stat(file)).size >= 300_000) problems.push(`${file}: exceeds 300 KB image limit`);
+}
+for (const file of all.filter(file => extname(file) === '.mp4')) {
+  if ((await stat(file)).size >= 1_500_000) problems.push(`${file}: exceeds 1.5 MB video limit`);
 }
 assert.equal(problems.length, 0, problems.join('\n'));
 assert(!all.some(file => /(?:\.env|\.jks|key\.properties|dart_define|service.account)/i.test(file)), 'Forbidden files in output');

@@ -1,0 +1,19 @@
+---
+import Plate from './Plate.astro';
+import { image, type ShotId } from '../data/project-media';
+import { local, type Locale } from '../data/site';
+// A scroll-snap row of real phone screens.
+const { ids, lang, label } = Astro.props as { ids: ShotId[]; lang: Locale; label: string };
+---
+<div class="strip" role="region" aria-label={label} tabindex="0">
+  <ul class="strip-track">
+    {ids.map(id => (
+      <li class="strip-item">
+        <figure>
+          <Plate id={id} lang={lang} sizes="(max-width: 700px) 62vw, 260px" described />
+          <figcaption>{local(image(id).alt, lang)}</figcaption>
+        </figure>
+      </li>
+    ))}
+  </ul>
+</div>

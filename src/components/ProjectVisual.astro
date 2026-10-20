@@ -1,9 +1,0 @@
----
-import { local, type Locale, type Project } from '../data/site';
-import { media } from '../data/project-media';
-const { project, lang = 'en', feature = false } = Astro.props as { project: Project; lang?: Locale; feature?: boolean };
-const shot = media[project.slug];
----
-<div class:list={['project-visual', `visual-${project.slug}`, { 'visual-feature': feature }]}>
-  <img src={`/images/projects/${project.slug}.webp`} srcset={`/images/projects/${project.slug}-small.webp 640w, /images/projects/${project.slug}.webp ${shot.width}w`} sizes={feature ? '(max-width: 700px) 100vw, 1100px' : '(max-width: 700px) 100vw, 650px'} width={shot.width} height={shot.height} alt={local(shot.alt, lang)} loading={feature ? 'eager' : 'lazy'} fetchpriority={feature ? 'high' : 'auto'} decoding="async" />
-</div>

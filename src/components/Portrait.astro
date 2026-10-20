@@ -1,0 +1,11 @@
+---
+import { copy, site, type Locale } from '../data/site';
+// The owner's portrait on the board frame. Until it is supplied, the frame shows an unlit placeholder.
+const { lang, large = false } = Astro.props as { lang: Locale; large?: boolean };
+const c = copy[lang];
+---
+<figure class:list={['portrait', { 'portrait-large': large }]}>
+  {site.portrait
+    ? <img src={`/images/${site.portrait}-1280.webp`} srcset={`/images/${site.portrait}-640.webp 640w, /images/${site.portrait}-1280.webp 1280w`} sizes={large ? '(max-width: 700px) 80vw, 420px' : '(max-width: 700px) 70vw, 320px'} width="1280" height="1600" alt={c.portraitAlt} loading="lazy" decoding="async" />
+    : <div class="portrait-pending" role="img" aria-label={c.photo}><span class="led unlit">{c.photo}</span></div>}
+</figure>

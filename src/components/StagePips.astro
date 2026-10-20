@@ -1,0 +1,10 @@
+---
+import { local, stages, type Locale, type Stage } from '../data/site';
+// The lifecycle in miniature: five pips, lit up to the current stage; a paused project's current pip is a ring.
+const { stage, paused = false, lang } = Astro.props as { stage: Stage; paused?: boolean; lang: Locale };
+const at = stages.findIndex(item => item.id === stage);
+---
+<span class:list={['pips', { 'pips-live': stage === 'live', 'pips-paused': paused }]} aria-hidden="true">
+  {stages.map((_, i) => <i class:list={{ 'is-on': i < at, 'is-here': i === at }} />)}
+</span>
+<span class="sr-only">{local(stages[at].label, lang)}{paused ? (lang === 'ar' ? '، متوقف مؤقتًا' : ', paused') : ''}.</span>

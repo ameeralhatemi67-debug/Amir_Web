@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = process.argv.find(arg => arg.startsWith('http')) || 'http://127.0.0.1:4321';
-const routes = ['', 'projects/', 'about/', 'contact/', 'privacy/', '404/', ...['hadayah-live','comms-hub','bookquest','nbc','hedayah-dashboard','hida'].map(slug => `projects/${slug}/`)];
+const routes = ['', 'projects/', 'about/', 'contact/', 'privacy/', '404/', ...['hadayah-live','comms-hub','hayz','nbc','bookquest','hedayah-dashboard','hida','dnfom'].map(slug => `projects/${slug}/`)];
 const cases = process.argv.includes('--smoke') ? [] : ['en','ar'].flatMap(lang => routes.flatMap(route => ['light','dark'].flatMap(theme => ['desktop','mobile'].map(size => ({ lang,route,theme,size })))));
 const browser = await chromium.launch({ channel:'chrome',headless:true });
 await mkdir('qa/screenshots',{ recursive:true });
@@ -58,18 +58,18 @@ try {
   const page = await browser.newPage({ viewport:{width:390,height:844} });
   await page.goto(`${base}/en/projects/`);
   await page.getByRole('button',{ name:'Mobile',exact:true }).click();
-  assert.equal(await page.locator('[data-tags]:visible').count(),1,'Mobile filter');
+  assert.equal(await page.locator('[data-tags]:visible').count(),2,'Mobile filter');
   await page.getByRole('button',{ name:'AI',exact:true }).click();
   assert.equal(await page.locator('[data-tags]:visible').count(),1,'AI filter');
-  await page.getByRole('button',{ name:'All projects',exact:true }).click();
-  assert.equal(await page.locator('[data-tags]:visible').count(),6,'Reset filter');
+  await page.getByRole('button',{ name:'All',exact:true }).click();
+  assert.equal(await page.locator('[data-tags]:visible').count(),8,'Reset filter');
   await page.goto(`${base}/en/projects/hadayah-live/`);
   await page.getByRole('link',{ name:'التبديل إلى العربية' }).click();
   assert.equal(new URL(page.url()).pathname,'/ar/projects/hadayah-live/','Language switch preserves page');
-  await page.getByRole('combobox',{ name:'المظهر' }).selectOption('dark');
+  await page.getByRole('button',{ name:/^مضاء/ }).click();
   await page.reload();
   assert.equal(await page.locator('html').getAttribute('data-theme'),'dark','Theme persists');
-  await page.getByRole('combobox',{ name:'المظهر' }).selectOption('system');
+  await page.getByRole('button',{ name:/^تلقائي/ }).click();
   assert.equal(await page.locator('html').getAttribute('data-theme'),null,'System theme resets override');
   await page.goto(`${base}/en/`);
   await page.keyboard.press('Tab');
@@ -77,8 +77,10 @@ try {
   await page.keyboard.press('Enter');
   assert.equal(await page.locator(':focus').getAttribute('id'),'main','Skip link focus');
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.waitForFunction(() => [...document.querySelectorAll('[data-reveal]')].every(item => getComputedStyle(item).opacity === '1' && getComputedStyle(item).transform === 'none'));
-  assert(await page.locator('[data-reveal]').first().isVisible(),'Reduced motion content remains visible');
+  await page.reload();
+  await page.evaluate(async () => { for (const img of document.querySelectorAll('.wall img')) { img.loading = 'eager'; await img.decode().catch(() => undefined); } });
+  await page.waitForFunction(() => [...document.querySelectorAll('.wall img')].every(img => getComputedStyle(img).opacity === '1' && getComputedStyle(img).maskImage === 'none'));
+  assert.equal(await page.evaluate(() => getComputedStyle(document.querySelector('.ticker-track')).animationName), 'none', 'Reduced motion stops the ticker');
   for (const width of [320,360,768,1024]) {
     for (const lang of ['en','ar']) {
       await page.setViewportSize({width,height:900});
@@ -92,10 +94,11 @@ try {
   const noJS = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const staticPage = await noJS.newPage();
   await staticPage.goto(`${base}/ar/`);
-  assert.equal(await staticPage.locator('article.project-row').count(),5,'Content survives without JS');
+  assert.equal(await staticPage.locator('[data-row]').count(),8,'Content survives without JS');
+  assert(await staticPage.locator('.board-screen img').first().isVisible(),'Lead screen visible without JS');
   assert.equal(await staticPage.locator('html').getAttribute('dir'),'rtl','RTL survives without JS');
   await noJS.close();
-  const summary={ combinations:checks.length, violations:failures.length, interactions:['filters','language-path preservation','theme persistence','system theme reset','keyboard skip link','reduced motion','320/360/768/1024px overflow','custom HTTP 404','JavaScript-disabled Arabic content'],failures,checks };
+  const summary={ combinations:checks.length, violations:failures.length, interactions:['filters','language-path preservation','theme persistence (segmented control)','system theme reset','keyboard skip link','reduced motion','320/360/768/1024px overflow','custom HTTP 404','JavaScript-disabled Arabic content'],failures,checks };
   await writeFile('qa/accessibility.json',JSON.stringify(summary,null,2));
   console.log(`Accessibility/layout audit: ${checks.length} combinations, ${failures.length} issues; interaction checks passed.`);
   if(failures.length) { console.error(failures.join('\n')); process.exitCode=1; }

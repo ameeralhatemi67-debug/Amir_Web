@@ -1,29 +1,72 @@
 ---
-import { copy, local, projects, site, url, type Locale } from '../data/site';
-import { media } from '../data/project-media';
-import ProjectVisual from './ProjectVisual.astro';
-import ProjectList from './ProjectList.astro';
+import Board from './Board.astro';
+import Facts from './Facts.astro';
+import Strip from './Strip.astro';
+import Plate from './Plate.astro';
 import Icon from './Icon.astro';
-const {lang} = Astro.props as {lang:Locale};
-const c=copy[lang];
-const ar=lang==='ar';
-const flagship=projects[0];
+import StatusGlyph from './StatusGlyph.astro';
+import Portrait from './Portrait.astro';
+import ContactPanel from './ContactPanel.astro';
+import { copy, lab, local, projects, reachLabel, url, type Locale } from '../data/site';
+import { image, media, wall } from '../data/project-media';
+const { lang } = Astro.props as { lang: Locale };
+const c = copy[lang];
+const flagship = projects[0];
+const byslug = Object.fromEntries(projects.map(p => [p.slug, p]));
 ---
-<section class="hero wrap" aria-labelledby="hero-title">
-  <h1 id="hero-title">{local(site.headline,lang)}</h1>
-  <div class="intro-bottom"><p>{ar ? 'أنا أمير الحاتمي، من الخبر. أبني تطبيقات للتعلّم والتواصل وتيسير العمل.' : 'I’m Amir Alhatemi, based in Al Khobar. I build apps for learning, communication, and practical work.'}</p><div class="hero-actions"><a class="button button-primary" href="#selected-work">{c.seeWork}<Icon name="next"/></a><a class="text-link" href={url(lang,'contact')}>{c.contact}<Icon/></a></div></div>
+<Board lang={lang} />
+
+<section class="spotlight wrap" aria-labelledby="spotlight-title">
+  <div class="spotlight-head">
+    <h2 id="spotlight-title" class="section-title led">{c.flagshipTitle}</h2>
+    <Facts facts={flagship.facts.slice(0, 3)} lang={lang} />
+  </div>
+  <Strip ids={media[flagship.slug].phones ?? []} lang={lang} label={`${local(flagship.name, lang)}, ${c.phone}`} />
+  <a class="text-action" href={url(lang, `projects/${flagship.slug}`)}>{c.flagshipLink}<Icon name="next" /></a>
 </section>
-<section class="work-section wrap" id="selected-work" aria-labelledby="work-heading">
-  <div class="section-heading"><h2 id="work-heading">{c.work}</h2><span>{ar ? 'تطبيقات الهاتف والويب وأدوات العمل' : 'Mobile, web, and tools for work'}</span></div>
-  <article class="flagship">
-    <a class="flagship-image" href={url(lang,'projects/hadayah-live')} tabindex="-1" aria-hidden="true"><ProjectVisual project={flagship} lang={lang} feature/></a>
-    <div class="flagship-details"><div class="flagship-title"><h3><a href={url(lang,'projects/hadayah-live')}>{local(flagship.name,lang)}<Icon/></a></h3><p>{local(flagship.pitch,lang)}</p></div><div class="flagship-spec"><span>{local(flagship.status,lang)}</span><span dir="ltr">Flutter / Supabase / YouTube</span><a class="text-link" href={url(lang,'projects/hadayah-live')}>{c.caseStudy}<Icon/></a></div></div>
-    <p class="image-caption">{local(media['hadayah-live'].caption,lang)}</p>
-  </article>
-  <div class="other-work"><h2 class="subsection-title">{c.moreWork}</h2><ProjectList lang={lang}/></div>
+
+<section class="wall-section wrap" aria-labelledby="wall-title">
+  <h2 id="wall-title" class="section-title led">{c.screensTitle}</h2>
+  <p class="section-intro">{c.screensIntro}</p>
+  <ul class="wall">
+    {wall.map(item => {
+      const img = image(item.id);
+      const project = byslug[item.project];
+      return (
+        <li class:list={['wall-cell', img.kind === 'phone' ? 'wall-phone' : 'wall-desktop']}>
+          <a href={url(lang, `projects/${item.project}`)} class="wall-link">
+            <Plate id={item.id} lang={lang} frame="none" sizes={img.kind === 'phone' ? '(max-width: 700px) 40vw, 200px' : '(max-width: 700px) 90vw, 620px'} />
+            <span class="wall-cap"><span class="wall-name led">{local(project.name, lang)}</span><span class="wall-note">{local(img.caption, lang)}</span></span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
 </section>
-<section class="about-section wrap" aria-labelledby="about-heading" data-reveal>
-  <h2 id="about-heading">{c.about}</h2><div class="about-copy"><p class="lead">{c.aboutTitle}</p><p>{c.bio}</p><div class="about-links"><a class="text-link" href={url(lang,'about')}>{ar ? 'المزيد عنّي' : 'More about me'}<Icon/></a><span>{ar ? 'العربية والإنجليزية' : 'Arabic & English'}</span></div></div>
+
+<section class="lab-section wrap" aria-labelledby="lab-title">
+  <div class="lab-head">
+    <h2 id="lab-title" class="section-title led">{c.labTitle}</h2>
+    <p class="section-intro">{c.labIntro}</p>
+  </div>
+  <ul class="lab">
+    {lab.map(item => (
+      <li class="lab-item">
+        <span class:list={['lab-glyph', `reach-${item.reach}`]} title={local(reachLabel[item.reach], lang)}><StatusGlyph reach={item.reach} /><span class="sr-only">{local(reachLabel[item.reach], lang)}</span></span>
+        {item.link ? <a class="lab-name led ltr" href={item.link}>{item.name}<Icon /></a> : <span class="lab-name led ltr">{item.name}</span>}
+        <span class="lab-line">{local(item.line, lang)}</span>
+      </li>
+    ))}
+  </ul>
 </section>
-<section class="principles-section wrap" aria-labelledby="principles-heading" data-reveal><h2 id="principles-heading">{c.approach}</h2><div class="principles">{c.principles.map(([heading,body])=><div><h3>{heading}</h3><p>{body}</p></div>)}</div></section>
-<section class="contact-band wrap" aria-labelledby="contact-heading" data-reveal><div><h2 id="contact-heading">{c.contactTitle}</h2><p>{c.contactIntro}</p></div><a class="button button-primary" href={url(lang,'contact')}>{c.contact}<Icon/></a></section>
+
+<section class="about-teaser wrap" aria-labelledby="about-title">
+  <Portrait lang={lang} />
+  <div class="about-copy">
+    <h2 id="about-title" class="section-title led">{c.aboutTitle}</h2>
+    <p>{c.bio}</p>
+    <a class="text-action" href={url(lang, 'about')}>{c.moreAbout}<Icon name="next" /></a>
+  </div>
+</section>
+
+<ContactPanel lang={lang} />

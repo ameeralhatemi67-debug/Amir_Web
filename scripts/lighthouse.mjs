@@ -8,7 +8,7 @@ await mkdir('.local',{recursive:true});
 // Fresh logs prevent chrome-launcher from reading a prior run's debugging port.
 const profile = await mkdtemp(resolve('.local/lighthouse-'));
 const chrome = await chromeLauncher.launch({ chromePath:'C:/Program Files/Google/Chrome/Application/chrome.exe', userDataDir:profile, chromeFlags:['--headless','--no-first-run','--disable-dev-shm-usage','--no-sandbox'] });
-const slugs=['','projects/','about/','contact/','privacy/',...['hadayah-live','comms-hub','bookquest','nbc','hedayah-dashboard','hida'].map(slug=>`projects/${slug}/`)];
+const slugs=['','projects/','about/','contact/','privacy/',...['hadayah-live','comms-hub','hayz','nbc','bookquest','hedayah-dashboard','hida','dnfom'].map(slug=>`projects/${slug}/`)];
 const results=[];
 try {
   for(const lang of ['en','ar']) for(const path of slugs) {

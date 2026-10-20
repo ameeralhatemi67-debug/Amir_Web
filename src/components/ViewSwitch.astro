@@ -1,0 +1,28 @@
+---
+import Plate from './Plate.astro';
+import { image, type ViewSet } from '../data/project-media';
+import { copy, local, type Locale } from '../data/site';
+// Lettered views: the same real screen in another language, theme, lighting or identity.
+const { set, lang, uid } = Astro.props as { set: ViewSet; lang: Locale; uid: string };
+const c = copy[lang];
+const letters = [c.viewA, c.viewB, 'C'];
+---
+<figure class="views" data-views>
+  <div class="views-head">
+    <span class="views-name">{local(set.name, lang)}</span>
+    <div class="keys" role="tablist" aria-label={local(set.name, lang)}>
+      {set.options.map((option, i) => (
+        <button type="button" class="key" role="tab" id={`${uid}-tab-${i}`} aria-controls={`${uid}-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+          {option.letter && <span class="key-letter led" aria-hidden="true">{letters[i]}</span>}
+          <span lang={/[؀-ۿ]/.test(local(option.label, lang)) ? 'ar' : 'en'}>{local(option.label, lang)}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  {set.options.map((option, i) => (
+    <div class="views-panel" role="tabpanel" id={`${uid}-panel-${i}`} aria-labelledby={`${uid}-tab-${i}`} hidden={i !== 0}>
+      <Plate id={option.id} lang={lang} sizes={image(option.id).kind === 'phone' ? '(max-width: 700px) 70vw, 340px' : '(max-width: 700px) 100vw, 1100px'} />
+      <figcaption>{local(image(option.id).caption, lang)}</figcaption>
+    </div>
+  ))}
+</figure>

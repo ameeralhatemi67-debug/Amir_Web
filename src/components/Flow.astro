@@ -1,0 +1,8 @@
+---
+import { local, type Locale, type Step } from '../data/site';
+// A board-row diagram: each stage is a lit name with its detail, joined by a drawn connector.
+const { steps, lang, compact = false } = Astro.props as { steps: Step[]; lang: Locale; compact?: boolean };
+---
+<ol class:list={['flow', { 'flow-compact': compact }]}>
+  {steps.map(step => <li><span class="flow-name led">{local(step.name, lang)}</span><span class="flow-detail">{local(step.detail, lang)}</span></li>)}
+</ol>

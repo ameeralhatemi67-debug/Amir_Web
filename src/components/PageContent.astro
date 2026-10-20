@@ -1,34 +1,65 @@
 ---
-import { copy, local, projects, role, site, url, type Locale } from '../data/site';
-import { media } from '../data/project-media';
 import HomePage from './HomePage.astro';
-import ProjectVisual from './ProjectVisual.astro';
-import ProjectList from './ProjectList.astro';
+import CaseStudy from './CaseStudy.astro';
+import Board from './Board.astro';
+import Portrait from './Portrait.astro';
+import ContactPanel from './ContactPanel.astro';
 import Icon from './Icon.astro';
+import { copy, local, projects, site, url, type Locale } from '../data/site';
 const { lang, page = '' } = Astro.props as { lang: Locale; page?: string };
 const c = copy[lang];
 const ar = lang === 'ar';
 const project = page.startsWith('projects/') ? projects.find(item => item.slug === page.split('/')[1]) : undefined;
-const nextProject = project ? projects[(projects.indexOf(project) + 1) % projects.length] : undefined;
+const tools = ['Flutter / Dart', 'Kotlin', 'Next.js / React', 'TypeScript', 'Supabase / PostgreSQL', 'Prisma', 'Three.js', 'Python / FastAPI', 'Ollama'];
 ---
-{page === '' && <HomePage lang={lang}/>}
-{page === 'projects' && <div class="wrap page-content"><header class="page-heading"><h1>{c.projects}</h1><p class="lead">{c.workIntro}</p></header><ProjectList lang={lang} includeFlagship/></div>}
-{project && <article class="case-study">
-  <header class="case-heading wrap"><a class="back-link" href={url(lang,'projects')}>{c.back}</a><h1>{local(project.name,lang)}</h1><p class="lead">{local(project.pitch,lang)}</p><span class="status-label">{local(project.status,lang)}</span></header>
-  <figure class="case-visual wrap"><ProjectVisual project={project} lang={lang} feature/><figcaption>{local(media[project.slug].caption,lang)}</figcaption></figure>
-  <div class="case-details wrap">
-    <aside class="case-facts"><div><h2>{c.role}</h2><p>{local(role,lang)}</p></div><div><h2>{c.stack}</h2><ul class="stack-list">{project.stack.map(item=><li dir="ltr">{item}</li>)}</ul></div><div><h2>{c.status}</h2><p>{local(project.status,lang)}</p></div>{project.link && <a class="text-link" href={project.link}>{c.visit}<Icon/></a>}</aside>
-    <div class="case-narrative"><section><h2>{c.problem}</h2><p>{local(project.problem,lang)}</p></section><section><h2>{c.audience}</h2><p>{local(project.audience,lang)}</p></section><section><h2>{c.highlights}</h2><ul class="highlights">{project.highlights.map(item=><li>{local(item,lang)}</li>)}</ul></section>
-    {project.slug==='hadayah-live' && <>
-      <section class="architecture-section"><h2>{c.architecture}</h2><p>{c.architectureIntro}</p><ol class="architecture"><li><strong>Flutter</strong><span>{ar?'التطبيق، الاكتشاف، الخريطة':'App, discovery, map'}</span></li><li><strong>Supabase / PostgreSQL</strong><span>{ar?'الحسابات، البيانات، الصلاحيات، المحادثة':'Auth, data, permissions, chat'}</span></li><li><strong>YouTube</strong><span>{ar?'مشاهدة البث والتسجيلات':'Live and recorded playback'}</span></li><li><strong>Android → RTMP → YouTube</strong><span>{ar?'مسار مستقل لنشر الكاميرا والميكروفون':'Separate camera and microphone publishing'}</span></li></ol></section>
-      <section><h2>{c.safety}</h2><p>{c.safetyText}</p><p class="pending-note">{c.policyPending}</p></section>
-    </>}
-    <section class="release-note"><h2>{c.currentBoundary}</h2><p>{local(project.boundary,lang)}</p></section></div>
-  </div>
-  {project.slug==='comms-hub' && <figure class="secondary-shot wrap"><img src="/images/projects/comms-hub-login.webp" width="1440" height="1000" alt={ar?'شاشة تسجيل الدخول العامة لمركز الاتصال':'Comms Hub public sign-in screen'} loading="lazy"/><figcaption>{ar?'شاشة تسجيل الدخول في الموقع العام.':'The public website’s sign-in screen.'}</figcaption></figure>}
-  {nextProject && <div class="next-project wrap"><span>{c.next}</span><a href={url(lang,`projects/${nextProject.slug}`)}>{local(nextProject.name,lang)}<Icon/></a></div>}
+{page === '' && <HomePage lang={lang} />}
+
+{page === 'projects' && <>
+  <header class="page-head wrap"><h1 class="led">{c.projects}</h1><p class="lead">{c.workIntro}</p></header>
+  <Board lang={lang} mode="index" />
+</>}
+
+{project && <CaseStudy project={project} lang={lang} />}
+
+{page === 'about' && <div class="about-page">
+  <header class="page-head wrap"><h1 class="led">{ar ? 'عنّي' : 'About me'}</h1><p class="lead">{local(site.headline, lang)}</p></header>
+  <section class="about-intro wrap" aria-labelledby="about-name">
+    <Portrait lang={lang} large />
+    <div class="about-copy">
+      <h2 id="about-name" class="section-title led">{c.aboutTitle}</h2>
+      <p>{c.bio}</p>
+      <p class="led unlit pending-line">{c.personalPending}</p>
+      <dl class="facts about-facts">
+        <div class="fact"><dt>{c.languages}</dt><dd>{c.native}<br />{c.english}</dd></div>
+        <div class="fact"><dt>{ar ? 'المدينة' : 'Based in'}</dt><dd>{ar ? 'الخبر، المنطقة الشرقية' : 'Al Khobar, Eastern Province'}</dd></div>
+      </dl>
+    </div>
+  </section>
+  <section class="tools-section wrap" aria-labelledby="tools-title">
+    <h2 id="tools-title" class="section-title led">{c.tools}</h2>
+    <p class="section-intro">{c.toolsIntro}</p>
+    <ul class="tool-board">{tools.map(tool => <li class="led ltr">{tool}</li>)}</ul>
+  </section>
+  <section class="principles wrap" aria-labelledby="principles-title">
+    <h2 id="principles-title" class="section-title led">{c.approach}</h2>
+    <ul class="principle-list">{c.principles.map(([heading, body]) => <li><h3 class="led">{heading}</h3><p>{body}</p></li>)}</ul>
+  </section>
+  <ContactPanel lang={lang} />
+</div>}
+
+{page === 'contact' && <ContactPanel lang={lang} page />}
+
+{page === 'privacy' && <article class="prose-page wrap">
+  <header class="page-head"><h1 class="led">{c.privacyTitle}</h1><p class="lead">{c.privacyIntro}</p></header>
+  {c.privacySections.map(([heading, body]) => <section><h2>{heading}</h2><p>{body}</p></section>)}
+  <a class="text-action" href={url(lang, 'contact')}>{c.contact}<Icon name="next" /></a>
 </article>}
-{page==='about' && <div class="wrap page-content"><header class="page-heading"><h1>{ar?'عنّي':'About me'}</h1><p class="lead">{local(site.headline,lang)}</p></header><section class="about-section about-full"><div class="portrait-placeholder" role="img" aria-label={c.photo}><span>{c.photo}</span></div><div class="about-copy"><h2>{c.aboutTitle}</h2><p>{c.bio}</p><p class="pending-note">{c.personalPending}</p><div class="language-facts"><h3>{c.languages}</h3><p>{c.native}<br/>{c.english}</p></div></div></section><section class="tools-section"><h2>{c.tools}</h2><p>{ar?'هذه التقنيات موجودة في المشاريع المعروضة.':'These technologies appear in the featured projects.'}</p><ul class="tool-list">{['Flutter / Dart','Supabase / PostgreSQL','Next.js / React','TypeScript','Python / FastAPI','Ollama / AI tooling'].map(tool=><li dir="ltr">{tool}</li>)}</ul></section><section class="principles-section"><h2>{c.approach}</h2><div class="principles">{c.principles.map(([heading,body])=><div><h3>{heading}</h3><p>{body}</p></div>)}</div></section></div>}
-{page==='contact' && <div class="wrap page-content contact-page"><header class="page-heading"><h1>{c.contactTitle}</h1><p class="lead">{c.contactIntro}</p></header><div class="contact-options">{site.email?<a href={`mailto:${site.email}`}><Icon name="mail"/><div><span>{c.emailAction}</span><strong dir="ltr">{site.email}</strong></div><Icon/></a>:<div class="email-pending"><Icon name="mail"/><p>{c.emailPending}</p></div>}<a href={site.github}><Icon name="github"/><div><span>GitHub</span><strong dir="ltr">ameeralhatemi67-debug</strong></div><Icon/></a><a href={site.linkedin}><Icon name="linkedin"/><div><span>LinkedIn</span><strong>{ar?site.arabicName:site.name}</strong></div><Icon/></a></div><p class="contact-footnote">{c.noForm} <a href={url(lang,'privacy')}>{c.privacy}</a></p></div>}
-{page==='privacy' && <article class="wrap page-content prose-page"><header class="page-heading"><h1>{c.privacyTitle}</h1><p class="lead">{c.privacyIntro}</p></header>{c.privacySections.map(([heading,body])=><section><h2>{heading}</h2><p>{body}</p></section>)}<a class="text-link" href={url(lang,'contact')}>{c.contact}<Icon/></a></article>}
-{page==='404' && <section class="wrap error-page"><p class="error-number">404</p><h1>{c.notFound}</h1><p class="lead">{c.notFoundText}</p><div class="hero-actions"><a class="button button-primary" href={url(lang)}>{c.returnHome}<Icon name="next"/></a><a class="text-link" href={url(lang,'projects')}>{c.projects}<Icon/></a></div></section>}
+
+{page === '404' && <section class="error-page wrap">
+  <div class="error-board">
+    <p class="error-number led num" aria-hidden="true">404</p>
+    <h1 class="led">{c.notFound}</h1>
+    <p class="lead">{c.notFoundText}</p>
+    <div class="error-actions"><a class="action" href={url(lang)}>{c.returnHome}<Icon name="next" /></a><a class="text-action" href={url(lang, 'projects')}>{c.projects}<Icon name="next" /></a></div>
+  </div>
+</section>}

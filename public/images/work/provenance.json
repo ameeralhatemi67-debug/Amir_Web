@@ -1,0 +1,338 @@
+[
+  {
+    "asset": "hadayah-web-live",
+    "origin": "Streamer_app/brief/evidence/2026-10-19/hidayah-gold-web/web-live-video-en.png",
+    "note": "Widget-test render of the web build; chat names and viewer count are sample data.",
+    "width": 1440,
+    "height": 900,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-discovery-en",
+    "origin": "Streamer_app/brief/evidence/2026-10-19/hidayah-gold-web/phone-discovery-en.png",
+    "note": "Widget-test render, English; seeded demo channels.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-discovery-ar",
+    "origin": "Streamer_app/brief/evidence/2026-10-19/hidayah-gold-web/phone-discovery-ar.png",
+    "note": "Widget-test render, Arabic; seeded demo channels.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-onboarding",
+    "origin": "Streamer_app/doc/Design_1/phoen_view_2-10-26/66_onboarding_welcome_get_started.jpg",
+    "note": "Android phone capture, 2026-10-02; status bar cropped.",
+    "width": 720,
+    "height": 1496,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-studio",
+    "origin": "Streamer_app/doc/Design_1/phoen_view_2-10-26/17_studio_mode_picker_overview.jpg",
+    "note": "Android phone capture, 2026-10-02; status bar cropped.",
+    "width": 720,
+    "height": 1496,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-camera",
+    "origin": "Streamer_app/doc/Design_1/phoen_view_2-10-26/21_studio_phone_camera_setup.jpg",
+    "note": "Android phone capture, 2026-10-02; status bar cropped.",
+    "width": 720,
+    "height": 1496,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-quality",
+    "origin": "Streamer_app/doc/Design_1/phoen_view_2-10-26/24_studio_phone_quality_presets.jpg",
+    "note": "Android phone capture, 2026-10-02; status bar cropped.",
+    "width": 720,
+    "height": 1496,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-phone-watch",
+    "origin": "Streamer_app/doc/Design_1/phoen_view_2-10-26/12_lecture_watch_screen_player_ready.jpg",
+    "note": "Android phone capture, 2026-10-02; status bar cropped.",
+    "width": 720,
+    "height": 1496,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-archive",
+    "origin": "https://stream-application-ten.vercel.app/#/feed",
+    "note": "Public organization archive; educational YouTube thumbnails, no private account records.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-feature",
+    "origin": "Streamer_app/store/assets/feature_graphic_1024x500.png",
+    "note": "Google Play feature graphic drafted for the listing.",
+    "width": 1024,
+    "height": 500,
+    "AI_generated": false
+  },
+  {
+    "asset": "hadayah-icon",
+    "origin": "Streamer_app/store/assets/icon_512_fullbleed.png",
+    "note": "App launcher icon.",
+    "width": 192,
+    "height": 192,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-evening",
+    "origin": "Comms_Hub/qa/artifacts/identity-screens/evening-home.png",
+    "note": "Evening theme home, labelled sample data.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-day",
+    "origin": "Comms_Hub/qa/artifacts/identity-screens/home-1440.png",
+    "note": "Day theme home, labelled sample data.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-phone-approval",
+    "origin": "Comms_Hub/qa/artifacts/identity-screens/phone-approval-sheet.png",
+    "note": "Phone approval sheet, sample data.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-approval-stamp",
+    "origin": "Comms_Hub/qa/artifacts/identity-screens/approval-stamp.png",
+    "note": "Version approval moment, sample data.",
+    "width": 1440,
+    "height": 950,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-calendar",
+    "origin": "Comms_Hub/qa/artifacts/identity-screens/evening-calendar.png",
+    "note": "Campaign calendar, sample data.",
+    "width": 1440,
+    "height": 977,
+    "AI_generated": false
+  },
+  {
+    "asset": "comms-film-poster",
+    "origin": "Comms_Hub/videos/comms-hub-launch/output/poster-landscape.png",
+    "note": "Poster frame of the code-rendered launch film.",
+    "width": 1600,
+    "height": 900,
+    "AI_generated": false
+  },
+  {
+    "asset": "hayz-dusk-en",
+    "origin": "CCTV/design-reference/review/finish/home-dusk-en.png",
+    "note": "Design-reference prototype with labelled demo data; illustrative property, not a camera feed.",
+    "width": 1440,
+    "height": 948,
+    "AI_generated": false
+  },
+  {
+    "asset": "hayz-day-en",
+    "origin": "CCTV/design-reference/review/finish/home-day-en.png",
+    "note": "Design-reference prototype with labelled demo data; illustrative property, not a camera feed.",
+    "width": 1440,
+    "height": 948,
+    "AI_generated": false
+  },
+  {
+    "asset": "hayz-dusk-ar",
+    "origin": "CCTV/design-reference/review/finish/home-dusk-ar.png",
+    "note": "Design-reference prototype with labelled demo data; illustrative property, not a camera feed.",
+    "width": 1440,
+    "height": 948,
+    "AI_generated": false
+  },
+  {
+    "asset": "hayz-builder",
+    "origin": "CCTV/design-reference/review/v2/builder-3d-en.png",
+    "note": "Design-reference prototype with labelled demo data; illustrative property, not a camera feed.",
+    "width": 1440,
+    "height": 948,
+    "AI_generated": false
+  },
+  {
+    "asset": "hayz-progress-ar",
+    "origin": "CCTV/design-reference/review/v2/buyer-progress-ar.png",
+    "note": "Buyer progress tracker, Arabic, demo data.",
+    "width": 1440,
+    "height": 640,
+    "AI_generated": false
+  },
+  {
+    "asset": "nbc-original",
+    "origin": "https://nbc-web-two.vercel.app/",
+    "note": "Public landing page, original identity.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "nbc-official",
+    "origin": "NBC_web/docs/design/2026-10-01-official-identity/first-screen-1440.png",
+    "note": "Official identity first screen; partner logos cropped.",
+    "width": 1440,
+    "height": 760,
+    "AI_generated": false
+  },
+  {
+    "asset": "nbc-phone-official",
+    "origin": "NBC_web/docs/design/2026-10-01-official-identity/first-screen-390.png",
+    "note": "Official identity on a phone; partner logos cropped.",
+    "width": 390,
+    "height": 740,
+    "AI_generated": false
+  },
+  {
+    "asset": "nbc-phone-exam",
+    "origin": "NBC_web/test-results/exam/exam-390.png",
+    "note": "Practice question with answer feedback.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "nbc-ceremony",
+    "origin": "NBC_web/design-lab/gate-a/screenshots/ceremony-reveal-1920.jpg",
+    "note": "Results ceremony screen from the design lab, synthetic data.",
+    "width": 1600,
+    "height": 900,
+    "AI_generated": false
+  },
+  {
+    "asset": "bookquest-landing",
+    "origin": "https://book-quest-ecru.vercel.app/",
+    "note": "Public landing page, titled Marginalia.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "bookquest-desk",
+    "origin": "BookQuest/.local/showcase/17-home-desk.png",
+    "note": "Home desk with a fictional sample book.",
+    "width": 1360,
+    "height": 860,
+    "AI_generated": false
+  },
+  {
+    "asset": "bookquest-map",
+    "origin": "BookQuest/.local/showcase/10-book-map.png",
+    "note": "Reader with the book map open, fictional content.",
+    "width": 1360,
+    "height": 860,
+    "AI_generated": false
+  },
+  {
+    "asset": "bookquest-prediction",
+    "origin": "BookQuest/.local/showcase/13-prediction-opened.png",
+    "note": "A prediction note opening in the margin, fictional readers.",
+    "width": 1360,
+    "height": 860,
+    "AI_generated": false
+  },
+  {
+    "asset": "bookquest-phone",
+    "origin": "BookQuest/.local/showcase/phone-home.png",
+    "note": "Phone home, fictional sample book.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "tv-globe",
+    "origin": "https://hedayah-dashboard.vercel.app/",
+    "note": "Geographic scene, cropped to exclude the beneficiary activity ticker.",
+    "width": 1440,
+    "height": 866,
+    "AI_generated": false
+  },
+  {
+    "asset": "tv-milestones",
+    "origin": "hedayah_dashboard/.layout-check/1920-1080-3.png",
+    "note": "Milestones scene; bottom activity ticker cropped for privacy.",
+    "width": 1600,
+    "height": 858,
+    "AI_generated": false
+  },
+  {
+    "asset": "tv-phone",
+    "origin": "hedayah_dashboard/.layout-check/390-844-2.png",
+    "note": "Phone layout of the map scene; activity ticker cropped.",
+    "width": 390,
+    "height": 800,
+    "AI_generated": false
+  },
+  {
+    "asset": "hida-workspace",
+    "origin": "hida/runtime/workspace-preview.png",
+    "note": "Conversation start screen; test notice cropped.",
+    "width": 1440,
+    "height": 900,
+    "AI_generated": false
+  },
+  {
+    "asset": "hida-costs",
+    "origin": "hida/runtime/explorer-costs-en.png",
+    "note": "Model cost explorer, illustrative estimates.",
+    "width": 1440,
+    "height": 1000,
+    "AI_generated": false
+  },
+  {
+    "asset": "hida-phone",
+    "origin": "hida/runtime/mobile-preview.png",
+    "note": "Phone layout of the workspace.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "hida-phone-ar",
+    "origin": "hida/runtime/explorer-mobile-ar.png",
+    "note": "Models explorer on a phone, Arabic.",
+    "width": 390,
+    "height": 844,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/comms-film.mp4",
+    "origin": "Comms_Hub/videos/comms-hub-launch/output/comms-hub-landscape.mp4",
+    "note": "Code-rendered launch film with an original score, re-encoded to 960x540, 30 fps.",
+    "width": 960,
+    "height": 540,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/bookquest-flip.mp4",
+    "origin": "BookQuest/.local/motion/flip.gif",
+    "note": "Recorded page flip from the reader with a fictional sample book, re-encoded to MP4.",
+    "width": 600,
+    "height": 530,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/bookquest-flip-poster.webp",
+    "origin": "BookQuest/.local/motion/flip.gif (first frame)",
+    "note": "Poster frame of the page-flip recording.",
+    "width": 600,
+    "height": 530,
+    "AI_generated": false
+  }
+]

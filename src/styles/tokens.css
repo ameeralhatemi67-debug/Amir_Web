@@ -1,0 +1,71 @@
+@font-face { font-family: 'Handjet LED'; src: url('/fonts/handjet-lit-latin.woff2') format('woff2'); font-weight: 560; font-display: swap; }
+@font-face { font-family: 'Handjet LED'; src: url('/fonts/handjet-lit-arabic.woff2') format('woff2'); font-weight: 560; font-display: swap; unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC; }
+@font-face { font-family: 'Handjet LED'; src: url('/fonts/handjet-unlit-latin.woff2') format('woff2'); font-weight: 260; font-display: swap; }
+@font-face { font-family: 'Handjet LED'; src: url('/fonts/handjet-unlit-arabic.woff2') format('woff2'); font-weight: 260; font-display: swap; unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC; }
+/* Metric-matched fallbacks keep wrapping identical while the LED face loads, so the swap does not shift layout. */
+@font-face { font-family: 'Handjet Fallback A'; src: local('Arial'); size-adjust: 74%; }
+@font-face { font-family: 'Handjet Fallback A'; src: local('Arial'); size-adjust: 98%; unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+FB50-FDFF, U+FE70-FEFC; }
+@font-face { font-family: 'Handjet Fallback R'; src: local('Roboto'); size-adjust: 81%; }
+
+@layer tokens {
+  @property --dot-r { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --wipe { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+
+  /* Lit board: black-green acrylic, unlit dot grid, three LED inks with fixed jobs. */
+  :root, :root[data-theme="dark"] {
+    color-scheme: dark;
+    --panel: #0a0e0c;
+    --panel-2: #101613;
+    --panel-3: #161d19;
+    --frame: #2c3430;
+    --line: #232b27;
+    --dot: #19201c;
+    --ink: #e8ece7;
+    --muted: #a3ada6;
+    --faint: #6f7a73;
+    /* amber = interactive, green = live or public, red = figures and the ticker */
+    --amber: #ffb547;
+    --amber-soft: #ffb54726;
+    --on-amber: #1a1206;
+    --green: #63d68f;
+    --red: #ff6a5c;
+  }
+  /* Printed card: the same board as a timetable card in daylight. */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --panel: #f5f6f2;
+    --panel-2: #fbfbf8;
+    --panel-3: #eceee9;
+    --frame: #c7cdc7;
+    --line: #dde1db;
+    --dot: #e2e6e0;
+    --ink: #121614;
+    --muted: #4c5750;
+    --faint: #6a756e;
+    --amber: #a35200;
+    --amber-soft: #a3520014;
+    --on-amber: #fffaf1;
+    --green: #0e6b3a;
+    --red: #b42318;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --panel: #f5f6f2; --panel-2: #fbfbf8; --panel-3: #eceee9; --frame: #c7cdc7; --line: #dde1db; --dot: #e2e6e0;
+      --ink: #121614; --muted: #4c5750; --faint: #6a756e;
+      --amber: #a35200; --amber-soft: #a3520014; --on-amber: #fffaf1; --green: #0e6b3a; --red: #b42318;
+    }
+  }
+
+  :root {
+    /* Handjet frozen at round LED dots (scripts/instance-handjet.py): lit 560, unlit 260. */
+    --display: 'Handjet LED', 'Handjet Fallback A', 'Handjet Fallback R', sans-serif;
+    --body: 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif;
+    --ease-out: cubic-bezier(.23, 1, .32, 1);
+    --r: 2px;
+    --gutter: clamp(16px, 4vw, 48px);
+    --wrap: min(1320px, 100% - 2 * var(--gutter));
+    --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px;
+    --dots: radial-gradient(circle at 50% 50%, var(--dot) 0 1.15px, transparent 1.65px) 0 0 / 6px 6px;
+  }
+}

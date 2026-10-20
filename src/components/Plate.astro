@@ -1,0 +1,17 @@
+---
+import { image, type ShotId } from '../data/project-media';
+import { local, type Locale } from '../data/site';
+// A real capture mounted on the board's unlit dot grid. The image lights (fades in) once decoded.
+const { id, lang, sizes, eager = false, frame = 'auto', class: className, described = false } = Astro.props as {
+  id: ShotId; lang: Locale; sizes?: string; eager?: boolean; frame?: 'auto' | 'none'; class?: string;
+  /** The adjacent caption already describes the image, so the alt text stays empty instead of repeating it. */
+  described?: boolean;
+};
+const img = image(id);
+const phone = img.kind === 'phone';
+const defaultSizes = phone ? '(max-width: 700px) 60vw, 300px' : '(max-width: 700px) 100vw, 760px';
+---
+<div class:list={['plate', phone ? 'plate-phone' : 'plate-desktop', { 'plate-bare': frame === 'none' }, className]}>
+  <img src={img.src} srcset={img.srcset} sizes={sizes ?? defaultSizes} width={img.width} height={img.height}
+    alt={described ? '' : local(img.alt, lang)} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />
+</div>

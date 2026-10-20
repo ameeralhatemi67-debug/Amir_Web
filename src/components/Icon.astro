@@ -1,10 +1,16 @@
 ---
 import arrow from '../../node_modules/@tabler/icons/icons/outline/arrow-up-right.svg?raw';
 import next from '../../node_modules/@tabler/icons/icons/outline/arrow-right.svg?raw';
+import back from '../../node_modules/@tabler/icons/icons/outline/arrow-left.svg?raw';
 import github from '../../node_modules/@tabler/icons/icons/outline/brand-github.svg?raw';
 import linkedin from '../../node_modules/@tabler/icons/icons/outline/brand-linkedin.svg?raw';
 import mail from '../../node_modules/@tabler/icons/icons/outline/mail.svg?raw';
-const { name = 'arrow' } = Astro.props as { name?: string };
-const icons: Record<string, string> = { arrow, next, github, linkedin, mail };
+import play from '../../node_modules/@tabler/icons/icons/outline/player-play.svg?raw';
+import pause from '../../node_modules/@tabler/icons/icons/outline/player-pause.svg?raw';
+import chevron from '../../node_modules/@tabler/icons/icons/outline/chevron-right.svg?raw';
+const { name = 'arrow', class: className } = Astro.props as { name?: string; class?: string };
+const icons: Record<string, string> = { arrow, next, back, github, linkedin, mail, play, pause, chevron };
+// Directional glyphs mirror in right-to-left pages; the diagonal "arrow" is reflected too.
+const directional = ['arrow', 'next', 'back', 'chevron'].includes(name);
 ---
-<span class="icon" aria-hidden="true" set:html={icons[name] || arrow} />
+<span class:list={['icon', { 'icon-dir': directional }, className]} aria-hidden="true" set:html={icons[name] || arrow} />

@@ -1,0 +1,101 @@
+---
+import Plate from './Plate.astro';
+import Facts from './Facts.astro';
+import Flow from './Flow.astro';
+import Strip from './Strip.astro';
+import ViewSwitch from './ViewSwitch.astro';
+import Lifecycle from './Lifecycle.astro';
+import StatusGlyph from './StatusGlyph.astro';
+import StagePips from './StagePips.astro';
+import Icon from './Icon.astro';
+import { copy, local, projects, reachLabel, role, site, url, type Locale, type Project } from '../data/site';
+import { image, media, phoneFor } from '../data/project-media';
+const { project, lang } = Astro.props as { project: Project; lang: Locale };
+const c = copy[lang];
+const m = media[project.slug] ?? {};
+const next = projects[(projects.indexOf(project) + 1) % projects.length];
+const desktop = m.screen?.desktop;
+const phone = phoneFor(m, lang);
+const lead = desktop ?? phone;
+---
+<article class="case">
+  <header class="case-head wrap">
+    <a class="back-link" href={url(lang, 'projects')}><Icon name="back" />{c.back}</a>
+    <div class="case-board">
+      <div class="case-title">
+        <h1 class="led">{local(project.name, lang)}</h1>
+        <p class="case-pitch">{local(project.pitch, lang)}</p>
+        {project.link && <a class="action" href={project.link}>{c.visit}<Icon /></a>}
+      </div>
+      <dl class="case-cells">
+        <div class="cell"><dt>{c.status}</dt><dd class="cell-status"><span>{local(project.status, lang)}</span><span class:list={['cell-sub', 'cell-access', `reach-${project.reach}`]}><StatusGlyph reach={project.reach} /><span>{local(reachLabel[project.reach], lang)}</span></span></dd></div>
+        <div class="cell cell-wide"><dt>{c.stage}</dt><dd><Lifecycle stage={project.stage} paused={project.paused} lang={lang} /><p class="asof"><span>{c.statusesAsOf}</span> <time class="led num" datetime={site.statusDate.iso}>{site.statusDate[lang]}</time></p></dd></div>
+        <div class="cell"><dt>{c.role}</dt><dd class="led unlit">{local(role, lang)}</dd></div>
+        <div class="cell"><dt>{c.stack}</dt><dd><ul class="stack">{project.stack.map(item => <li class="ltr">{item}</li>)}</ul></dd></div>
+      </dl>
+    </div>
+  </header>
+
+  {lead && (
+    <figure class:list={['case-hero', 'wrap', { 'has-phone': desktop && phone }]}>
+      <div class="case-hero-stage">
+        {desktop && <Plate id={desktop} lang={lang} eager sizes="(max-width: 900px) 100vw, 1100px" class="hero-desktop" />}
+        {phone && <Plate id={phone} lang={lang} eager={!desktop} sizes="(max-width: 900px) 40vw, 260px" class="hero-phone" />}
+      </div>
+      <figcaption>{local(image(lead).caption, lang)}</figcaption>
+    </figure>
+  )}
+
+  <div class="case-body wrap">
+    <aside class="case-aside">
+      <h2 class="aside-title">{c.figures}</h2>
+      <Facts facts={project.facts} lang={lang} />
+    </aside>
+    <div class="case-story">
+      <section><h2>{c.problem}</h2><p>{local(project.problem, lang)}</p></section>
+      <section><h2>{c.audience}</h2><p>{local(project.audience, lang)}</p>{project.note && <p class="case-note">{local(project.note, lang)}</p>}</section>
+      <section><h2>{c.highlights}</h2><ul class="highlights">{project.highlights.map(item => <li>{local(item, lang)}</li>)}</ul></section>
+      {project.how && <section class="how"><h2>{local(project.how.title, lang)}</h2><p>{local(project.how.intro, lang)}</p><Flow steps={project.how.steps} lang={lang} /></section>}
+    </div>
+  </div>
+
+  {m.views && <div class="case-views wrap">{m.views.map((set, i) => <ViewSwitch set={set} lang={lang} uid={`${project.slug}-v${i}`} />)}</div>}
+
+  {m.video && (
+    <figure class:list={['case-video', 'wrap', { 'video-ambient': m.video.ambient }]}>
+      <div class="video-frame" style={`aspect-ratio:${m.video.width}/${m.video.height}`}>
+        {m.video.ambient
+          ? <video muted playsinline preload="none" poster={m.video.poster} data-ambient aria-label={local(m.video.label, lang)} width={m.video.width} height={m.video.height}><source src={m.video.src} type="video/mp4" /></video>
+          : <video controls playsinline preload="none" poster={m.video.poster} aria-label={local(m.video.label, lang)} width={m.video.width} height={m.video.height}><source src={m.video.src} type="video/mp4" /></video>}
+      </div>
+      <figcaption><span class="led">{local(m.video.label, lang)}</span> {local(m.video.caption, lang)}</figcaption>
+    </figure>
+  )}
+
+  {m.phones && m.phones.length > 1 && <section class="case-strip wrap" aria-label={c.phone}><Strip ids={m.phones} lang={lang} label={`${local(project.name, lang)}, ${c.phone}`} /></section>}
+
+  {m.gallery && (
+    <section class="case-gallery wrap" aria-labelledby="gallery-title">
+      <h2 id="gallery-title" class="aside-title">{c.gallery}</h2>
+      <ul class="gallery">
+        {m.gallery.map(id => <li><figure><Plate id={id} lang={lang} sizes="(max-width: 700px) 100vw, 640px" /><figcaption>{local(image(id).caption, lang)}</figcaption></figure></li>)}
+      </ul>
+    </section>
+  )}
+
+  <section class="case-stand wrap" aria-labelledby="stand-title">
+    <div class="stand-board">
+      <h2 id="stand-title" class="led">{c.currentBoundary}</h2>
+      <p>{local(project.boundary, lang)}</p>
+    </div>
+  </section>
+
+  <nav class="next-row wrap" aria-label={c.next}>
+    <a href={url(lang, `projects/${next.slug}`)} class="next-link">
+      <span class="next-kind">{c.next}</span>
+      <span class="next-name led">{local(next.name, lang)}</span>
+      <span class:list={['row-status', { 'is-live': next.stage === 'live' }]}><StagePips stage={next.stage} paused={next.paused} lang={lang} /><span>{local(next.status, lang)}</span></span>
+      <Icon name="next" />
+    </a>
+  </nav>
+</article>

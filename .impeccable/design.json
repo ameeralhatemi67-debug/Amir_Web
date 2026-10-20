@@ -1,394 +1,748 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-17T10:45:52.170Z",
+  "generatedAt": "2026-10-19T23:15:41.182Z",
   "title": "Design System: Amir Alhatemi Portfolio",
   "extensions": {
     "colorMeta": {
-      "paper": {
-        "role": "neutral",
-        "displayName": "Mineral Paper",
+      "amber": {
+        "role": "primary",
+        "displayName": "Signal Amber (Lit)",
+        "description": "Interactive ink: actions, links, selection, focus, the single inverted plate.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.149 73.3)",
+          "oklch(26.4% 0.149 73.3)",
+          "oklch(37.9% 0.149 73.3)",
+          "oklch(49.3% 0.149 73.3)",
+          "oklch(60.7% 0.149 73.3)",
+          "oklch(72.1% 0.149 73.3)",
+          "oklch(83.6% 0.149 73.3)",
+          "oklch(95.0% 0.149 73.3)"
+        ]
+      },
+      "amber-soft": {
+        "role": "primary",
+        "displayName": "Amber Wash (Lit)",
+        "description": "Tint behind selected keys, the pressed theme option and outline-action hover.",
+        "tonalRamp": [
+          "oklch(15.0% 0.149 73.3)",
+          "oklch(26.4% 0.149 73.3)",
+          "oklch(37.9% 0.149 73.3)",
+          "oklch(49.3% 0.149 73.3)",
+          "oklch(60.7% 0.149 73.3)",
+          "oklch(72.1% 0.149 73.3)",
+          "oklch(83.6% 0.149 73.3)",
+          "oklch(95.0% 0.149 73.3)"
+        ]
+      },
+      "on-amber": {
+        "role": "primary",
+        "displayName": "Plate Ink (Lit)",
+        "description": "Text and pips on amber: the lit row and filled actions.",
+        "tonalRamp": [
+          "oklch(15.0% 0.026 77.5)",
+          "oklch(26.4% 0.026 77.5)",
+          "oklch(37.9% 0.026 77.5)",
+          "oklch(49.3% 0.026 77.5)",
+          "oklch(60.7% 0.026 77.5)",
+          "oklch(72.1% 0.026 77.5)",
+          "oklch(83.6% 0.026 77.5)",
+          "oklch(95.0% 0.026 77.5)"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Live Green (Lit)",
+        "description": "Live or publicly available only: live status and pips, the public-access glyph.",
+        "tonalRamp": [
+          "oklch(15.0% 0.147 154.1)",
+          "oklch(26.4% 0.147 154.1)",
+          "oklch(37.9% 0.147 154.1)",
+          "oklch(49.3% 0.147 154.1)",
+          "oklch(60.7% 0.147 154.1)",
+          "oklch(72.1% 0.147 154.1)",
+          "oklch(83.6% 0.147 154.1)",
+          "oklch(95.0% 0.147 154.1)"
+        ]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Figure Red (Lit)",
+        "description": "Verified figures, the status date, ticker lines and the 404 numeral.",
+        "tonalRamp": [
+          "oklch(15.0% 0.185 28.0)",
+          "oklch(26.4% 0.185 28.0)",
+          "oklch(37.9% 0.185 28.0)",
+          "oklch(49.3% 0.185 28.0)",
+          "oklch(60.7% 0.185 28.0)",
+          "oklch(72.1% 0.185 28.0)",
+          "oklch(83.6% 0.185 28.0)",
+          "oklch(95.0% 0.185 28.0)"
         ]
       },
       "ink": {
-        "role": "primary",
-        "displayName": "Deep Green Ink",
+        "role": "neutral",
+        "displayName": "Lamp White (Lit)",
+        "description": "Primary text, lit row names, the current lifecycle stage.",
         "tonalRamp": [
-          "oklch(15% 0.035 155)",
-          "oklch(26% 0.035 155)",
-          "oklch(38% 0.035 155)",
-          "oklch(49% 0.035 155)",
-          "oklch(61% 0.035 155)",
-          "oklch(72% 0.035 155)",
-          "oklch(84% 0.035 155)",
-          "oklch(95% 0.035 155)"
+          "oklch(15.0% 0.008 139.4)",
+          "oklch(26.4% 0.008 139.4)",
+          "oklch(37.9% 0.008 139.4)",
+          "oklch(49.3% 0.008 139.4)",
+          "oklch(60.7% 0.008 139.4)",
+          "oklch(72.1% 0.008 139.4)",
+          "oklch(83.6% 0.008 139.4)",
+          "oklch(95.0% 0.008 139.4)"
         ]
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Muted Green",
+        "displayName": "Dim Ink (Lit)",
+        "description": "Labels, captions, case-story prose, unlit (unconfirmed) values.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.015 155.5)",
+          "oklch(26.4% 0.015 155.5)",
+          "oklch(37.9% 0.015 155.5)",
+          "oklch(49.3% 0.015 155.5)",
+          "oklch(60.7% 0.015 155.5)",
+          "oklch(72.1% 0.015 155.5)",
+          "oklch(83.6% 0.015 155.5)",
+          "oklch(95.0% 0.015 155.5)"
         ]
       },
-      "surface": {
+      "faint": {
         "role": "neutral",
-        "displayName": "Quiet Green Surface",
+        "displayName": "Dead Pixel (Lit)",
+        "description": "Ring strokes of unlit pips and lifecycle nodes; never text.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.017 157.9)",
+          "oklch(26.4% 0.017 157.9)",
+          "oklch(37.9% 0.017 157.9)",
+          "oklch(49.3% 0.017 157.9)",
+          "oklch(60.7% 0.017 157.9)",
+          "oklch(72.1% 0.017 157.9)",
+          "oklch(83.6% 0.017 157.9)",
+          "oklch(95.0% 0.017 157.9)"
         ]
       },
-      "surface-soft": {
+      "panel": {
         "role": "neutral",
-        "displayName": "Soft Green Surface",
+        "displayName": "Acrylic Black (Lit)",
+        "description": "Page background; masthead at 94%, board foot at 72%.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.008 163.8)",
+          "oklch(26.4% 0.008 163.8)",
+          "oklch(37.9% 0.008 163.8)",
+          "oklch(49.3% 0.008 163.8)",
+          "oklch(60.7% 0.008 163.8)",
+          "oklch(72.1% 0.008 163.8)",
+          "oklch(83.6% 0.008 163.8)",
+          "oklch(95.0% 0.008 163.8)"
+        ]
+      },
+      "panel-2": {
+        "role": "neutral",
+        "displayName": "Board Face (Lit)",
+        "description": "Face under the dot field on boards, wall cards and control trays.",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 163.6)",
+          "oklch(26.4% 0.011 163.6)",
+          "oklch(37.9% 0.011 163.6)",
+          "oklch(49.3% 0.011 163.6)",
+          "oklch(60.7% 0.011 163.6)",
+          "oklch(72.1% 0.011 163.6)",
+          "oklch(83.6% 0.011 163.6)",
+          "oklch(95.0% 0.011 163.6)"
+        ]
+      },
+      "panel-3": {
+        "role": "neutral",
+        "displayName": "Bezel Band (Lit)",
+        "description": "Band inside the board bezel; face of plates and flow cells.",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 160.1)",
+          "oklch(26.4% 0.013 160.1)",
+          "oklch(37.9% 0.013 160.1)",
+          "oklch(49.3% 0.013 160.1)",
+          "oklch(60.7% 0.013 160.1)",
+          "oklch(72.1% 0.013 160.1)",
+          "oklch(83.6% 0.013 160.1)",
+          "oklch(95.0% 0.013 160.1)"
+        ]
+      },
+      "frame": {
+        "role": "neutral",
+        "displayName": "Aluminium Frame (Lit)",
+        "description": "Bezel rings, plate and chip borders, caption strips.",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 164.0)",
+          "oklch(26.4% 0.013 164.0)",
+          "oklch(37.9% 0.013 164.0)",
+          "oklch(49.3% 0.013 164.0)",
+          "oklch(60.7% 0.013 164.0)",
+          "oklch(72.1% 0.013 164.0)",
+          "oklch(83.6% 0.013 164.0)",
+          "oklch(95.0% 0.013 164.0)"
         ]
       },
       "line": {
         "role": "neutral",
-        "displayName": "Green Divider",
+        "displayName": "Rule Line (Lit)",
+        "description": "Hairline dividers between rows, facts, cells and routes.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.013 163.8)",
+          "oklch(26.4% 0.013 163.8)",
+          "oklch(37.9% 0.013 163.8)",
+          "oklch(49.3% 0.013 163.8)",
+          "oklch(60.7% 0.013 163.8)",
+          "oklch(72.1% 0.013 163.8)",
+          "oklch(83.6% 0.013 163.8)",
+          "oklch(95.0% 0.013 163.8)"
         ]
       },
-      "warm": {
-        "role": "primary",
-        "displayName": "Warm Clay",
-        "tonalRamp": [
-          "oklch(15% 0.1 45)",
-          "oklch(26% 0.1 45)",
-          "oklch(38% 0.1 45)",
-          "oklch(49% 0.1 45)",
-          "oklch(61% 0.1 45)",
-          "oklch(72% 0.1 45)",
-          "oklch(84% 0.1 45)",
-          "oklch(95% 0.1 45)"
-        ]
-      },
-      "cool": {
-        "role": "primary",
-        "displayName": "Cool Teal",
-        "tonalRamp": [
-          "oklch(15% 0.06 195)",
-          "oklch(26% 0.06 195)",
-          "oklch(38% 0.06 195)",
-          "oklch(49% 0.06 195)",
-          "oklch(61% 0.06 195)",
-          "oklch(72% 0.06 195)",
-          "oklch(84% 0.06 195)",
-          "oklch(95% 0.06 195)"
-        ]
-      },
-      "dark-paper": {
+      "dot": {
         "role": "neutral",
-        "displayName": "Dark Theme · Mineral Paper",
+        "displayName": "Unlit Dot (Lit)",
+        "description": "The dot grid texture only.",
         "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
+          "oklch(15.0% 0.013 160.2)",
+          "oklch(26.4% 0.013 160.2)",
+          "oklch(37.9% 0.013 160.2)",
+          "oklch(49.3% 0.013 160.2)",
+          "oklch(60.7% 0.013 160.2)",
+          "oklch(72.1% 0.013 160.2)",
+          "oklch(83.6% 0.013 160.2)",
+          "oklch(95.0% 0.013 160.2)"
         ]
       },
-      "dark-ink": {
+      "print-amber": {
         "role": "primary",
-        "displayName": "Dark Theme · Deep Green Ink",
+        "displayName": "Signal Amber (Print)",
+        "description": "Print theme counterpart of Signal Amber. Interactive ink: actions, links, selection, focus, the single inverted plate.",
         "tonalRamp": [
-          "oklch(15% 0.035 155)",
-          "oklch(26% 0.035 155)",
-          "oklch(38% 0.035 155)",
-          "oklch(49% 0.035 155)",
-          "oklch(61% 0.035 155)",
-          "oklch(72% 0.035 155)",
-          "oklch(84% 0.035 155)",
-          "oklch(95% 0.035 155)"
+          "oklch(15.0% 0.131 54.6)",
+          "oklch(26.4% 0.131 54.6)",
+          "oklch(37.9% 0.131 54.6)",
+          "oklch(49.3% 0.131 54.6)",
+          "oklch(60.7% 0.131 54.6)",
+          "oklch(72.1% 0.131 54.6)",
+          "oklch(83.6% 0.131 54.6)",
+          "oklch(95.0% 0.131 54.6)"
         ]
       },
-      "dark-muted": {
-        "role": "neutral",
-        "displayName": "Dark Theme · Muted Green",
-        "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
-        ]
-      },
-      "dark-surface": {
-        "role": "neutral",
-        "displayName": "Dark Theme · Quiet Green Surface",
-        "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
-        ]
-      },
-      "dark-surface-soft": {
-        "role": "neutral",
-        "displayName": "Dark Theme · Soft Green Surface",
-        "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
-        ]
-      },
-      "dark-line": {
-        "role": "neutral",
-        "displayName": "Dark Theme · Green Divider",
-        "tonalRamp": [
-          "oklch(15% 0.015 155)",
-          "oklch(26% 0.015 155)",
-          "oklch(38% 0.015 155)",
-          "oklch(49% 0.015 155)",
-          "oklch(61% 0.015 155)",
-          "oklch(72% 0.015 155)",
-          "oklch(84% 0.015 155)",
-          "oklch(95% 0.015 155)"
-        ]
-      },
-      "dark-warm": {
+      "print-amber-soft": {
         "role": "primary",
-        "displayName": "Dark Theme · Warm Clay",
+        "displayName": "Amber Wash (Print)",
+        "description": "Print theme counterpart of Amber Wash. Tint behind selected keys, the pressed theme option and outline-action hover.",
         "tonalRamp": [
-          "oklch(15% 0.1 45)",
-          "oklch(26% 0.1 45)",
-          "oklch(38% 0.1 45)",
-          "oklch(49% 0.1 45)",
-          "oklch(61% 0.1 45)",
-          "oklch(72% 0.1 45)",
-          "oklch(84% 0.1 45)",
-          "oklch(95% 0.1 45)"
+          "oklch(15.0% 0.131 54.6)",
+          "oklch(26.4% 0.131 54.6)",
+          "oklch(37.9% 0.131 54.6)",
+          "oklch(49.3% 0.131 54.6)",
+          "oklch(60.7% 0.131 54.6)",
+          "oklch(72.1% 0.131 54.6)",
+          "oklch(83.6% 0.131 54.6)",
+          "oklch(95.0% 0.131 54.6)"
         ]
       },
-      "dark-cool": {
+      "print-on-amber": {
         "role": "primary",
-        "displayName": "Dark Theme · Cool Teal",
+        "displayName": "Plate Ink (Print)",
+        "description": "Print theme counterpart of Plate Ink. Text and pips on amber: the lit row and filled actions.",
         "tonalRamp": [
-          "oklch(15% 0.06 195)",
-          "oklch(26% 0.06 195)",
-          "oklch(38% 0.06 195)",
-          "oklch(49% 0.06 195)",
-          "oklch(61% 0.06 195)",
-          "oklch(72% 0.06 195)",
-          "oklch(84% 0.06 195)",
-          "oklch(95% 0.06 195)"
+          "oklch(15.0% 0.013 82.4)",
+          "oklch(26.4% 0.013 82.4)",
+          "oklch(37.9% 0.013 82.4)",
+          "oklch(49.3% 0.013 82.4)",
+          "oklch(60.7% 0.013 82.4)",
+          "oklch(72.1% 0.013 82.4)",
+          "oklch(83.6% 0.013 82.4)",
+          "oklch(95.0% 0.013 82.4)"
+        ]
+      },
+      "print-green": {
+        "role": "secondary",
+        "displayName": "Live Green (Print)",
+        "description": "Print theme counterpart of Live Green. Live or publicly available only: live status and pips, the public-access glyph.",
+        "tonalRamp": [
+          "oklch(15.0% 0.113 153.5)",
+          "oklch(26.4% 0.113 153.5)",
+          "oklch(37.9% 0.113 153.5)",
+          "oklch(49.3% 0.113 153.5)",
+          "oklch(60.7% 0.113 153.5)",
+          "oklch(72.1% 0.113 153.5)",
+          "oklch(83.6% 0.113 153.5)",
+          "oklch(95.0% 0.113 153.5)"
+        ]
+      },
+      "print-red": {
+        "role": "tertiary",
+        "displayName": "Figure Red (Print)",
+        "description": "Print theme counterpart of Figure Red. Verified figures, the status date, ticker lines and the 404 numeral.",
+        "tonalRamp": [
+          "oklch(15.0% 0.182 29.5)",
+          "oklch(26.4% 0.182 29.5)",
+          "oklch(37.9% 0.182 29.5)",
+          "oklch(49.3% 0.182 29.5)",
+          "oklch(60.7% 0.182 29.5)",
+          "oklch(72.1% 0.182 29.5)",
+          "oklch(83.6% 0.182 29.5)",
+          "oklch(95.0% 0.182 29.5)"
+        ]
+      },
+      "print-ink": {
+        "role": "neutral",
+        "displayName": "Card Black (Print)",
+        "description": "Print theme counterpart of Lamp White. Primary text, lit row names, the current lifecycle stage.",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 164.1)",
+          "oklch(26.4% 0.007 164.1)",
+          "oklch(37.9% 0.007 164.1)",
+          "oklch(49.3% 0.007 164.1)",
+          "oklch(60.7% 0.007 164.1)",
+          "oklch(72.1% 0.007 164.1)",
+          "oklch(83.6% 0.007 164.1)",
+          "oklch(95.0% 0.007 164.1)"
+        ]
+      },
+      "print-muted": {
+        "role": "neutral",
+        "displayName": "Dim Ink (Print)",
+        "description": "Print theme counterpart of Dim Ink. Labels, captions, case-story prose, unlit (unconfirmed) values.",
+        "tonalRamp": [
+          "oklch(15.0% 0.018 157.7)",
+          "oklch(26.4% 0.018 157.7)",
+          "oklch(37.9% 0.018 157.7)",
+          "oklch(49.3% 0.018 157.7)",
+          "oklch(60.7% 0.018 157.7)",
+          "oklch(72.1% 0.018 157.7)",
+          "oklch(83.6% 0.018 157.7)",
+          "oklch(95.0% 0.018 157.7)"
+        ]
+      },
+      "print-faint": {
+        "role": "neutral",
+        "displayName": "Dead Pixel (Print)",
+        "description": "Print theme counterpart of Dead Pixel. Ring strokes of unlit pips and lifecycle nodes; never text.",
+        "tonalRamp": [
+          "oklch(15.0% 0.017 157.9)",
+          "oklch(26.4% 0.017 157.9)",
+          "oklch(37.9% 0.017 157.9)",
+          "oklch(49.3% 0.017 157.9)",
+          "oklch(60.7% 0.017 157.9)",
+          "oklch(72.1% 0.017 157.9)",
+          "oklch(83.6% 0.017 157.9)",
+          "oklch(95.0% 0.017 157.9)"
+        ]
+      },
+      "print-panel": {
+        "role": "neutral",
+        "displayName": "Card Stock (Print)",
+        "description": "Print theme counterpart of Acrylic Black. Page background; masthead at 94%, board foot at 72%.",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 117.9)",
+          "oklch(26.4% 0.005 117.9)",
+          "oklch(37.9% 0.005 117.9)",
+          "oklch(49.3% 0.005 117.9)",
+          "oklch(60.7% 0.005 117.9)",
+          "oklch(72.1% 0.005 117.9)",
+          "oklch(83.6% 0.005 117.9)",
+          "oklch(95.0% 0.005 117.9)"
+        ]
+      },
+      "print-panel-2": {
+        "role": "neutral",
+        "displayName": "Board Face (Print)",
+        "description": "Print theme counterpart of Board Face. Face under the dot field on boards, wall cards and control trays.",
+        "tonalRamp": [
+          "oklch(15.0% 0.004 106.5)",
+          "oklch(26.4% 0.004 106.5)",
+          "oklch(37.9% 0.004 106.5)",
+          "oklch(49.3% 0.004 106.5)",
+          "oklch(60.7% 0.004 106.5)",
+          "oklch(72.1% 0.004 106.5)",
+          "oklch(83.6% 0.004 106.5)",
+          "oklch(95.0% 0.004 106.5)"
+        ]
+      },
+      "print-panel-3": {
+        "role": "neutral",
+        "displayName": "Bezel Band (Print)",
+        "description": "Print theme counterpart of Bezel Band. Band inside the board bezel; face of plates and flow cells.",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 124.5)",
+          "oklch(26.4% 0.007 124.5)",
+          "oklch(37.9% 0.007 124.5)",
+          "oklch(49.3% 0.007 124.5)",
+          "oklch(60.7% 0.007 124.5)",
+          "oklch(72.1% 0.007 124.5)",
+          "oklch(83.6% 0.007 124.5)",
+          "oklch(95.0% 0.007 124.5)"
+        ]
+      },
+      "print-frame": {
+        "role": "neutral",
+        "displayName": "Aluminium Frame (Print)",
+        "description": "Print theme counterpart of Aluminium Frame. Bezel rings, plate and chip borders, caption strips.",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 145.5)",
+          "oklch(26.4% 0.010 145.5)",
+          "oklch(37.9% 0.010 145.5)",
+          "oklch(49.3% 0.010 145.5)",
+          "oklch(60.7% 0.010 145.5)",
+          "oklch(72.1% 0.010 145.5)",
+          "oklch(83.6% 0.010 145.5)",
+          "oklch(95.0% 0.010 145.5)"
+        ]
+      },
+      "print-line": {
+        "role": "neutral",
+        "displayName": "Rule Line (Print)",
+        "description": "Print theme counterpart of Rule Line. Hairline dividers between rows, facts, cells and routes.",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 134.9)",
+          "oklch(26.4% 0.009 134.9)",
+          "oklch(37.9% 0.009 134.9)",
+          "oklch(49.3% 0.009 134.9)",
+          "oklch(60.7% 0.009 134.9)",
+          "oklch(72.1% 0.009 134.9)",
+          "oklch(83.6% 0.009 134.9)",
+          "oklch(95.0% 0.009 134.9)"
+        ]
+      },
+      "print-dot": {
+        "role": "neutral",
+        "displayName": "Halftone Dot (Print)",
+        "description": "Print theme counterpart of Unlit Dot. The dot grid texture only.",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 134.9)",
+          "oklch(26.4% 0.009 134.9)",
+          "oklch(37.9% 0.009 134.9)",
+          "oklch(49.3% 0.009 134.9)",
+          "oklch(60.7% 0.009 134.9)",
+          "oklch(72.1% 0.009 134.9)",
+          "oklch(83.6% 0.009 134.9)",
+          "oklch(95.0% 0.009 134.9)"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Introduction display",
-        "purpose": "Compact introductory heading; responsive and language-specific variants are documented in DESIGN.md."
+        "displayName": "LED Display",
+        "purpose": "Page headings; case and contact titles use sibling clamps. Arabic sizes run 10-20% smaller."
+      },
+      "board": {
+        "displayName": "Board Headline",
+        "purpose": "The home board's two-line headline."
       },
       "headline": {
-        "displayName": "Base headline",
-        "purpose": "Base second-level heading, with contextual section sizes."
+        "displayName": "Section Title",
+        "purpose": "Section titles across home, about and case pages."
       },
       "title": {
-        "displayName": "Base title",
-        "purpose": "Base third-level heading."
+        "displayName": "Row Name",
+        "purpose": "Board row names; fixed LED titles step from 28px to 20px."
+      },
+      "figure": {
+        "displayName": "Lit Figure",
+        "purpose": "Verified values in fact rows, set in Figure Red with tabular numerals."
+      },
+      "unlit": {
+        "displayName": "Unlit Value",
+        "purpose": "Unconfirmed facts and placeholders in Dim Ink, labelled \"to be confirmed\"."
       },
       "body": {
-        "displayName": "English body",
-        "purpose": "Readable paragraphs and supporting narrative."
+        "displayName": "Reading Text",
+        "purpose": "Paragraphs capped at 68ch."
+      },
+      "body-arabic": {
+        "displayName": "Arabic Reading Text",
+        "purpose": "Arabic paragraphs with taller leading."
       },
       "label": {
-        "displayName": "Action label",
-        "purpose": "Semibold action text."
+        "displayName": "Control Label",
+        "purpose": "Actions, text actions, nav; channels and view keys at 14px."
       },
-      "arabic-body": {
-        "displayName": "Arabic body",
-        "purpose": "Native Arabic family and taller body leading."
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Categories, statuses, captions; 12.5px column heads and cell labels."
       }
     },
     "shadows": [
       {
-        "name": "featured-screenshot",
-        "value": "0 16px 40px #102c211c",
-        "purpose": "Soft depth beneath the featured application capture."
+        "name": "board-bezel",
+        "value": "0 0 0 1px var(--frame, #2c3430), 0 0 0 6px var(--panel-3, #161d19), 0 0 0 7px var(--frame, #2c3430)",
+        "purpose": "Three-ring zero-blur bezel around major boards; sits outside the box."
       },
       {
-        "name": "gallery-screenshot",
-        "value": "0 10px 24px #102c2110",
-        "purpose": "Soft depth beneath gallery application captures."
+        "name": "outline-ring",
+        "value": "inset 0 0 0 1px var(--amber, #ffb547)",
+        "purpose": "Ring of the outline action."
+      },
+      {
+        "name": "unlit-ring",
+        "value": "inset 0 0 0 1px var(--faint, #6f7a73)",
+        "purpose": "Unlit pips (1.5px on lifecycle rail nodes)."
+      },
+      {
+        "name": "current-stage-halo",
+        "value": "0 0 0 3px color-mix(in srgb, var(--ink, #e8ece7) 18%, transparent)",
+        "purpose": "Current node on the lifecycle rail."
       }
     ],
     "motion": [
       {
-        "name": "ease",
-        "value": "cubic-bezier(.16,1,.3,1)",
-        "purpose": "Introduction settling and screenshot image focus."
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Every relight and control transition."
       },
       {
-        "name": "micro",
-        "value": "180ms",
-        "purpose": "Image focus transform; button and filter color transitions."
+        "name": "press",
+        "value": "160ms; scale(.97)",
+        "purpose": "Colour and transform feedback on actions, channels and keys (.96 theme options, .95 ticker toggle)."
       },
       {
-        "name": "intro-settle",
-        "value": "350ms",
-        "purpose": "Already-visible heading translates upward from 8px; disabled with reduced motion."
+        "name": "dot-pitch",
+        "value": "6px",
+        "purpose": "Shared pitch of the dot texture and every relight mask."
+      },
+      {
+        "name": "row-relight",
+        "value": "240ms; dot radius 0.4px to 4.6px",
+        "purpose": "Board screen switching to the lit row's captures."
+      },
+      {
+        "name": "language-relight",
+        "value": "old 180ms dim; new 560ms dot grow + reading-direction wipe",
+        "purpose": "Cross-document view transition of type \"relight\" when the /en/ or /ar/ prefix changes."
+      },
+      {
+        "name": "cross-fade",
+        "value": "160ms",
+        "purpose": "All other page navigations."
+      },
+      {
+        "name": "plate-light",
+        "value": "280ms opacity; 2.5s fallback",
+        "purpose": "Captures fade in once decoded."
+      },
+      {
+        "name": "ticker",
+        "value": "70s linear infinite",
+        "purpose": "Crawl in reading direction; pauses on hover, focus or toggle."
+      },
+      {
+        "name": "wall-relight",
+        "value": "view() entry 0% to cover 28%",
+        "purpose": "Wall captures light through the dot mask as they scroll in."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "1ms",
+        "purpose": "All animation and transition durations clamp; ticker becomes a static wrapped list; no view transitions."
       }
     ],
     "breakpoints": [
       {
-        "name": "tablet-max",
-        "value": "1000px"
+        "name": "container",
+        "value": "min(1320px, 100% - 2 * clamp(16px, 4vw, 48px))"
+      },
+      {
+        "name": "wide-max",
+        "value": "1080px"
+      },
+      {
+        "name": "board-stack-max",
+        "value": "900px"
       },
       {
         "name": "phone-max",
-        "value": "700px"
+        "value": "760px"
       },
       {
-        "name": "narrow-phone-max",
-        "value": "359px"
+        "name": "narrow-max",
+        "value": "420px"
       }
     ]
   },
   "components": [
     {
-      "name": "Primary action",
+      "name": "Filled action",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Compact ink-filled action with a directional SVG.",
-      "html": "<a class=\"ds-button\" href=\"#selected-work\">See my work<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
-      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:47px;padding:11px 19px;border:1px solid transparent;border-radius:8px;background:var(--ink,#19342c);color:var(--button-ink,#f8faf8);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:none}.ds-button:hover{background:var(--cool,#24666d);color:var(--button-ink,#f8faf8)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-button{transition:background-color 180ms,color 180ms}}"
+      "refersTo": "action",
+      "description": "The amber plate as a control; only on screens with no lit row.",
+      "html": "<a class=\"ds-action\" href=\"#\">Open the project site<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M17 7l-10 10\"/><path d=\"M8 7l9 0l0 9\"/></svg></a>",
+      "css": ".ds-action{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:10px 16px;background:var(--amber,#ffb547);color:var(--on-amber,#1a1206);border-radius:var(--r,2px);font:500 15px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);text-decoration:none;white-space:nowrap;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 160ms ease}.ds-action:hover{background:color-mix(in srgb,var(--amber,#ffb547) 84%,var(--ink,#e8ece7))}.ds-action:active{transform:scale(.97)}.ds-action:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
+    },
+    {
+      "name": "Outline action",
+      "kind": "button",
+      "refersTo": "action-outline",
+      "description": "Amber-ringed action used beside a board, where the lit row is already the plate.",
+      "html": "<a class=\"ds-action-outline\" href=\"#\">Explore the case study<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l14 0\"/><path d=\"M13 18l6 -6\"/><path d=\"M13 6l6 6\"/></svg></a>",
+      "css": ".ds-action-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:10px 16px;background:transparent;color:var(--amber,#ffb547);box-shadow:inset 0 0 0 1px var(--amber,#ffb547);border-radius:var(--r,2px);font:500 15px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);text-decoration:none;white-space:nowrap;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 160ms ease}.ds-action-outline:hover{background:var(--amber-soft,#ffb54726)}.ds-action-outline:active{transform:scale(.97)}.ds-action-outline:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     },
     {
       "name": "Text action",
       "kind": "button",
-      "description": "Secondary underlined action with a directional SVG.",
-      "html": "<a class=\"ds-link\" href=\"/en/contact/\">Contact<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
-      "css": ".ds-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--ink,#19342c);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:underline;text-decoration-color:var(--line,#cad5cd);text-underline-offset:.25em;text-decoration-thickness:1px}.ds-link:hover{color:var(--cool,#24666d);text-decoration-color:currentColor}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}"
+      "refersTo": "text-action",
+      "description": "Default secondary route: amber underlined label with an arrow.",
+      "html": "<a class=\"ds-text-action\" href=\"#\">Read the Hadayah case study<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l14 0\"/><path d=\"M13 18l6 -6\"/><path d=\"M13 6l6 6\"/></svg></a>",
+      "css": ".ds-text-action{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--amber,#ffb547);font:500 15px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.28em;text-decoration-color:color-mix(in srgb,var(--amber,#ffb547) 45%,transparent)}.ds-text-action:hover{text-decoration-color:currentColor}.ds-text-action:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     },
     {
-      "name": "Project filters",
+      "name": "Board rows",
+      "kind": "custom",
+      "refersTo": "row-lit",
+      "description": "Projects as rows: LED name, category, status pips and label; one row lit as the amber plate.",
+      "html": "<ol class=\"ds-rows\"><li><a class=\"ds-row lit\" href=\"#\"><span class=\"ds-row-name\">Hadayah Live</span><span class=\"ds-row-cat\">Learning &amp; live streaming</span><span class=\"ds-row-status\"><span class=\"ds-pips\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"here\"></i><i></i></span><span>Preparing for Google Play</span></span></a></li><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-row-name\">Hedayah TV dashboard</span><span class=\"ds-row-cat\">Data &amp; display systems</span><span class=\"ds-row-status live\"><span class=\"ds-pips live\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"here\"></i></span><span>Deployed dashboard</span></span></a></li><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-row-name\">HAYZ</span><span class=\"ds-row-cat\">Commerce &amp; field service</span><span class=\"ds-row-status\"><span class=\"ds-pips paused\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"here\"></i><i></i><i></i><i></i></span><span>Paused private build</span></span></a></li></ol>",
+      "css": ".ds-rows{list-style:none;margin:0;padding:12px;background:radial-gradient(circle at 50% 50%, var(--dot, #19201c) 0 1.15px, transparent 1.65px) 0 0 / 6px 6px,var(--panel-2,#101613)}.ds-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:\"name status\" \"cat status\";align-items:center;column-gap:24px;padding:5px 14px;border-radius:var(--r,2px);color:var(--ink,#e8ece7);text-decoration:none}.ds-row-name{grid-area:name;font:560 clamp(24px,2.3vw,31px)/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);letter-spacing:.01em}.ds-row-cat{grid-area:cat;font:350 13px/1.4 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6)}.ds-row-status{grid-area:status;display:inline-flex;align-items:center;gap:10px;justify-self:end;font:350 13px/1.4 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6)}.ds-row-status.live>span:last-child{color:var(--green,#63d68f)}.ds-row:hover:not(.lit){background:var(--amber-soft,#ffb54726)}.ds-row.lit,.ds-row.lit .ds-row-cat,.ds-row.lit .ds-row-status{color:var(--on-amber,#1a1206)}.ds-row.lit{background:var(--amber,#ffb547)}.ds-pips{display:inline-flex;gap:3px}.ds-pips i{width:6px;height:6px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--faint,#6f7a73)}.ds-pips i.on{background:var(--muted,#a3ada6);box-shadow:none}.ds-pips i.here{background:var(--ink,#e8ece7);box-shadow:none}.ds-pips.live i.on,.ds-pips.live i.here{background:var(--green,#63d68f)}.ds-pips.paused i.here{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink,#e8ece7)}.ds-row.lit .ds-pips i{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--on-amber,#1a1206) 45%,transparent)}.ds-row.lit .ds-pips i.on{background:color-mix(in srgb,var(--on-amber,#1a1206) 55%,transparent);box-shadow:none}.ds-row.lit .ds-pips i.here{background:var(--on-amber,#1a1206);box-shadow:none}.ds-row:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
+    },
+    {
+      "name": "Status glyphs and lifecycle rail",
+      "kind": "custom",
+      "description": "Access by pattern (filled, half, ring) and the five-stage lifecycle; colour only reinforces.",
+      "html": "<div class=\"ds-status\"><ul class=\"ds-reach\"><li class=\"public\"><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"5\" fill=\"currentColor\"/></svg><span>Publicly available</span></li><li class=\"limited\"><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"4.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"M6 1.6a4.4 4.4 0 0 1 0 8.8z\" fill=\"currentColor\"/></svg><span>Limited access</span></li><li class=\"private\"><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"6\" r=\"4.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg><span>Private build</span></li></ul><ol class=\"ds-rail\"><li class=\"on\"><span>Concept</span></li><li class=\"on\"><span>Building</span></li><li class=\"on here\" aria-current=\"step\"><span>Pilot or alpha</span></li><li><span>Launch prep</span></li><li><span>Live</span></li></ol></div>",
+      "css": ".ds-status{display:grid;gap:24px;font:350 13px/1.4 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6)}.ds-reach{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 24px}.ds-reach li{display:inline-flex;align-items:center;gap:7px}.ds-reach .public{color:var(--green,#63d68f)}.ds-reach .limited svg{color:var(--ink,#e8ece7)}.ds-reach .private{color:var(--muted,#a3ada6)}.ds-rail{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;background:linear-gradient(var(--line,#232b27),var(--line,#232b27)) 0 4px/100% 1px no-repeat}.ds-rail li{position:relative;padding-top:18px;font-size:12px;line-height:1.35}.ds-rail li::before{content:'';position:absolute;top:0;inset-inline-start:0;width:9px;height:9px;border-radius:50%;background:var(--panel-2,#101613);box-shadow:inset 0 0 0 1.5px var(--faint,#6f7a73)}.ds-rail li.on::before{background:var(--muted,#a3ada6);box-shadow:none}.ds-rail li.here{color:var(--ink,#e8ece7);font-weight:500}.ds-rail li.here::before{background:var(--ink,#e8ece7);box-shadow:0 0 0 3px color-mix(in srgb,var(--ink,#e8ece7) 18%,transparent)}"
+    },
+    {
+      "name": "Filter channels",
       "kind": "chip",
-      "refersTo": "filter",
-      "description": "Wrapping native buttons distinguish the active project filter.",
-      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Filter projects\"><button class=\"ds-filter\" aria-pressed=\"true\">All projects</button><button class=\"ds-filter\" aria-pressed=\"false\">Mobile</button><button class=\"ds-filter\" aria-pressed=\"false\">Web</button></div>",
-      "css": ".ds-filters{display:flex;flex-wrap:wrap;gap:8px}.ds-filter{border:0;background:transparent;color:var(--muted,#52665b);border-radius:6px;font:14px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);padding:8px 14px;min-height:42px;cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#19342c);color:var(--paper,#f8faf8)}.ds-filter:hover:not([aria-pressed=true]){background:var(--surface,#eaf0eb);color:var(--ink,#19342c)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-filter{transition:background-color 180ms,color 180ms}}"
+      "refersTo": "channel",
+      "description": "Pressed-state filter buttons on the projects board.",
+      "html": "<div class=\"ds-channels\" role=\"group\" aria-label=\"Filter projects\"><button type=\"button\" class=\"ds-channel\" aria-pressed=\"true\">All</button><button type=\"button\" class=\"ds-channel\" aria-pressed=\"false\">Mobile</button><button type=\"button\" class=\"ds-channel\" aria-pressed=\"false\">Web</button></div>",
+      "css": ".ds-channels{display:flex;flex-wrap:wrap;gap:6px}.ds-channel{min-height:40px;padding:6px 14px;border:1px solid var(--frame,#2c3430);border-radius:var(--r,2px);background:var(--panel-2,#101613);color:var(--muted,#a3ada6);font:350 14px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1),color 160ms ease,border-color 160ms ease}.ds-channel:hover{color:var(--ink,#e8ece7)}.ds-channel[aria-pressed=\"true\"]{color:var(--amber,#ffb547);border-color:var(--amber,#ffb547)}.ds-channel:active{transform:scale(.97)}.ds-channel:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     },
     {
-      "name": "Text navigation",
+      "name": "Lettered view keys",
       "kind": "nav",
-      "description": "Quiet navigation with a warm current-page underline.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/en/projects/\" aria-current=\"page\">Projects</a><a href=\"/en/about/\">About</a><a href=\"/en/contact/\">Contact</a></nav>",
-      "css": ".ds-nav{display:flex;gap:28px}.ds-nav a{color:var(--ink,#19342c);font:15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);padding-block:12px;text-decoration:none}.ds-nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--warm,#99502d);text-underline-offset:8px}.ds-nav a:hover{color:var(--cool,#24666d)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}"
+      "refersTo": "view-key-selected",
+      "description": "Tab tray switching the same real screen between languages, themes or identities.",
+      "html": "<div class=\"ds-keys\" role=\"tablist\" aria-label=\"Hadayah Live sign-in\"><button type=\"button\" class=\"ds-key\" role=\"tab\" aria-selected=\"true\"><span class=\"ds-key-letter\" aria-hidden=\"true\">A</span><span lang=\"ar\">العربية</span></button><button type=\"button\" class=\"ds-key\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\"><span class=\"ds-key-letter\" aria-hidden=\"true\">B</span><span>English</span></button></div>",
+      "css": ".ds-keys{display:inline-flex;gap:3px;padding:3px;border:1px solid var(--frame,#2c3430);border-radius:var(--r,2px);background:var(--panel-2,#101613)}.ds-key{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:6px 14px;border:0;border-radius:1px;background:none;color:var(--muted,#a3ada6);font:350 14px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1),color 160ms ease}.ds-key:hover{color:var(--ink,#e8ece7)}.ds-key[aria-selected=\"true\"]{color:var(--amber,#ffb547);background:var(--amber-soft,#ffb54726)}.ds-key:active{transform:scale(.97)}.ds-key-letter{font:560 22px/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif)}.ds-key:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     },
     {
-      "name": "Tool tag",
-      "kind": "chip",
-      "refersTo": "tool-tag",
-      "description": "Passive label for a tool present in project files.",
-      "html": "<span class=\"ds-tool\">Flutter</span>",
-      "css": ".ds-tool{display:inline-block;padding:8px 15px;background:var(--surface,#eaf0eb);color:var(--ink,#19342c);border-radius:6px;font:15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif)}"
+      "name": "Masthead",
+      "kind": "nav",
+      "description": "Bilingual LED lockup, nav with an amber current bar, full-word language switch and Auto/Print/Lit theme tray.",
+      "html": "<header class=\"ds-masthead\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-primary\">Amir Alhatemi</span><span class=\"ds-brand-secondary\" lang=\"ar\" aria-hidden=\"true\">أمير الحاتمي</span></a><nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#\" aria-current=\"page\">Work</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav><a class=\"ds-lang\" href=\"#\" lang=\"ar\" dir=\"rtl\">العربية</a><div class=\"ds-theme\" role=\"group\" aria-label=\"Theme\"><button type=\"button\" aria-pressed=\"true\">Auto</button><button type=\"button\" aria-pressed=\"false\">Print</button><button type=\"button\" aria-pressed=\"false\">Lit</button></div></header>",
+      "css": ".ds-masthead{display:flex;align-items:center;gap:32px;min-height:60px;padding:0 16px;background:color-mix(in srgb,var(--panel,#0a0e0c) 94%,transparent);border-bottom:1px solid var(--line,#232b27)}.ds-brand{display:inline-flex;align-items:baseline;gap:12px;color:var(--ink,#e8ece7);text-decoration:none;white-space:nowrap;font-family:var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);font-weight:560;line-height:.95}.ds-brand-primary{font-size:25px;text-transform:uppercase}.ds-brand-secondary{font-size:22px;color:var(--muted,#a3ada6)}.ds-brand:hover,.ds-brand:hover .ds-brand-secondary{color:var(--amber,#ffb547)}.ds-nav{display:flex;gap:24px;margin-inline-start:auto}.ds-nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;font:350 15px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6);text-decoration:none}.ds-nav a:hover{color:var(--amber,#ffb547)}.ds-nav a[aria-current=\"page\"]{color:var(--ink,#e8ece7)}.ds-nav a[aria-current=\"page\"]::after{content:'';position:absolute;inset-inline:0;bottom:6px;height:2px;background:var(--amber,#ffb547)}.ds-lang{display:inline-flex;align-items:center;min-height:44px;font:350 15px/1.2 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--ink,#e8ece7);text-decoration:none}.ds-theme{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--frame,#2c3430);border-radius:var(--r,2px)}.ds-theme button{padding:2px 9px;border:0;border-radius:1px;background:none;color:var(--muted,#a3ada6);font:350 13px/1.6 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);cursor:pointer}.ds-theme button[aria-pressed=\"true\"]{color:var(--amber,#ffb547);background:var(--amber-soft,#ffb54726)}.ds-theme button:hover{color:var(--ink,#e8ece7)}.ds-brand, .ds-nav a, .ds-lang, .ds-theme button:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     },
     {
-      "name": "Contact panel",
+      "name": "Facts and unlit values",
       "kind": "card",
-      "refersTo": "contact-band",
-      "description": "Flat tonal container with copy and a compact contact action.",
-      "html": "<section class=\"ds-contact\"><div><h2>Let’s talk about the work.</h2><p>For project questions or professional conversations, you can find me on GitHub and LinkedIn.</p></div><a class=\"ds-button\" href=\"/en/contact/\">Contact<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></section>",
-      "css": ".ds-contact{display:flex;align-items:center;justify-content:space-between;gap:48px;padding:40px;background:var(--surface,#eaf0eb);color:var(--ink,#19342c);border-radius:12px}.ds-contact h2{margin:0;font:600 32px/1.2 var(--display,'Manrope Variable',sans-serif);letter-spacing:-.03em}.ds-contact p{margin:16px 0 0;max-width:56ch;color:var(--muted,#52665b);font:17px/1.7 var(--body,'Source Sans 3 Variable',sans-serif)}.ds-contact .ds-button{flex-shrink:0}.ds-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:47px;padding:11px 19px;border:1px solid transparent;border-radius:8px;background:var(--ink,#19342c);color:var(--button-ink,#f8faf8);font:600 15px/1.7 var(--body,'Source Sans 3 Variable',sans-serif);text-decoration:none}.ds-button:hover{background:var(--cool,#24666d);color:var(--button-ink,#f8faf8)}.ds-button:focus-visible,.ds-link:focus-visible,.ds-filter:focus-visible,.ds-nav a:focus-visible,.ds-contact a:focus-visible{outline:3px solid var(--cool,#24666d);outline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-button{transition:background-color 180ms,color 180ms}}@media(max-width:700px){.ds-contact{display:block;padding:28px}.ds-contact h2{font-size:29px}}"
+      "refersTo": "fact-value",
+      "description": "Label column and lit red value column; unconfirmed values set unlit.",
+      "html": "<dl class=\"ds-facts\"><div class=\"ds-fact\"><dt>Flutter tests passing</dt><dd>1,547</dd></div><div class=\"ds-fact\"><dt>Database migrations</dt><dd>91</dd></div><div class=\"ds-fact\"><dt>My contribution</dt><dd class=\"unlit\">To be confirmed</dd></div></dl>",
+      "css": ".ds-facts{margin:0;max-width:420px}.ds-fact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:11px 0;border-top:1px solid var(--line,#232b27)}.ds-fact dt{font:350 14px/1.45 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6)}.ds-fact dd{margin:0;font:560 clamp(30px,3vw,42px)/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--red,#ff6a5c);direction:ltr;unicode-bidi:isolate}.ds-fact dd.unlit{font-weight:260;font-size:26px;color:var(--muted,#a3ada6)}"
+    },
+    {
+      "name": "Board surface with foot",
+      "kind": "card",
+      "refersTo": "board",
+      "description": "Dot field on Board Face inside the three-ring bezel, with the status date and pausable ticker in the foot.",
+      "html": "<section class=\"ds-board\"><div class=\"ds-board-main\"><h2 class=\"ds-board-title\">App developer building Arabic-first products.</h2></div><div class=\"ds-board-foot\"><p class=\"ds-asof\">Statuses as of <time datetime=\"2026-10-20\">20 Oct 2026</time></p><div class=\"ds-ticker\"><span>Hadayah Live: release hardening before Google Play</span><span>HAYZ: paused</span></div><button type=\"button\" class=\"ds-ticker-toggle\" aria-pressed=\"false\" aria-label=\"Pause the ticker\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12\"/><path d=\"M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12\"/></svg></button></div></section>",
+      "css": ".ds-board{margin:7px;background:radial-gradient(circle at 50% 50%, var(--dot, #19201c) 0 1.15px, transparent 1.65px) 0 0 / 6px 6px,var(--panel-2,#101613);border-radius:var(--r,2px);box-shadow:0 0 0 1px var(--frame,#2c3430),0 0 0 6px var(--panel-3,#161d19),0 0 0 7px var(--frame,#2c3430)}.ds-board-main{padding:clamp(20px,3vw,44px)}.ds-board-title{margin:0;max-width:14ch;font:560 clamp(40px,4.4vw,62px)/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);letter-spacing:.01em;color:var(--ink,#e8ece7)}.ds-board-foot{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:10px clamp(20px,3vw,44px);border-top:1px solid var(--frame,#2c3430);background:color-mix(in srgb,var(--panel,#0a0e0c) 72%,transparent)}.ds-asof{margin:0;font:350 13px/1.4 var(--body, 'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif);color:var(--muted,#a3ada6);white-space:nowrap}.ds-asof time{margin-inline-start:6px;font:560 21px/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);font-variant-numeric:tabular-nums;color:var(--red,#ff6a5c)}.ds-ticker{display:flex;gap:56px;overflow:hidden;white-space:nowrap;font:560 20px/.95 var(--display, 'Handjet LED', 'Handjet Fallback A', sans-serif);color:var(--red,#ff6a5c);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}.ds-ticker-toggle{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--frame,#2c3430);border-radius:var(--r,2px);background:none;color:var(--amber,#ffb547);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1)}.ds-ticker-toggle:active{transform:scale(.95)}.ds-ticker-toggle:focus-visible{outline:2px solid var(--amber,#ffb547);outline-offset:3px;border-radius:2px}"
     }
   ],
   "narrative": {
-    "northStar": "The Software Contact Sheet",
-    "overview": "A quiet editorial frame gives real application work room to speak. Mineral-white paper, deep green ink, readable typography and uneven image groupings give the portfolio a precise, personal character. Application colors remain visible inside authentic screenshots rather than becoming a competing site palette.\n\nThe system supports English and Arabic as full peers, including native direction, generous Arabic leading and mirrored directional icons. Density comes from concise labels and supporting facts around images, with generous space between larger sections.",
+    "northStar": "The Lit Board",
+    "overview": "The site is a working LED information board, the kind that hangs in Saudi mosques, schools and office lobbies: a black-green acrylic face, a visible grid of unlit dots, a thin aluminium frame, and dot-matrix lettering that lights up to say something. Projects are the board's rows, each with an honest status light, and the real application screens light up on a screen beside the board. Whatever the board displays (names, headlines, figures, dates, the ticker) is set in the LED face; whatever is read or operated is set in a calm sans that carries Arabic and Latin as one family.\n\nThe two themes are the same object in two lights. Lit, the default, is the board switched on at night. Print is the board printed as a timetable card in daylight: white stock, darkened inks and a pale halftone dot. Visitors choose Auto, Print or Lit (تلقائي / مطبوع / مضاء); Auto follows the device.\n\nDensity is that of a departures board: tight rows, small muted labels and large lit values, with generous space between boards. Colour is rationed to three LED inks with fixed jobs, and only one amber plate is ever inverted on a screen. English and Arabic are full peers with native right-to-left layout. Motion is the board relighting through its own dot grid, and it stands down completely under reduced motion.",
     "keyCharacteristics": [
-      "Real application imagery with honest captions.",
-      "Mineral-white and deep-green editorial framing.",
-      "Restrained variable typography and native Arabic.",
-      "Flat surfaces, soft screenshot depth and uneven grids.",
-      "Visible keyboard states and optional, minimal motion."
+      "Dot-field surfaces inside thin frame rings; nothing casts a blurred shadow.",
+      "Three LED inks with fixed jobs: amber acts, green is live or public, red carries figures.",
+      "Lit (560) and unlit (260) static Handjet instances for display; Readex Pro for reading.",
+      "2px corners on every rectangle; circles only for LED dots.",
+      "Status drawn by pattern on one five-stage lifecycle, always with words, colour only reinforcing.",
+      "Relight motion on a shared 6px dot pitch, with full reduced-motion fallbacks."
     ],
     "rules": [
       {
-        "name": "The Image Color Rule",
-        "body": "Keep the site's framing restrained so each real application's own colors remain legible.",
+        "name": "The Three Inks Rule",
+        "body": "Amber means you can act; green means live or public; red carries figures, dates and the ticker. An ink never borrows another's job, none is used as decoration, and product colours appear only inside real captures.",
         "section": "colors"
       },
       {
-        "name": "The Native Reading Rule",
-        "body": "Use the Arabic family, native RTL and Arabic leading together; preserve LTR direction for technology lists.",
+        "name": "The One Plate Rule",
+        "body": "A screen has at most one inverted amber plate. Where a board is present it is the lit row, and the action beside the board is outlined; a filled amber action appears only on screens with no lit row (a case study's project-site action, the 404 return action).",
+        "section": "colors"
+      },
+      {
+        "name": "The Unlit Rule",
+        "body": "An unconfirmed fact is shown, never hidden or guessed: it is set in unlit LED (weight 260, Dim Ink) and says \"to be confirmed\". A lit value is a verified value.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Weights Rule",
+        "body": "Handjet ships only as lit (560) and unlit (260) static files. Never ask the LED face for another weight, and never load the variable Handjet: its dot contours are too slow to interpolate on phones.",
         "section": "typography"
       },
       {
-        "name": "The Reading Order Rule",
-        "body": "Responsive layouts retain the same content order in both languages and collapse columns rather than hiding evidence.",
+        "name": "The Display/Read Rule",
+        "body": "Handjet LED is for what the board displays: names, headlines, figures, dates, ticker lines, the brand lockup and tool names. Readex Pro is for anything read in sentences and for control labels (actions, nav, filters, the language switch).",
+        "section": "typography"
+      },
+      {
+        "name": "The Native Script Rule",
+        "body": "Arabic LED gets its own sizes, 10 to 20% below the Latin ones (board headline clamp(36px, 3.9vw, 54px), section titles clamp(32px, 3.6vw, 48px), row names clamp(22px, 2.1vw, 28px)), with letter-spacing 0 and line-height 1.15. Latin names inside Arabic lines are isolated left-to-right and kept unbroken. The English name in the lockup is set in capitals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Repack Rule",
+        "body": "Narrow screens repack rows and grids instead of shrinking type: LED sizes stay fluid while rows restack.",
         "section": "layout"
       },
       {
-        "name": "The Screenshot Depth Rule",
-        "body": "Reserve the existing shadow vocabulary for screenshot framing; editorial text and navigation stay flat.",
+        "name": "The Logical Rule",
+        "body": "Layout uses logical properties and inline-start/end throughout. Both languages keep the same order, and directional icons mirror under right-to-left.",
+        "section": "layout"
+      },
+      {
+        "name": "The Frame Ring Rule",
+        "body": "Every box-shadow is a ring with zero offset and zero blur. If something needs to stand forward, frame it; do not float it.",
         "section": "elevation"
+      },
+      {
+        "name": "The Dot Field Rule",
+        "body": "Board-like surfaces carry the dot grid token: Unlit Dot lamps of 1.15px radius, softening to 1.65px, on a 6px pitch, laid over Board Face or Bezel Band. Prose areas, the masthead and the footer stay plain.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Two Pixel Rule",
+        "body": "Corners are 2px, or 1px when nested. Nothing is a pill, and nothing is round unless it is a dot.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Pattern First Rule",
+        "body": "Every status reads from shape alone (filled, half or ring; lit, unlit or ringed pip) and always comes with words. Colour only reinforces.",
+        "section": "components"
+      },
+      {
+        "name": "The Relight Rule",
+        "body": "Content never slides, bounces or scales into place. It lights, through the dot mask on the 6px pitch or by fading in once decoded. The ticker is the only continuous movement, and it can always be paused.",
+        "section": "components"
       }
     ],
     "dos": [
-      "**Do** use actual project captures or source-project assets and identify their provenance.",
-      "**Do** preserve readable Arabic, logical layout properties and visible keyboard focus.",
-      "**Do** use unequal screenshot groupings where image proportions support them.",
-      "**Do** preserve the dark-theme token relationships and reduced-motion behavior."
+      "Do build new surfaces from the board kit: the dot field over Board Face inside the board bezel for major panels, a 1px Aluminium Frame for plates and cards.",
+      "Do keep Signal Amber for things that respond to input, including the 2px focus outline at 3px offset and text selection.",
+      "Do keep one inverted amber plate per screen: outline actions beside a board, filled actions only where no row is lit.",
+      "Do show every status with pips or glyph pattern plus words, on the five-stage lifecycle.",
+      "Do set unconfirmed facts in unlit LED (260, Dim Ink) with \"to be confirmed\".",
+      "Do use only the lit (560) and unlit (260) Handjet instances for display, and Readex Pro for prose and control labels.",
+      "Do give Arabic LED its own smaller sizes with letter-spacing 0 and line-height 1.15, and isolate Latin runs left-to-right.",
+      "Do keep 44px targets for actions, text actions, nav, the language switch and footer links, and at least 40px for in-board controls.",
+      "Do mount only real captures or source-project assets on plates, with honest captions.",
+      "Do ship a reduced-motion fallback with any new relight or crawl."
     ],
     "donts": [
-      "**Don't** invent application imagery, device renders or unsupported project claims.",
-      "**Don't** turn screenshot-specific colors into competing global site accents.",
-      "**Don't** turn restrained image focus into parallax, hidden content or layout movement."
+      "Don't add soft, offset or blurred shadows; frames are zero-blur rings and 1px borders.",
+      "Don't introduce a fourth ink or decorative colour gradients, or let amber, green and red stand in for one another.",
+      "Don't light a value that is not verified, or fill an unknown with a placeholder figure.",
+      "Don't round rectangles beyond 2px or make pills; circles are for dots only.",
+      "Don't set paragraphs or control labels in the LED face, or request Handjet weights other than 560 and 260.",
+      "Don't shrink type to fit narrow screens; repack rows and grids instead.",
+      "Don't use AI-generated, rendered or invented imagery.",
+      "Don't move content into place with slides, bounces or scale-ins."
     ]
   }
 }

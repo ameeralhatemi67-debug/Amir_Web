@@ -1,0 +1,9 @@
+---
+import { local, stages, type Locale, type Stage } from '../data/site';
+// One fixed lifecycle for every project; the current stage is lit, earlier stages stay on, later stages are unlit.
+const { stage, paused = false, lang } = Astro.props as { stage: Stage; paused?: boolean; lang: Locale };
+const at = stages.findIndex(item => item.id === stage);
+---
+<ol class:list={['rail', { 'rail-paused': paused }]}>
+  {stages.map((item, i) => <li class:list={{ 'is-on': i <= at, 'is-here': i === at }} aria-current={i === at ? 'step' : undefined}><span>{local(item.label, lang)}</span></li>)}
+</ol>
