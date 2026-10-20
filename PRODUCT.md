@@ -20,7 +20,7 @@ Astro with fully static output. Native CSS and small browser scripts. English an
 
 ## Capabilities and Constraints
 
-Keep all eight case studies, project filtering, About, Contact, Privacy and 404. No database, environment secrets, analytics or contact form. Keep source projects read-only. No push or deployment. No invented biographical facts, clients, metrics or release status. Unconfirmed owner details remain TODO comments.
+Keep all eight case studies, project filtering, About, Contact, Privacy and 404. No database, environment secrets, analytics or contact form. Keep source projects read-only. Push and deploy only when the owner asks. No invented biographical facts, clients, metrics or release status. Unconfirmed owner details remain TODO comments.
 
 ## Brand Commitments
 
