@@ -47,7 +47,7 @@ The primary routes are `/en/` and `/ar/`. Each includes projects, eight case stu
 
 Images come from public deployments or from captures already in the owner's project folders, imported read-only by `node scripts/import-project-images.mjs` (crops and exclusions are listed at the top of that script). Sample, demo and synthetic data is labelled in captions. Hedayah TV captures exclude the activity feed, which shows personal names. DnFOM has no screenshots because its prototypes contain realistic personal names; its case study shows the flow instead. HAYZ appears as a paused private build with a concept name that has not been cleared, without its staging URL.
 
-To change the owner's portrait or email, see the TODO comments at the top of `src/data/site.ts`.
+To change the owner's portrait or email, see the comments at the top of `src/data/site.ts`.
 
 ## Checks
 
@@ -92,7 +92,7 @@ These are explicitly marked `TODO(owner)` in source. Missing details do not beco
 2. Supply the personal origin story and motivations, and confirm the proposed working principles. Current bio uses only supplied facts and project topics.
 3. Confirm personal proficiency in the listed project technologies. The site currently calls these "Tools in these projects."
 4. Confirm solo/team context and exact contribution on each of the eight projects. Case studies explicitly say the responsibility details need confirmation.
-5. Supply the portrait (place `amir-640.webp` and `amir-1280.webp` in `public/images/` and set `site.portrait` to `'amir'`). Until then the board frame shows an unlit placeholder.
+5. Portrait supplied (2026-10-20) and live as `public/images/amir-640.webp` / `amir-1280.webp`. To replace it, overwrite both files at 4:5.
 6. Confirm public naming and any disclosure restrictions for NBC, Comms Hub, Hida and DnFOM (the DnFOM client stays unnamed until it agrees). Existing public branding appears only inside the real screenshots; private records are excluded.
 7. Choose BookQuest versus Marginalia as the final portfolio name. Its status file records a code-gated alpha with 75 seats.
 8. Provide approved Hadayah app privacy-policy and account-deletion URLs. No placeholder legal links are published.

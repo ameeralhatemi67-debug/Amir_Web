@@ -334,5 +334,13 @@
     "width": 600,
     "height": 530,
     "AI_generated": false
+  },
+  {
+    "asset": "images/amir-640.webp, images/amir-1280.webp",
+    "origin": "Owner-supplied portrait photograph, 2026-10-20",
+    "note": "Cropped to 4:5 and re-encoded; no metadata retained.",
+    "width": 1280,
+    "height": 1600,
+    "AI_generated": false
   }
 ]

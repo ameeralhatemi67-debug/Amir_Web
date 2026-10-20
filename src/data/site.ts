@@ -11,8 +11,8 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/ameer-alhatime-0b590a3b7/',
   // TODO(owner): Supply the public contact email. The Contact panel switches to it automatically.
   email: '',
-  // TODO(owner): Supply the portrait. Place it at public/images/amir-640.webp and amir-1280.webp, then set this to 'amir'.
-  portrait: '',
+  // Owner-supplied portrait, cropped to 4:5: public/images/amir-640.webp and amir-1280.webp.
+  portrait: 'amir',
   headline: { en: 'App developer building Arabic-first products.', ar: 'مطوّر تطبيقات يضع العربية في صميم التجربة.' },
   intro: {
     en: 'I’m Amir, based in Al Khobar. I build apps for learning, communication and the work in between.',

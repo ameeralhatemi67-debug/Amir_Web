@@ -96,6 +96,7 @@ provenance.push(
   { asset: 'media/comms-film.mp4', origin: 'Comms_Hub/videos/comms-hub-launch/output/comms-hub-landscape.mp4', note: 'Code-rendered launch film with an original score, re-encoded to 960x540, 30 fps.', width: 960, height: 540, AI_generated: false },
   { asset: 'media/bookquest-flip.mp4', origin: 'BookQuest/.local/motion/flip.gif', note: 'Recorded page flip from the reader with a fictional sample book, re-encoded to MP4.', width: 600, height: 530, AI_generated: false },
   { asset: 'media/bookquest-flip-poster.webp', origin: 'BookQuest/.local/motion/flip.gif (first frame)', note: 'Poster frame of the page-flip recording.', width: 600, height: 530, AI_generated: false },
+  { asset: 'images/amir-640.webp, images/amir-1280.webp', origin: 'Owner-supplied portrait photograph, 2026-10-20', note: 'Cropped to 4:5 and re-encoded; no metadata retained.', width: 1280, height: 1600, AI_generated: false },
 );
 await writeFile(`${OUT}/provenance.json`, JSON.stringify(provenance, null, 2));
 await writeFile('src/data/media.generated.json', JSON.stringify(manifest, null, 2));
