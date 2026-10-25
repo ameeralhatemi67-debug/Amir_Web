@@ -7,7 +7,7 @@ async function files(directory) {
 }
 const all = await files('dist');
 const htmlFiles = all.filter(file => file.endsWith('.html'));
-assert.equal(htmlFiles.length, 30, 'Expected 28 localized pages (6 shared + 8 case studies, in two languages), a root home, and a root 404.');
+assert.equal(htmlFiles.length, 32, 'Expected 30 localized pages (6 shared + 9 case studies, in two languages), a root home, and a root 404.');
 const problems = [];
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');

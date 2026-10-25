@@ -50,6 +50,16 @@ export const shots = {
   'hida-costs': shot('hida-costs', { en: 'The model cost explorer comparing monthly and cumulative estimates.', ar: 'مستكشف تكاليف النماذج يقارن التقديرات الشهرية والتراكمية.' }, { en: 'Local capture. Illustrative estimates.', ar: 'لقطة محلية. تقديرات توضيحية.' }),
   'hida-phone': shot('hida-phone', { en: 'Hida workspace on a phone.', ar: 'مساحة العمل على الهاتف.' }, { en: 'Local capture.', ar: 'لقطة محلية.' }),
   'hida-phone-ar': shot('hida-phone-ar', { en: 'The models explorer on a phone, in Arabic.', ar: 'مستكشف النماذج على الهاتف بالعربية.' }, { en: 'Local capture.', ar: 'لقطة محلية.' }),
+  'memory-card-home': shot('memory-card-home', { en: 'Memory Card home: deck bars with fanned cards, and navigation drawn as a hand of cards.', ar: 'الشاشة الرئيسية في Memory Card: أشرطة الرزم مع بطاقات متدرّجة، والتنقّل مرسوم كيدٍ تمسك بطاقات.' }, { en: 'Phone render. Built-in sample decks.', ar: 'عرض من التطبيق على الهاتف. رزم تجريبية مضمّنة.' }),
+  'memory-card-home-dark': shot('memory-card-home-dark', { en: 'The same home screen in the dark theme.', ar: 'الشاشة الرئيسية نفسها بالمظهر الداكن.' }, { en: 'Phone render, dark theme. Built-in sample decks.', ar: 'عرض من التطبيق بالمظهر الداكن. رزم تجريبية مضمّنة.' }),
+  'memory-card-study': shot('memory-card-study', { en: 'A Spanish card in the study stack, with the reveal and listen buttons.', ar: 'بطاقة إسبانية في رزمة المراجعة، مع زرّ الكشف عن الإجابة وزرّ الاستماع.' }, { en: 'Phone render. Built-in sample decks.', ar: 'عرض من التطبيق على الهاتف. رزم تجريبية مضمّنة.' }),
+  'memory-card-swipe': shot('memory-card-swipe', { en: 'A card dragged to the right to say “I knew it”.', ar: 'بطاقة تُسحب إلى اليمين للدلالة على أنك عرفتها.' }, { en: 'Phone render. Built-in sample decks.', ar: 'عرض من التطبيق على الهاتف. رزم تجريبية مضمّنة.' }),
+  'memory-card-today': shot('memory-card-today', { en: 'The Today screen: a daily goal ring, how the reader answered, and a 14-day streak.', ar: 'شاشة «اليوم»: حلقة الهدف اليومي وطريقة الإجابة وسلسلة من 14 يومًا متتاليًا.' }, { en: 'Phone render. Sample numbers.', ar: 'عرض من التطبيق على الهاتف. أرقام توضيحية.' }),
+  'memory-card-lab': shot('memory-card-lab', { en: 'Memory Lab: a chart of the next two weeks and a check of whether the model fits the reader.', ar: 'مختبر الذاكرة: مخطط للأسبوعين القادمين وفحص لمدى ملاءمة النموذج لذاكرة القارئ.' }, { en: 'Phone render. Sample numbers.', ar: 'عرض من التطبيق على الهاتف. أرقام توضيحية.' }),
+  'memory-card-shop': shot('memory-card-shop', { en: 'The shop, with a deck of the day and ready-made language decks.', ar: 'المتجر، مع رزمة اليوم ورزم جاهزة لتعلّم اللغات.' }, { en: 'Phone render. Built-in catalogue.', ar: 'عرض من التطبيق على الهاتف. من الفهرس المضمّن.' }),
+  'memory-card-picture': shot('memory-card-picture', { en: 'A picture card from a flags deck: the flag of Egypt, with the answer hidden until the card is turned over.', ar: 'بطاقة بصورة من رزمة الأعلام: علم مصر، والإجابة مخفية حتى تُقلب البطاقة.' }, { en: 'Phone render. Flag from a public source.', ar: 'عرض من التطبيق على الهاتف. العلم من مصدر عام.' }),
+  'memory-card-widgets': shot('memory-card-widgets', { en: 'Settings, Widgets: live previews of the daily goal seal and the streak flame, with theme and accent choices.', ar: 'الإعدادات، الأدوات: معاينة حيّة لختم الهدف اليومي وشعلة الأيام المتتالية، مع خيارات المظهر واللون.' }, { en: 'Android capture. Sample numbers.', ar: 'لقطة من Android. أرقام توضيحية.' }),
+  'memory-card-onboarding': shot('memory-card-onboarding', { en: 'The first-run screen asking what you want to remember, with topic chips and starter decks.', ar: 'شاشة البداية تسأل عمّا تريد أن تحفظه، مع وسوم المواضيع ورزم للبدء.' }, { en: 'Android emulator capture. Built-in sample decks.', ar: 'لقطة من محاكي Android. رزم تجريبية مضمّنة.' }),
 } satisfies Record<string, Shot>;
 
 export type ShotId = keyof typeof shots;
@@ -67,7 +77,8 @@ export type ProjectMedia = {
   views?: ViewSet[];
   phones?: ShotId[];
   gallery?: ShotId[];
-  video?: Video;
+  /** Short films, shown with controls. A single ambient clip loops silently while it is on screen. */
+  videos?: Video[];
 };
 
 const L = (en: string, ar: string): Bilingual => ({ en, ar });
@@ -84,7 +95,19 @@ export const media: Record<string, ProjectMedia> = {
     views: [{ name: L('Theme', 'المظهر'), options: [{ label: L('Evening', 'ليلي'), id: 'comms-evening' }, { label: L('Day', 'نهاري'), id: 'comms-day' }] }],
     phones: ['comms-phone-approval'],
     gallery: ['comms-approval-stamp', 'comms-calendar'],
-    video: { src: '/media/comms-film.mp4', poster: '/images/work/comms-film-poster-1600.webp', label: L('Launch film', 'الفيلم التعريفي'), caption: L('A 38.4-second launch film rendered in code with an original score. Sound on.', 'فيلم تعريفي مدته 38.4 ثانية، مصنوع بالبرمجة بموسيقى أصلية. يتضمّن صوتًا.'), width: 960, height: 540 },
+    videos: [
+      { src: '/media/comms-film.mp4', poster: '/images/work/comms-film-poster-1600.webp', label: L('Launch film', 'الفيلم التعريفي'), caption: L('A 38.4-second launch film rendered in code with an original score. Sound on.', 'فيلم تعريفي مدته 38.4 ثانية، مصنوع بالبرمجة بموسيقى أصلية. يتضمّن صوتًا.'), width: 960, height: 540 },
+      { src: '/media/comms-promo.mp4', poster: '/media/comms-promo-poster.webp', label: L('Promo film', 'الفيلم الترويجي'), caption: L('A 45-second promo film about approval tied to one version, rendered in code with an original score. Titles are in Arabic. Sound on.', 'فيلم ترويجي مدته 45 ثانية عن اعتماد مرتبط بنسخة محددة، مصنوع بالبرمجة بموسيقى أصلية. يتضمّن صوتًا.'), width: 960, height: 540 },
+    ],
+  },
+  'memory-card': {
+    screen: { phone: 'memory-card-swipe' },
+    views: [{ name: L('Theme', 'المظهر'), options: [{ label: L('Light', 'فاتح'), id: 'memory-card-home' }, { label: L('Dark', 'داكن'), id: 'memory-card-home-dark' }] }],
+    phones: ['memory-card-study', 'memory-card-today', 'memory-card-lab', 'memory-card-shop', 'memory-card-picture', 'memory-card-widgets', 'memory-card-onboarding'],
+    videos: [
+      { src: '/media/memory-card-forget.mp4', poster: '/media/memory-card-forget-poster.webp', label: L('You will forget this', 'ستنسى هذا'), caption: L('A 20-second promo film made from the app’s own screens and sounds. Sound on.', 'فيلم ترويجي مدته 20 ثانية، مصنوع من شاشات التطبيق وأصواته. العناوين بالإنجليزية، ويتضمّن صوتًا.'), width: 540, height: 960 },
+      { src: '/media/memory-card-homescreen.mp4', poster: '/media/memory-card-homescreen-poster.webp', label: L('Your home screen remembers too', 'شاشتك الرئيسية تتذكّر أيضًا'), caption: L('A 32-second promo film about the home-screen widgets. Sound on.', 'فيلم ترويجي مدته 32 ثانية عن أدوات الشاشة الرئيسية. العناوين بالإنجليزية، ويتضمّن صوتًا.'), width: 540, height: 960 },
+    ],
   },
   hayz: {
     screen: { desktop: 'hayz-dusk-en' },
@@ -104,7 +127,7 @@ export const media: Record<string, ProjectMedia> = {
     screen: { desktop: 'bookquest-desk', phone: 'bookquest-phone' },
     phones: ['bookquest-phone'],
     gallery: ['bookquest-map', 'bookquest-prediction', 'bookquest-landing'],
-    video: { src: '/media/bookquest-flip.mp4', poster: '/media/bookquest-flip-poster.webp', label: L('Page flip', 'تقليب الصفحة'), caption: L('The page flip, recorded from the reader.', 'تقليب الصفحة كما يظهر في القارئ.'), ambient: true, width: 600, height: 530 },
+    videos: [{ src: '/media/bookquest-flip.mp4', poster: '/media/bookquest-flip-poster.webp', label: L('Page flip', 'تقليب الصفحة'), caption: L('The page flip, recorded from the reader.', 'تقليب الصفحة كما يظهر في القارئ.'), ambient: true, width: 600, height: 530 }],
   },
   'hedayah-dashboard': {
     screen: { desktop: 'tv-globe', phone: 'tv-phone' },
@@ -123,7 +146,7 @@ export const phoneFor = (m: ProjectMedia, lang: Locale): ShotId | undefined =>
   !m.screen?.phone ? undefined : typeof m.screen.phone === 'string' ? m.screen.phone : m.screen.phone[lang];
 
 // The home page's wall of screens: mixed shapes across projects, each linking to its case study.
-// Rows of the twelve-column wall: desktop (6) + phone (3) + phone (3), desktop + desktop, phone + phone + desktop.
+// Rows of the twelve-column wall: desktop (6) + phone (3) + phone (3), desktop + desktop, phone + phone + desktop, four phones.
 export const wall: { project: string; id: ShotId }[] = [
   { project: 'hayz', id: 'hayz-dusk-en' },
   { project: 'hadayah-live', id: 'hadayah-phone-discovery-ar' },
@@ -133,4 +156,8 @@ export const wall: { project: string; id: ShotId }[] = [
   { project: 'hida', id: 'hida-phone-ar' },
   { project: 'hedayah-dashboard', id: 'tv-phone' },
   { project: 'nbc', id: 'nbc-ceremony' },
+  { project: 'memory-card', id: 'memory-card-today' },
+  { project: 'comms-hub', id: 'comms-phone-approval' },
+  { project: 'memory-card', id: 'memory-card-lab' },
+  { project: 'bookquest', id: 'bookquest-phone' },
 ];

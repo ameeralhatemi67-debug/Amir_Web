@@ -1,0 +1,66 @@
+@layer arabic {
+  /* Arabic is read, not displayed. In a dot-matrix face the nuqat (dots) and the joins that tell letters apart dissolve into
+     the grid, so every Arabic run uses Readex Pro. The LED face stays for Latin names, tool names and figures (.ltr, .num),
+     which keeps the board look without costing legibility. */
+  html:lang(ar) body { font-weight: 400; }
+  html:lang(ar) p, html:lang(ar) li { text-wrap: pretty; }
+
+  .led:lang(ar):not(.ltr):not(.num) {
+    font-family: var(--body);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  .unlit:lang(ar) { font-family: var(--body); font-weight: 400; color: var(--muted); }
+  /* The date holds an Arabic month name, so it leaves the LED face too; the figure keeps its red lamp colour. */
+  :lang(ar) .asof time { font-family: var(--body); font-weight: 600; font-size: 15px; }
+
+  /* Display sizes, tuned for Readex (wider than the LED Arabic these replace). */
+  :lang(ar) .brand-primary { font-size: 22px; }
+  :lang(ar) .brand-secondary { font-size: 20px; }
+  :lang(ar) .board-title { font-size: clamp(30px, 3.2vw, 44px); line-height: 1.45; }
+  :lang(ar) .board-intro { font-size: 18px; max-inline-size: 38ch; }
+  :lang(ar) .row-name { font-size: clamp(18px, 1.55vw, 21px); line-height: 1.5; }
+  :lang(ar) .screen-name { font-size: 22px; }
+  :lang(ar) .section-title { font-size: clamp(26px, 2.8vw, 36px); line-height: 1.4; }
+  :lang(ar) .wall-name { font-size: 18px; }
+  :lang(ar) .contact-title { font-size: clamp(30px, 4vw, 54px); line-height: 1.4; }
+  :lang(ar) .page-head h1 { font-size: clamp(38px, 5vw, 68px); line-height: 1.3; }
+  :lang(ar) .case-title h1 { font-size: clamp(34px, 4.4vw, 58px); line-height: 1.3; }
+  :lang(ar) .case-story h2 { font-size: clamp(23px, 2.3vw, 29px); line-height: 1.4; }
+  :lang(ar) .stand-board h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.4; }
+  :lang(ar) .next-name { font-size: clamp(24px, 3vw, 36px); line-height: 1.35; }
+  :lang(ar) .flow-name { font-size: 18px; }
+  :lang(ar) .principle-list h3 { font-size: clamp(20px, 2vw, 25px); line-height: 1.45; }
+  :lang(ar) .footer-name { font-size: 20px; }
+  :lang(ar) .ticker-line { font-size: 16px; font-weight: 500; }
+  :lang(ar) .key-letter { font-size: 18px; }
+  :lang(ar) .case-video figcaption .led { font-size: 17px; }
+  :lang(ar) .pending-line { font-size: 18px; }
+  :lang(ar) .contact-pending .led { font-size: 17px; }
+  :lang(ar) .portrait-pending .led { font-size: clamp(20px, 2.2vw, 26px); }
+  :lang(ar) .case-pitch, :lang(ar) .lead { line-height: 1.8; }
+
+  /* Small print: Arabic letters sit smaller than Latin at the same size, so nothing set for Latin below 14px stays there. */
+  :lang(ar) .row-cat, :lang(ar) .screen-note, :lang(ar) .wall-note, :lang(ar) .rows-head, :lang(ar) .cell dt, :lang(ar) .cell-sub,
+  :lang(ar) .fact dt, :lang(ar) .strip-item figcaption, :lang(ar) .views-panel figcaption, :lang(ar) .case-hero figcaption,
+  :lang(ar) .gallery figcaption, :lang(ar) .case-video figcaption, :lang(ar) .asof, :lang(ar) .lab-line, :lang(ar) .next-kind,
+  :lang(ar) .back-link, :lang(ar) .aside-title, :lang(ar) .flow-detail, :lang(ar) .views-name, :lang(ar) .footer-id p, :lang(ar) .contact-kind { font-size: 14.5px; line-height: 1.7; }
+  :lang(ar) .rail li { font-size: 13.5px; line-height: 1.5; }
+  :lang(ar) .row-status { font-size: 14px; }
+  :lang(ar) .stack li { font-size: 14px; }
+
+  /* Controls: a step up from the Latin sizes. */
+  :lang(ar) .nav-link, :lang(ar) .lang-switch { font-size: 16px; }
+  :lang(ar) .action, :lang(ar) .text-action { font-size: 16px; }
+  :lang(ar) .channel, :lang(ar) .key { font-size: 15px; }
+  :lang(ar) .theme-switch button { font-size: 14px; }
+
+  @media (max-width: 760px) {
+    :lang(ar) .brand-primary { font-size: 20px; }
+    :lang(ar) .brand-secondary { font-size: 16px; }
+    :lang(ar) .rail li { font-size: 13px; }
+    :lang(ar) .theme-switch button { font-size: 13.5px; }
+    :lang(ar) .nav-link { font-size: 15px; }
+  }
+}

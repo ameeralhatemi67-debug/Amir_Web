@@ -342,5 +342,133 @@
     "width": 1280,
     "height": 1600,
     "AI_generated": false
+  },
+  {
+    "asset": "memory-card-home",
+    "origin": "memory_card/app/build/gallery/12-home.png",
+    "note": "Home render: deck bars and the hand of cards that is the navigation. Built-in sample decks.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-home-dark",
+    "origin": "memory_card/app/build/gallery/40-dark-home.png",
+    "note": "Home render in the dark theme. Built-in sample decks.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-study",
+    "origin": "memory_card/app/build/gallery/14-study-front.png",
+    "note": "Study render: the front of a card in the endless stack.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-swipe",
+    "origin": "memory_card/app/build/gallery/16-study-drag-right.png",
+    "note": "Study render: a card dragged to the right (\"I knew it\").",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-today",
+    "origin": "memory_card/app/build/gallery/19-today.png",
+    "note": "Today render: daily goal ring, how you answered and the streak.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-lab",
+    "origin": "memory_card/app/build/gallery/22-lab.png",
+    "note": "Memory Lab render: what the engine has learned about the reader.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-shop",
+    "origin": "memory_card/app/build/gallery/32-shop.png",
+    "note": "Shop render: ready-made decks by topic.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-picture",
+    "origin": "memory_card/app/build/gallery/pic-light-flag-front.png",
+    "note": "Picture card render: a flag deck, front of the card.",
+    "width": 585,
+    "height": 1266,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-widgets",
+    "origin": "memory_card/docs/screenshots/app/widgets.jpg",
+    "note": "Settings, Widgets: live previews of the home-screen widgets.",
+    "width": 420,
+    "height": 642,
+    "AI_generated": false
+  },
+  {
+    "asset": "memory-card-onboarding",
+    "origin": "memory_card/scratch/emu3.png",
+    "note": "Android emulator capture of the first-run topic picker (v1.4.1); status and gesture bars cropped.",
+    "width": 720,
+    "height": 1487,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/comms-promo.mp4",
+    "origin": "motion_design/comms-hub-promo/renders/draft-16x9.mp4",
+    "note": "Code-rendered promo film about version-bound approval, with an original score, re-encoded to 960x540, 30 fps.",
+    "width": 960,
+    "height": 540,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/comms-promo-poster.webp",
+    "origin": "motion_design/comms-hub-promo/renders/draft-16x9.mp4 (frame at 33 s)",
+    "note": "Poster frame: the approval seal.",
+    "width": 1280,
+    "height": 720,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/memory-card-forget.mp4",
+    "origin": "memory_card/promo/v01-you-will-forget-this/renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4",
+    "note": "Promo film \"You will forget this\", made from the app's own screens and sounds, re-encoded to 540x960, 30 fps.",
+    "width": 540,
+    "height": 960,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/memory-card-forget-poster.webp",
+    "origin": "memory_card/promo/v01-you-will-forget-this/renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4 (frame at 5 s)",
+    "note": "Poster frame.",
+    "width": 540,
+    "height": 960,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/memory-card-homescreen.mp4",
+    "origin": "memory_card/promo/v03-home-screen/renders/MemoryCard-V3-HomeScreen-9x16.mp4",
+    "note": "Promo film \"Your home screen remembers too\", about the widgets, re-encoded to 540x960, 30 fps.",
+    "width": 540,
+    "height": 960,
+    "AI_generated": false
+  },
+  {
+    "asset": "media/memory-card-homescreen-poster.webp",
+    "origin": "memory_card/promo/v03-home-screen/renders/MemoryCard-V3-HomeScreen-9x16.mp4 (frame at 5 s)",
+    "note": "Poster frame.",
+    "width": 540,
+    "height": 960,
+    "AI_generated": false
   }
 ]

@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = process.argv.find(arg => arg.startsWith('http')) || 'http://127.0.0.1:4321';
-const routes = ['', 'projects/', 'about/', 'contact/', 'privacy/', '404/', ...['hadayah-live','comms-hub','hayz','nbc','bookquest','hedayah-dashboard','hida','dnfom'].map(slug => `projects/${slug}/`)];
+const routes = ['', 'projects/', 'about/', 'contact/', 'privacy/', '404/', ...['hadayah-live','memory-card','comms-hub','hayz','nbc','bookquest','hedayah-dashboard','hida','dnfom'].map(slug => `projects/${slug}/`)];
 const cases = process.argv.includes('--smoke') ? [] : ['en','ar'].flatMap(lang => routes.flatMap(route => ['light','dark'].flatMap(theme => ['desktop','mobile'].map(size => ({ lang,route,theme,size })))));
 const browser = await chromium.launch({ channel:'chrome',headless:true });
 await mkdir('qa/screenshots',{ recursive:true });
@@ -58,15 +58,15 @@ try {
   const page = await browser.newPage({ viewport:{width:390,height:844} });
   await page.goto(`${base}/en/projects/`);
   await page.getByRole('button',{ name:'Mobile',exact:true }).click();
-  assert.equal(await page.locator('[data-tags]:visible').count(),2,'Mobile filter');
+  assert.equal(await page.locator('[data-tags]:visible').count(),3,'Mobile filter');
   await page.getByRole('button',{ name:'AI',exact:true }).click();
   assert.equal(await page.locator('[data-tags]:visible').count(),1,'AI filter');
   await page.getByRole('button',{ name:'All',exact:true }).click();
-  assert.equal(await page.locator('[data-tags]:visible').count(),8,'Reset filter');
+  assert.equal(await page.locator('[data-tags]:visible').count(),9,'Reset filter');
   await page.goto(`${base}/en/projects/hadayah-live/`);
   await page.getByRole('link',{ name:'التبديل إلى العربية' }).click();
   assert.equal(new URL(page.url()).pathname,'/ar/projects/hadayah-live/','Language switch preserves page');
-  await page.getByRole('button',{ name:/^مضاء/ }).click();
+  await page.getByRole('button',{ name:/^داكن/ }).click();
   await page.reload();
   assert.equal(await page.locator('html').getAttribute('data-theme'),'dark','Theme persists');
   await page.getByRole('button',{ name:/^تلقائي/ }).click();
@@ -94,7 +94,7 @@ try {
   const noJS = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const staticPage = await noJS.newPage();
   await staticPage.goto(`${base}/ar/`);
-  assert.equal(await staticPage.locator('[data-row]').count(),8,'Content survives without JS');
+  assert.equal(await staticPage.locator('[data-row]').count(),9,'Content survives without JS');
   assert(await staticPage.locator('.board-screen img').first().isVisible(),'Lead screen visible without JS');
   assert.equal(await staticPage.locator('html').getAttribute('dir'),'rtl','RTL survives without JS');
   await noJS.close();

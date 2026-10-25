@@ -13,14 +13,14 @@ export const site = {
   email: '',
   // Owner-supplied portrait, cropped to 4:5: public/images/amir-640.webp and amir-1280.webp.
   portrait: 'amir',
-  headline: { en: 'App developer building Arabic-first products.', ar: 'مطوّر تطبيقات يضع العربية في صميم التجربة.' },
+  headline: { en: 'App developer building Arabic-first products.', ar: 'مطوّر تطبيقات يبني منتجات تبدأ من العربية.' },
   intro: {
     en: 'I’m Amir, based in Al Khobar. I build apps for learning, communication and the work in between.',
-    ar: 'أنا أمير، من الخبر. أبني تطبيقات للتعلّم والتواصل وتيسير العمل.'
+    ar: 'أنا أمير، مقيم في الخبر. أبني تطبيقات للتعلّم والتواصل وتنظيم العمل.'
   },
   description: {
     en: 'Amir Alhatemi is an app developer based in Al Khobar, Saudi Arabia. Explore Arabic-first apps for learning, communication, field work and departmental tools.',
-    ar: 'أمير الحاتمي، مطوّر تطبيقات مقيم في الخبر بالمملكة العربية السعودية. تعرّف على تطبيقاته في التعلّم والتواصل والعمل الميداني وأدوات العمل.'
+    ar: 'أمير الحاتمي، مطوّر تطبيقات مقيم في الخبر بالمملكة العربية السعودية. تعرّف على تطبيقاته للتعلّم والتواصل والعمل الميداني وأدوات الأقسام، وكلها تبدأ من العربية.'
   },
   // The date every status on the board was last checked against its project files.
   statusDate: { iso: '2026-10-20', en: '20 Oct 2026', ar: '20 أكتوبر 2026' },
@@ -54,7 +54,7 @@ export type Project = {
   stage: Stage; reach: Reach; status: Bilingual; paused?: boolean;
   problem: Bilingual; audience: Bilingual; highlights: Bilingual[];
   facts: Fact[]; how?: { title: Bilingual; intro: Bilingual; steps: Step[] };
-  boundary: Bilingual; note?: Bilingual; link?: string;
+  boundary: Bilingual; note?: Bilingual; link?: string; linkLabel?: Bilingual;
 };
 
 // Project descriptions come from the owner's local repositories, read-only. Every figure below was
@@ -79,10 +79,10 @@ export const projects: Project[] = [
       { en: 'Account data export and a guarded account-deletion flow.', ar: 'تصدير بيانات الحساب ومسار لحذفه مع معالجة الحالات التي تحتاج إلى إجراء مسبق.' },
     ],
     facts: [
-      { value: '1,547', label: { en: 'Flutter tests passing', ar: 'اختبار Flutter ناجح' } }, // Core_files/PALETTE_RESUME.md
-      { value: '91', label: { en: 'Database migrations', ar: 'ترحيلًا لقاعدة البيانات' } }, // supabase/migrations
-      { value: '76', label: { en: 'Contrast checks across both languages and palettes', ar: 'فحص تباين في اللغتين ولوحتي الألوان' } }, // Core_files/STATUS.md
-      { value: '3', label: { en: 'Cities in the bundled offline map', ar: 'مدن في الخريطة المضمّنة دون اتصال' } }, // project/assets/maps/tricity
+      { value: '1,547', label: { en: 'Flutter tests passing', ar: 'اختبارات Flutter الناجحة' } }, // Core_files/PALETTE_RESUME.md
+      { value: '91', label: { en: 'Database migrations', ar: 'ترحيلات قاعدة البيانات' } }, // supabase/migrations
+      { value: '76', label: { en: 'Contrast checks across both languages and palettes', ar: 'فحوص التباين في اللغتين ولوحتي الألوان' } }, // Core_files/STATUS.md
+      { value: '3', label: { en: 'Cities in the bundled offline map', ar: 'المدن في الخريطة المضمّنة دون اتصال' } }, // project/assets/maps/tricity
     ],
     how: {
       title: { en: 'How Hadayah fits together', ar: 'كيف تعمل هدايه؟' },
@@ -97,6 +97,47 @@ export const projects: Project[] = [
     boundary: { en: 'The Android app is preparing for Google Play. Release configuration and acceptance checks remain, and push-reminder delivery is not claimed as complete. The web build is public.', ar: 'تطبيق Android قيد التجهيز للنشر على Google Play. ما زالت هناك إعدادات وفحوص قبول قبل الإصدار، ولم يكتمل التحقق من وصول تذكيرات الإشعارات. نسخة الويب متاحة للعامة.' },
     link: 'https://stream-application-ten.vercel.app/#/feed',
     // TODO(owner): Provide approved Hadayah privacy-policy and account-deletion URLs.
+  },
+  {
+    // Checked against the project folder on 2026-10-25: app/pubspec.yaml (1.5.0+10), README.md, app/assets/content/catalog.json.
+    slug: 'memory-card',
+    name: { en: 'Memory Card', ar: 'Memory Card' },
+    pitch: { en: 'Flashcards that come back when you are about to forget them.', ar: 'بطاقات مراجعة تعود إليك قبل أن تنساها.' },
+    category: { en: 'Learning & memory', ar: 'التعلّم والحفظ' },
+    tags: ['mobile', 'learning'],
+    stack: ['Flutter', 'Dart', 'Kotlin', 'Hive', 'FSRS-6'],
+    stage: 'building', reach: 'limited',
+    status: { en: 'In development for Android', ar: 'قيد التطوير لنظام Android' },
+    problem: { en: 'Spaced repetition helps you remember, but studying cards often feels like a chore that ends at a wall: “session over”. Memory Card is one endless stack. You swipe right when you knew a card and left when you did not, and an engine that learns how you remember decides when each card returns.', ar: 'تساعد المراجعة المتباعدة على الحفظ، لكن مراجعة البطاقات كثيرًا ما تصير واجبًا ثقيلًا ينتهي عند جدار «انتهت الجلسة». يقدّم Memory Card رزمة واحدة لا تنتهي: اسحب يمينًا إن عرفت البطاقة ويسارًا إن لم تعرفها، ويقرّر محرّك يتعلّم طريقتك في التذكّر متى تعود كل بطاقة.' },
+    audience: { en: 'Anyone studying with flashcards on an Android phone: language learners, students, and people who simply want to remember things.', ar: 'كل من يذاكر بالبطاقات على هاتف Android: متعلّمو اللغات والطلاب ومن يريد حفظ ما يهمّه.' },
+    highlights: [
+      { en: 'An endless stack: swipe right when you knew a card, left when you did not. A missed card returns 8 to 20 cards later, and there is no “session over” wall.', ar: 'رزمة لا تنتهي: اسحب يمينًا إن عرفت البطاقة ويسارًا إن لم تعرفها. تعود البطاقة التي أخطأت فيها بعد 8 إلى 20 بطاقة، ولا يوجد جدار «انتهت الجلسة».' },
+      { en: 'A scheduler built on FSRS-6, written in Dart and checked against the reference implementation. It also notices hesitation and speed, and after enough reviews it trains on your own history, on the phone.', ar: 'جدولة مبنية على FSRS\u2060-\u20606 مكتوبة بلغة Dart ومقارَنة بالتنفيذ المرجعي. وتلاحظ كذلك التردّد وسرعة الإجابة، وبعد عدد كافٍ من المراجعات تتدرّب على سجلّك أنت داخل الهاتف.' },
+      { en: '90 ready-made decks in the in-app shop, picture cards for flags, silhouettes and road signs, and your own decks with a layout editor and CSV import.', ar: '90 رزمة جاهزة في متجر التطبيق، وبطاقات بالصور للأعلام والخرائط المظلّلة وإشارات الطرق، ورزم خاصة بك مع محرّر للتخطيط واستيراد من ملف CSV.' },
+      { en: '13 home-screen widgets and a Quick Settings tile, including a card you can answer without opening the app.', ar: '13 أداة للشاشة الرئيسية وبلاطة في الإعدادات السريعة، منها بطاقة تجيب عنها دون فتح التطبيق.' },
+      { en: 'Everything stays on the phone, with backup export and restore. No account, no server, no ads.', ar: 'تبقى بياناتك كلها على الهاتف، مع تصدير نسخة احتياطية واستعادتها. لا حساب ولا خادم ولا إعلانات.' },
+    ],
+    facts: [
+      { value: '90', label: { en: 'Ready-made decks in the in-app shop', ar: 'الرزم الجاهزة في متجر التطبيق' } }, // app/assets/content/catalog.json
+      { value: '2,507', label: { en: 'Cards across those decks', ar: 'البطاقات في هذه الرزم' } }, // app/assets/content/catalog.json
+      { value: '13', label: { en: 'Home-screen widgets, plus a Quick Settings tile', ar: 'أدوات الشاشة الرئيسية، مع بلاطة للإعدادات السريعة' } }, // README.md
+      { value: '1.5.0', label: { en: 'Current Android build', ar: 'إصدار Android الحالي' } }, // app/pubspec.yaml
+    ],
+    how: {
+      title: { en: 'From swipe to schedule', ar: 'من السحب إلى الجدولة' },
+      intro: { en: 'Every swipe feeds the same loop, and the whole loop runs on the phone.', ar: 'كل سحبة تغذّي الحلقة نفسها، والحلقة كلها تعمل على الهاتف.' },
+      steps: [
+        { name: { en: 'Swipe', ar: 'السحب' }, detail: { en: 'Right if you knew it, left if not', ar: 'يمينًا إن عرفت، ويسارًا إن لم تعرف' } },
+        { name: { en: 'Reading the answer', ar: 'قراءة الإجابة' }, detail: { en: 'Hesitation and speed count too', ar: 'للتردّد والسرعة حساب أيضًا' } },
+        { name: { en: 'FSRS-6 schedule', ar: 'جدولة FSRS\u2060-\u20606' }, detail: { en: 'When this card should return', ar: 'متى ترجع هذه البطاقة' } },
+        { name: { en: 'Back in the stack', ar: 'العودة إلى الرزمة' }, detail: { en: 'Missed cards return 8 to 20 cards later', ar: 'تعود الخاطئة بعد 8 إلى 20 بطاقة' } },
+        { name: { en: 'Tuning', ar: 'الضبط' }, detail: { en: 'Trains on your own reviews, on the phone', ar: 'تتدرّب على مراجعاتك أنت، داخل الهاتف' } },
+      ],
+    },
+    boundary: { en: 'In development, and Android only for now: an iPhone version needs a Mac with Xcode. The source is on GitHub; there is no store release yet. Everything stays on the device, with no account or server. The screens are renders of the built-in sample decks.', ar: 'قيد التطوير، ولنظام Android فقط حاليًا، إذ يحتاج إصدار iPhone إلى جهاز Mac وبرنامج Xcode. الشيفرة المصدرية على GitHub، ولا يوجد إصدار في المتاجر بعد. تبقى البيانات على الجهاز دون حساب أو خادم. اللقطات من الرزم التجريبية المضمّنة في التطبيق.' },
+    link: 'https://github.com/ameeralhatemi67-debug/Memory_card',
+    linkLabel: { en: 'View the source on GitHub', ar: 'عرض الشيفرة المصدرية على GitHub' },
+    // TODO(owner): Confirm contribution scope for Memory Card, and whether to link a download once the first APK release is published.
   },
   {
     slug: 'comms-hub',
@@ -116,9 +157,9 @@ export const projects: Project[] = [
       { en: 'Role and capability rules enforced in PostgreSQL.', ar: 'أدوار وصلاحيات تفرضها PostgreSQL.' },
     ],
     facts: [
-      { value: '49', label: { en: 'Database migrations', ar: 'ترحيلًا لقاعدة البيانات' } }, // supabase/migrations
-      { value: '26', label: { en: 'Arabic motion templates', ar: 'قالب حركة عربيًا' } }, // Status.md, the studio
-      { value: '38.4s', label: { en: 'Launch film, rendered entirely in code', ar: 'فيلم تعريفي مصنوع بالبرمجة بالكامل' } }, // videos/comms-hub-launch/README.txt
+      { value: '49', label: { en: 'Database migrations', ar: 'ترحيلات قاعدة البيانات' } }, // supabase/migrations
+      { value: '26', label: { en: 'Arabic motion templates', ar: 'قوالب الحركة العربية' } }, // Status.md, the studio
+      { value: '38.4s', label: { en: 'Launch film, rendered entirely in code', ar: 'مدة الفيلم التعريفي المصنوع بالبرمجة بالكامل' } }, // videos/comms-hub-launch/README.txt
     ],
     boundary: { en: 'Social publishing is simulated. Several external connections and storage flows still need acceptance testing with real accounts. Screens show labelled sample data.', ar: 'النشر على المنصات محاكاة حاليًا. بعض الاتصالات الخارجية ومسارات التخزين تحتاج إلى اختبار قبول بحسابات فعلية. تعرض الشاشات بيانات توضيحية معرّفة بذلك.' },
     link: 'https://comms-hub-three.vercel.app/',
@@ -142,9 +183,9 @@ export const projects: Project[] = [
       { en: 'Four workspaces: buyer, supplier, technician and administrator, mirrored for Arabic while serials and the 3D model keep their real orientation.', ar: 'أربع مساحات عمل للمشتري والمورّد والفنّي والمشرف، تنعكس للعربية مع بقاء الأرقام التسلسلية والنموذج بالاتجاه الصحيح.' },
     ],
     facts: [
-      { value: '148', label: { en: 'Core database scenarios', ar: 'سيناريو أساسي لقاعدة البيانات' } }, // web/README.md
-      { value: '116', label: { en: 'Unit tests', ar: 'اختبار وحدة' } }, // web/README.md
-      { value: '4', label: { en: 'Role workspaces', ar: 'مساحات عمل للأدوار' } }, // PRODUCT.md
+      { value: '148', label: { en: 'Core database scenarios', ar: 'سيناريوهات قاعدة البيانات الأساسية' } }, // web/README.md
+      { value: '116', label: { en: 'Unit tests', ar: 'اختبارات الوحدات' } }, // web/README.md
+      { value: '4', label: { en: 'Role workspaces', ar: 'مساحات عمل الأدوار' } }, // PRODUCT.md
     ],
     boundary: { en: 'Development is paused. There is no public deployment, payments are switched off, and HAYZ is a provisional concept name that has not been cleared. Screens come from the design reference and use demo data.', ar: 'التطوير متوقف مؤقتًا. لا توجد نسخة منشورة للعامة، والدفع غير مفعّل، و«حيّز» اسم مبدئي للهوية لم يُعتمد بعد. الشاشات من المرجع التصميمي وببيانات توضيحية.' },
   },
@@ -166,9 +207,9 @@ export const projects: Project[] = [
       { en: 'Content approval, campaign lifecycle, and participant-verification controls.', ar: 'اعتماد المحتوى وإدارة مراحل المسابقة وضوابط التحقق من المشاركين.' },
     ],
     facts: [
-      { value: '124', label: { en: 'Regression tests at the last checkpoint', ar: 'اختبار انحدار في آخر نقطة تحقق' } }, // Status.md
-      { value: '16', label: { en: 'Ordered database migrations', ar: 'ترحيلًا مرتّبًا لقاعدة البيانات' } }, // src/lib/migrations.ts
-      { value: '20/25/30', label: { en: 'Questions per education stage', ar: 'سؤالًا لكل مرحلة تعليمية' } }, // Status.md
+      { value: '124', label: { en: 'Regression tests at the last checkpoint', ar: 'اختبارات الانحدار في آخر نقطة تحقق' } }, // Status.md
+      { value: '16', label: { en: 'Ordered database migrations', ar: 'ترحيلات قاعدة البيانات المرتّبة' } }, // src/lib/migrations.ts
+      { value: '20/25/30', label: { en: 'Questions per education stage', ar: 'عدد الأسئلة لكل مرحلة تعليمية' } }, // Status.md
     ],
     boundary: { en: 'Content approval, privacy decisions, SMS readiness, and operational acceptance remain launch dependencies. No launched campaign or client endorsement is claimed.', ar: 'ما زال الإطلاق يعتمد على اعتماد المحتوى وقرارات الخصوصية وجاهزية الرسائل النصية والقبول التشغيلي. لا يُدّعى هنا إطلاق المسابقة أو وجود تزكية من جهة.' },
     link: 'https://nbc-web-two.vercel.app/',
@@ -192,9 +233,9 @@ export const projects: Project[] = [
       { en: 'Shared soundtracks and audio cues tied to a place in the book.', ar: 'قوائم صوتية مشتركة ومقاطع مرتبطة بمواضع في الكتاب.' },
     ],
     facts: [
-      { value: '188', label: { en: 'Unit, database and integration tests', ar: 'اختبارًا للوحدات وقاعدة البيانات والتكامل' } }, // STATUS.md
-      { value: '75', label: { en: 'Alpha seats', ar: 'مقعدًا في النسخة الأولية' } }, // STATUS.md
-      { value: '14', label: { en: 'Database migrations', ar: 'ترحيلًا لقاعدة البيانات' } }, // supabase/migrations
+      { value: '188', label: { en: 'Unit, database and integration tests', ar: 'اختبارات الوحدات وقاعدة البيانات والتكامل' } }, // STATUS.md
+      { value: '75', label: { en: 'Alpha seats', ar: 'المقاعد في النسخة الأولية' } }, // STATUS.md
+      { value: '14', label: { en: 'Database migrations', ar: 'ترحيلات قاعدة البيانات' } }, // supabase/migrations
     ],
     boundary: { en: 'The public site presents the alpha under the name Marginalia. Full offline startup is not supported. Screens use a fictional sample book.', ar: 'يعرض الموقع العام النسخة الأولية باسم Marginalia. لا يُدعم بدء التطبيق كاملًا دون اتصال. تستخدم الشاشات كتابًا تجريبيًا متخيّلًا.' },
     link: 'https://book-quest-ecru.vercel.app/',
@@ -218,8 +259,8 @@ export const projects: Project[] = [
       { en: 'Layouts tested from a 320px phone to a 4K television, including portrait screens.', ar: 'تخطيطات مختبرة من هاتف بعرض 320 بكسل حتى تلفاز 4K، بما فيها الشاشات العمودية.' },
     ],
     facts: [
-      { value: '3', label: { en: 'Rotating scenes, 18s, 18s and 12s', ar: 'مشاهد متناوبة: 18 و18 و12 ثانية' } }, // src/hooks/useSceneRotator.ts
-      { value: '12', label: { en: 'Screen sizes in the layout check', ar: 'مقاسًا للشاشة في فحص التخطيط' } }, // .layout-check
+      { value: '3', label: { en: 'Rotating scenes, 18s, 18s and 12s', ar: 'المشاهد المتناوبة، مدة كل منها 18 و18 و12 ثانية' } }, // src/hooks/useSceneRotator.ts
+      { value: '12', label: { en: 'Screen sizes in the layout check', ar: 'مقاسات الشاشة في فحص التخطيط' } }, // .layout-check
       { value: '1h', label: { en: 'Source health check interval', ar: 'الفاصل بين فحوص حالة المصادر' } }, // .github/workflows/health-sync.yml
     ],
     boundary: { en: 'The public dashboard is reachable. Source health still needs rechecking; the project records an unresolved monthly-report source. Captures exclude the activity feed, which shows personal names.', ar: 'لوحة العرض العامة متاحة. ما زالت حالة المصادر تحتاج إلى إعادة فحص، إذ يسجّل المشروع مشكلة غير محلولة في مصدر التقارير الشهرية. استُبعد شريط النشاط من اللقطات لأنه يعرض أسماء أشخاص.' },
@@ -239,12 +280,12 @@ export const projects: Project[] = [
     audience: { en: 'A small department pilot, with distinct member, manager, and administrator responsibilities.', ar: 'فريق صغير في تجربة قسمية، مع مسؤوليات مستقلة للعضو والمدير والمشرف.' },
     highlights: [
       { en: 'Arabic and English conversations grounded in approved local documents, with source references.', ar: 'محادثات بالعربية والإنجليزية تستند إلى مستندات محلية معتمدة، مع الإحالة إلى المصادر.' },
-      { en: 'Local model routing through Ollama, optional cloud providers, and visible model choices.', ar: 'توجيه بين النماذج المحلية عبر Ollama، ومزوّدو سحابة اختياريون مع اختيار واضح للنموذج.' },
+      { en: 'Local model routing through Ollama, optional cloud providers, and visible model choices.', ar: 'توجيه بين النماذج المحلية عبر Ollama، مع مزوّدي سحابة اختياريين واختيار ظاهر للنموذج.' },
       { en: 'Generated Python runs only inside a locked-down container: no network, read-only, never on the host.', ar: 'لا يعمل كود Python المولَّد إلا داخل حاوية مقيّدة: دون شبكة، وللقراءة فقط، وليس على الجهاز نفسه أبدًا.' },
       { en: 'Governed capability requests and a bounded WhatsApp Web bridge with expiring pairing codes.', ar: 'طلبات قدرات تخضع للمراجعة، وتكامل محدود مع WhatsApp Web برموز ربط تنتهي صلاحيتها.' },
     ],
     facts: [
-      { value: '434', label: { en: 'Python checks passing', ar: 'فحصًا ناجحًا في Python' } }, // Status.md, 2026-09-16
+      { value: '434', label: { en: 'Python checks passing', ar: 'فحوص Python الناجحة' } }, // Status.md, 2026-09-16
       { value: '127.0.0.1', label: { en: 'Where it listens: this computer only', ar: 'لا يستمع إلا على هذا الجهاز' } }, // README.md
     ],
     note: { en: 'Not to be confused with Hadayah Live. Hida is a separate tool that runs on a single computer.', ar: 'لا علاقة له بمنصة هدايه للبث؛ هداية أداة مستقلة تعمل على جهاز واحد.' },
@@ -269,8 +310,8 @@ export const projects: Project[] = [
       { en: 'Monthly evaluation that blends a supervisor rubric with automatic indicators, plus Arabic Excel and Word exports.', ar: 'تقييم شهري يجمع تقدير المشرف والمؤشرات الآلية، مع تصدير التقارير إلى Excel وWord بالعربية.' },
     ],
     facts: [
-      { value: '203', label: { en: 'Automated checks passing', ar: 'فحصًا آليًا ناجحًا' } }, // docs/Backend_Progress.md
-      { value: '60', label: { en: 'Days of tasks generated ahead', ar: 'يومًا من المهام تُولَّد مسبقًا' } }, // CLAUDE.md, recurrence generator
+      { value: '203', label: { en: 'Automated checks passing', ar: 'الفحوص الآلية الناجحة' } }, // docs/Backend_Progress.md
+      { value: '60', label: { en: 'Days of tasks generated ahead', ar: 'أيام المهام التي تُولَّد مسبقًا' } }, // CLAUDE.md, recurrence generator
     ],
     how: {
       title: { en: 'From plan to evaluation', ar: 'من الخطة إلى التقييم' },
@@ -294,7 +335,6 @@ export const lab: LabItem[] = [
   { name: 'Event Gatekeeper', line: { en: 'Invite-only event sign-up with seat countdowns and capacity locks.', ar: 'تسجيل للفعاليات بالدعوة فقط، مع عدّ تنازلي للمقاعد وإغلاق عند اكتمالها.' }, reach: 'public', link: 'https://whatsapp-invite-lime.vercel.app/' },
   { name: 'Kinetics', line: { en: 'A personal studio of 48 working UI components and animations.', ar: 'استوديو شخصي يضم 48 مكوّنًا وحركة للواجهات.' }, reach: 'private' },
   { name: 'Companion', line: { en: 'A desktop media player for music, video and ambient sound, in four window forms.', ar: 'مشغّل وسائط لسطح المكتب للموسيقى والفيديو والأصوات المحيطة، بأربعة أشكال للنافذة.' }, reach: 'private' },
-  { name: 'Memory Card', line: { en: 'A spaced-repetition lab built around the FSRS-5 scheduler.', ar: 'مختبر للمراجعة المتباعدة مبني على جدولة FSRS-5.' }, reach: 'private' },
   { name: 'Zero-G Energy', line: { en: 'A browser camera toy: liquid light tethered to your fingertip.', ar: 'تجربة كاميرا في المتصفح: ضوء سائل يتبع طرف إصبعك.' }, reach: 'private' },
 ];
 
@@ -305,6 +345,7 @@ export const role: Bilingual = { en: 'To be confirmed', ar: 'بانتظار ال
 
 export const ticker: Bilingual[] = [
   { en: 'Hadayah Live: release hardening before Google Play', ar: 'منصة هدايه: تجهيز الإصدار قبل Google Play' },
+  { en: 'Memory Card: Android build 1.5.0 in development', ar: 'Memory Card: نسخة Android 1.5.0 قيد التطوير' },
   { en: 'Comms Hub: built-in video and photo studio added', ar: 'مركز الاتصال: إضافة استوديو مدمج للفيديو والصور' },
   { en: 'BookQuest: 75-seat alpha open by invitation', ar: 'BookQuest: نسخة أولية بخمسة وسبعين مقعدًا بالدعوة' },
   { en: 'Hedayah TV: three scenes rotating on office screens', ar: 'لوحة هداية: ثلاثة مشاهد تتناوب على شاشات المكتب' },
@@ -322,10 +363,10 @@ export const copy = {
     flagshipTitle: 'Hadayah Live, on the phone', flagshipLink: 'Read the Hadayah case study',
     screensTitle: 'Screens from the work', screensIntro: 'Real captures from the projects. Sample data is labelled where it appears.',
     labTitle: 'Smaller things', labIntro: 'Side projects and experiments, one line each.',
-    workIntro: 'Eight projects across mobile, web, field work and practical AI tools. Each one has a different problem to solve.',
+    workIntro: 'Nine projects across mobile, web, field work and practical AI tools. Each one has a different problem to solve.',
     filters: { all: 'All', mobile: 'Mobile', web: 'Web', learning: 'Learning', workflow: 'Workflow', data: 'Data', ai: 'AI' },
     about: 'About', aboutTitle: 'Amir, based in Al Khobar.',
-    bio: 'I’m Amir Alhatemi, an app developer based in Al Khobar in Saudi Arabia’s Eastern Province. My projects explore educational streaming, shared reading, communication workflows, field operations and local AI tools. Arabic and English are part of how these products are built.',
+    bio: 'I’m Amir Alhatemi, an app developer based in Al Khobar in Saudi Arabia’s Eastern Province. My projects explore educational streaming, shared reading, spaced-repetition study, communication workflows, field operations and local AI tools. Arabic and English are part of how these products are built.',
     moreAbout: 'More about me',
     personalPending: 'A more personal story is still to come.', photo: 'Portrait to come', tools: 'Tools in these projects', toolsIntro: 'These technologies appear in the featured projects.', languages: 'Languages', native: 'Arabic, native', english: 'English, B2-C1',
     approach: 'How I approach the work',
@@ -333,16 +374,16 @@ export const copy = {
     contactTitle: 'Let’s talk about the work.', contactIntro: 'For project questions or professional conversations.',
     emailPending: 'A public email address will be added here.', emailAction: 'Email', noForm: 'No contact form. No tracking cookies.',
     privacy: 'Privacy', privacyTitle: 'A small site. A clear privacy policy.', privacyIntro: 'This policy covers this portfolio website only. Each featured application has its own data practices.',
-    privacySections: [ ['What this site collects', 'This site has no contact form, user accounts, analytics, advertising, or tracking cookies. It does not ask you to submit personal information.'], ['Your preferences', 'If you change the theme, your browser stores that choice locally. The language switch opens the equivalent English or Arabic page. These preferences are not sent anywhere.'], ['Hosting and external links', 'The hosting provider may process ordinary request information, such as IP addresses and server logs, to serve and protect the website. GitHub, LinkedIn, and linked project sites have their own privacy policies.'], ['Fonts, images and video', 'Fonts, images and the two short videos are served with this site. No third-party video player, social feed, or font service is embedded. Project images are screenshots from public sites or captures from the project files. Captures with sample data are labelled.'], ['Questions', 'Use the profile links on the Contact page until a dedicated public address is supplied.'] ],
+    privacySections: [ ['What this site collects', 'This site has no contact form, user accounts, analytics, advertising, or tracking cookies. It does not ask you to submit personal information.'], ['Your preferences', 'If you change the theme, your browser stores that choice locally. The language switch opens the equivalent English or Arabic page. These preferences are not sent anywhere.'], ['Hosting and external links', 'The hosting provider may process ordinary request information, such as IP addresses and server logs, to serve and protect the website. GitHub, LinkedIn, and linked project sites have their own privacy policies.'], ['Fonts, images and video', 'Fonts, images and the short videos are served with this site. No third-party video player, social feed, or font service is embedded. Project images are screenshots from public sites or captures from the project files. Captures with sample data are labelled.'], ['Questions', 'Use the profile links on the Contact page until a dedicated public address is supplied.'] ],
     projects: 'Projects', problem: 'The problem', audience: 'Who it is for', highlights: 'What is implemented', stack: 'Built with', role: 'My contribution', currentBoundary: 'Where it stands', figures: 'By the numbers', stage: 'Stage', reach: 'Access',
     views: 'Views', viewA: 'A', viewB: 'B', arabic: 'العربية', englishView: 'English', phone: 'Phone', desktop: 'Desktop', day: 'Daylight', dusk: 'Dusk', evening: 'Evening', original: 'Original identity', official: 'Official identity',
-    gallery: 'More screens', film: 'Launch film', playFilm: 'Play the launch film', flip: 'Page flip',
+    gallery: 'More screens', films: 'Films', film: 'Launch film', playFilm: 'Play the launch film', flip: 'Page flip',
     next: 'Next project', back: 'All projects', visit: 'Open the project site', toConfirm: 'to be confirmed',
     notFound: 'This page isn’t here.', notFoundText: 'The address may have changed. You can return home or explore the projects.', returnHome: 'Return home',
     footer: 'Amir Alhatemi', footerLine: 'Apps with Arabic at the heart.', result: 'projects shown', portraitAlt: 'Portrait of Amir Alhatemi',
   },
   ar: {
-    nav: ['الأعمال', 'عنّي', 'تواصل'], skip: 'تجاوز إلى المحتوى', home: 'الرئيسية', theme: 'المظهر', system: 'تلقائي', light: 'مطبوع', dark: 'مضاء',
+    nav: ['الأعمال', 'عنّي', 'تواصل'], skip: 'تجاوز إلى المحتوى', home: 'الرئيسية', theme: 'المظهر', system: 'تلقائي', light: 'فاتح', dark: 'داكن',
     themeHelp: { system: 'اتّباع إعداد الجهاز', light: 'المظهر الفاتح', dark: 'المظهر الداكن' },
     work: 'أعمال مختارة', allWork: 'كل المشاريع', contact: 'تواصل', caseStudy: 'تعرّف على المشروع',
     boardLabel: 'المشاريع وحالتها', project: 'المشروع', status: 'الحالة',
@@ -350,10 +391,10 @@ export const copy = {
     flagshipTitle: 'منصة هدايه على الهاتف', flagshipLink: 'تفاصيل مشروع هدايه',
     screensTitle: 'شاشات من الأعمال', screensIntro: 'لقطات حقيقية من المشاريع، مع الإشارة إلى البيانات التوضيحية حيث وُجدت.',
     labTitle: 'أعمال أصغر', labIntro: 'مشاريع جانبية وتجارب، بسطر واحد لكل منها.',
-    workIntro: 'ثمانية مشاريع بين تطبيقات الهاتف والويب والعمل الميداني وأدوات الذكاء الاصطناعي، ولكل منها حاجة يعالجها.',
+    workIntro: 'تسعة مشاريع بين تطبيقات الهاتف والويب والعمل الميداني وأدوات الذكاء الاصطناعي، ولكل مشروع مشكلة مختلفة يحلّها.',
     filters: { all: 'الكل', mobile: 'الهاتف', web: 'الويب', learning: 'التعلّم', workflow: 'سير العمل', data: 'البيانات', ai: 'الذكاء الاصطناعي' },
-    about: 'عنّي', aboutTitle: 'أمير، من الخبر.',
-    bio: 'أنا أمير الحاتمي، مطوّر تطبيقات مقيم في الخبر بالمنطقة الشرقية من المملكة العربية السعودية. تشمل مشاريعي البث التعليمي والقراءة المشتركة وإدارة أعمال الاتصال والعمل الميداني وأدوات الذكاء الاصطناعي المحلية. وترافق العربية والإنجليزية بناء هذه المنتجات من بدايتها.',
+    about: 'عنّي', aboutTitle: 'أمير، مقيم في الخبر.',
+    bio: 'أنا أمير الحاتمي، مطوّر تطبيقات مقيم في الخبر بالمنطقة الشرقية من المملكة العربية السعودية. تشمل مشاريعي البث التعليمي والقراءة المشتركة والمراجعة المتباعدة للحفظ وإدارة أعمال الاتصال والعمل الميداني وأدوات الذكاء الاصطناعي المحلية. وتحضر العربية والإنجليزية في بناء هذه المنتجات منذ بدايتها.',
     moreAbout: 'المزيد عنّي',
     personalPending: 'سأضيف قصتي الشخصية هنا لاحقًا.', photo: 'الصورة الشخصية لاحقًا', tools: 'أدوات مستخدمة في المشاريع', toolsIntro: 'هذه التقنيات موجودة في المشاريع المعروضة.', languages: 'اللغات', native: 'العربية، اللغة الأم', english: 'الإنجليزية، B2-C1',
     approach: 'كيف أتعامل مع العمل',
@@ -361,12 +402,12 @@ export const copy = {
     contactTitle: 'لنتحدّث عن العمل.', contactIntro: 'للاستفسار عن المشاريع أو للتواصل المهني.',
     emailPending: 'سأضيف عنوان بريد عامًا هنا.', emailAction: 'البريد', noForm: 'دون نموذج تواصل أو ملفات تتبّع.',
     privacy: 'الخصوصية', privacyTitle: 'موقع بسيط، وسياسة خصوصية واضحة.', privacyIntro: 'تخص هذه السياسة موقع الأعمال هذا فقط. ولكل تطبيق معروض ممارساته الخاصة في التعامل مع البيانات.',
-    privacySections: [ ['ما يجمعه الموقع', 'لا يحتوي الموقع على نموذج تواصل أو حسابات مستخدمين أو تحليلات أو إعلانات أو ملفات تعريف ارتباط للتتبّع، ولا يطلب منك تقديم بيانات شخصية.'], ['تفضيلاتك', 'إذا غيّرت المظهر، يحفظ المتصفّح اختيارك محليًا. وينقلك زر اللغة إلى الصفحة المقابلة بالعربية أو الإنجليزية. لا تُرسل هذه التفضيلات إلى أي جهة.'], ['الاستضافة والروابط الخارجية', 'قد يعالج مزوّد الاستضافة معلومات الطلب المعتادة، مثل عنوان IP وسجلات الخادم، لتقديم الموقع وحمايته. ولمواقع GitHub وLinkedIn والمشاريع المرتبطة سياسات خصوصية مستقلة.'], ['الخطوط والصور والفيديو', 'تُحمّل الخطوط والصور والمقطعان القصيران من الموقع نفسه. لا يوجد مشغّل فيديو خارجي أو خلاصات اجتماعية أو خدمات خطوط خارجية مضمّنة. صور المشاريع لقطات من المواقع العامة أو من ملفات المشاريع، مع الإشارة إلى البيانات التوضيحية.'], ['الاستفسارات', 'يمكن استخدام روابط الحسابات المهنية في صفحة التواصل إلى حين إضافة عنوان بريد عام.'] ],
+    privacySections: [ ['ما يجمعه الموقع', 'لا يحتوي الموقع على نموذج تواصل أو حسابات مستخدمين أو تحليلات أو إعلانات أو ملفات تعريف ارتباط للتتبّع، ولا يطلب منك تقديم بيانات شخصية.'], ['تفضيلاتك', 'إذا غيّرت المظهر، يحفظ المتصفّح اختيارك محليًا. وينقلك زر اللغة إلى الصفحة المقابلة بالعربية أو الإنجليزية. لا تُرسل هذه التفضيلات إلى أي جهة.'], ['الاستضافة والروابط الخارجية', 'قد يعالج مزوّد الاستضافة معلومات الطلب المعتادة، مثل عنوان IP وسجلات الخادم، لتقديم الموقع وحمايته. ولمواقع GitHub وLinkedIn والمشاريع المرتبطة سياسات خصوصية مستقلة.'], ['الخطوط والصور والفيديو', 'تُحمّل الخطوط والصور والمقاطع القصيرة من الموقع نفسه. لا يوجد مشغّل فيديو خارجي أو خلاصات اجتماعية أو خدمات خطوط خارجية مضمّنة. صور المشاريع لقطات من المواقع العامة أو من ملفات المشاريع، مع الإشارة إلى البيانات التوضيحية.'], ['الاستفسارات', 'يمكن استخدام روابط الحسابات المهنية في صفحة التواصل إلى حين إضافة عنوان بريد عام.'] ],
     projects: 'المشاريع', problem: 'المشكلة', audience: 'لمن صُمّم؟', highlights: 'ما يتضمّنه المشروع', stack: 'التقنيات المستخدمة', role: 'مساهمتي', currentBoundary: 'أين وصل المشروع؟', figures: 'بالأرقام', stage: 'المرحلة', reach: 'الوصول',
     views: 'العرض', viewA: 'أ', viewB: 'ب', arabic: 'العربية', englishView: 'English', phone: 'الهاتف', desktop: 'سطح المكتب', day: 'نهارًا', dusk: 'مساءً', evening: 'المظهر الليلي', original: 'الهوية الأولى', official: 'الهوية الرسمية',
-    gallery: 'شاشات أخرى', film: 'الفيلم التعريفي', playFilm: 'تشغيل الفيلم التعريفي', flip: 'تقليب الصفحة',
+    gallery: 'شاشات أخرى', films: 'أفلام', film: 'الفيلم التعريفي', playFilm: 'تشغيل الفيلم التعريفي', flip: 'تقليب الصفحة',
     next: 'المشروع التالي', back: 'كل المشاريع', visit: 'زيارة موقع المشروع', toConfirm: 'بانتظار التأكيد',
     notFound: 'هذه الصفحة غير موجودة.', notFoundText: 'ربما تغيّر الرابط. يمكنك العودة إلى الرئيسية أو تصفّح المشاريع.', returnHome: 'العودة إلى الرئيسية',
-    footer: 'أمير الحاتمي', footerLine: 'تطبيقات تضع العربية في صميمها.', result: 'مشاريع معروضة', portraitAlt: 'صورة أمير الحاتمي',
+    footer: 'أمير الحاتمي', footerLine: 'تطبيقات تبدأ من العربية.', result: 'مشاريع معروضة', portraitAlt: 'صورة أمير الحاتمي',
   },
 };

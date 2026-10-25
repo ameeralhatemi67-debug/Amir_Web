@@ -12,7 +12,7 @@
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -21,16 +21,10 @@
         "display": "2.0 s"
       },
       {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.99,
-        "display": "80 ms"
-      },
-      {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.06,
-        "display": "530 ms"
+        "score": 0.1,
+        "display": "480 ms"
       },
       {
         "id": "interactive",
@@ -64,8 +58,7 @@
       {
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
-        "score": 0,
-        "display": "Est savings of 50 ms"
+        "score": 0.5
       }
     ]
   },
@@ -82,13 +75,19 @@
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
         "score": 0.98,
         "display": "1.8 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.24,
+        "display": "350 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -105,14 +104,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 240 ms"
+        "display": "Est savings of 90 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/en/about/",
     "scores": {
-      "performance": 96,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -125,22 +124,22 @@
         "display": "1.2 s"
       },
       {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.87,
-        "display": "220 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.05,
-        "display": "570 ms"
-      },
-      {
         "id": "render-blocking-resources",
         "title": "Eliminate render-blocking resources",
         "score": 0.5,
         "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0,
+        "display": "Est savings of 17 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 17 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -151,7 +150,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 30 ms"
+        "display": "Est savings of 280 ms"
       }
     ]
   },
@@ -185,7 +184,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 420 ms"
+        "display": "Est savings of 370 ms"
       }
     ]
   },
@@ -198,12 +197,6 @@
       "seo": 100
     },
     "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
       {
         "id": "render-blocking-resources",
         "title": "Eliminate render-blocking resources",
@@ -219,14 +212,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 400 ms"
+        "display": "Est savings of 210 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/en/projects/hadayah-live/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -241,14 +234,14 @@
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.8 s"
+        "score": 0.99,
+        "display": "1.7 s"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.12,
-        "display": "450 ms"
+        "score": 0.06,
+        "display": "530 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -277,7 +270,64 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 110 ms"
+        "display": "Est savings of 60 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/memory-card/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.98,
+        "display": "1.3 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.95,
+        "display": "2.2 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.05,
+        "display": "560 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.2 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 23 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0.5
       }
     ]
   },
@@ -305,8 +355,8 @@
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.96,
-        "display": "100 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "interactive",
@@ -323,14 +373,14 @@
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 32 KiB"
       },
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
         "score": 0,
-        "display": "Est savings of 45 KiB"
+        "display": "Est savings of 57 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -341,7 +391,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 110 ms"
+        "display": "Est savings of 80 ms"
       }
     ]
   },
@@ -361,12 +411,6 @@
         "display": "1.2 s"
       },
       {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.99,
-        "display": "1.7 s"
-      },
-      {
         "id": "render-blocking-resources",
         "title": "Eliminate render-blocking resources",
         "score": 0.5,
@@ -375,7 +419,7 @@
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 18 KiB"
       },
       {
@@ -387,7 +431,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 240 ms"
+        "display": "Est savings of 190 ms"
       }
     ]
   },
@@ -413,6 +457,12 @@
         "display": "1.7 s"
       },
       {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.09,
+        "display": "480 ms"
+      },
+      {
         "id": "render-blocking-resources",
         "title": "Eliminate render-blocking resources",
         "score": 0.5,
@@ -421,14 +471,14 @@
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 45 KiB"
       },
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 46 KiB"
+        "score": 0.5,
+        "display": "Est savings of 30 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -439,7 +489,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 260 ms"
+        "display": "Est savings of 110 ms"
       }
     ]
   },
@@ -463,6 +513,12 @@
         "title": "Largest Contentful Paint",
         "score": 0.97,
         "display": "2.0 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.15,
+        "display": "420 ms"
       },
       {
         "id": "interactive",
@@ -497,7 +553,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 230 ms"
+        "display": "Est savings of 160 ms"
       }
     ]
   },
@@ -520,7 +576,13 @@
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
         "score": 0.99,
-        "display": "1.7 s"
+        "display": "1.6 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.18,
+        "display": "390 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -531,13 +593,13 @@
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 40 KiB"
       },
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 40 KiB"
       },
       {
@@ -549,7 +611,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 220 ms"
+        "display": "Est savings of 200 ms"
       }
     ]
   },
@@ -577,8 +639,8 @@
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.96,
-        "display": "100 ms"
+        "score": 0.1,
+        "display": "480 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -607,7 +669,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 150 ms"
+        "display": "Est savings of 120 ms"
       }
     ]
   },
@@ -641,7 +703,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 180 ms"
+        "display": "Est savings of 210 ms"
       }
     ]
   },
@@ -657,20 +719,14 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.3 s"
+        "score": 0.99,
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
         "score": 0.97,
         "display": "2.0 s"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.03,
-        "display": "640 ms"
       },
       {
         "id": "interactive",
@@ -694,7 +750,7 @@
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
         "score": 0,
-        "display": "Est savings of 37 KiB"
+        "display": "Est savings of 71 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -704,7 +760,8 @@
       {
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
-        "score": 0.5
+        "score": 0,
+        "display": "Est savings of 220 ms"
       }
     ]
   },
@@ -730,12 +787,6 @@
         "display": "1.8 s"
       },
       {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.09,
-        "display": "490 ms"
-      },
-      {
         "id": "render-blocking-resources",
         "title": "Eliminate render-blocking resources",
         "score": 0.5,
@@ -749,7 +800,8 @@
       {
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
-        "score": 0.5
+        "score": 0,
+        "display": "Est savings of 260 ms"
       }
     ]
   },
@@ -763,46 +815,6 @@
     },
     "failed": [
       {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.4 s"
-      },
-      {
-        "id": "render-blocking-resources",
-        "title": "Eliminate render-blocking resources",
-        "score": 0.5,
-        "display": "Est savings of 0 ms"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      },
-      {
-        "id": "render-blocking-insight",
-        "title": "Render blocking requests",
-        "score": 0,
-        "display": "Est savings of 340 ms"
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/contact/",
-    "scores": {
-      "performance": 100,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.4 s"
-      },
-      {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
         "score": 0.99,
@@ -815,38 +827,16 @@
         "display": "Est savings of 0 ms"
       },
       {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      },
-      {
-        "id": "render-blocking-insight",
-        "title": "Render blocking requests",
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
         "score": 0,
-        "display": "Est savings of 520 ms"
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/privacy/",
-    "scores": {
-      "performance": 100,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.1 s"
+        "display": "Est savings of 17 KiB"
       },
       {
-        "id": "render-blocking-resources",
-        "title": "Eliminate render-blocking resources",
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
         "score": 0.5,
-        "display": "Est savings of 0 ms"
+        "display": "Est savings of 17 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -862,9 +852,65 @@
     ]
   },
   {
+    "url": "http://127.0.0.1:4321/ar/contact/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 320 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/privacy/",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 310 ms"
+      }
+    ]
+  },
+  {
     "url": "http://127.0.0.1:4321/ar/projects/hadayah-live/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -873,14 +919,20 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
+        "score": 0.99,
+        "display": "1.7 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.88,
+        "display": "140 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -909,7 +961,59 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 240 ms"
+        "display": "Est savings of 230 ms"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/memory-card/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.96,
+        "display": "2.0 s"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.1 s"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.5,
+        "display": "Est savings of 0 ms"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 23 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render blocking requests",
+        "score": 0,
+        "display": "Est savings of 270 ms"
       }
     ]
   },
@@ -925,8 +1029,8 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -956,7 +1060,7 @@
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
         "score": 0,
-        "display": "Est savings of 45 KiB"
+        "display": "Est savings of 57 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -967,14 +1071,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 240 ms"
+        "display": "Est savings of 310 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/ar/projects/hayz/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -983,8 +1087,8 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1001,7 +1105,7 @@
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0.5,
+        "score": 0,
         "display": "Est savings of 18 KiB"
       },
       {
@@ -1013,14 +1117,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 380 ms"
+        "display": "Est savings of 360 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/ar/projects/nbc/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -1029,8 +1133,8 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1072,7 +1176,7 @@
   {
     "url": "http://127.0.0.1:4321/ar/projects/bookquest/",
     "scores": {
-      "performance": 98,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -1081,20 +1185,20 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.95,
-        "display": "2.2 s"
+        "score": 0.97,
+        "display": "2.0 s"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
         "score": 0.99,
-        "display": "2.2 s"
+        "display": "2.0 s"
       },
       {
         "id": "render-blocking-resources",
@@ -1112,7 +1216,7 @@
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
         "score": 0,
-        "display": "Est savings of 57 KiB"
+        "display": "Est savings of 71 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -1123,14 +1227,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 310 ms"
+        "display": "Est savings of 340 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/ar/projects/hedayah-dashboard/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -1139,8 +1243,8 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1163,8 +1267,8 @@
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 21 KiB"
+        "score": 0,
+        "display": "Est savings of 40 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -1175,14 +1279,14 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 370 ms"
+        "display": "Est savings of 350 ms"
       }
     ]
   },
   {
     "url": "http://127.0.0.1:4321/ar/projects/hida/",
     "scores": {
-      "performance": 99,
+      "performance": 100,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -1191,14 +1295,20 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.97,
-        "display": "1.4 s"
+        "score": 0.99,
+        "display": "1.2 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
         "score": 0.99,
         "display": "1.7 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.95,
+        "display": "110 ms"
       },
       {
         "id": "render-blocking-resources",
@@ -1209,14 +1319,14 @@
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 26 KiB"
       },
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 26 KiB"
       },
       {
         "id": "network-dependency-tree-insight",
@@ -1227,7 +1337,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 310 ms"
+        "display": "Est savings of 270 ms"
       }
     ]
   },
@@ -1243,14 +1353,8 @@
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.4 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
         "score": 0.99,
-        "display": "1.7 s"
+        "display": "1.2 s"
       },
       {
         "id": "render-blocking-resources",
@@ -1267,7 +1371,7 @@
         "id": "render-blocking-insight",
         "title": "Render blocking requests",
         "score": 0,
-        "display": "Est savings of 240 ms"
+        "display": "Est savings of 340 ms"
       }
     ]
   }

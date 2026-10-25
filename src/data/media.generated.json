@@ -349,5 +349,95 @@
     ],
     "width": 390,
     "height": 844
+  },
+  "memory-card-home": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-home-dark": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-study": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-swipe": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-today": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-lab": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-shop": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-picture": {
+    "kind": "phone",
+    "widths": [
+      360,
+      585
+    ],
+    "width": 585,
+    "height": 1266
+  },
+  "memory-card-widgets": {
+    "kind": "phone",
+    "widths": [
+      360,
+      420
+    ],
+    "width": 420,
+    "height": 642
+  },
+  "memory-card-onboarding": {
+    "kind": "phone",
+    "widths": [
+      360,
+      720
+    ],
+    "width": 720,
+    "height": 1487
   }
 }

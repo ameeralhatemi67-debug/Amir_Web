@@ -1,5 +1,5 @@
 {
-  "combinations": 112,
+  "combinations": 120,
   "violations": 0,
   "interactions": [
     "filters",
@@ -464,6 +464,70 @@
     },
     {
       "lang": "en",
+      "route": "projects/memory-card/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(245, 246, 242)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/memory-card/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(245, 246, 242)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/memory-card/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(10, 14, 12)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
+      "route": "projects/memory-card/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "en",
+        "dir": "ltr",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(10, 14, 12)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "en",
       "route": "projects/comms-hub/",
       "theme": "light",
       "size": "desktop",
@@ -1345,6 +1409,70 @@
     {
       "lang": "ar",
       "route": "projects/hadayah-live/",
+      "theme": "dark",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(10, 14, 12)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/memory-card/",
+      "theme": "light",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(245, 246, 242)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/memory-card/",
+      "theme": "light",
+      "size": "mobile",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 390,
+        "scroll": 390,
+        "broken": 0,
+        "background": "rgb(245, 246, 242)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/memory-card/",
+      "theme": "dark",
+      "size": "desktop",
+      "violations": 0,
+      "layout": {
+        "lang": "ar",
+        "dir": "rtl",
+        "width": 1440,
+        "scroll": 1440,
+        "broken": 0,
+        "background": "rgb(10, 14, 12)"
+      },
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "route": "projects/memory-card/",
       "theme": "dark",
       "size": "mobile",
       "violations": 0,

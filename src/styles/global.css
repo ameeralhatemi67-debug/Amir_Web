@@ -1,6 +1,7 @@
-@layer reset, tokens, base, components, pages, motion;
+@layer reset, tokens, base, components, pages, arabic, motion;
 @import './tokens.css';
 @import './base.css';
 @import './board.css';
 @import './pages.css';
+@import './arabic.css';
 @import './motion.css';

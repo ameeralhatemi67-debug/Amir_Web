@@ -125,3 +125,7 @@ if (ambient.length && 'IntersectionObserver' in window) {
   }), { threshold: .4 });
   ambient.forEach(video => observer.observe(video));
 }
+
+/* Films with sound: starting one pauses the others, so two soundtracks never overlap. */
+const films = [...document.querySelectorAll<HTMLVideoElement>('video[controls]')];
+films.forEach(film => film.addEventListener('play', () => films.forEach(other => { if (other !== film) other.pause(); })));

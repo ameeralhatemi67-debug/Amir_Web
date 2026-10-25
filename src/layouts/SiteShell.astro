@@ -11,7 +11,8 @@ const other: Locale = ar ? 'en' : 'ar';
 const canonical = new URL(url(lang, page), site.origin).href;
 const image = `${site.origin}/images/social-${lang}.png`;
 const person = { '@context': 'https://schema.org', '@type': 'Person', name: site.name, alternateName: site.arabicName, url: site.origin, jobTitle: 'App developer', ...(site.portrait ? { image: `${site.origin}/images/${site.portrait}-1280.webp` } : {}), homeLocation: { '@type': 'Place', name: 'Al Khobar, Saudi Arabia' }, knowsLanguage: ['Arabic', 'English'], sameAs: [site.github, site.linkedin] };
-const fonts = ar ? ['/fonts/handjet-lit-arabic.woff2', readexArabic, '/fonts/handjet-lit-latin.woff2'] : ['/fonts/handjet-lit-latin.woff2', readexLatin];
+// Arabic pages read in Readex Pro; the LED face is only needed for Latin names and figures (see styles/arabic.css).
+const fonts = ar ? [readexArabic, '/fonts/handjet-lit-latin.woff2'] : ['/fonts/handjet-lit-latin.woff2', readexLatin];
 const navPaths = ['projects', 'about', 'contact'];
 const themes = [['system', c.system, c.themeHelp.system], ['light', c.light, c.themeHelp.light], ['dark', c.dark, c.themeHelp.dark]] as const;
 ---

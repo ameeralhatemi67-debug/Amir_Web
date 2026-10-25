@@ -76,7 +76,7 @@ typography:
   body-arabic:
     fontFamily: "'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif"
     fontSize: "17.5px"
-    fontWeight: 350
+    fontWeight: 400
     lineHeight: 1.9
   label:
     fontFamily: "'Readex Pro Variable', 'Segoe UI', Tahoma, sans-serif"
@@ -229,9 +229,9 @@ Each Lit value has a Print counterpart under the same name with a `print-` prefi
 **Display Font:** Handjet LED (with size-adjusted Arial and Roboto fallbacks)
 **Body Font:** Readex Pro Variable (with Segoe UI, Tahoma, sans-serif)
 
-**Character:** A dot-matrix display face that draws Arabic and Latin on the same lamp grid, set against a rounded, low-contrast sans whose two scripts share one family. The LED face displays; Readex Pro explains.
+**Character:** A dot-matrix display face for Latin names and figures, set against a rounded, low-contrast sans whose two scripts share one family. The LED face displays; Readex Pro explains, and in Arabic it also displays.
 
-Handjet LED is not the variable Handjet: it is two static files per script frozen at round dots (element shape 8, element grid 1), lit at 560 and unlit at 260. Fallbacks are metric-matched (Arial at 74% for Latin and 98% for Arabic, Roboto at 81%) so the font swap does not reflow lines. Only the lit files are preloaded.
+Handjet LED is not the variable Handjet: it is two static files per script frozen at round dots (element shape 8, element grid 1), lit at 560 and unlit at 260. Fallbacks are metric-matched (Arial at 74% for Latin and 98% for Arabic, Roboto at 81%) so the font swap does not reflow lines. Only the lit Latin file is preloaded on every page. The Arabic Handjet instances are still built (scripts/instance-handjet.py) but no page uses them any more; see The Native Script Rule.
 
 ### Hierarchy
 - **Display** (560, clamp(56px, 8vw, 112px), 0.95): Page headings. Case titles use clamp(50px, 6.6vw, 100px), the contact title clamp(44px, 6.2vw, 92px), and the 404 numeral clamp(120px, 22vw, 280px) at 0.8 in Figure Red.
@@ -251,7 +251,7 @@ Readex headings use 500 at 1.15 with balanced wrapping; strong text is 550.
 
 **The Display/Read Rule.** Handjet LED is for what the board displays: names, headlines, figures, dates, ticker lines, the brand lockup and tool names. Readex Pro is for anything read in sentences and for control labels (actions, nav, filters, the language switch).
 
-**The Native Script Rule.** Arabic LED gets its own sizes, 10 to 20% below the Latin ones (board headline clamp(36px, 3.9vw, 54px), section titles clamp(32px, 3.6vw, 48px), row names clamp(22px, 2.1vw, 28px)), with letter-spacing 0 and line-height 1.15. Latin names inside Arabic lines are isolated left-to-right and kept unbroken. The English name in the lockup is set in capitals.
+**The Native Script Rule.** Arabic is never set in the dot-matrix face. Its dots (nuqat) and joins dissolve into the lamp grid, which made the Arabic pages hard to read. Every Arabic run, headings included, is Readex Pro at weight 600 with letter-spacing 0 and a line-height of 1.3 to 1.5, in its own sizes (board headline clamp(30px, 3.2vw, 44px), section titles clamp(26px, 2.8vw, 36px), row names clamp(18px, 1.55vw, 21px)). Small print never drops below 14px in Arabic, and body text is 400, not 350. The LED face stays for Latin names, tool names, figures and the Latin half of the brand lockup (the .ltr and .num classes), so the board look survives without costing legibility. Latin names inside Arabic lines are isolated left-to-right and kept unbroken, and fact labels read label first, number second (a plural noun phrase, never a counted noun that expects the number before it). The English name in the lockup is set in capitals. The rules live in src/styles/arabic.css.
 
 ## Layout
 
@@ -365,7 +365,7 @@ All motion eases out on cubic-bezier(.23, 1, .32, 1) and happens through the boa
 - **Do** show every status with pips or glyph pattern plus words, on the five-stage lifecycle.
 - **Do** set unconfirmed facts in unlit LED (260, Dim Ink) with "to be confirmed".
 - **Do** use only the lit (560) and unlit (260) Handjet instances for display, and Readex Pro for prose and control labels.
-- **Do** give Arabic LED its own smaller sizes with letter-spacing 0 and line-height 1.15, and isolate Latin runs left-to-right.
+- **Do** set Arabic in Readex Pro with its own sizes, letter-spacing 0 and generous line-height, keep Arabic small print at 14px or more, and isolate Latin runs left-to-right.
 - **Do** keep 44px targets for actions, text actions, nav, the language switch and footer links, and at least 40px for in-board controls.
 - **Do** mount only real captures or source-project assets on plates, with honest captions.
 - **Do** ship a reduced-motion fallback with any new relight or crawl.
@@ -375,7 +375,7 @@ All motion eases out on cubic-bezier(.23, 1, .32, 1) and happens through the boa
 - **Don't** introduce a fourth ink or decorative colour gradients, or let amber, green and red stand in for one another.
 - **Don't** light a value that is not verified, or fill an unknown with a placeholder figure.
 - **Don't** round rectangles beyond 2px or make pills; circles are for dots only.
-- **Don't** set paragraphs or control labels in the LED face, or request Handjet weights other than 560 and 260.
+- **Don't** set paragraphs or control labels in the LED face, set any Arabic in it, or request Handjet weights other than 560 and 260.
 - **Don't** shrink type to fit narrow screens; repack rows and grids instead.
 - **Don't** use AI-generated, rendered or invented imagery.
 - **Don't** move content into place with slides, bounces or scale-ins.

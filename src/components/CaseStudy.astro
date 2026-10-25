@@ -25,7 +25,7 @@ const lead = desktop ?? phone;
       <div class="case-title">
         <h1 class="led">{local(project.name, lang)}</h1>
         <p class="case-pitch">{local(project.pitch, lang)}</p>
-        {project.link && <a class="action" href={project.link}>{c.visit}<Icon /></a>}
+        {project.link && <a class="action" href={project.link}>{project.linkLabel ? local(project.linkLabel, lang) : c.visit}<Icon /></a>}
       </div>
       <dl class="case-cells">
         <div class="cell"><dt>{c.status}</dt><dd class="cell-status"><span>{local(project.status, lang)}</span><span class:list={['cell-sub', 'cell-access', `reach-${project.reach}`]}><StatusGlyph reach={project.reach} /><span>{local(reachLabel[project.reach], lang)}</span></span></dd></div>
@@ -61,15 +61,22 @@ const lead = desktop ?? phone;
 
   {m.views && <div class="case-views wrap">{m.views.map((set, i) => <ViewSwitch set={set} lang={lang} uid={`${project.slug}-v${i}`} />)}</div>}
 
-  {m.video && (
-    <figure class:list={['case-video', 'wrap', { 'video-ambient': m.video.ambient }]}>
-      <div class="video-frame" style={`aspect-ratio:${m.video.width}/${m.video.height}`}>
-        {m.video.ambient
-          ? <video muted playsinline preload="none" poster={m.video.poster} data-ambient aria-label={local(m.video.label, lang)} width={m.video.width} height={m.video.height}><source src={m.video.src} type="video/mp4" /></video>
-          : <video controls playsinline preload="none" poster={m.video.poster} aria-label={local(m.video.label, lang)} width={m.video.width} height={m.video.height}><source src={m.video.src} type="video/mp4" /></video>}
+  {m.videos && (
+    <section class:list={['case-videos', 'wrap', { 'videos-portrait': m.videos.every(video => video.height > video.width), 'videos-multi': m.videos.length > 1 }]} aria-labelledby={m.videos.length > 1 ? 'videos-title' : undefined}>
+      {m.videos.length > 1 && <h2 id="videos-title" class="aside-title videos-title">{c.films}</h2>}
+      <div class="videos-grid">
+        {m.videos.map(video => (
+          <figure class:list={['case-video', { 'video-ambient': video.ambient }]}>
+            <div class="video-frame" style={`aspect-ratio:${video.width}/${video.height}`}>
+              {video.ambient
+                ? <video muted playsinline preload="none" poster={video.poster} data-ambient aria-label={local(video.label, lang)} width={video.width} height={video.height}><source src={video.src} type="video/mp4" /></video>
+                : <video controls playsinline preload="none" poster={video.poster} aria-label={local(video.label, lang)} width={video.width} height={video.height}><source src={video.src} type="video/mp4" /></video>}
+            </div>
+            <figcaption><span class="led">{local(video.label, lang)}</span> {local(video.caption, lang)}</figcaption>
+          </figure>
+        ))}
       </div>
-      <figcaption><span class="led">{local(m.video.label, lang)}</span> {local(m.video.caption, lang)}</figcaption>
-    </figure>
+    </section>
   )}
 
   {m.phones && m.phones.length > 1 && <section class="case-strip wrap" aria-label={c.phone}><Strip ids={m.phones} lang={lang} label={`${local(project.name, lang)}, ${c.phone}`} /></section>}
