@@ -536,7 +536,7 @@ html.is-desk .phone-only { display: none !important; }
 .app-icon { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 4px 0; border: 0; background: none; color: var(--icon-label); cursor: pointer; min-height: 44px; }
 .app-icon .tile { --t: 60px; transition: transform .22s var(--spring), filter .15s; }
 .app-icon:active .tile { transform: scale(.9); filter: brightness(.85); }
-.app-icon span { font: 500 14px/1.15 var(--f-ui); text-align: center; text-shadow: var(--icon-shadow); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: 100%; word-break: break-word; }
+.app-icon > span:not(.tile) { font: 500 14px/1.15 var(--f-ui); text-align: center; text-shadow: var(--icon-shadow); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: 100%; word-break: break-word; }
 .w-pair { display: grid; grid-template-columns: 1fr; gap: 0; }
 html.is-phone #dockwrap { bottom: calc(52px + env(safe-area-inset-bottom)); }
 html.is-phone #dock { padding: 8px; gap: 10px; border-radius: 24px; }
