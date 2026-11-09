@@ -26,10 +26,11 @@ The output is `dist/`. There is no server adapter, database, account system, ana
 ## How it is built
 
 - `src/os/content.json`: all content: the person, contact routes, education, the eleven projects (stage, access, status, problem, audience, highlights, facts, boundary, links, screens, phone screens, films, tools, features), the lab, stages and interface words, in English and Arabic.
-- `src/os/core.js`: words, icons, tiles, routes and the HTML of every window and of the desktop. It does no DOM work, so the build uses it to draw each page and the browser uses it to draw windows.
-- `src/os/app.js`: the desktop in the browser: window manager, sheets, dock, menus, Spotlight search, lightbox, film player, settings, terminal, boot screen, address syncing and the mascot hook-up.
+- `src/os/core.js`: words, icons, tiles, routes and the HTML of every window and of the desktop. It does no DOM work, so the build uses it to draw each page and the browser uses it to draw windows. Nothing costly runs when it loads: the clock is plain UTC+3 arithmetic, because a time-zone `Intl` formatter would add about 25 ms to the desktop's start-up on a phone.
+- `src/os/app.js`: the desktop in the browser: window manager (with window tabs, All windows, shake, keep on top), sheets, dock, menus, search, Control Center, notifications and calendar, Notes, Imp's toys, lightbox, film player, settings, terminal, boot screen, address syncing and the mascot hook-up.
 - `src/os/style.css`: the stylesheet (inlined into every page at build time).
-- `src/layouts/OsPage.astro`: one page: metadata, JSON-LD, the wallpaper, menu bar, icons, widgets, home screen, dock and the page's own window drawn as a sheet.
+- `src/os/app.css`: the styles for what only the desktop script draws (window tabs, Control Center, notifications, All windows, Notes, search, toys). `OsPage.astro` loads it just before the script. Don't import it from `app.js`, or Astro inlines it into every page again.
+- `src/layouts/OsPage.astro`: one page: metadata, JSON-LD, the wallpaper, menu bar, icons, widgets, home screen, dock and the page's own window drawn as a sheet. It starts the desktop script once the page has loaded and painted (or at the visitor's first input, or three seconds after load), so the script never competes with the first paint or the main screenshot.
 - `src/pages/[lang]/[...path].astro`: one page per window with an address, in both languages; `src/pages/index.astro` (the English desktop at `/`) and `404.astro`.
 - `public/os/imp-live.js`: the Pixel imp runtime (sprites, clips, behaviour). It loads with the visitor's first interaction or four seconds after the page loads. `public/os/boot-wave.webp` is the boot screen's waving Imp, rendered from his own wave clip.
 - `public/media/`: project screens, phone screens, films and posters, app icons, logos and the portrait.
@@ -41,7 +42,7 @@ The output is `dist/`. There is no server adapter, database, account system, ana
 ### Adding or changing content
 
 - Edit `src/os/content.json`. A project needs a slug, both languages for every text field, and its media.
-- Media: put screens in `public/media/<project>/` as WebP and list them with their pixel size. Then run `node scripts/media-variants.mjs` to make the 800 px copies of wide screens (served to phones through `srcset`), the 192 px app icons and the portrait sizes.
+- Media: put screens in `public/media/<project>/` as WebP and list them with their pixel size. Then run `node scripts/media-variants.mjs` to make the 800 px copies of wide screens (served to phones through `srcset`), the 400 px copies of each role's first screen (Hatan's role strip), the 192 px app icons and the portrait sizes.
 - Videos: H.264 with AAC audio under the 1.5 MB budget, with a WebP poster. For example:
 
 ```powershell
@@ -71,9 +72,9 @@ Verified local results for this build (2026-11-09):
 | Static output | 40 pages; links, srcset, metadata, language/direction, image and video budgets passed |
 | axe accessibility/layout | 152 language/theme/viewport combinations with the mascot loaded; 0 issues |
 | Interaction checks | 13 of 13 passed |
-| Mobile Lighthouse (36 pages) | Accessibility, best practices and SEO 100 on every page. Performance 95 to 98 on 31 pages; 93 to 94 on Work (English), Hatan (both), Amir Lap (Arabic) and Memory Card (Arabic) |
+| Mobile Lighthouse (36 pages) | Accessibility, best practices and SEO 100 on every page. Performance 95 to 98 on every page (17 pages at 96, 14 at 97 or 98) |
 
-The five pages under 95 are the image-heaviest. Their real first paint and LCP are about 0.6 s on a fast connection; Lighthouse's simulated slow 4G pushes LCP to about 3 s, because fonts, the app bundle and nearby screens share the link before the main screenshot. Details are in `qa/accessibility.json` and `qa/lighthouse-summary.json`. These are local lab results, not a guarantee for every device; physical-device and screen-reader acceptance remain unverified.
+The lowest scores (95) are the image-heaviest pages: Work, Films, Hatan and Amir Lap in English, and Films in Arabic. Lighthouse's simulated slow 4G puts their LCP at 2.6 to 2.8 s (1.8 to 2.2 s for the Arabic pages). Total blocking time is 90 to 220 ms, mostly the desktop script starting after the first paint. Details are in `qa/accessibility.json` and `qa/lighthouse-summary.json`. These are local lab results, not a guarantee for every device; physical-device and screen-reader acceptance remain unverified.
 
 ## Owner TODO list
 

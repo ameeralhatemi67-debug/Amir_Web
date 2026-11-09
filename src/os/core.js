@@ -73,6 +73,41 @@ export const U = {
   nfTitle: ['This page isn’t here.', 'هذه الصفحة غير موجودة.'], nfText: ['The address may have changed. You can return home or explore the projects.', 'ربما تغيّر الرابط. يمكنك العودة إلى الرئيسية أو تصفّح المشاريع.'],
   returnHome: ['Return home', 'العودة إلى الرئيسية']
 };
+/* round 6: tabs, All windows, Control Center, notifications, Notes, toys, project views and stacks, search */
+Object.assign(U, {
+  views: ['Views', 'الواجهات'], stack: ['Tech stack', 'التقنيات'], seeViews: ['See every view', 'كل الواجهات'], architecture: ['How it is built', 'كيف بُني'], platforms: ['Runs on', 'يعمل على'],
+  builtWithP: ['Under the hood', 'ما تحت الغطاء'], seeStack: ['See the full stack', 'كل التقنيات'], pagesN: ['pages', 'صفحة'], openL: ['Open', 'افتح'],
+  techOnly: ['Built with', 'مبنية بـ'], clearFilter: ['Show all', 'عرض الكل'],
+  newTab: ['New tab', 'علامة تبويب جديدة'], closeTab: ['Close tab', 'إغلاق علامة التبويب'], closeWin: ['Close window', 'إغلاق النافذة'],
+  moveTabNew: ['Move tab to a new window', 'نقل علامة التبويب إلى نافذة جديدة'], mergeAll: ['Merge all windows', 'دمج كل النوافذ في نافذة'],
+  pinTop: ['Keep on top', 'إبقاؤها في الأعلى'], dropTab: ['Drop to add as a tab', 'أفلِت لإضافتها كعلامة تبويب'], openInTab: ['Open in a new tab', 'فتح في علامة تبويب جديدة'],
+  t_merged: ['Windows merged into tabs', 'دُمجت النوافذ في علامات تبويب'], t_shake: ['Shook the other windows away', 'أبعدتَ النوافذ الأخرى بالهز'], t_unshake: ['Windows are back', 'عادت النوافذ'],
+  t_pinned: ['Kept on top', 'ستبقى في الأعلى'], t_unpinned: ['No longer on top', 'لم تعد في الأعلى'], t_tornOff: ['Tab moved to its own window', 'نُقلت علامة التبويب إلى نافذة مستقلة'],
+  taskView: ['All windows', 'كل النوافذ'], tvEmpty: ['No windows are open. Pick something from the dock.', 'لا توجد نوافذ مفتوحة. اختر شيئًا من شريط التطبيقات.'],
+  tabsN: ['tabs', 'علامات تبويب'], windowsN: ['windows', 'نوافذ'], tvHint: ['Click a window to go to it · Delete closes it · Esc goes back', 'انقر نافذة للانتقال إليها · Delete يغلقها · Esc للرجوع'],
+  sc_tasks: ['All windows', 'عرض كل النوافذ'], sc_tabs: ['Next or previous tab', 'علامة التبويب التالية أو السابقة'], sc_closeTab: ['Close the current tab', 'إغلاق علامة التبويب الحالية'],
+  sc_newTab: ['Open a search result in a new tab', 'فتح نتيجة البحث في علامة تبويب جديدة'], sc_cc: ['Control Center', 'مركز التحكم'],
+  tip5: ['Drag a window by its title onto another window’s title bar to join them as tabs; drag a tab down to pull it out again.', 'اسحب نافذة من عنوانها إلى شريط عنوان نافذة أخرى لتجمعهما في علامات تبويب، واسحب علامة التبويب للأسفل لفصلها.'],
+  tip6: ['Shake a window by its title bar to tuck every other window away. Shake it again to bring them back.', 'هزّ نافذة من شريط عنوانها لإخفاء بقية النوافذ، وهزّها مرة أخرى لإعادتها.'],
+  tip7: ['Throw the ball at Imp, or drag a treat onto him.', 'ارمِ الكرة على إمب، أو اسحب له حلوى.'],
+  controlCenter: ['Control Center', 'مركز التحكم'], notifications: ['Notifications', 'الإشعارات'], noNotifs: ['Nothing new. Things you do here show up as they happen.', 'لا جديد. ستظهر هنا الأشياء التي تفعلها.'],
+  clearAll: ['Clear', 'مسح'], ncLabel: ['Calendar and notifications', 'التقويم والإشعارات'], justNow: ['just now', 'الآن'], minAgo: ['min ago', 'د'],
+  soundL: ['Film sound', 'صوت الأفلام'], on: ['On', 'تشغيل'], off: ['Off', 'إيقاف'], toys: ['Toys', 'الألعاب'], ball: ['Ball', 'الكرة'],
+  treat: ['Treat', 'حلوى'], giveTreat: ['Give Imp a treat', 'أعطِ إمب حلوى'], throwBall: ['Throw the ball', 'ارمِ الكرة'], ballOn: ['Ball on the desktop', 'الكرة على سطح المكتب'],
+  dragTreat: ['Drag the treat onto Imp', 'اسحب الحلوى إلى إمب'], ballLabel: ['Imp’s ball. Drag and throw it.', 'كرة إمب. اسحبها وارمِها.'], treatLabel: ['A treat for Imp. Drag it onto him.', 'حلوى لإمب. اسحبها إليه.'],
+  notes: ['Notes', 'ملاحظات'], notesPh: ['Write something. Imp reads over your shoulder.', 'اكتب شيئًا. إمب يقرأ من فوق كتفك.'], notesSaved: ['Saved on this device only', 'محفوظة على هذا الجهاز فقط'],
+  notesWords: ['words', 'كلمة'], newNote: ['New note', 'ملاحظة جديدة'], pip: ['Picture in picture', 'صورة داخل صورة'],
+  say_ow: ['Ow!', 'آخ!'], say_hey: ['Hey!', 'هيه!'], say_yum: ['Yum!', 'لذيذ!'], say_mine: ['Mine!', 'لي!'], say_whoa: ['Whoa!', 'واو!'], say_nothing: ['Nothing by that name. I looked.', 'لا شيء بهذا الاسم. بحثت.'],
+  say_tabs: ['Tabs! Tidy.', 'علامات تبويب! مرتّب.'], say_today: ['That’s today.', 'هذا اليوم.']
+});
+Object.assign(U, {
+  s_top: ['Top hit', 'أفضل نتيجة'], s_apps: ['Apps', 'التطبيقات'], s_projects: ['Projects', 'المشاريع'], s_details: ['Inside projects', 'داخل المشاريع'],
+  s_screens: ['Screens', 'الشاشات'], s_tech: ['Tech', 'التقنيات'], s_films: ['Films', 'الأفلام'], s_lab: ['Lab', 'المختبر'], s_actions: ['Actions', 'الأوامر'],
+  s_all: ['All', 'الكل'], s_recent: ['Recent', 'الأخيرة'], s_suggest: ['Try', 'جرّب'], usedIn: ['Used in', 'مستخدمة في'], s_calc: ['Calculator · Enter copies it', 'الآلة الحاسبة · Enter ينسخ الناتج'],
+  t_calc: ['Result copied', 'تم نسخ الناتج'], searchHint: ['↑ ↓ move · Enter open · Ctrl+Enter new tab · Tab filters', '↑ ↓ للتنقل · Enter للفتح · Ctrl+Enter علامة تبويب جديدة · Tab للتصفية'],
+  inHighlights: ['Highlight', 'من أبرز ما فيه'], inFacts: ['Figure', 'رقم'], inViews: ['View', 'واجهة'], inTools: ['Tool', 'أداة'], inProblem: ['The problem', 'المشكلة'],
+  projectsN: ['projects', 'مشاريع'], noResults: ['Nothing matches. Try “Flutter”, “admin”, “Hatan” or “email”.', 'لا توجد نتائج. جرّب «Flutter» أو «الإدارة» أو «هتّان» أو «البريد».']
+});
 export const u = k => (U[k] || [k, k])[rtl() ? 1 : 0];
 export const TAGS = { mobile: ['Mobile', 'الجوال'], web: ['Web', 'الويب'], desktop: ['Desktop', 'سطح المكتب'], learning: ['Learning', 'التعلّم'], workflow: ['Workflow', 'سير العمل'], data: ['Data', 'البيانات'], ai: ['AI', 'الذكاء الاصطناعي'] };
 export const FILM = {
@@ -144,6 +179,17 @@ export const I = {
   sort: sv('<path d="M7 4v16M4 17l3 3 3-3M14 6h7M14 11h5M14 16h3"/>'), eye: sv('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
   shield: sv('<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>')
 };
+const ICON2 = {
+  tasks: sv('<rect x="3" y="4" width="8" height="7" rx="1.6"/><rect x="13" y="4" width="8" height="7" rx="1.6"/><rect x="3" y="13" width="8" height="7" rx="1.6"/><rect x="13" y="13" width="8" height="7" rx="1.6"/>'),
+  sliders: sv('<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/>'),
+  pip: sv('<rect x="3" y="5" width="18" height="14" rx="2.5"/><rect x="12" y="11" width="7" height="6" rx="1.2" fill="currentColor"/>'),
+  pen: sv('<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>'),
+  pinI: sv('<path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/>'),
+  ballI: sv('<circle cx="12" cy="12" r="8.5"/><path d="M5 8.5c4 1 9 1 14 0M4.5 14c5 1.5 10 1.5 15 0M12 3.5c-2.5 3-2.5 14 0 17"/>'),
+  treatI: sv('<path d="M5 15c4 4 11 3 14-6 .5-1.5 0-3-1-4-1 3-4 8-12 8z"/><path d="M18 5l1.5-1.5"/>')
+};
+Object.assign(I, ICON2);
+
 
 /* data */
 export const P = Object.fromEntries(A.projects.map(p => [p.slug, p]));
@@ -153,8 +199,8 @@ export const ALLFILMS = A.projects.flatMap(p => p.videos.map(v => ({ ...v, p }))
 export const STAGE_ORDER = ['live', 'launch', 'pilot', 'building', 'concept'];
 export const stageLabel = s => T(A.stages.find(x => x.id === s)?.label);
 export const stageIdx = s => A.stages.findIndex(x => x.id === s);
-const stageChip = p => `<span class="chip stg"><span class="dot" style="--sc:var(--s-${p.stage})"></span>${esc(stageLabel(p.stage))}</span>`;
-const reachChip = r => `<span class="chip">${esc(T(A.reach[r]))}</span>`;
+export const stageChip = p => `<span class="chip stg"><span class="dot" style="--sc:var(--s-${p.stage})"></span>${esc(stageLabel(p.stage))}</span>`;
+export const reachChip = r => `<span class="chip">${esc(T(A.reach[r]))}</span>`;
 const langRank = m => { const k = (m.name || '').match(/(?:^|-)(en|ar)$/)?.[1]; return !k ? 1 : k === lang ? 0 : 2; };
 const ord = list => list.map((m, i) => [m, i]).sort((a, b) => langRank(a[0]) - langRank(b[0]) || a[1] - b[1]).map(x => x[0]);
 export const shotsOf = p => ord(p.shots), phonesOf = p => ord(p.phones);
@@ -163,6 +209,8 @@ export const pretty = n => String(n || '').replace(/-/g, ' ').replace(/\b(en|ar)
 const WIDE = (m, sizes) => m.w >= 1200 && /\.webp$/.test(m.src) ? ` srcset="${m.src.replace(/\.webp$/, '-800.webp')} 800w, ${m.src} ${m.w}w" sizes="${sizes}"` : '';
 export const img = (m, alt, cls = '', eager = false, sizes = '(max-width: 759px) 100vw, 960px') => `<img class="${cls}" src="${m.src}"${WIDE(m, sizes)} width="${m.w}" height="${m.h}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" draggable="false">`;
 const SM = '(max-width: 759px) 100vw, 460px', XS = '(max-width: 759px) 100vw, 330px';
+// the role strip's small screens also come as a 400 px copy (scripts/media-variants.mjs): three across on a phone, 330 px on a laptop
+const thumb = m => img(m, '', '', false, '(max-width: 759px) 31vw, 330px').replace(' srcset="', ` srcset="${m.src.replace(/\.webp$/, '-400.webp')} 400w, `);
 
 /* routes: the windows that have their own address (the rest open from menus) */
 export const ROUTE = { start: '', work: 'projects', films: 'films', lab: 'lab', about: 'about', contact: 'contact', privacy: 'privacy' };
@@ -197,10 +245,11 @@ export const SYS = {
   help: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#8FD3C8,#2E6F78)">${I.help}</span>`,
   terminal: () => `<span class="tile sys term" style="--tg:linear-gradient(150deg,#2B3A40,#0B1418)">${I.term}</span>`,
   privacy: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#9FB8A8,#3E5F55)">${I.shield}</span>`,
+  notes: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#FFE08A,#E3A21A)">${I.pen}</span>`,
   notfound: () => `<span class="tile mark-tile alt" aria-hidden="true">?</span>`
 };
 export const appTile = id => id.startsWith('p:') ? tileFor(P[id.slice(2)]) : (SYS[id] ? SYS[id]() : '');
-export const appTitle = id => id.startsWith('p:') ? T(P[id.slice(2)].name) : ({ start: u('start'), work: u('work'), films: u('films'), lab: u('lab'), about: u('aboutAmir'), contact: u('contact'), settings: u('settings'), help: u('shortcuts'), terminal: u('terminal'), aboutos: u('aboutOS'), privacy: u('privacy'), notfound: u('nfShort') })[id] || id;
+export const appTitle = id => id.startsWith('p:') ? T(P[id.slice(2)].name) : ({ start: u('start'), work: u('work'), films: u('films'), lab: u('lab'), about: u('aboutAmir'), contact: u('contact'), settings: u('settings'), help: u('shortcuts'), terminal: u('terminal'), aboutos: u('aboutOS'), privacy: u('privacy'), notfound: u('nfShort'), notes: u('notes') })[id] || id;
 
 /* page titles and descriptions, the same at build time and after the address changes */
 export const siteName = () => T(A.person.name);
@@ -214,9 +263,11 @@ export const describe = id => {
   })[id] || (rtl() ? `أمير الحاتمي، مطوّر تطبيقات في الخبر: ${n} مشروعًا بين الجوال والويب وسطح المكتب، معروضة كنظام تشغيل صغير لسطح المكتب.` : `Amir Alhatemi, app developer in Al Khobar: ${n} projects across mobile, web and desktop, presented as a small desktop operating system.`);
 };
 
-/* clock */
-const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: false });
-export const clockNow = () => fmt.format(new Date());
+/* clock: Al Khobar time. Saudi Arabia keeps UTC+3 all year (no daylight saving), so this is plain arithmetic.
+   A time-zone Intl formatter would load the browser's time-zone data on first use: about 25 ms inside the
+   desktop's start-up task on a phone. The calendar (app.js) still uses Intl, once someone opens it. */
+const pad2 = n => String(n).padStart(2, '0');
+export const clockNow = () => { const d = new Date(Date.now() + 3 * 3600e3); return `${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}`; };
 export const clockHTML = () => { const [h, m] = clockNow().split(':'); return `${h}<span class="colon">:</span>${m}`; };
 
 
@@ -279,11 +330,12 @@ export const lbLists = () => {
   A.projects.forEach(p => { LB['p:' + p.slug] = [...shotsOf(p), ...phonesOf(p)].map(m => ({ ...m, cap: `${T(p.name)} · ${pretty(m.name)}` })); });
   LB.lab = A.lab.map(l => ({ ...l.shot, cap: l.name }));
   const lap = P['amir-lap']; if (lap?.tools) LB['tools:amir-lap'] = lap.tools.flatMap(t => t.shots.map(m => ({ ...m, cap: `${T(t.name)} · ${pretty(m.name)}` })));
+  A.projects.forEach(p => (p.roles || []).forEach(r => { LB[`role:${p.slug}:${r.id}`] = r.shots.map(m => ({ ...m, cap: `${T(p.name)} · ${T(r.name)} · ${T(m.caption) || pretty(m.name)}` })); }));
   const hat = P.hatan; if (hat?.features) LB['feat:hatan'] = hat.features.map((f, i) => ({ ...featImg(hat, i), cap: `${T(hat.name)} · ${T(f.title)}` }));
   return LB;
 };
 // the feature still in the reader's language when the project has one
-const featImg = (p, i) => { const f = p.features[i], base = f.img.name.replace(/-(en|ar)$/, ''), alt = p.shots.find(s => s.name === `${base}-${lang}`); return alt || f.img; };
+export const featImg = (p, i) => { const f = p.features[i], base = f.img.name.replace(/-(en|ar)$/, ''), alt = p.shots.find(s => s.name === `${base}-${lang}`); return alt || f.img; };
 const frameBtn = (m, group, i, alt, cls = '', eager = false, sizes = SM) => `<button type="button" class="frame ${m.kind === 'phone' ? 'phone' : ''} ${m.kind === 'square' ? 'square' : ''} ${cls}" data-lb="${group}" data-i="${i}" aria-label="${esc(alt)}">${img(m, alt, '', eager, sizes)}<span class="cap" aria-hidden="true">${esc(pretty(m.name || ''))}</span></button>`;
 
 export const startHTML = () => {
@@ -311,14 +363,28 @@ export const workHTML = () => {
   return `<div class="app work">
     <div class="toolbar"><div><b class="h3" style="margin:0">${esc(T(A.ui.allWork))}</b> <span class="muted small">${A.projects.length} ${esc(u('projects'))}</span></div><span class="grow"></span>
       <div class="filters js-only" role="group" aria-label="${esc(u('work'))}"><button type="button" data-filter="all" aria-pressed="true">${esc(u('all'))}</button>${tags.map(t => `<button type="button" data-filter="${t}" aria-pressed="false">${esc(TAGS[t][rtl() ? 1 : 0])}</button>`).join('')}</div></div>
-    <div class="scroller" data-imp-scroll><p class="muted small intro">${esc(T(A.ui.workIntro))}</p><div class="tiles">${A.projects.map((p, i) => opener('p:' + p.slug, 'ptile', `
+    <div class="tech-filter" hidden></div><div class="scroller" data-imp-scroll><p class="muted small intro">${esc(T(A.ui.workIntro))}</p><div class="tiles">${A.projects.map((p, i) => opener('p:' + p.slug, 'ptile', `
         <span class="cover">${coverOf(p, i === 0)}${tileFor(p)}${ribbonHTML(p)}</span>
         <span class="body"><b>${esc(T(p.name))}</b><span class="cat">${esc(T(p.category))}</span><span class="row">${stageChip(p)}${reachChip(p.reach)}</span><span class="st">${esc(T(p.status))}</span></span>`,
       `data-tags="${p.tags.join(' ')}" ${p.videos[0] ? `data-vid="${p.videos[0].src}"` : ''} data-imp="point" style="--cv:${p.brand.ink}"`)).join('')}</div></div></div>`;
 };
 
 /* project windows: Overview, project-specific tabs, Screens, Films, Facts */
-const projectTabs = p => ['overview', ...(p.tools ? ['tools'] : []), ...((p.shots.length + p.phones.length) ? ['screens'] : []), ...(p.videos.length ? ['films'] : []), 'facts'];
+const projectTabs = p => ['overview', ...(p.roles?.length ? ['views'] : []), ...(p.tools ? ['tools'] : []), ...((p.shots.length + p.phones.length) ? ['screens'] : []), ...(p.videos.length ? ['films'] : []), ...(p.under ? ['stack'] : []), 'facts'];
+// every technology a project names, for search and the Work filter
+export const techsOf = p => [...new Set([...(p.stack || []), ...(p.under?.layers || []).flatMap(l => l.items.map(i => i.name))])];
+export const normKey = s => String(s || '').toLowerCase().replace(/[ً-ٟـ]/g, '').replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
+const roleShot = (p, r, m, i) => `<figure class="role-shot ${m.kind === 'phone' ? 'ph' : ''}">${frameBtn({ ...m, name: '' }, `role:${p.slug}:${r.id}`, i, T(m.caption) || pretty(m.name), '', false, m.kind === 'phone' ? XS : SM)}<figcaption>${esc(T(m.caption))}</figcaption></figure>`;
+const viewsHTML = p => `<div class="roles"><p class="muted m0 roles-intro">${esc(T(p.rolesIntro) || '')}</p><div class="seg role-seg js-only" role="tablist" aria-label="${esc(u('views'))}">${p.roles.map((r, i) => `<button type="button" role="tab" data-role="${r.id}" aria-selected="${i === 0}">${esc(T(r.name))}</button>`).join('')}</div>
+  ${p.roles.map((r, i) => `<section class="role-panel" data-role-panel="${r.id}" data-find="role-${r.id}" ${i ? 'hidden' : ''}>
+    <div class="role-head"><div><h3 class="h2 hang-title">${esc(T(r.name))}</h3><p class="muted m0">${esc(T(r.line))}</p></div>${r.pages ? `<div class="fact mini"><b dir="ltr">${esc(r.pages)}</b><span>${esc(u('pagesN'))}</span></div>` : ''}</div>
+    ${r.chips?.length ? `<div class="stack role-chips">${r.chips.map(c => `<span class="chip">${esc(T(c))}</span>`).join('')}</div>` : ''}
+    <div class="role-shots">${r.shots.map((m, k) => m.kind === 'phone' ? '' : roleShot(p, r, m, k)).join('')}</div>
+    ${r.shots.some(m => m.kind === 'phone') ? `<div class="role-shots phones">${r.shots.map((m, k) => m.kind === 'phone' ? roleShot(p, r, m, k) : '').join('')}</div>` : ''}</section>`).join('')}</div>`;
+const stackHTML = p => { const un = p.under; return `<div class="under">
+  <div class="card arch"><h3 class="h3">${esc(u('architecture'))}</h3><p class="m0">${esc(T(un.arch))}</p>${un.platforms?.length ? `<div class="stack plat"><span class="muted small">${esc(u('platforms'))}</span>${un.platforms.map(x => `<span class="chip">${esc(T(x))}</span>`).join('')}</div>` : ''}</div>
+  ${un.numbers?.length ? `<div class="facts sect">${un.numbers.map(f => `<div class="fact"><b dir="ltr">${esc(f.value)}</b><span>${esc(T(f.label))}</span></div>`).join('')}</div>` : ''}
+  <div class="layers sect">${un.layers.map((L, li) => `<section class="layer"><h4 class="layer-h"><span class="ln" dir="ltr">0${li + 1}</span>${esc(T(L.layer))}</h4><div class="layer-items">${L.items.map(it => `<div class="tech" data-imp="point" data-find="tech-${esc(normKey(it.name))}"><b dir="ltr">${esc(it.name)}${it.version ? ` <span class="ver">${esc(it.version)}</span>` : ''}</b><small>${esc(T(it.why))}</small></div>`).join('')}</div></section>`).join('')}</div></div>`; };
 const related = p => A.projects.filter(q => q !== p).map(q => [q, q.tags.filter(t => p.tags.includes(t)).length]).filter(x => x[1]).sort((a, b) => b[1] - a[1]).slice(0, 3).map(x => x[0]);
 export const projectHTML = (p0, tab = 'overview', hostId = '') => {
   const g = 'p:' + p0.slug, p = { ...p0, shots: shotsOf(p0), phones: phonesOf(p0) }, all = [...p.shots, ...p.phones], tabs = projectTabs(p0);
@@ -326,7 +392,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
   const alt = m => `${T(p.name)}: ${pretty(m.name)}`;
   let hero;
   if (p.features) {
-    hero = `<section class="feat"><h3 class="h3">${esc(u('featured'))}</h3><div class="feat-grid">${p.features.map((f, i) => `<article class="feat-card">
+    hero = `<section class="feat"><h3 class="h3">${esc(u('featured'))}</h3><div class="feat-grid">${p.features.map((f, i) => `<article class="feat-card" data-find="feat-${i}">
       ${f.video ? `<div class="feat-media vid"><video class="preview" data-autoview muted loop playsinline preload="none" data-poster="${featImg(p0, i).src}" src="${f.video}" width="${f.img.w}" height="${f.img.h}" aria-label="${esc(T(f.title))}"></video><noscript><img src="${featImg(p0, i).src}" width="${f.img.w}" height="${f.img.h}" alt="" loading="lazy"></noscript><button type="button" class="feat-zoom" data-lb="feat:${p.slug}" data-i="${i}" aria-label="${esc(T(f.title))}">${I.expand}</button><span class="feat-tag">${I.play}${esc(u('playsOnHover'))}</span></div>`
         : `<button type="button" class="frame feat-media" data-lb="feat:${p.slug}" data-i="${i}" aria-label="${esc(T(f.title))}">${img(featImg(p0, i), T(f.title), '', i === 0, SM)}</button>`}
       <div class="feat-body"><span class="feat-n">0${i + 1}</span><b>${esc(T(f.title))}</b><p>${esc(T(f.line))}</p></div></article>`).join('')}</div></section>`;
@@ -337,28 +403,34 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
   else hero = '';
   const toolsStrip = p.tools ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(u('tools'))}</h3><button type="button" class="btn sm js-only" data-tab="tools">${esc(u('meetTools'))} ${I.arrow}</button></div>
       <div class="tool-strip">${p.tools.map(t => `<button type="button" class="tool-mini" data-tab="tools"><span class="tm-img">${img(t.shots[0], '', '', false, XS)}</span><span><b>${esc(T(t.name))}</b><small>${esc(T(t.line))}</small></span></button>`).join('')}</div></section>` : '';
+  const viewsStrip = p.roles?.length ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(T(p.rolesTitle) || u('views'))}</h3><button type="button" class="btn sm js-only" data-tab="views">${esc(u('seeViews'))} ${I.arrow}</button></div>
+      <div class="tool-strip role-strip">${p.roles.map(r => `<button type="button" class="tool-mini" data-tab="views" data-role-go="${r.id}"><span class="tm-img">${thumb(r.shots.find(m => m.kind !== 'phone') || r.shots[0])}</span><span><b>${esc(T(r.name))}</b><small>${esc(T(r.line))}</small></span></button>`).join('')}</div></section>` : '';
+  const builtStrip = p.under ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(u('builtWithP'))}</h3><button type="button" class="btn sm js-only" data-tab="stack">${esc(u('seeStack'))} ${I.arrow}</button></div><p class="muted small" style="margin:6px 0 10px">${esc(T(p.under.arch))}</p><div class="stack">${p.under.layers.flatMap(l => l.items).slice(0, 10).map(it => `<button type="button" class="chip mono" data-tab="stack" data-find-go="tech-${esc(normKey(it.name))}">${esc(it.name)}</button>`).join('')}</div></section>` : '';
   const rel = related(p0);
   const links = [p.link ? `<a class="btn primary" href="${p.link}" target="_blank" rel="noopener">${esc(T(p.linkLabel) || T(A.ui.visit))} ${I.out}</a>` : '',
     p.videos.length ? `<button type="button" class="btn js-only" data-tab="films">${I.film}${esc(u('watchFilms'))}</button>` : '',
     all.length > 1 ? `<button type="button" class="btn js-only" data-tab="screens">${I.image}${esc(u('seeScreens'))}</button>` : ''].join('');
   let ti = 0;
   const panels = {
-    overview: `${hero}${toolsStrip}
+    overview: `${hero}${viewsStrip}${toolsStrip}
       <div class="grid2 sect"><div class="card"><h3 class="h3">${esc(T(A.ui.problem))}</h3><p class="muted m0">${esc(T(p.problem))}</p></div><div class="card"><h3 class="h3">${esc(T(A.ui.audience))}</h3><p class="muted m0">${esc(T(p.audience))}</p></div></div>
-      <div class="card sect"><h3 class="h3">${esc(T(A.ui.highlights))}</h3><ul class="hl">${p.highlights.map(h => `<li>${esc(T(h))}</li>`).join('')}</ul></div>
+      <div class="card sect"><h3 class="h3">${esc(T(A.ui.highlights))}</h3><ul class="hl">${p.highlights.map((h, i) => `<li data-find="hl-${i}">${esc(T(h))}</li>`).join('')}</ul></div>
+      ${builtStrip}
       <div class="card sect boundary"><h3 class="h3">${esc(T(A.ui.currentBoundary))}</h3><p class="muted m0">${esc(T(p.boundary))}</p>${p.note ? `<p class="muted small" style="margin:8px 0 0">${esc(T(p.note))}</p>` : ''}</div>
       ${links ? `<div class="row sect">${links}</div>` : ''}
       ${rel.length ? `<section class="sect"><h3 class="h3">${esc(u('moreLike'))}</h3><div class="rel">${rel.map(q => opener('p:' + q.slug, 'rel-item', `${tileFor(q)}<span><b>${esc(T(q.name))}</b><small>${esc(T(q.category))}</small></span>`, 'data-imp="point"')).join('')}</div></section>` : ''}`,
-    tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card">
+    tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card" data-find="tool-${k}">
         <header><span class="tool-n">0${k + 1}</span><div><h3 class="h2 hang-title">${esc(T(t.name))}</h3><p class="muted m0">${esc(T(t.line))}</p></div></header>
         <div class="tool-shots ${t.shots.every(m => m.kind === 'square') ? 'squares' : ''}">${t.shots.map(m => frameBtn(m, 'tools:' + p.slug, ti++, `${T(t.name)}: ${pretty(m.name)}`)).join('')}</div></section>`).join('')}</div>` : '',
     screens: all.length ? `${p.shots.length ? `<div class="shots">${p.shots.map((m, i) => frameBtn(m, g, i, alt(m))).join('')}</div>` : ''}
       ${p.phones.length ? `<div class="shots ph">${p.phones.map((m, i) => frameBtn(m, g, p.shots.length + i, alt(m))).join('')}</div>` : ''}<p class="muted small" style="margin-top:14px">${esc(T(A.ui.sample))}</p>` : '',
     films: p.videos.length ? playerHTML(filmsOf(p0), true, 'pl-p-' + p0.slug) : '',
-    facts: `<h3 class="h3">${esc(T(A.ui.figures))}</h3><div class="facts">${p.facts.map(f => `<div class="fact"><b dir="ltr">${esc(f.value)}</b><span>${esc(T(f.label))}</span></div>`).join('')}</div>
+    views: p.roles?.length ? viewsHTML(p0) : '',
+    stack: p.under ? stackHTML(p0) : '',
+    facts: `<h3 class="h3">${esc(T(A.ui.figures))}</h3><div class="facts">${p.facts.map((f, i) => `<div class="fact" data-find="fact-${i}"><b dir="ltr">${esc(f.value)}</b><span>${esc(T(f.label))}</span></div>`).join('')}</div>
       <div class="card sect"><h3 class="h3">${esc(T(A.ui.stage))}</h3><div class="track">${A.stages.map((s, i) => `<span class="${i < stageIdx(p.stage) ? 'done' : i === stageIdx(p.stage) ? 'now' : ''}">${esc(T(s.label))}</span>`).join('')}</div>
         <p class="muted small" style="margin:12px 0 0"><b>${esc(T(A.ui.reach))}:</b> ${esc(T(A.reach[p.reach]))} · ${esc(T(p.status))}</p></div>
-      <div class="card sect"><h3 class="h3">${esc(T(A.ui.stack))}</h3><div class="stack">${p.stack.map(s => `<span class="chip mono">${esc(s)}</span>`).join('')}</div></div>`
+      <div class="card sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(T(A.ui.stack))}</h3>${p.under ? `<button type="button" class="btn sm js-only" data-tab="stack">${esc(u('seeStack'))} ${I.arrow}</button>` : ''}</div><div class="stack" style="margin-top:10px">${p.stack.map(s => `<span class="chip mono">${esc(s)}</span>`).join('')}</div></div>`
   };
   // tabs and panels are tied together for assistive tech; hostId keeps the ids unique when the same project is drawn twice
   const tid = t => `${hostId || 'p'}-${p.slug}-${t}`;
@@ -372,7 +444,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
 export const labHTML = () => `<div class="app lab"><div class="scroller" data-imp-scroll><div class="pad">
     <span class="eyebrow">${esc(u('lab'))}</span><h2 class="h2 hang-title" style="margin:6px 0 6px">${esc(T(A.ui.labTitle))}</h2><p class="muted" style="margin:0 0 18px">${esc(T(A.ui.labIntro))}</p>
     <div class="lab-grid">${A.lab.map((l, i) => `<article class="lab-card" data-imp="point">${frameBtn({ ...l.shot, name: '' }, 'lab', i, l.name)}
-      <div class="body">${tileFor(l)}<b>${esc(l.name)}</b>${reachChip(l.reach)}<p>${esc(T(l.line))}</p>${l.link ? `<span class="row"><a class="btn sm" href="${l.link}" target="_blank" rel="noopener">${esc(T(A.ui.visit))}<span class="vh"> · ${esc(l.name)}</span> ${I.out}</a></span>` : ''}</div></article>`).join('')}</div>
+      <div class="body">${tileFor(l)}<b>${esc(l.name)}</b>${reachChip(l.reach)}<p>${esc(T(l.line))}</p>${l.under ? `<span class="stack lab-stack">${l.under.layers.flatMap(x => x.items).slice(0, 5).map(it => `<span class="chip mono">${esc(it.name)}</span>`).join('')}</span>` : ''}${l.link ? `<span class="row"><a class="btn sm" href="${l.link}" target="_blank" rel="noopener">${esc(T(A.ui.visit))}<span class="vh"> · ${esc(l.name)}</span> ${I.out}</a></span>` : ''}</div></article>`).join('')}</div>
   </div></div></div>`;
 
 export const aboutHTML = () => {
@@ -421,7 +493,7 @@ export const playerHTML = (films, narrow, key) => {
       ${narrow ? `<noscript><img class="nojs-poster" src="${f.poster}" width="${f.w}" height="${f.h}" alt="" loading="lazy"></noscript>` : ''}<video preload="none" playsinline loop controls ${on ? '' : 'muted'} ${narrow ? 'data-poster' : 'poster'}="${f.poster}" src="${f.src}" width="${f.w}" height="${f.h}" aria-label="${esc(filmTitle(f))}"></video>
       <button type="button" class="big-play js-only" data-pc="toggle" aria-label="${esc(u('play'))}">${I.play}</button>
       <div class="controls js-only"><button type="button" data-pc="toggle" aria-label="${esc(u('play'))}">${I.play}</button><input type="range" min="0" max="1000" value="0" data-pc="seek" aria-label="${esc(u('seek'))}"><time>0:00 / ${dur(f.dur)}</time>
-        <button type="button" data-pc="sound" aria-pressed="${on}" aria-label="${esc(on ? u('soundOff') : u('soundOn'))}">${on ? I.vol : I.mute}</button></div></div>
+        <button type="button" data-pc="sound" aria-pressed="${on}" aria-label="${esc(on ? u('soundOff') : u('soundOn'))}">${on ? I.vol : I.mute}</button><button type="button" data-pc="pip" aria-label="${esc(u('pip'))}" title="${esc(u('pip'))}">${I.pip}</button></div></div>
     <div class="film-title">${filmTitleHTML(f)}</div></div>
     <div class="reel js-only" role="list">${films.length > 1 ? films.map((v, i) => `<div role="listitem"><button type="button" data-film="${i}" aria-current="${i === 0}"><span class="th"><img src="${v.poster.replace(/\.webp$/, '-th.webp')}" alt="" width="74" height="52" loading="lazy" decoding="async"><em>${dur(v.dur)}</em></span><span><b>${esc(filmTitle(v))}</b><small>${esc(T(v.p.name))}</small></span></button></div>`).join('') : ''}</div></div>`;
 };
@@ -448,18 +520,18 @@ export const settingsHTML = () => `<div class="app settings"><div class="scrolle
     <section class="card set"><h3 class="h3">${esc(u('motion'))}</h3>${sw('motion', u('reduceMotion'), env.rm ? u('systemReduces') : u('reduceNote'))}</section>
     <section class="card set desk-only"><h3 class="h3">${esc(u('deskL'))}</h3>
       <div class="set-row"><span>${esc(u('iconOrder'))}</span>${seg('icons', [['default', u('byDefault')], ['name', u('byName')], ['stage', u('byStage')]])}</div>
-      ${sw('widgets', u('showWidgets'))}</section>
+      ${sw('widgets', u('showWidgets'))}${sw('ball', u('ballOn'))}</section>
     <div class="row"><button type="button" class="btn sm" data-act="reset">${I.restart}${esc(u('reset'))}</button></div>
   </div></div></div>`;
 
 /* help */
 const kbd = s => s.split('+').map(k => `<kbd>${esc(k)}</kbd>`).join('<span class="plus">+</span>');
 export const helpHTML = () => {
-  const rows = [[`${mod()}+K`, 'sc_search'], [`${mod()}+,`, 'sc_settings'], ['Esc', 'sc_close'], ['Ctrl+Alt+← / →', 'sc_snapLR'], ['Ctrl+Alt+↑', 'sc_up'], ['Ctrl+Alt+↓', 'sc_down'], ['Ctrl+Alt+D', 'sc_desk'], ['Ctrl+Alt+G', 'sc_tile'], ['Ctrl+Alt+T', 'sc_term'], ['?', 'sc_help'], ['← / →', 'sc_lb']];
+  const rows = [[`${mod()}+K`, 'sc_search'], [`${mod()}+Enter`, 'sc_newTab'], ['F3 / Ctrl+Alt+A', 'sc_tasks'], ['Alt+Shift+← / →', 'sc_tabs'], ['Ctrl+Alt+W', 'sc_closeTab'], ['Ctrl+Alt+C', 'sc_cc'], [`${mod()}+,`, 'sc_settings'], ['Esc', 'sc_close'], ['Ctrl+Alt+← / →', 'sc_snapLR'], ['Ctrl+Alt+↑', 'sc_up'], ['Ctrl+Alt+↓', 'sc_down'], ['Ctrl+Alt+D', 'sc_desk'], ['Ctrl+Alt+G', 'sc_tile'], ['Ctrl+Alt+T', 'sc_term'], ['?', 'sc_help'], ['← / →', 'sc_lb']];
   return `<div class="app help"><div class="scroller" data-imp-scroll><div class="pad">
     <span class="eyebrow">${esc(u('help'))}</span><h2 class="h2 hang-title" style="margin:6px 0 16px">${esc(u('shortcuts'))}</h2>
     <div class="card"><table class="keys"><tbody>${rows.map(([k, d]) => `<tr><td dir="ltr">${k.split(' / ').map(kbd).join(' <span class="or">/</span> ')}</td><td>${esc(u(d))}</td></tr>`).join('')}</tbody></table></div>
-    <div class="card sect"><h3 class="h3">${esc(u('mouseTips'))}</h3><ul class="hl">${['tip1', 'tip2', 'tip3', 'tip4'].map(t => `<li>${esc(u(t))}</li>`).join('')}</ul></div>
+    <div class="card sect"><h3 class="h3">${esc(u('mouseTips'))}</h3><ul class="hl">${['tip1', 'tip2', 'tip3', 'tip5', 'tip6', 'tip4', 'tip7'].map(t => `<li>${esc(u(t))}</li>`).join('')}</ul></div>
     <div class="row sect"><button type="button" class="btn sm" data-act="search">${I.search}${esc(u('search'))}</button>${opener('terminal', 'btn sm', `${I.term}${esc(u('terminal'))}`)}${opener('aboutos', 'btn sm', esc(u('aboutOS')))}</div>
   </div></div></div>`;
 };
@@ -489,6 +561,12 @@ export const notFoundHTML = () => `<div class="app notfound"><div class="scrolle
     <div class="row" style="justify-content:center;margin-top:18px">${opener('start', 'btn primary', esc(u('returnHome')))}${opener('work', 'btn', esc(u('allProjects')))}</div>
   </div></div></div>`;
 
+/* notes: one note, kept in this browser (app.js fills it in) */
+export const notesHTML = (v = '') => `<div class="app notes"><div class="pad">
+  <span class="eyebrow">${I.pen} AmirOS</span><h2 class="h2 hang-title" style="margin:6px 0 12px">${esc(u('notes'))}</h2>
+  <textarea class="note-ta" spellcheck="true" placeholder="${esc(u('notesPh'))}" aria-label="${esc(u('notes'))}">${esc(v)}</textarea>
+  <p class="note-foot muted small"><span>${esc(u('notesSaved'))}</span><span class="note-n" dir="ltr">${v.trim() ? v.trim().split(/\s+/).length : 0} ${esc(u('notesWords'))}</span></p></div></div>`;
+
 /* terminal */
 export const TERM = { lines: [], hist: [], hi: 0 };
 export const terminalHTML = () => `<div class="app terminal" dir="ltr"><div class="scroller term-out" data-imp-scroll aria-live="polite">${TERM.lines.join('')}</div>
@@ -500,7 +578,7 @@ export const appMeta = id => {
     start: { size: [620, 0], min: [420, 300], html: startHTML }, work: { size: [1000, 690], min: [420, 320], html: workHTML }, films: { size: [1060, 650], min: [480, 340], html: filmsHTML },
     lab: { size: [900, 650], min: [420, 320], html: labHTML }, about: { size: [880, 690], min: [420, 320], html: aboutHTML }, contact: { size: [620, 640], min: [400, 320], html: contactHTML },
     settings: { size: [680, 690], min: [420, 320], html: settingsHTML }, help: { size: [660, 640], min: [420, 300], html: helpHTML }, aboutos: { size: [520, 540], min: [400, 300], html: aboutOSHTML },
-    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
+    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notes: { size: [540, 560], min: [380, 300], html: () => notesHTML() }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
   })[id] || null;
 };
 // a sheet (phone) as it is drawn; the build draws the page's own window this way so the page reads without JavaScript
@@ -523,11 +601,13 @@ export const topbarHTML = ({ hidden = false, langHref = href('start', other()) }
     <button type="button" class="tb-btn desk-only js-only" data-menu="help" aria-haspopup="menu" aria-expanded="false">${esc(u('help'))}</button>
     <time class="clock phone-only js-only" data-clock="time"></time>
     <span class="grow"></span>
+    <button type="button" class="tb-btn icon-only desk-only js-only" id="tvBtn" data-act="tasks" aria-label="${esc(u('taskView'))} (F3)" title="${esc(u('taskView'))} (F3)">${I.tasks}</button>
     <button type="button" class="tb-btn icon-only js-only" id="searchBtn" data-act="search" aria-label="${esc(u('search'))} (${mod()}+K)" title="${esc(u('search'))} (${mod()}+K)">${I.search}</button>
     <a class="tb-btn lang-btn" id="langBtn" href="${langHref}" hreflang="${other()}" data-imp="lang">${I.globe}<span lang="${other()}">${esc(T(A.ui.language))}</span><span class="vh"> (${esc(u('toLang'))})</span></a>
     <button type="button" class="tb-btn theme-btn js-only" id="themeBtn" aria-label="${esc(u('flip'))}">${I.moon}</button>
+    <button type="button" class="tb-btn icon-only js-only" id="ccBtn" data-cc-open aria-haspopup="dialog" aria-expanded="false" aria-label="${esc(u('controlCenter'))}" title="${esc(u('controlCenter'))}">${I.sliders}</button>
     <button type="button" class="tb-btn js-only ${hidden ? 'imp-off' : ''}" id="impBtn" data-menu="imp" aria-haspopup="menu" aria-expanded="false"><span class="imp-dot" aria-hidden="true"></span>${esc(u('impName'))}</button>
-    <time class="clock desk-only js-only" data-clock="label"></time>`;
+    <button type="button" class="tb-btn clock-btn desk-only js-only" data-nc aria-haspopup="dialog" aria-expanded="false"><time class="clock" data-clock="label"></time><span class="vh">, ${esc(u('ncLabel'))}</span><span class="nc-dot" hidden></span></button>`;
 
 const shipRows = () => FLAG.map(p => opener('p:' + p.slug, 'ship-row', `${tileFor(p)}<span><b>${esc(T(p.name))}</b><small>${esc(T(p.status))}</small></span><span class="dot" style="--sc:var(--s-${p.stage})" title="${esc(stageLabel(p.stage))}"></span>`, 'data-imp="point"')).join('');
 const eduInner = () => { const e = A.person.education; return `<span class="tile mmu"><img src="${e.logo}" alt="MMU" width="56" height="56" loading="lazy" decoding="async"></span><span><span class="w-eyebrow">${esc(u('edu'))}</span><b>${esc(T(e.school))}</b><small>${esc(T(e.campus))}</small></span>`; };
@@ -549,7 +629,7 @@ export const iconsHTML = (by = 'default') => iconOrder(by).map(p => opener('p:' 
 export const widgetsHTML = () => `<section class="widget glass" id="w-ship" data-imp="ledge" aria-label="${esc(u('nowShipping'))}"><div class="w-eyebrow">${esc(u('nowShipping'))}</div>${shipRows()}</section>
     <section class="widget glass" id="w-edu" data-imp="ledge" aria-label="${esc(u('edu'))}">${opener('about', 'edu-w', eduInner())}</section>
     <section class="widget glass reach-w" id="w-reach" data-imp="ledge" aria-label="${esc(u('reachAmir'))}">${reachInner()}</section>`;
-const PHONE_APPS = () => [...A.projects.map(p => 'p:' + p.slug), 'work', 'lab', 'films', 'about', 'contact', 'settings'];
+const PHONE_APPS = () => [...A.projects.map(p => 'p:' + p.slug), 'work', 'lab', 'films', 'about', 'contact', 'notes', 'settings'];
 export const homeHTML = () => {
   const ps = A.person;
   return `
@@ -564,13 +644,13 @@ export const homeHTML = () => {
     <p class="imp-note js-only"><span class="paw">${I.paw}</span><span>${esc(u('impIntro'))}</span></p>
     <p class="home-foot">${opener('privacy', 'txt-link', esc(u('privacy')))}</p>`;
 };
-export const DOCK_DESK = () => ['start', 'work', ...FLAG.map(p => 'p:' + p.slug), '|', 'films', 'lab', 'about', 'contact', 'settings'];
+export const DOCK_DESK = () => ['start', 'work', ...FLAG.map(p => 'p:' + p.slug), '|', 'films', 'lab', 'about', 'contact', 'notes', 'settings'];
 export const DOCK_PHONE = ['work', 'films', 'about', 'contact'];
 // one dock for both form factors: the phone keeps four items, the rest are desk-only
 export const dockHTML = (mins = []) => {
   const item = (id, n) => opener(id, `dock-item ${id.startsWith('p:') ? 'dock-flag' : ''} ${DOCK_PHONE.includes(id) ? '' : 'desk-only'}`, `${appTile(id)}<span class="tip" aria-hidden="true">${esc(appTitle(id))}</span>`, `data-dock="${id}" data-imp="point" style="--n:${n}" aria-label="${esc(appTitle(id))}"`);
   return DOCK_DESK().map((id, n) => id === '|' ? '<span class="dock-sep desk-only" aria-hidden="true"></span>' : item(id, n)).join('') +
-    (mins.length ? '<span class="dock-sep desk-only" aria-hidden="true"></span>' + mins.map((w, n) => `<button type="button" class="dock-item running desk-only" data-restore="${w.id}" data-dock="min:${w.id}" style="--n:${n}" aria-label="${esc(u('minimized'))}: ${esc(appTitle(w.id))}">${appTile(w.id)}<span class="tip" aria-hidden="true">${esc(appTitle(w.id))}</span></button>`).join('') : '');
+    (mins.length ? '<span class="dock-sep desk-only" aria-hidden="true"></span>' + mins.map((w, n) => `<button type="button" class="dock-item running desk-only" data-restore="${w.key}" data-dock="min:${w.key}" style="--n:${n}" aria-label="${esc(u('minimized'))}: ${esc(appTitle(w.id))}">${appTile(w.id)}<span class="tip" aria-hidden="true">${esc(appTitle(w.id))}</span></button>`).join('') : '');
 };
 
 /* the boot screen; the build draws it on the home page so it is there from the first paint */

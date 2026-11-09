@@ -5,6 +5,7 @@ import { join } from 'node:path';
 // Smaller copies of the media the desktop shows small, so phones do not download desktop-sized files.
 //  - app icons: 192 px WebP (tiles are at most 96 CSS px), replacing the 256 px PNGs
 //  - the portrait: a 160 px tile and a 640 px copy for the About window
+//  - the first screen of each role (Hatan's Views): a 400 px copy for the Overview's role strip
 //  - every screenshot 1200 px or wider: an 800 px copy named name-800.webp, offered through srcset (see img() in src/os/core.js)
 // Run after adding media: node scripts/media-variants.mjs
 const root = 'public/media';
@@ -34,11 +35,18 @@ for (const v of content.projects.flatMap(p => p.videos)) {
   made++;
 }
 
+// the Overview's role strip shows each view's first screen small (three across on a phone): a 400 px copy, name-400.webp
+for (const r of content.projects.flatMap(p => p.roles || [])) {
+  const src = join('public', (r.shots.find(m => m.kind !== 'phone') || r.shots[0]).src);
+  await sharp(src).resize(400).webp({ quality: 78, effort: 6 }).toFile(src.replace(/\.webp$/, '-400.webp'));
+  made++;
+}
+
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) { await walk(path); continue; }
-    if (!entry.name.endsWith('.webp') || /-(800|160|640|th)\.webp$/.test(entry.name) || entry.name.endsWith('-poster.webp')) continue;
+    if (!entry.name.endsWith('.webp') || /-(800|400|160|640|th)\.webp$/.test(entry.name) || entry.name.endsWith('-poster.webp')) continue;
     const { width } = await sharp(path).metadata();
     if (width < 1200) continue;
     const out = path.replace(/\.webp$/, '-800.webp');

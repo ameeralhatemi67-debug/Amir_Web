@@ -33,7 +33,8 @@ const icons = C.iconsHTML();
 const widgets = C.widgetsHTML();
 const home = C.homeHTML();
 const dock = C.dockHTML();
-const sheet = app === 'start' ? '' : C.sheetHTML(app, 'data-ssr', 'open top');
+// the tab the page opens on is there from the first paint: only the first panel (the visible one) skips its fade-up
+const sheet = app === 'start' ? '' : C.sheetHTML(app, 'data-ssr', 'open top').replace('class="panel"', 'class="panel still"');
 const boot = app === 'start' ? C.bootHTML() : '';
 const labels = { desk: C.u('desktop'), icons: C.T(C.A.ui.allWork), home: C.u('home'), dock: C.u('dock'), bar: C.u('menuBar'), widgets: C.u('nowShipping'), snap: C.u('snapLayouts'), assist: C.u('assist'), search: C.u('search'), prev: C.u('prev'), next: C.u('next'), close: C.u('close') };
 // the mono face sets status lines and labels in the first view; arriving late, it re-wraps them, so it is preloaded too
@@ -112,8 +113,42 @@ const person = {
     </div>
     {boot && <div id="boot" class="ssr" role="status" set:html={boot} />}
     <script>
-      // the desktop; it loads the mascot runtime (public/os/imp-live.js) itself once the page has settled
-      import '../os/app.js';
+      // the desktop; it loads the mascot runtime (public/os/imp-live.js) itself once the page has settled.
+      // The page reads and links without it, so it waits until the page's own content has loaded (the load event)
+      // and painted (the first contentful paint, then two frames without a new largest paint, so the main screenshot
+      // is on screen), or for the visitor's first input, whichever comes first, with a fallback three seconds after
+      // load. That way it never competes with the first paint or the main screenshot.
+      // Its own stylesheet (src/os/app.css: tabs, Control Center, All windows, Notes, search, toys) comes first, so
+      // nothing it draws is ever unstyled, and stays out of the page itself.
+      import appCss from '../os/app.css?url';
+      let started = false, loaded = false, painted = false, largest = 0;
+      const start = () => {
+        if (started) return; started = true;
+        const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = appCss;
+        link.onload = link.onerror = () => import('../os/app.js');
+        document.head.append(link);
+      };
+      const watch = (type: string, fn: PerformanceObserverCallback) => {
+        try { new PerformanceObserver(fn).observe({ type, buffered: true }); return true; } catch { return false; }
+      };
+      const settle = () => {
+        if (started) return;
+        const seen = largest;
+        requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => (largest === seen ? start() : settle()), 0)));
+      };
+      // the page's main screenshot (the one fetched first) is decoded before it can paint
+      const hero = document.querySelector<HTMLImageElement>('img[fetchpriority="high"]');
+      const heroReady = hero ? hero.decode().catch(() => {}) : Promise.resolve();
+      const ready = () => { if (loaded && painted) heroReady.then(settle); };
+      watch('largest-contentful-paint', list => { largest += list.getEntries().length; });
+      const fcp = watch('paint', (list, obs) => {
+        if (!list.getEntries().some(e => e.name === 'first-contentful-paint')) return;
+        obs.disconnect(); painted = true; ready();
+      });
+      if (!fcp) painted = true;
+      const onLoad = () => { loaded = true; ready(); setTimeout(start, 3000); };
+      if (document.readyState === 'complete') onLoad(); else addEventListener('load', onLoad, { once: true });
+      for (const type of ['pointerdown', 'keydown', 'touchstart']) addEventListener(type, start, { once: true, passive: true });
     </script>
   </body>
 </html>

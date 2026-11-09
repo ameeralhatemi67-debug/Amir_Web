@@ -331,7 +331,203 @@
      "name": "lessons-phone"
     }
    ],
-   "videos": []
+   "videos": [],
+   "under": {
+    "arch": {
+     "en": "A Flutter app for Android, iOS and the web, organized into feature folders (discovery, lessons, live stream, map, organizations, admin) with Provider state and go_router navigation. Supabase supplies sign-in, a PostgreSQL database built from 109 migrations and 8 edge functions for broadcast control, reminders and channel checks, while Firebase delivers push notifications. Going live uses native code through platform channels: a Kotlin RTMP publisher on Android and a Swift HaishinKit publisher on iOS, both streaming to YouTube.",
+     "ar": "تطبيق Flutter يعمل على Android وiOS والويب، مقسّم إلى مجلدات حسب الميزة (الاستكشاف والدروس والبث المباشر والخريطة والجهات والإدارة)، مع إدارة الحالة عبر Provider والتنقل عبر go_router. توفّر Supabase تسجيل الدخول وقاعدة بيانات PostgreSQL مبنية من 109 ترحيلات و8 دوال طرفية للتحكم في البث والتذكيرات والتحقق من القنوات، بينما يرسل Firebase الإشعارات الفورية. يعتمد البث المباشر على شيفرة أصلية عبر قنوات المنصة: ناشر RTMP بلغة Kotlin على Android وناشر HaishinKit بلغة Swift على iOS، وكلاهما يبث إلى YouTube."
+    },
+    "platforms": [
+     {
+      "en": "Android",
+      "ar": "أندرويد"
+     },
+     {
+      "en": "iOS",
+      "ar": "iOS"
+     },
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "100,659",
+      "label": {
+       "en": "Lines of Dart in the app (284 files)",
+       "ar": "سطرًا من Dart في التطبيق (284 ملفًا)"
+      }
+     },
+     {
+      "value": "109",
+      "label": {
+       "en": "Database migrations",
+       "ar": "ترحيلًا لقاعدة البيانات"
+      }
+     },
+     {
+      "value": "8",
+      "label": {
+       "en": "Supabase edge functions",
+       "ar": "دوال طرفية في Supabase"
+      }
+     },
+     {
+      "value": "51",
+      "label": {
+       "en": "App routes",
+       "ar": "مسارًا في التطبيق"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Flutter",
+        "version": "Dart 3",
+        "why": {
+         "en": "One codebase for the Android, iOS and web apps",
+         "ar": "قاعدة شيفرة واحدة لتطبيقات Android وiOS والويب"
+        }
+       },
+       {
+        "name": "easy_localization",
+        "version": "3.0",
+        "why": {
+         "en": "Arabic and English interface text with right-to-left layout",
+         "ar": "نصوص الواجهة بالعربية والإنجليزية مع اتجاه من اليمين إلى اليسار"
+        }
+       },
+       {
+        "name": "flutter_map + vector tiles",
+        "version": "8.3 / 2.9",
+        "why": {
+         "en": "Offline map of lesson venues bundled for three cities",
+         "ar": "خريطة دون اتصال لأماكن الدروس مضمّنة لثلاث مدن"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "App logic",
+       "ar": "منطق التطبيق"
+      },
+      "items": [
+       {
+        "name": "go_router",
+        "version": "14.2",
+        "why": {
+         "en": "Declarative routes for viewers, streamers, organizations and admins",
+         "ar": "مسارات تصريحية للمشاهدين والمقدّمين والجهات والمشرفين"
+        }
+       },
+       {
+        "name": "Provider",
+        "version": "6.1",
+        "why": {
+         "en": "ChangeNotifier state for session, flags and app updates",
+         "ar": "حالة ChangeNotifier للجلسة والإعدادات وتحديثات التطبيق"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase_flutter 2.17",
+        "why": {
+         "en": "Sign-in, PostgreSQL data, row security and edge functions",
+         "ar": "تسجيل الدخول وبيانات PostgreSQL وأمان الصفوف والدوال الطرفية"
+        }
+       },
+       {
+        "name": "Firebase Cloud Messaging",
+        "version": "16.7",
+        "why": {
+         "en": "Push reminders before lessons and live broadcasts start",
+         "ar": "تنبيهات فورية قبل بدء الدروس والبث المباشر"
+        }
+       },
+       {
+        "name": "YouTube",
+        "version": "youtube_player_iframe 5.2",
+        "why": {
+         "en": "Plays lessons and hosts the live streams",
+         "ar": "تشغيل الدروس واستضافة البث المباشر"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "RootEncoder (Kotlin)",
+        "version": "2.7",
+        "why": {
+         "en": "Native Android RTMP publisher for going live from a phone",
+         "ar": "ناشر RTMP أصلي على Android للبث المباشر من الهاتف"
+        }
+       },
+       {
+        "name": "HaishinKit (Swift)",
+        "version": "",
+        "why": {
+         "en": "Native iOS RTMP publisher behind the same channel contract",
+         "ar": "ناشر RTMP أصلي على iOS بنفس واجهة الربط"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Vercel",
+        "version": "",
+        "why": {
+         "en": "Hosts the Flutter web build and small API functions",
+         "ar": "يستضيف نسخة الويب ودوال API صغيرة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "flutter_test + integration_test",
+        "version": "",
+        "why": {
+         "en": "1,049 Dart test cases plus 52 SQL database test files",
+         "ar": "1,049 حالة اختبار في Dart و52 ملف اختبار SQL لقاعدة البيانات"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "memory-card",
@@ -520,7 +716,203 @@
      "dur": 23.1,
      "name": "exits"
     }
-   ]
+   ],
+   "under": {
+    "arch": {
+     "en": "A Flutter app with a single ChangeNotifier store shared through an InheritedNotifier, and all decks, cards and reviews kept on the device in Hive CE. Scheduling comes from the app's own Dart implementation of FSRS-6 (21 weights), tested against the reference fsrs package for identical results. Supabase handles optional accounts, and 13 Android home-screen widgets are written natively in Kotlin.",
+     "ar": "تطبيق Flutter بمخزن حالة واحد من نوع ChangeNotifier يُشارك عبر InheritedNotifier، وتُحفظ فيه المجموعات والبطاقات والمراجعات على الجهاز باستخدام Hive CE. تأتي الجدولة من تنفيذ خاص بالتطبيق لخوارزمية FSRS-6 بلغة Dart (21 وزنًا)، مختبر مقابل حزمة fsrs المرجعية للحصول على نتائج مطابقة. تتولى Supabase الحسابات الاختيارية، وكُتبت 13 أداة للشاشة الرئيسية في Android بلغة Kotlin الأصلية."
+    },
+    "platforms": [
+     {
+      "en": "Android",
+      "ar": "أندرويد"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "102",
+      "label": {
+       "en": "Ready-made decks",
+       "ar": "مجموعة جاهزة"
+      }
+     },
+     {
+      "value": "3,263",
+      "label": {
+       "en": "Cards in those decks",
+       "ar": "بطاقة في تلك المجموعات"
+      }
+     },
+     {
+      "value": "13",
+      "label": {
+       "en": "Native Android widgets",
+       "ar": "أداة Android أصلية"
+      }
+     },
+     {
+      "value": "32,792",
+      "label": {
+       "en": "Lines of Dart in the app",
+       "ar": "سطرًا من Dart في التطبيق"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Flutter",
+        "version": "Dart 3.11",
+        "why": {
+         "en": "The swipeable endless stack and every app screen",
+         "ar": "الكومة اللانهائية القابلة للسحب وكل شاشات التطبيق"
+        }
+       },
+       {
+        "name": "google_fonts + flutter_svg",
+        "version": "8.2 / 2.3",
+        "why": {
+         "en": "Typography and vector art across decks and screens",
+         "ar": "الخطوط والرسوم المتجهة في المجموعات والشاشات"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "App logic",
+       "ar": "منطق التطبيق"
+      },
+      "items": [
+       {
+        "name": "FSRS-6 engine (own Dart code)",
+        "version": "21 weights",
+        "why": {
+         "en": "Predicts forgetting and decides when each card returns",
+         "ar": "يتنبأ بالنسيان ويحدد موعد عودة كل بطاقة"
+        }
+       },
+       {
+        "name": "ChangeNotifier store",
+        "version": "",
+        "why": {
+         "en": "App state shared through an InheritedNotifier, no extra library",
+         "ar": "حالة التطبيق تُشارك عبر InheritedNotifier دون مكتبة إضافية"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "Hive CE",
+        "version": "2.22",
+        "why": {
+         "en": "Fast on-device storage for decks, cards and review history",
+         "ar": "تخزين سريع على الجهاز للمجموعات والبطاقات وسجل المراجعة"
+        }
+       },
+       {
+        "name": "Bundled deck catalog (JSON)",
+        "version": "",
+        "why": {
+         "en": "102 ready-made decks shipped inside the app's shop",
+         "ar": "102 مجموعة جاهزة مضمّنة في متجر التطبيق"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase_flutter 2.18",
+        "why": {
+         "en": "Optional accounts with Google and Apple sign-in",
+         "ar": "حسابات اختيارية مع الدخول عبر Google وApple"
+        }
+       },
+       {
+        "name": "flutter_local_notifications",
+        "version": "22.3",
+        "why": {
+         "en": "Study reminders scheduled in the user's own time zone",
+         "ar": "تذكيرات مذاكرة مجدولة حسب المنطقة الزمنية للمستخدم"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "flutter_tts + audioplayers",
+        "version": "4.2 / 6.7",
+        "why": {
+         "en": "Reads cards aloud and plays card sounds",
+         "ar": "قراءة البطاقات بصوت مسموع وتشغيل أصواتها"
+        }
+       },
+       {
+        "name": "record + video_player",
+        "version": "6.2 / 2.11",
+        "why": {
+         "en": "Voice and video attachments on your own cards",
+         "ar": "مرفقات صوت وفيديو في بطاقاتك الخاصة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Kotlin home-screen widgets",
+        "version": "home_widget 0.10",
+        "why": {
+         "en": "13 native Android widgets: streaks, forecast, card of the day",
+         "ar": "13 أداة Android أصلية: السلاسل والتوقعات وبطاقة اليوم"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "flutter_test + fsrs package",
+        "version": "fsrs 2.0",
+        "why": {
+         "en": "Checks the in-house engine against the reference FSRS library",
+         "ar": "يطابق المحرك الداخلي مع مكتبة FSRS المرجعية"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "comms-hub",
@@ -685,7 +1077,195 @@
      "dur": 45,
      "name": "promo"
     }
-   ]
+   ],
+   "under": {
+    "arch": {
+     "en": "A Next.js 16 and React 19 web app is the core: chat, mail, drive, work planning, a writing space and a motion studio, with Supabase for sign-in, a PostgreSQL schema built from 73 migrations, permissions and file storage. The same app ships as an Electron desktop app for Windows (with bundled FFmpeg for heavier media jobs) and a Capacitor Android app. A separate Node bridge links WhatsApp, and OAuth connectors publish to YouTube, Instagram and Facebook.",
+     "ar": "النواة تطبيق ويب مبني على Next.js 16 وReact 19، يضم المحادثة والبريد والملفات وتخطيط العمل ومساحة الكتابة واستوديو الحركة، مع Supabase لتسجيل الدخول ومخطط PostgreSQL مبني من 73 ترحيلًا والصلاحيات وتخزين الملفات. يُوزَّع التطبيق نفسه كتطبيق Electron لسطح مكتب Windows (مع FFmpeg مضمّن لمعالجة الوسائط الثقيلة) وكتطبيق Android عبر Capacitor. ويربط جسر Node مستقل خدمة WhatsApp، بينما تنشر موصلات OAuth إلى YouTube وInstagram وFacebook."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     },
+     {
+      "en": "Windows",
+      "ar": "ويندوز"
+     },
+     {
+      "en": "Android",
+      "ar": "أندرويد"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "73",
+      "label": {
+       "en": "Database migrations",
+       "ar": "ترحيلًا لقاعدة البيانات"
+      }
+     },
+     {
+      "value": "26",
+      "label": {
+       "en": "Arabic motion templates",
+       "ar": "قالب حركة عربيًا"
+      }
+     },
+     {
+      "value": "58",
+      "label": {
+       "en": "API routes",
+       "ar": "مسارًا لواجهة API"
+      }
+     },
+     {
+      "value": "101,555",
+      "label": {
+       "en": "Lines of TypeScript and TSX",
+       "ar": "سطرًا من TypeScript وTSX"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "16.4",
+        "why": {
+         "en": "The hub's pages, API routes and server rendering",
+         "ar": "صفحات المنصة ومسارات API والعرض من الخادم"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.3",
+        "why": {
+         "en": "Chat, mail, drive, work board and studio interfaces",
+         "ar": "واجهات المحادثة والبريد والملفات ولوحة العمل والاستوديو"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase-js 2.117",
+        "why": {
+         "en": "Sign-in, PostgreSQL with permissions, storage and desktop update feed",
+         "ar": "تسجيل الدخول وPostgreSQL بالصلاحيات والتخزين وتحديثات سطح المكتب"
+        }
+       },
+       {
+        "name": "imapflow + nodemailer",
+        "version": "2.4 / 10.1",
+        "why": {
+         "en": "Reads and sends the team's email inside the hub",
+         "ar": "قراءة بريد الفريق وإرساله داخل المنصة"
+        }
+       },
+       {
+        "name": "whatsapp-web.js bridge",
+        "version": "1.34",
+        "why": {
+         "en": "Separate Node bridge connecting WhatsApp conversations",
+         "ar": "جسر Node مستقل يربط محادثات WhatsApp"
+        }
+       },
+       {
+        "name": "YouTube, Instagram, Facebook APIs",
+        "version": "",
+        "why": {
+         "en": "OAuth connections for direct and scheduled publishing",
+         "ar": "اتصالات OAuth للنشر المباشر والمجدول"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "Canvas motion studio",
+        "version": "",
+        "why": {
+         "en": "26 Arabic motion templates drawn and previewed in code",
+         "ar": "26 قالب حركة عربيًا يُرسم ويُعاين بالبرمجة"
+        }
+       },
+       {
+        "name": "Mediabunny",
+        "version": "1.61",
+        "why": {
+         "en": "Encodes video and AAC audio in the browser",
+         "ar": "ترميز الفيديو والصوت AAC داخل المتصفح"
+        }
+       },
+       {
+        "name": "pdf-lib, docx, mammoth",
+        "version": "1.17 / 9.12 / 1.13",
+        "why": {
+         "en": "Creates and reads PDF and Word documents",
+         "ar": "إنشاء مستندات PDF وWord وقراءتها"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Electron",
+        "version": "45.0",
+        "why": {
+         "en": "Windows desktop app with bundled FFmpeg and auto-updates",
+         "ar": "تطبيق سطح مكتب لـWindows مع FFmpeg وتحديث تلقائي"
+        }
+       },
+       {
+        "name": "Capacitor",
+        "version": "8.5",
+        "why": {
+         "en": "Wraps the hub as an Android app",
+         "ar": "يحزم المنصة في تطبيق Android"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "node:test + TypeScript",
+        "version": "TS 5",
+        "why": {
+         "en": "82 web test files, plus desktop, bridge and mobile suites",
+         "ar": "82 ملف اختبار للويب وحزم لسطح المكتب والجسر والجوال"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "hatan",
@@ -913,6 +1493,505 @@
       "name": "locker-en"
      },
      "video": "/media/hatan/locker.mp4"
+    }
+   ],
+   "under": {
+    "arch": {
+     "en": "A front-end prototype on Next.js 16 and React 19, with separate Arabic and English route groups for the public site, a 26-page admin dashboard and a 9-page player portal. There is no backend yet: cart, deals and gallery state live in the browser's localStorage, and checkout hands off to Salla. The 3D locker room is a Three.js scene with a GLB jersey model that loads only on demand.",
+     "ar": "نموذج أولي للواجهة مبني على Next.js 16 وReact 19، بمجموعتي مسارات عربية وإنجليزية للموقع العام ولوحة إدارة من 26 صفحة وبوابة لاعب من 9 صفحات. لا يوجد خادم خلفي بعد: تُحفظ حالة السلة والعروض والمعرض في localStorage داخل المتصفح، ويُحوَّل الدفع إلى منصة سلة. غرفة الملابس ثلاثية الأبعاد مشهد Three.js بنموذج قميص GLB لا يُحمَّل إلا عند الطلب."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "92",
+      "label": {
+       "en": "Routes, 46 in each language",
+       "ar": "مسارًا، 46 لكل لغة"
+      }
+     },
+     {
+      "value": "26",
+      "label": {
+       "en": "Admin dashboard pages",
+       "ar": "صفحة في لوحة الإدارة"
+      }
+     },
+     {
+      "value": "12",
+      "label": {
+       "en": "3D kits in the store",
+       "ar": "طقمًا ثلاثي الأبعاد في المتجر"
+      }
+     },
+     {
+      "value": "26,570",
+      "label": {
+       "en": "Lines of TypeScript and TSX",
+       "ar": "سطرًا من TypeScript وTSX"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "16.4",
+        "why": {
+         "en": "92 pages across Arabic and English route groups",
+         "ar": "92 صفحة في مجموعتي مسارات عربية وإنجليزية"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.3",
+        "why": {
+         "en": "Public site, admin dashboard and player portal",
+         "ar": "الموقع العام ولوحة الإدارة وبوابة اللاعب"
+        }
+       },
+       {
+        "name": "TypeScript",
+        "version": "5",
+        "why": {
+         "en": "Typed content, cart, deals and gallery logic",
+         "ar": "منطق المحتوى والسلة والعروض والمعرض بأنواع ثابتة"
+        }
+       },
+       {
+        "name": "Hand-written CSS",
+        "version": "",
+        "why": {
+         "en": "Custom brand styling, no CSS framework",
+         "ar": "تنسيق خاص بالهوية دون إطار CSS"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "Three.js",
+        "version": "0.186",
+        "why": {
+         "en": "3D jersey locker room, loaded only when needed",
+         "ar": "غرفة ملابس ثلاثية الأبعاد للقمصان تُحمَّل عند الحاجة فقط"
+        }
+       },
+       {
+        "name": "GSAP + @gsap/react",
+        "version": "3.15 / 2.1",
+        "why": {
+         "en": "Page and component animations",
+         "ar": "حركات الصفحات والمكوّنات"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "Browser localStorage",
+        "version": "",
+        "why": {
+         "en": "Prototype stores for cart, deals and gallery, no server",
+         "ar": "مخازن النموذج للسلة والعروض والمعرض دون خادم"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Salla hand-off",
+        "version": "",
+        "why": {
+         "en": "Sends the cart to Salla's secure payment page",
+         "ar": "تحويل السلة إلى صفحة الدفع الآمنة في سلة"
+        }
+       },
+       {
+        "name": "qrcode + JsBarcode",
+        "version": "1.5 / 3.12",
+        "why": {
+         "en": "Codes on player cards and invoices",
+         "ar": "رموز على بطاقات اللاعبين والفواتير"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Vercel",
+        "version": "",
+        "why": {
+         "en": "Hosting in the Frankfurt region",
+         "ar": "الاستضافة في منطقة فرانكفورت"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "rolesTitle": {
+    "en": "Three sides of one platform",
+    "ar": "ثلاث واجهات لمنصة واحدة"
+   },
+   "rolesIntro": {
+    "en": "The academy’s manager, its coaches and its players each sign in to their own side, with their own pages and permissions.",
+    "ar": "يدخل مدير الأكاديمية ومدربوها ولاعبوها كلٌّ إلى واجهته، بصفحاتها وصلاحياتها الخاصة."
+   },
+   "roles": [
+    {
+     "id": "admin",
+     "name": {
+      "en": "Admin",
+      "ar": "الإدارة"
+     },
+     "alias": [
+      "manager",
+      "dashboard",
+      "لوحة",
+      "مدير"
+     ],
+     "line": {
+      "en": "The general manager runs the whole season: registrations, players, payments, the store, points and the website itself.",
+      "ar": "يدير المدير العام الموسم كاملًا: التسجيلات واللاعبين والمدفوعات والمتجر والنقاط والموقع نفسه."
+     },
+     "chips": [
+      {
+       "en": "Registrations",
+       "ar": "التسجيلات"
+      },
+      {
+       "en": "Subscriptions and plans",
+       "ar": "الاشتراكات والخطط"
+      },
+      {
+       "en": "Attendance reports",
+       "ar": "تقارير الحضور"
+      },
+      {
+       "en": "Points centre",
+       "ar": "مركز النقاط"
+      },
+      {
+       "en": "Rewards store",
+       "ar": "متجر المكافآت"
+      },
+      {
+       "en": "Payments and invoices",
+       "ar": "المدفوعات والفواتير"
+      },
+      {
+       "en": "3D jersey gallery",
+       "ar": "معرض القمصان ثلاثي الأبعاد"
+      },
+      {
+       "en": "Home page layout",
+       "ar": "تخطيط الصفحة الرئيسية"
+      },
+      {
+       "en": "Supervisors and permissions",
+       "ar": "المشرفون والصلاحيات"
+      },
+      {
+       "en": "Operations log",
+       "ar": "سجل العمليات"
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/hatan/roles/admin-overview.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "admin-overview",
+       "caption": {
+        "en": "Admin overview with October net revenue, active subscriptions, today’s attendance, a two-week attendance chart and subscriptions to follow up.",
+        "ar": "نظرة عامة للإدارة تعرض صافي إيرادات أكتوبر والاشتراكات النشطة وحضور اليوم ومخطط الحضور لأسبوعين والاشتراكات التي تحتاج متابعة."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/admin-players.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "admin-players",
+       "caption": {
+        "en": "Players table of 26 registered players with group, position, level, points and subscription status, plus search, filters, import and export.",
+        "ar": "جدول اللاعبين لـ26 لاعبًا مسجلًا مع الفئة والمركز والمستوى والنقاط وحالة الاشتراك، مع البحث والتصفية والاستيراد والتصدير."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/admin-payments.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "admin-payments",
+       "caption": {
+        "en": "Payments and invoices: October collections, refunds, VAT and failed attempts above a filterable invoice table with refund actions.",
+        "ar": "المدفوعات والفواتير: تحصيلات أكتوبر والمبالغ المستردة وضريبة القيمة المضافة والمحاولات الفاشلة، فوق جدول فواتير قابل للتصفية مع إجراءات الاسترداد."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/admin-store.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "admin-store",
+       "caption": {
+        "en": "Store orders with amounts, pickup or delivery, payment method and status, beside tabs for products, categories and stock.",
+        "ar": "طلبات المتجر مع المبالغ وطريقة الاستلام أو التوصيل ووسيلة الدفع والحالة، بجانب تبويبات للمنتجات والتصنيفات والمخزون."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/admin-overview-ar.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "admin-overview-ar",
+       "caption": {
+        "en": "The same admin overview in Arabic, laid out right to left.",
+        "ar": "لوحة النظرة العامة نفسها بالعربية بتخطيط من اليمين إلى اليسار."
+       }
+      }
+     ]
+    },
+    {
+     "id": "coach",
+     "name": {
+      "en": "Coach",
+      "ar": "المدرب"
+     },
+     "alias": [
+      "supervisor",
+      "مشرف",
+      "trainer"
+     ],
+     "pages": "8",
+     "line": {
+      "en": "A coach, called a supervisor in the app, sees only his own groups: he takes attendance with a barcode scan, rates skills and approves challenges.",
+      "ar": "يرى المدرب، ويسمّى مشرفًا في التطبيق، مجموعاته فقط: يسجّل الحضور بمسح الباركود ويقيّم المهارات ويعتمد التحديات."
+     },
+     "chips": [
+      {
+       "en": "Barcode attendance",
+       "ar": "الحضور بالباركود"
+      },
+      {
+       "en": "Players in his groups",
+       "ar": "لاعبو مجموعاته"
+      },
+      {
+       "en": "Skill assessment",
+       "ar": "تقييم المهارات"
+      },
+      {
+       "en": "Points budget",
+       "ar": "ميزانية النقاط"
+      },
+      {
+       "en": "Challenges",
+       "ar": "التحديات"
+      },
+      {
+       "en": "Attendance reports",
+       "ar": "تقارير الحضور"
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/hatan/roles/coach-attendance.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "coach-attendance",
+       "caption": {
+        "en": "Attendance for today’s sessions, with a barcode scanner panel and the live list of players marked present.",
+        "ar": "الحضور لحصص اليوم، مع لوحة ماسح الباركود وقائمة مباشرة باللاعبين الحاضرين."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/coach-roster.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "coach-roster",
+       "caption": {
+        "en": "The coach’s roster: 13 players in his groups, with position, level, points and subscription status.",
+        "ar": "قائمة المدرب: 13 لاعبًا في مجموعاته مع المركز والمستوى والنقاط وحالة الاشتراك."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/coach-evaluation.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "coach-evaluation",
+       "caption": {
+        "en": "Assessment: the coach rates six skills on a radar chart and writes strengths, weaknesses and skills to develop.",
+        "ar": "التقييم: يقيّم المدرب ست مهارات على مخطط رادار ويكتب نقاط القوة والضعف والمهارات المطلوب تطويرها."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/coach-challenges.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "coach-challenges",
+       "caption": {
+        "en": "Challenges with point prizes, approval status, purchases and achievements waiting for confirmation.",
+        "ar": "التحديات مع جوائز النقاط وحالة الاعتماد والمشتريات والإنجازات بانتظار التأكيد."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/phone-coach.webp",
+       "w": 720,
+       "h": 1558,
+       "kind": "phone",
+       "name": "phone-coach",
+       "caption": {
+        "en": "Coach attendance on a phone: today’s sessions with present counts and the scanner.",
+        "ar": "حضور المدرب على الجوال: حصص اليوم مع أعداد الحاضرين والماسح."
+       }
+      }
+     ]
+    },
+    {
+     "id": "player",
+     "name": {
+      "en": "Player",
+      "ar": "اللاعب"
+     },
+     "alias": [
+      "portal",
+      "بوابة",
+      "parent",
+      "ولي"
+     ],
+     "pages": "9",
+     "line": {
+      "en": "Players follow their own card, points, level and attendance, spend points on challenges and rewards, and carry a membership barcode.",
+      "ar": "يتابع اللاعب بطاقته ونقاطه ومستواه وحضوره، وينفق نقاطه على التحديات والمكافآت، ويحمل بطاقة عضوية بالباركود."
+     },
+     "chips": [
+      {
+       "en": "Player card",
+       "ar": "بطاقة اللاعب"
+      },
+      {
+       "en": "Points and level",
+       "ar": "النقاط والمستوى"
+      },
+      {
+       "en": "Challenges",
+       "ar": "التحديات"
+      },
+      {
+       "en": "Rewards store",
+       "ar": "متجر المكافآت"
+      },
+      {
+       "en": "Schedule and attendance",
+       "ar": "الجدول والحضور"
+      },
+      {
+       "en": "Membership card",
+       "ar": "بطاقة العضوية"
+      },
+      {
+       "en": "Subscription",
+       "ar": "الاشتراك"
+      },
+      {
+       "en": "Store orders",
+       "ar": "طلبات المتجر"
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/hatan/roles/player-home.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "player-home",
+       "caption": {
+        "en": "Player profile with the rated player card, basic details, a six-skill radar assessment and the current level.",
+        "ar": "ملف اللاعب مع بطاقة اللاعب وتقييمها والبيانات الأساسية ومخطط رادار لست مهارات والمستوى الحالي."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/player-points.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "player-points",
+       "caption": {
+        "en": "Points and level: total and spendable points, a breakdown by category, progress to the next level and the points history.",
+        "ar": "النقاط والمستوى: إجمالي النقاط والرصيد المتاح وتوزيعها حسب الفئة والتقدم نحو المستوى التالي وسجل النقاط."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/player-schedule.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "player-schedule",
+       "caption": {
+        "en": "Schedule and attendance with the monthly attendance rate, next session, coach, an attendance calendar and upcoming sessions.",
+        "ar": "الجدول والحضور مع نسبة الحضور الشهرية والحصة القادمة والمدرب وتقويم الحضور والحصص القادمة."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/player-challenges.webp",
+       "w": 1440,
+       "h": 900,
+       "kind": "desk",
+       "name": "player-challenges",
+       "caption": {
+        "en": "Challenges bought with points, easy, medium and hard, and the player’s active challenges.",
+        "ar": "تحديات تُشترى بالنقاط، سهلة ومتوسطة وصعبة، والتحديات الجارية للاعب."
+       }
+      },
+      {
+       "src": "/media/hatan/roles/phone-player.webp",
+       "w": 720,
+       "h": 1558,
+       "kind": "phone",
+       "name": "phone-player",
+       "caption": {
+        "en": "The player portal on a phone: greeting, points balance and the rated player card.",
+        "ar": "بوابة اللاعب على الجوال: التحية ورصيد النقاط وبطاقة اللاعب وتقييمها."
+       }
+      }
+     ]
     }
    ]
   },
@@ -1178,7 +2257,179 @@
       }
      ]
     }
-   ]
+   ],
+   "under": {
+    "arch": {
+     "en": "A C# / .NET 9 tray app in five projects: a platform-free core, a processing library (NetVips, SkiaSharp, PDFium, PDFsharp, Open XML), a WPF Windows shell, an OCR adapter and a command-line front end. Three tools plug into a shared registry: File Toolbox (drag a file, tap Shift, pick from a wheel), Longshot (scrolling screenshots) and Pulse (a glass dock). Text recognition uses the OCR engine built into Windows and can write a searchable text layer into PDFs.",
+     "ar": "تطبيق في شريط المهام مكتوب بلغة C# على .NET 9 ومقسّم إلى خمسة مشاريع: نواة مستقلة عن المنصة، ومكتبة معالجة (NetVips وSkiaSharp وPDFium وPDFsharp وOpen XML)، وواجهة Windows مبنية على WPF، ومحوّل للتعرف الضوئي على النصوص، وواجهة لسطر الأوامر. تتصل ثلاث أدوات بسجل مشترك: File Toolbox (اسحب ملفًا واضغط Shift واختر من العجلة)، وLongshot (لقطات شاشة ممتدة)، وPulse (شريط زجاجي). يعتمد التعرف على النصوص على محرك OCR المدمج في Windows، ويمكنه إضافة طبقة نص قابلة للبحث إلى ملفات PDF."
+    },
+    "platforms": [
+     {
+      "en": "Windows",
+      "ar": "ويندوز"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "3",
+      "label": {
+       "en": "Tools in one tray app",
+       "ar": "أدوات في تطبيق واحد"
+      }
+     },
+     {
+      "value": "168",
+      "label": {
+       "en": "Automated tests",
+       "ar": "اختبارًا آليًا"
+      }
+     },
+     {
+      "value": "31,242",
+      "label": {
+       "en": "Lines of C#",
+       "ar": "سطرًا من C#"
+      }
+     },
+     {
+      "value": "8",
+      "label": {
+       "en": ".NET projects (5 app, 3 test)",
+       "ar": "مشاريع .NET (5 للتطبيق و3 للاختبار)"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "WPF",
+        "version": ".NET 9",
+        "why": {
+         "en": "Home window, action wheel, Longshot and the Pulse dock",
+         "ar": "النافذة الرئيسية وعجلة الإجراءات وLongshot وشريط Pulse"
+        }
+       },
+       {
+        "name": "Windows Forms NotifyIcon",
+        "version": "",
+        "why": {
+         "en": "The tray icon that keeps the tools one click away",
+         "ar": "أيقونة شريط المهام التي تُبقي الأدوات على بُعد نقرة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "App logic",
+       "ar": "منطق التطبيق"
+      },
+      "items": [
+       {
+        "name": "C# on .NET 9",
+        "version": "9.0",
+        "why": {
+         "en": "Five projects: core, processing, Windows UI, OCR and CLI",
+         "ar": "خمسة مشاريع: النواة والمعالجة وواجهة Windows والتعرف الضوئي وسطر الأوامر"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "NetVips (libvips)",
+        "version": "3.2 / 8.18",
+        "why": {
+         "en": "Fast image conversion and resizing",
+         "ar": "تحويل الصور وتغيير مقاساتها بسرعة"
+        }
+       },
+       {
+        "name": "SkiaSharp + HarfBuzz",
+        "version": "4.153",
+        "why": {
+         "en": "Drawing and correctly shaped Arabic text",
+         "ar": "الرسم وتشكيل النص العربي بشكل صحيح"
+        }
+       },
+       {
+        "name": "PDFium",
+        "version": "158",
+        "why": {
+         "en": "Renders PDF pages for previews and conversion",
+         "ar": "عرض صفحات PDF للمعاينة والتحويل"
+        }
+       },
+       {
+        "name": "PDFsharp + Open XML SDK",
+        "version": "6.2 / 3.5",
+        "why": {
+         "en": "Writes PDFs and works with Word and Office files",
+         "ar": "كتابة ملفات PDF والتعامل مع ملفات Word وOffice"
+        }
+       },
+       {
+        "name": "Windows.Media.Ocr",
+        "version": "",
+        "why": {
+         "en": "Windows' built-in recogniser for Arabic and English text",
+         "ar": "أداة التعرف المدمجة في Windows للنص العربي والإنجليزي"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "xUnit + coverlet",
+        "version": "2.9 / 6.0",
+        "why": {
+         "en": "168 tests across three test projects",
+         "ar": "168 اختبارًا في ثلاثة مشاريع اختبار"
+        }
+       },
+       {
+        "name": "PowerShell publish scripts",
+        "version": "",
+        "why": {
+         "en": "Builds and installs for the current user, no admin",
+         "ar": "البناء والتثبيت للمستخدم الحالي دون صلاحيات مسؤول"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Windows 10/11 x64",
+        "version": "10.0.19041+",
+        "why": {
+         "en": "Native engines ship for win-x64 only",
+         "ar": "المحركات الأصلية متوفرة لـwin-x64 فقط"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "hayz",
@@ -1305,7 +2556,163 @@
     }
    ],
    "phones": [],
-   "videos": []
+   "videos": [],
+   "under": {
+    "arch": {
+     "en": "A Next.js 16 app with locale-prefixed routes and per-role workspaces for buyers, suppliers, workers and admins, where changes go through server actions. Supabase supplies sessions, private storage and a PostgreSQL schema of 103 tables built from 31 migrations, guarded by row-level security. Database behavior is tested against PGlite, and a single release check runs types, lint, unit, database, installation and recovery tests before the build.",
+     "ar": "تطبيق Next.js 16 بمسارات تبدأ برمز اللغة ومساحات عمل حسب الدور للمشترين والمورّدين والفنيين والمشرفين، وتمر التغييرات عبر إجراءات على الخادم. توفّر Supabase الجلسات والتخزين الخاص ومخطط PostgreSQL من 103 جداول مبنيًا من 31 ترحيلًا ومحميًا بأمان على مستوى الصفوف. يُختبر سلوك قاعدة البيانات على PGlite، ويشغّل فحص إصدار واحد الأنواع وفحص الشيفرة واختبارات الوحدات وقاعدة البيانات والتثبيت والاستعادة قبل البناء."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "103",
+      "label": {
+       "en": "Database tables",
+       "ar": "جداول في قاعدة البيانات"
+      }
+     },
+     {
+      "value": "31",
+      "label": {
+       "en": "Database migrations",
+       "ar": "ترحيلًا لقاعدة البيانات"
+      }
+     },
+     {
+      "value": "37",
+      "label": {
+       "en": "Pages",
+       "ar": "صفحة"
+      }
+     },
+     {
+      "value": "118",
+      "label": {
+       "en": "Unit tests",
+       "ar": "اختبار وحدة"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "16.4",
+        "why": {
+         "en": "Bilingual Arabic and English workspaces with server actions",
+         "ar": "مساحات عمل عربية وإنجليزية مع إجراءات على الخادم"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.3",
+        "why": {
+         "en": "Buyer, supplier, worker and admin screens",
+         "ar": "شاشات المشتري والمورّد والفني والمشرف"
+        }
+       },
+       {
+        "name": "Three.js",
+        "version": "0.186",
+        "why": {
+         "en": "3D property scene for planning camera positions",
+         "ar": "مشهد ثلاثي الأبعاد للعقار لتخطيط مواقع الكاميرات"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase-js 2.117",
+        "why": {
+         "en": "Real sessions, row-level security and private file storage",
+         "ar": "جلسات حقيقية وأمان على مستوى الصفوف وتخزين خاص للملفات"
+        }
+       },
+       {
+        "name": "PostgreSQL",
+        "version": "",
+        "why": {
+         "en": "103 tables for quotes, stock, custody, field work and governance",
+         "ar": "103 جداول للعروض والمخزون والعهدة والعمل الميداني والحوكمة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "Vitest",
+        "version": "5.0",
+        "why": {
+         "en": "118 unit tests",
+         "ar": "118 اختبار وحدة"
+        }
+       },
+       {
+        "name": "PGlite",
+        "version": "0.5",
+        "why": {
+         "en": "In-process PostgreSQL for database scenario tests",
+         "ar": "PostgreSQL داخل العملية لاختبار سيناريوهات قاعدة البيانات"
+        }
+       },
+       {
+        "name": "Playwright + axe-core",
+        "version": "1.64 / 4.14",
+        "why": {
+         "en": "Browser, right-to-left and accessibility checks",
+         "ar": "فحوص المتصفح والاتجاه من اليمين إلى اليسار وإمكانية الوصول"
+        }
+       },
+       {
+        "name": "TypeScript + ESLint",
+        "version": "5.9 / 9.39",
+        "why": {
+         "en": "Strict typing and linting in the release check",
+         "ar": "أنواع صارمة وفحص الشيفرة ضمن فحص الإصدار"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Vercel",
+        "version": "",
+        "why": {
+         "en": "Protected preview and production-target deployments",
+         "ar": "عمليات نشر محمية للمعاينة وللإنتاج"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "nbc",
@@ -1441,7 +2848,187 @@
      "name": "phone"
     }
    ],
-   "videos": []
+   "videos": [],
+   "under": {
+    "arch": {
+     "en": "A Next.js 16 app that talks to PostgreSQL directly through node-postgres in production and PGlite locally, with 18 ordered migrations defined in code that build 33 tables. Participants sign in with SMS one-time codes (Unifonic) and staff with Sign in with Vercel. The competition book is rendered and searched with PDF.js, exam progress can queue offline in IndexedDB, and GSAP, Motion and Three.js drive the results, prize draw and 3D book.",
+     "ar": "تطبيق Next.js 16 يتصل بقاعدة PostgreSQL مباشرة عبر node-postgres في الإنتاج وعبر PGlite محليًا، مع 18 ترحيلًا مرتبًا معرّفًا في الشيفرة تبني 33 جدولًا. يدخل المشاركون برموز لمرة واحدة عبر الرسائل النصية (Unifonic)، ويدخل الموظفون عبر Sign in with Vercel. يُعرض كتاب المسابقة ويُبحث فيه باستخدام PDF.js، ويمكن حفظ تقدم الاختبار دون اتصال في IndexedDB، بينما تحرّك GSAP وMotion وThree.js النتائج والسحب على الجوائز والكتاب ثلاثي الأبعاد."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "18",
+      "label": {
+       "en": "Ordered database migrations",
+       "ar": "ترحيلًا مرتبًا لقاعدة البيانات"
+      }
+     },
+     {
+      "value": "33",
+      "label": {
+       "en": "Database tables",
+       "ar": "جدولًا في قاعدة البيانات"
+      }
+     },
+     {
+      "value": "194",
+      "label": {
+       "en": "Test cases",
+       "ar": "حالة اختبار"
+      }
+     },
+     {
+      "value": "43,735",
+      "label": {
+       "en": "Lines of TypeScript and TSX",
+       "ar": "سطرًا من TypeScript وTSX"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "16.4",
+        "why": {
+         "en": "Registration, exam, book reader, winners and admin pages",
+         "ar": "صفحات التسجيل والاختبار وقارئ الكتاب والفائزين والإدارة"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.2",
+        "why": {
+         "en": "Interactive exam, reader and ceremony screens",
+         "ar": "شاشات تفاعلية للاختبار والقارئ والحفل"
+        }
+       },
+       {
+        "name": "GSAP + Motion",
+        "version": "3.15 / 13.2",
+        "why": {
+         "en": "Animations for results, the prize draw and the ceremony",
+         "ar": "حركات النتائج والسحب على الجوائز والحفل"
+        }
+       },
+       {
+        "name": "Three.js",
+        "version": "0.186",
+        "why": {
+         "en": "3D book scene on the book page",
+         "ar": "مشهد كتاب ثلاثي الأبعاد في صفحة الكتاب"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "PDF.js",
+        "version": "6.4",
+        "why": {
+         "en": "Renders and searches the competition book",
+         "ar": "عرض كتاب المسابقة والبحث فيه"
+        }
+       },
+       {
+        "name": "qrcode-generator + jsQR",
+        "version": "2.0 / 1.4",
+        "why": {
+         "en": "Makes and reads QR codes in media exports",
+         "ar": "إنشاء رموز QR وقراءتها في المواد المصدّرة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "PostgreSQL (node-postgres)",
+        "version": "pg 8.23",
+        "why": {
+         "en": "33 tables, migrated by 18 ordered steps in code",
+         "ar": "33 جدولًا تُرحَّل عبر 18 خطوة مرتبة في الشيفرة"
+        }
+       },
+       {
+        "name": "PGlite",
+        "version": "0.5",
+        "why": {
+         "en": "Same database in-process for local development",
+         "ar": "قاعدة البيانات نفسها داخل العملية للتطوير المحلي"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Unifonic SMS OTP",
+        "version": "",
+        "why": {
+         "en": "One-time codes for participant sign-in",
+         "ar": "رموز لمرة واحدة لدخول المشاركين"
+        }
+       },
+       {
+        "name": "Sign in with Vercel (openid-client)",
+        "version": "6.8",
+        "why": {
+         "en": "Staff sign-in for the admin area through OpenID Connect",
+         "ar": "دخول الموظفين إلى الإدارة عبر OpenID Connect"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "tsx test runner + embedded-postgres",
+        "version": "4.23 / 18.4",
+        "why": {
+         "en": "Regression tests, including against a real Postgres",
+         "ar": "اختبارات انحدار تشمل Postgres حقيقيًا"
+        }
+       },
+       {
+        "name": "TypeScript + Prettier",
+        "version": "7.0 / 3.9",
+        "why": {
+         "en": "Typing and consistent formatting",
+         "ar": "أنواع ثابتة وتنسيق موحد"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "bookquest",
@@ -1592,7 +3179,163 @@
      "dur": 4,
      "name": "flip"
     }
-   ]
+   ],
+   "under": {
+    "arch": {
+     "en": "A Next.js 16 app over Supabase: sessions refresh through a proxy, and authorization lives in PostgreSQL row-level security and narrow RPCs rather than in page guards. EPUB.js and PDF.js render books, and a reader's saved furthest point unlocks notes and soundtracks so nobody sees spoilers. Books upload from the browser straight to private Supabase Storage with resumable TUS uploads, and rooms sync live through Supabase Realtime presence.",
+     "ar": "تطبيق Next.js 16 فوق Supabase: تتجدد الجلسات عبر وسيط، وتقع الصلاحيات في أمان الصفوف بقاعدة PostgreSQL وفي إجراءات محددة لا في حراسة الصفحات. يعرض EPUB.js وPDF.js الكتب، وأبعد نقطة يحفظها القارئ هي التي تفتح الملاحظات والمقاطع الصوتية حتى لا يرى أحد ما يحرق الأحداث. تُرفع الكتب من المتصفح مباشرة إلى تخزين Supabase الخاص عبر رفع TUS قابل للاستئناف، وتتزامن الغرف لحظيًا عبر خاصية الحضور في Supabase Realtime."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "14",
+      "label": {
+       "en": "Database migrations",
+       "ar": "ترحيلًا لقاعدة البيانات"
+      }
+     },
+     {
+      "value": "31",
+      "label": {
+       "en": "Database tables",
+       "ar": "جدولًا في قاعدة البيانات"
+      }
+     },
+     {
+      "value": "197",
+      "label": {
+       "en": "Unit, database and integration tests",
+       "ar": "اختبارًا للوحدات وقاعدة البيانات والتكامل"
+      }
+     },
+     {
+      "value": "82",
+      "label": {
+       "en": "End-to-end browser tests",
+       "ar": "اختبارًا شاملًا في المتصفح"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "16.3",
+        "why": {
+         "en": "Home, discover, rooms, reader and admin pages",
+         "ar": "صفحات الرئيسية والاستكشاف والغرف والقارئ والإدارة"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.2",
+        "why": {
+         "en": "The shared reading rooms and the reader",
+         "ar": "غرف القراءة المشتركة والقارئ"
+        }
+       },
+       {
+        "name": "Tailwind CSS + Radix UI",
+        "version": "4 / 1.6",
+        "why": {
+         "en": "Styling and accessible dialogs, menus and controls",
+         "ar": "التنسيق ونوافذ وقوائم وعناصر تحكم سهلة الوصول"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "EPUB.js",
+        "version": "0.3",
+        "why": {
+         "en": "Renders EPUB books and tracks position by CFI",
+         "ar": "عرض كتب EPUB وتتبع الموضع عبر CFI"
+        }
+       },
+       {
+        "name": "PDF.js",
+        "version": "6.3",
+        "why": {
+         "en": "Renders PDF pages and stores highlight rectangles",
+         "ar": "عرض صفحات PDF وحفظ مواضع التظليل"
+        }
+       },
+       {
+        "name": "tus-js-client",
+        "version": "4.3",
+        "why": {
+         "en": "Resumable 6 MB-chunk uploads straight to storage",
+         "ar": "رفع قابل للاستئناف بأجزاء 6 ميغابايت مباشرة إلى التخزين"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase-js 2.117",
+        "why": {
+         "en": "Auth, Postgres RLS and RPCs, Realtime presence, private storage",
+         "ar": "المصادقة وأمان الصفوف والإجراءات والحضور اللحظي والتخزين الخاص"
+        }
+       },
+       {
+        "name": "PostgreSQL",
+        "version": "",
+        "why": {
+         "en": "31 tables; spoiler locks enforced in the database",
+         "ar": "31 جدولًا، وأقفال حرق الأحداث مطبقة داخل قاعدة البيانات"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "Vitest + PGlite",
+        "version": "5.0 / 0.5",
+        "why": {
+         "en": "Unit, database and integration test projects",
+         "ar": "مشاريع اختبار للوحدات وقاعدة البيانات والتكامل"
+        }
+       },
+       {
+        "name": "Playwright",
+        "version": "1.63",
+        "why": {
+         "en": "82 end-to-end browser tests",
+         "ar": "82 اختبارًا شاملًا في المتصفح"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "hedayah-dashboard",
@@ -1661,7 +3404,7 @@
      }
     },
     {
-     "value": "12",
+     "value": "17",
      "label": {
       "en": "Screen sizes in the layout check",
       "ar": "مقاسات الشاشة في فحص التخطيط"
@@ -1704,7 +3447,171 @@
     }
    ],
    "phones": [],
-   "videos": []
+   "videos": [],
+   "under": {
+    "arch": {
+     "en": "A Vite and React 19 single-page dashboard built for a TV, rotating three scenes on a timer (18, 18 and 12 seconds). One Vercel function is the only code that touches the three live Google Sheets: it parses them with SheetJS, aggregates them and returns only whitelisted fields, so phone numbers and notes never reach the browser. An hourly GitHub Actions job refreshes a private Vercel Blob backup and emails the admin through Resend when a source fails.",
+     "ar": "لوحة من صفحة واحدة مبنية على Vite وReact 19 ومصممة للتلفاز، تتناوب فيها ثلاثة مشاهد بمؤقت (18 و18 و12 ثانية). دالة واحدة على Vercel هي الشيفرة الوحيدة التي تصل إلى جداول Google Sheets الثلاثة الحية: تقرؤها عبر SheetJS وتجمّعها وتعيد الحقول المسموح بها فقط، فلا تصل أرقام الهواتف والملاحظات إلى المتصفح. وتحدّث مهمة GitHub Actions كل ساعة نسخة احتياطية خاصة في Vercel Blob، وترسل بريدًا إلى المشرف عبر Resend عند تعطل أحد المصادر."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "3",
+      "label": {
+       "en": "Rotating scenes, 18s, 18s and 12s",
+       "ar": "مشاهد متناوبة، 18 و18 و12 ثانية"
+      }
+     },
+     {
+      "value": "17",
+      "label": {
+       "en": "Screen sizes in the layout check",
+       "ar": "مقاسًا للشاشة في فحص التخطيط"
+      }
+     },
+     {
+      "value": "1h",
+      "label": {
+       "en": "Source health check interval",
+       "ar": "الفاصل بين فحوص سلامة المصادر"
+      }
+     },
+     {
+      "value": "3",
+      "label": {
+       "en": "Live Google Sheets behind the data",
+       "ar": "جداول Google Sheets حية وراء البيانات"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "React",
+        "version": "19.0",
+        "why": {
+         "en": "Three rotating TV scenes and the news ticker",
+         "ar": "ثلاثة مشاهد تلفزيونية متناوبة وشريط الأخبار"
+        }
+       },
+       {
+        "name": "Vite + TypeScript",
+        "version": "6.1 / 5.7",
+        "why": {
+         "en": "Fast build of the single-page dashboard",
+         "ar": "بناء سريع للوحة ذات الصفحة الواحدة"
+        }
+       },
+       {
+        "name": "Tailwind CSS",
+        "version": "4.0",
+        "why": {
+         "en": "Adaptive layout from phones up to 5K screens",
+         "ar": "تخطيط متكيف من الهواتف حتى شاشات 5K"
+        }
+       },
+       {
+        "name": "Framer Motion",
+        "version": "12.4",
+        "why": {
+         "en": "Scene transitions and animated figures",
+         "ar": "انتقالات المشاهد والأرقام المتحركة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "d3-geo + TopoJSON",
+        "version": "3.1 / 3.1",
+        "why": {
+         "en": "Draws the rotating globe of new Muslims by country",
+         "ar": "رسم الكرة الأرضية الدوارة للمسلمين الجدد حسب الدولة"
+        }
+       },
+       {
+        "name": "SheetJS (xlsx)",
+        "version": "0.20",
+        "why": {
+         "en": "Reads the three live Google Sheets workbooks",
+         "ar": "قراءة مصنفات Google Sheets الثلاثة الحية"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Vercel Functions",
+        "version": "",
+        "why": {
+         "en": "Aggregates sheets, returns only whitelisted public fields",
+         "ar": "تجميع الجداول وإرجاع الحقول العامة المسموح بها فقط"
+        }
+       },
+       {
+        "name": "Vercel Blob",
+        "version": "2.8",
+        "why": {
+         "en": "Private backup used when a sheet can't be read",
+         "ar": "نسخة احتياطية خاصة عند تعذّر قراءة أحد الجداول"
+        }
+       },
+       {
+        "name": "Resend",
+        "version": "",
+        "why": {
+         "en": "Emails the admin when a source starts failing",
+         "ar": "مراسلة المشرف بالبريد عند تعطل أحد المصادر"
+        }
+       },
+       {
+        "name": "GitHub Actions",
+        "version": "",
+        "why": {
+         "en": "Hourly trigger for the source health check",
+         "ar": "تشغيل فحص سلامة المصادر كل ساعة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "Playwright",
+        "version": "1.63",
+        "why": {
+         "en": "Screenshots and overflow checks across 17 screen sizes",
+         "ar": "لقطات وفحص تجاوز الحدود على 17 مقاسًا للشاشة"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "hida",
@@ -1775,8 +3682,8 @@
     {
      "value": "127.0.0.1",
      "label": {
-      "en": "Where it listens: this computer only",
-      "ar": "يعمل على هذا الجهاز فقط"
+      "en": "Where it listens by default: this computer only",
+      "ar": "يعمل افتراضيًا على هذا الجهاز فقط"
      }
     }
    ],
@@ -1821,7 +3728,179 @@
      "name": "phone"
     }
    ],
-   "videos": []
+   "videos": [],
+   "under": {
+    "arch": {
+     "en": "A local Python service: FastAPI on Uvicorn serves a plain-JavaScript dashboard and 142 API endpoints, bound to 127.0.0.1 by default. Requests route to local Ollama models (or, if the admin allows, cloud providers), with knowledge, memory and the activity log in SQLite and API keys protected by Windows DPAPI. A small Node.js bridge links WhatsApp, and generated tools can run only inside a locked-down Docker container.",
+     "ar": "خدمة Python محلية: يقدّم FastAPI على Uvicorn لوحة مكتوبة بجافاسكربت عادية و142 نقطة API، ويستمع على 127.0.0.1 افتراضيًا. تُوجَّه الطلبات إلى نماذج Ollama المحلية (أو إلى مزوّدين سحابيين إذا سمح المشرف)، وتُحفظ المعرفة والذاكرة وسجل النشاط في SQLite، وتُحمى مفاتيح API بتقنية DPAPI في Windows. ويربط جسر صغير بلغة Node.js خدمة WhatsApp، ولا تعمل الأدوات المولّدة إلا داخل حاوية Docker مقيّدة."
+    },
+    "platforms": [
+     {
+      "en": "Windows",
+      "ar": "ويندوز"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "142",
+      "label": {
+       "en": "API endpoints",
+       "ar": "نقطة API"
+      }
+     },
+     {
+      "value": "39",
+      "label": {
+       "en": "SQLite tables",
+       "ar": "جدولًا في SQLite"
+      }
+     },
+     {
+      "value": "421",
+      "label": {
+       "en": "Python test functions",
+       "ar": "دالة اختبار في Python"
+      }
+     },
+     {
+      "value": "11,281",
+      "label": {
+       "en": "Lines of Python outside tests",
+       "ar": "سطرًا من Python خارج الاختبارات"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Plain HTML, CSS and JavaScript",
+        "version": "",
+        "why": {
+         "en": "Browser dashboard served by the local server, no framework",
+         "ar": "لوحة في المتصفح يقدّمها الخادم المحلي دون إطار عمل"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Python + FastAPI",
+        "version": "0.141",
+        "why": {
+         "en": "142 API endpoints for chat, knowledge, reports and admin",
+         "ar": "142 نقطة API للمحادثة والمعرفة والتقارير والإدارة"
+        }
+       },
+       {
+        "name": "Uvicorn",
+        "version": "0.52",
+        "why": {
+         "en": "Local server on 127.0.0.1:8765",
+         "ar": "خادم محلي على 127.0.0.1:8765"
+        }
+       },
+       {
+        "name": "Ollama",
+        "version": "",
+        "why": {
+         "en": "Local models: Hermes for chat, DeepSeek, Qwen Coder",
+         "ar": "نماذج محلية: Hermes للمحادثة وDeepSeek وQwen Coder"
+        }
+       },
+       {
+        "name": "OpenAI, Gemini and compatible APIs",
+        "version": "",
+        "why": {
+         "en": "Optional cloud models, off unless the admin allows them",
+         "ar": "نماذج سحابية اختيارية معطلة ما لم يسمح بها المشرف"
+        }
+       },
+       {
+        "name": "whatsapp-web.js bridge (Node.js)",
+        "version": "1.34",
+        "why": {
+         "en": "Lets approved colleagues message the assistant on WhatsApp",
+         "ar": "يتيح للزملاء المعتمدين مراسلة المساعد عبر WhatsApp"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "SQLite",
+        "version": "",
+        "why": {
+         "en": "Conversations, memory, activity log and accounts on disk",
+         "ar": "المحادثات والذاكرة وسجل النشاط والحسابات على القرص"
+        }
+       },
+       {
+        "name": "pypdf, python-docx, openpyxl",
+        "version": "6.17 / 1.2 / 3.1",
+        "why": {
+         "en": "Reads department files; writes Word reports on letterhead",
+         "ar": "قراءة ملفات القسم وكتابة تقارير Word على الترويسة"
+        }
+       },
+       {
+        "name": "Windows DPAPI vault",
+        "version": "",
+        "why": {
+         "en": "Encrypts saved API keys with Windows' own protection",
+         "ar": "تشفير مفاتيح API المحفوظة بحماية Windows نفسها"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Platform",
+       "ar": "المنصة"
+      },
+      "items": [
+       {
+        "name": "Docker (optional)",
+        "version": "",
+        "why": {
+         "en": "Runs generated tools in a read-only, network-less container",
+         "ar": "تشغيل الأدوات المولّدة في حاوية للقراءة فقط دون شبكة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "pytest",
+        "version": "9.1",
+        "why": {
+         "en": "421 test functions across 65 test files",
+         "ar": "421 دالة اختبار في 65 ملفًا"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "slug": "dnfom",
@@ -1919,6 +3998,162 @@
    "ribbonNote": {
     "en": "Screens stay private until the client signs off.",
     "ar": "الشاشات خاصة حتى يعتمدها العميل."
+   },
+   "under": {
+    "arch": {
+     "en": "A Next.js 15 app with two faces: a supervisor dashboard (plans, programs, calendar, review queue, forms) and an installable mobile view for preachers in the field. Prisma maps 20 models onto PostgreSQL, NextAuth handles sign-in with role-based access, and an rrule-based generator creates recurring tasks 60 days ahead around prayer times. Field reports and photos queue offline in IndexedDB (Dexie) behind a service worker and sync later; exports go to Word and Excel.",
+     "ar": "تطبيق Next.js 15 بواجهتين: لوحة للمشرفين (الخطط والبرامج والتقويم وقائمة المراجعة والنماذج) وواجهة جوال قابلة للتثبيت للدعاة في الميدان. يربط Prisma عشرين نموذجًا بقاعدة PostgreSQL، ويتولى NextAuth تسجيل الدخول مع صلاحيات حسب الدور، ويولّد مولّد مبني على rrule المهام المتكررة قبل 60 يومًا مع مراعاة مواقيت الصلاة. تُحفظ التقارير الميدانية والصور دون اتصال في IndexedDB عبر Dexie خلف عامل خدمة ثم تتزامن لاحقًا، وتُصدَّر إلى Word وExcel."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [
+     {
+      "value": "20",
+      "label": {
+       "en": "Database models",
+       "ar": "نموذجًا في قاعدة البيانات"
+      }
+     },
+     {
+      "value": "25",
+      "label": {
+       "en": "Pages",
+       "ar": "صفحة"
+      }
+     },
+     {
+      "value": "45",
+      "label": {
+       "en": "API routes",
+       "ar": "مسارًا لواجهة API"
+      }
+     },
+     {
+      "value": "60",
+      "label": {
+       "en": "Days of tasks generated ahead",
+       "ar": "يومًا من المهام تُولَّد مسبقًا"
+      }
+     }
+    ],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js (App Router)",
+        "version": "15.1",
+        "why": {
+         "en": "Supervisor dashboard and a mobile view for preachers",
+         "ar": "لوحة للمشرفين وواجهة جوال للدعاة"
+        }
+       },
+       {
+        "name": "React + Tailwind CSS",
+        "version": "19 / 4.0",
+        "why": {
+         "en": "Arabic right-to-left screens and the forms builder",
+         "ar": "شاشات عربية من اليمين إلى اليسار وأداة بناء النماذج"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "App logic",
+       "ar": "منطق التطبيق"
+      },
+      "items": [
+       {
+        "name": "NextAuth + bcryptjs",
+        "version": "4.24 / 2.4",
+        "why": {
+         "en": "Sign-in and role-based access for staff and preachers",
+         "ar": "تسجيل الدخول وصلاحيات حسب الدور للموظفين والدعاة"
+        }
+       },
+       {
+        "name": "rrule",
+        "version": "2.8",
+        "why": {
+         "en": "Generates recurring tasks 60 days ahead",
+         "ar": "توليد المهام المتكررة قبل 60 يومًا"
+        }
+       },
+       {
+        "name": "adhan",
+        "version": "4.4",
+        "why": {
+         "en": "Prayer times to schedule around",
+         "ar": "مواقيت الصلاة لتنظيم الجدولة حولها"
+        }
+       },
+       {
+        "name": "Zod",
+        "version": "3.24",
+        "why": {
+         "en": "Validates reports and form input",
+         "ar": "التحقق من التقارير ومدخلات النماذج"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "Prisma + PostgreSQL",
+        "version": "6.4",
+        "why": {
+         "en": "20 models: plans, programs, tasks, reports, forms, audit log",
+         "ar": "20 نموذجًا: الخطط والبرامج والمهام والتقارير والنماذج والسجل"
+        }
+       },
+       {
+        "name": "Dexie (IndexedDB) + service worker",
+        "version": "4.4",
+        "why": {
+         "en": "Offline reports and attachments that sync when back online",
+         "ar": "تقارير ومرفقات دون اتصال تتزامن عند عودة الشبكة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "docx + ExcelJS",
+        "version": "9.7 / 4.4",
+        "why": {
+         "en": "Word and Excel exports of reports and plans",
+         "ar": "تصدير التقارير والخطط إلى Word وExcel"
+        }
+       },
+       {
+        "name": "WhatsApp dispatch",
+        "version": "",
+        "why": {
+         "en": "Morning task messages with a security gateway and webhook",
+         "ar": "رسائل المهام الصباحية مع بوابة أمان وwebhook"
+        }
+       }
+      ]
+     }
+    ]
    }
   }
  ],
@@ -1945,7 +4180,70 @@
    },
    "glyph": "EG",
    "color": "#25D366",
-   "icon": "/media/icons/gatekeeper.webp"
+   "icon": "/media/icons/gatekeeper.webp",
+   "under": {
+    "arch": {
+     "en": "A Next.js 14 app with a small Supabase schema for events and registrations; invite links lead to a sign-up page that counts down remaining seats and locks at capacity.",
+     "ar": "تطبيق Next.js 14 بمخطط Supabase صغير للفعاليات والتسجيلات، تقود روابط الدعوة فيه إلى صفحة تسجيل تعدّ المقاعد المتبقية وتُغلق عند اكتمال السعة."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Next.js + React",
+        "version": "14.2 / 18.3",
+        "why": {
+         "en": "Invite pages, sign-up and the admin view",
+         "ar": "صفحات الدعوة والتسجيل وواجهة الإدارة"
+        }
+       },
+       {
+        "name": "Tailwind CSS",
+        "version": "3.4",
+        "why": {
+         "en": "Styling",
+         "ar": "التنسيق"
+        }
+       },
+       {
+        "name": "qrcode + canvas-confetti",
+        "version": "1.5 / 1.9",
+        "why": {
+         "en": "QR invites and the celebration on sign-up",
+         "ar": "دعوات برمز QR واحتفال عند التسجيل"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Backend & services",
+       "ar": "الخادم والخدمات"
+      },
+      "items": [
+       {
+        "name": "Supabase",
+        "version": "supabase-js 2.49",
+        "why": {
+         "en": "Stores events and seats, enforces capacity",
+         "ar": "حفظ الفعاليات والمقاعد وضبط السعة"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Kinetics",
@@ -1962,7 +4260,78 @@
    },
    "logo": "/media/logos/kinetics.svg",
    "color": "#C8462F",
-   "icon": "/media/icons/kinetics.webp"
+   "icon": "/media/icons/kinetics.webp",
+   "under": {
+    "arch": {
+     "en": "A client-only Vite and React studio: components are defined in typed data files, previewed in a sandbox (including a phone frame), adjusted live, then copied as highlighted code.",
+     "ar": "استوديو يعمل في المتصفح فقط مبني على Vite وReact: تُعرَّف المكوّنات في ملفات بيانات ذات أنواع، وتُعرض في ساحة تجربة (منها إطار هاتف)، وتُعدَّل مباشرة، ثم تُنسخ شيفرة ملونة."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "React + Vite",
+        "version": "19.2 / 8.2",
+        "why": {
+         "en": "The component library and its live sandbox",
+         "ar": "مكتبة المكوّنات وساحة التجربة الحية"
+        }
+       },
+       {
+        "name": "Tailwind CSS",
+        "version": "4.3",
+        "why": {
+         "en": "Styling for the studio and the components",
+         "ar": "تنسيق الاستوديو والمكوّنات"
+        }
+       },
+       {
+        "name": "Framer Motion",
+        "version": "13.1",
+        "why": {
+         "en": "The component animations you can tweak",
+         "ar": "حركات المكوّنات القابلة للتعديل"
+        }
+       },
+       {
+        "name": "Shiki",
+        "version": "4.4",
+        "why": {
+         "en": "Highlights the code you copy or download",
+         "ar": "تلوين الشيفرة التي تنسخها أو تنزّلها"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "TypeScript + oxlint",
+        "version": "6.0 / 1.75",
+        "why": {
+         "en": "Typing and fast linting",
+         "ar": "أنواع ثابتة وفحص سريع للشيفرة"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Companion",
@@ -1979,7 +4348,86 @@
    },
    "logo": "/media/logos/companion.png",
    "color": "#2E5C8A",
-   "icon": "/media/icons/companion.webp"
+   "icon": "/media/icons/companion.webp",
+   "under": {
+    "arch": {
+     "en": "An Electron app with a main process holding a SQLite media library and a React renderer showing one continuous playback session in four window forms; built for Windows with electron-builder (NSIS).",
+     "ar": "تطبيق Electron تحتفظ عمليته الرئيسية بمكتبة وسائط في SQLite، وتعرض واجهة React جلسة تشغيل واحدة متصلة بأربعة أشكال للنافذة، ويُبنى لـWindows عبر electron-builder بمثبّت NSIS."
+    },
+    "platforms": [
+     {
+      "en": "Windows",
+      "ar": "ويندوز"
+     }
+    ],
+    "numbers": [],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "Electron + electron-vite",
+        "version": "44.7 / 5.0",
+        "why": {
+         "en": "Desktop shell with Library, Player, Mini and Dock windows",
+         "ar": "تطبيق سطح مكتب بنوافذ المكتبة والمشغّل والمصغّر والرصيف"
+        }
+       },
+       {
+        "name": "React",
+        "version": "19.3",
+        "why": {
+         "en": "The four window forms' interfaces",
+         "ar": "واجهات أشكال النافذة الأربعة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Data",
+       "ar": "البيانات"
+      },
+      "items": [
+       {
+        "name": "better-sqlite3",
+        "version": "13.0",
+        "why": {
+         "en": "Local library of media, playlists and covers",
+         "ar": "مكتبة محلية للوسائط وقوائم التشغيل والأغلفة"
+        }
+       },
+       {
+        "name": "music-metadata + sharp",
+        "version": "12.1 / 0.35",
+        "why": {
+         "en": "Reads track tags and processes cover art",
+         "ar": "قراءة بيانات المقاطع ومعالجة صور الأغلفة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "Vitest + Playwright + axe",
+        "version": "4.1 / 1.64",
+        "why": {
+         "en": "Unit, window and accessibility tests",
+         "ar": "اختبارات الوحدات والنوافذ وإمكانية الوصول"
+        }
+       }
+      ]
+     }
+    ]
+   }
   },
   {
    "name": "Zero-G Energy",
@@ -1996,7 +4444,78 @@
    },
    "glyph": "0G",
    "color": "#5EE6FF",
-   "icon": "/media/icons/zerog.webp"
+   "icon": "/media/icons/zerog.webp",
+   "under": {
+    "arch": {
+     "en": "A Vite and React app where MediaPipe tracks your hand through the webcam and a Three.js renderer draws the energy that follows your fingertip, with physics, tracking and recording kept in separate modules.",
+     "ar": "تطبيق Vite وReact يتتبع فيه MediaPipe يدك عبر كاميرا الويب، ويرسم محرك Three.js الطاقة التي تتبع طرف إصبعك، مع فصل الفيزياء والتتبع والتسجيل في وحدات مستقلة."
+    },
+    "platforms": [
+     {
+      "en": "Web",
+      "ar": "الويب"
+     }
+    ],
+    "numbers": [],
+    "layers": [
+     {
+      "layer": {
+       "en": "Interface",
+       "ar": "الواجهة"
+      },
+      "items": [
+       {
+        "name": "React + Vite",
+        "version": "19.3 / 8.3",
+        "why": {
+         "en": "App shell and the debug panel",
+         "ar": "هيكل التطبيق ولوحة التصحيح"
+        }
+       },
+       {
+        "name": "Three.js",
+        "version": "0.186",
+        "why": {
+         "en": "Renders the liquid light with custom shaders",
+         "ar": "عرض الضوء السائل بمظلّلات مخصصة"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Media",
+       "ar": "الوسائط"
+      },
+      "items": [
+       {
+        "name": "MediaPipe Tasks Vision",
+        "version": "1.0",
+        "why": {
+         "en": "Tracks hand landmarks from the webcam in the browser",
+         "ar": "تتبع نقاط اليد من كاميرا الويب داخل المتصفح"
+        }
+       }
+      ]
+     },
+     {
+      "layer": {
+       "en": "Tooling & quality",
+       "ar": "الأدوات والجودة"
+      },
+      "items": [
+       {
+        "name": "Vitest + TypeScript",
+        "version": "5.0 / 7.0",
+        "why": {
+         "en": "Tests for the physics and input logic",
+         "ar": "اختبارات لمنطق الفيزياء والإدخال"
+        }
+       }
+      ]
+     }
+    ]
+   }
   }
  ],
  "statusDate": {

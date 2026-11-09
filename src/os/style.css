@@ -334,6 +334,7 @@ svg.i.fill { fill: currentColor; stroke: none; }
 .tabs button[aria-selected="true"] { color: var(--ink); }
 .tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -1px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--acc1), var(--acc2)); }
 .panel { padding: 20px 22px 28px; animation: fadeUp .35s var(--ease); }
+.panel.still { animation: none; } /* the tab a page arrives on (src/layouts/OsPage.astro) */
 .panel[hidden] { display: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } }
 .hero-shot { margin-bottom: 18px; }
@@ -952,3 +953,62 @@ html:not(.js) .frame { cursor: default; }
 .reel > [role="listitem"] > button { flex: 1; width: 100%; }
 .player.narrow .reel > [role="listitem"] { flex: 0 0 220px; }
 .stage .nojs-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+
+/* ===== round 6: the top bar, project views and stacks (the desktop's own new parts are in app.css) ===== */
+/* --- top bar additions --- */
+.clock-btn { position: relative; }
+.clock-btn .clock { pointer-events: none; }
+.nc-dot { position: absolute; top: 5px; inset-inline-end: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--acc2); }
+
+/* --- film player: picture in picture --- */
+.controls [data-pc="pip"] .i { width: 18px; height: 18px; }
+
+/* --- project windows: views and tech stack --- */
+.roles-intro { margin-bottom: 14px; max-width: 70ch; }
+.role-seg { margin-bottom: 18px; }
+.role-seg button[aria-selected="true"] { color: var(--acc-ink); background: linear-gradient(135deg, var(--acc1), var(--acc2)); box-shadow: 0 4px 12px -6px color-mix(in srgb, var(--acc2) 70%, transparent); }
+.role-panel { animation: fadeUp .3s var(--ease); }
+.role-panel[hidden] { display: none; }
+.role-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.role-head .h2 { margin: 0 0 4px; }
+.fact.mini { flex: none; padding: 10px 14px; min-width: 96px; text-align: center; }
+.fact.mini b { font-size: 26px; }
+.fact.mini span { margin-top: 2px; font-size: 12.5px; }
+.role-chips { margin-bottom: 16px; }
+.role-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.role-shots.phones { grid-template-columns: repeat(auto-fill, minmax(170px, 220px)); margin-top: 16px; }
+.role-shot { margin: 0; }
+.role-shot figcaption { margin-top: 7px; font-size: 13px; line-height: 1.45; color: var(--ink-3); }
+.role-strip .tm-img img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.under .arch p { line-height: 1.6; max-width: 75ch; }
+.stack.plat { align-items: center; margin-top: 12px; }
+.layers { display: grid; gap: 14px; }
+.layer { display: grid; grid-template-columns: 170px 1fr; gap: 14px; align-items: start; padding-top: 14px; border-top: 1px solid var(--line); }
+.layer:first-child { border-top: 0; padding-top: 0; }
+.layer-h { margin: 6px 0 0; display: flex; align-items: center; gap: 8px; font: 650 14.5px var(--f-display); }
+.layer-h .ln { font: 500 12px var(--f-mono); color: var(--acc2); }
+.layer-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.tech { padding: 10px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); transition: background .15s, transform .2s var(--spring); }
+.tech:hover { background: var(--card-2); transform: translateY(-2px); }
+.tech b { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; font: 650 14.5px var(--f-display); }
+:root[dir="rtl"] .tech b { justify-content: flex-end; }
+.tech .ver { font: 500 11.5px var(--f-mono); color: var(--ink-3); }
+.tech small { display: block; margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+button.chip { cursor: pointer; }
+button.chip:hover { background: var(--card-2); color: var(--ink); }
+.lab-stack { margin-top: 8px; }
+.ptile.hide-tech { display: none; }
+.tech-filter { display: flex; align-items: center; gap: 8px; padding: 8px 18px; border-bottom: 1px solid var(--line); }
+.tech-filter[hidden] { display: none; }
+.sheet .layer { grid-template-columns: 1fr; gap: 8px; }
+.sheet .role-shots { grid-template-columns: 1fr; }
+.sheet .role-shots.phones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sheet .role-head { flex-direction: column; }
+
+@media (prefers-reduced-motion: reduce) { .role-panel { animation: none; } }
+html.reduce .role-panel { animation: none; }
+/* phones: the role strip is a compact three-up row; each view's line is on the Views tab */
+.sheet .tool-strip.role-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.sheet .role-strip .tool-mini { gap: 6px; padding: 6px; }
+.sheet .role-strip .tool-mini small { display: none; }
+.sheet .role-strip .tool-mini b { font-size: 14px; }

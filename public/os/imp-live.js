@@ -2,67 +2,303 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
 /* Renders the owner's pixelated Pixel imp. Each frame is assembled on the art-pixel grid
    (body, moving parts, swapped head), outlined for the dark board, then scaled up; smooth faces go on last. */
 (() => {
-  const PALC = ['', '#121113', '#3a3a3e', '#f3ead8', '#d6c4a6', '#f7a623', '#c4701e', '#ffffff', '#c4baec', '#8048b0', '#e87828', '#f08c96', '#6ebef0', '#966e46'];
+  /* Renders the owner's pixelated Pixel imp. Each frame is assembled on the art-pixel grid
+     (body, moving parts, swapped head), outlined for the dark board, then scaled up; smooth faces go on last.
+     Round 6b: a pixel effects layer for Gear 5 (rubber arms and legs with hand-drawn hands, stars, spiral eyes,
+     tongue, popping eyes, drum rings, cloud puffs, a cloud bed) drawn on the same grid, under the body, over it,
+     or over the faces; and whole-pixel squash and stretch (fr.sq = [x, y]). */
+  const PALC = ['', '#121113', '#3a3a3e', '#f3ead8', '#d6c4a6', '#f7a623', '#c4701e', '#ffffff', '#c4baec', '#8048b0', '#e87828', '#f08c96', '#6ebef0', '#966e46', '#c9506f', '#ffd447', '#e0402c'];
   const RGB = PALC.map(c => c ? [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)] : null);
   const DATA = window.IMPDATA, SP = DATA.sprites, M = 18;
   const dec = s => { const b = atob(s), g = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) g[i] = b.charCodeAt(i); return g; };
-  const grid = rec => rec._g || (rec._g = dec(rec.px));
+  const grid = rec => rec._g || (rec._g = rec.g8 || dec(rec.px));
   const pgrid = p => p._g || (p._g = dec(p.px));
   const faceImg = f => { if (!f) return null; if (!f._img) { f._img = new Image(); f._img.src = f.src; } return f._img.complete && f._img.naturalWidth ? f._img : null; };
-  const whenFaces = () => Promise.all(Object.values(SP).filter(r => r.face).map(r => { faceImg(r.face); const i = r.face._img; return i.complete ? 0 : new Promise(res => { i.onload = i.onerror = res; }); }));
-  const cache = new Map();
+  const whenFaces = () => Promise.all([...new Set(Object.values(SP).filter(r => r.face).map(r => r.face))].map(f => { faceImg(f); const i = f._img; return i.complete ? 0 : new Promise(res => { i.addEventListener('load', res); i.addEventListener('error', res); }); }));
+  const cache = new Map(), CMAX = 600;
 
-  // fr: { s, head, hx, hy, bob, waist, parts:{name:[dx,dy]}, face, dx, dy }
-  const compose = (fr, rim) => {
-    const key = JSON.stringify(fr) + (rim ? 'r' : '');
+  /* ---------- pixel effects (art-pixel cells: [x, y, colour]) ---------- */
+  const K = 1, C = 2, IV = 3, SH = 4, AM = 5, AMD = 6, WH = 7, LV = 8, PU = 9, OR = 10, PK = 11, PKD = 14, YE = 15, RD = 16;
+  const CH = { k: K, c: C, I: IV, i: SH, A: AM, a: AMD, W: WH, L: LV, P: PU, o: OR, R: PK, r: PKD, Y: YE, D: RD };
+  const art = rows => rows.map(r => [...r].map(ch => CH[ch] || 0));
+  const rotCW = g => g[0].map((_, x) => g.map((row, y) => g[g.length - 1 - y][x]));
+  const mirX = g => g.map(r => r.slice().reverse());
+  const mirY = g => g.slice().reverse();
+  // hands, drawn for this costume: wrist = where the arm joins
+  const H_E = art(['.kkkkk.......', 'kIIIIIkkkkkk.', 'kIIIIIIIIIIIk', 'kIIIIIIIIIIk.', 'kIIiIIkkkkk..', 'kIiIIIk......', 'kiIiIik......', '.kkkkk.......']);
+  const H_NE = art(['........kkk', '.......kIIk', '......kIIIk', '.....kIIIk.', '.kkkkIIIk..', 'kIIIIIIk...', 'kIIIIIIk...', 'kIiIIIk....', 'kiIiIik....', '.kkkkk.....']);
+  const HAND = {
+    point: { E: { g: H_E, w: [0, 4] }, NE: { g: H_NE, w: [1, 7] }, N: { g: rotCW(rotCW(rotCW(H_E))), w: [4, 12] }, SE: { g: mirY(H_NE), w: [1, 2] }, S: { g: rotCW(H_E), w: [3, 0] } },
+    palm: { any: { g: art(['...k.k.k.k.', '..kIkIkIkIk', '..kIkIkIkIk', '..kIkIkIkIk', 'k.kIIIIIIIk', 'kIkIIIIIIIk', 'kIIkIiiiIIk', '.kIIIIIIIk.', '..kIIIIIk..', '...kkkkk...']), w: [6, 9] } },
+    open: { any: { g: art(['..k.k.k...', '.kIkIkIk..', '.kIkIkIk..', '.kIkIkIkk.', 'kIIIIIIkIk', 'kIIIIIIIk.', 'kiIIIIIk..', '.kiIiIk...', '..kkkk....']), w: [4, 8] } },
+    fist: { any: { g: art(['.kkkkk.', 'kIkIkIk', 'kIIIIIk', 'kiIIIIk', 'kiiIIIk', '.kkkkk.']), w: [0, 3] } },
+    grab: { any: { g: art(['.k.k.k..', 'kIkIkIk.', 'kIkIkIkk', 'kIIIIIkIk', 'kIIIIIIk.', 'kiIIIIk..', '.kkkkk...']), w: [3, 6] } }
+  };
+  const FOOT = { g: art(['.kkkkk..', 'kIIIIIkk', 'kIIIIIIk', 'kIIIIIIk', 'kiIiIiIk', '.kkkkkk.']), w: [0, 3] };
+  const STAR = art(['...k...', '..kYk..', 'kkkYkkk', 'kYYYYYk', '.kYYYk.', '.kYkYk.', '.kk.kk.']);
+  const SPIRAL = art(['.kkkkk.', 'kWWWWWk', 'kWkkkWk', 'kWkWkWk', 'kWkWWWk', 'kWkkkkk', '.kWWWk.']);
+  const ZED = art(['kkkk', '..k.', '.k..', 'kkkk']);
+  const PUFFS = [art(['.k.', 'kWk', '.k.']), art(['.kk.', 'kWWk', 'kWLk', '.kk.']), art(['..kk...', '.kWWkk.', 'kWWWWWk', 'kWWWWLk', '.kLLLk.', '..kkk..'])];
+  const pickDir = (dx, dy) => { const a = Math.atan2(dy, Math.abs(dx)) * 180 / Math.PI; return a < -67.5 ? 'N' : a < -22.5 ? 'NE' : a < 22.5 ? 'E' : a < 67.5 ? 'SE' : 'S'; };
+  const stampArt = (out, g, x0, y0, flipX) => { const h = g.length, w = g[0].length; for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const v = g[y][flipX ? w - 1 - x : x]; if (v) out.push([x0 + x, y0 + y, v]); } };
+  const handAt = (out, kind, ex, ey, dx, dy) => {
+    const set = HAND[kind] || HAND.point, back = dx < -0.5, dir = set.any ? 'any' : pickDir(dx, dy), h = set[dir], w = h.g[0].length;
+    const wx = back ? w - 1 - h.w[0] : h.w[0];
+    stampArt(out, h.g, Math.round(ex - wx), Math.round(ey - h.w[1]), back);
+  };
+  const disc = (map, cx, cy, r, v, only) => { const R = Math.ceil(r); for (let y = -R; y <= R; y++) for (let x = -R; x <= R; x++) if (x * x + y * y <= r * r) { const k = (Math.round(cx) + x) + ',' + (Math.round(cy) + y); if (!only || map.has(k)) map.set(k, typeof v === 'function' ? v(x, y) : v); } };
+  const bez = (a, c, b, t) => [(1 - t) * (1 - t) * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) * (1 - t) * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+  // a rubber limb: white sleeve and fluffy cuff, then the stretchy black arm with a rubber shine, then the hand
+  const limb = (out, from, to, o) => {
+    const dx = to[0] - from[0], dy = to[1] - from[1], len = Math.max(1, Math.hypot(dx, dy)), nx = -dy / len, ny = dx / len;
+    const ctl = [(from[0] + to[0]) / 2 + nx * (o.wob || 0) * len, (from[1] + to[1]) / 2 + ny * (o.wob || 0) * len];
+    const m = new Map(), steps = Math.ceil(len * 2.5), sl = o.sleeve === false ? 0 : Math.min(o.leg ? 0 : 6, len * .4);
+    const pts = [];
+    if (o.elbow) { const e = o.elbow, l1 = Math.hypot(e[0] - from[0], e[1] - from[1]), l2 = Math.hypot(to[0] - e[0], to[1] - e[1]), n1 = Math.max(2, Math.ceil(l1 * 2.5)), n2 = Math.max(2, Math.ceil(l2 * 2.5)), c2 = [(e[0] + to[0]) / 2 + (-(to[1] - e[1]) / (l2 || 1)) * (o.wob || 0) * l2, (e[1] + to[1]) / 2 + ((to[0] - e[0]) / (l2 || 1)) * (o.wob || 0) * l2];
+      for (let i = 0; i <= n1; i++) pts.push([from[0] + (e[0] - from[0]) * i / n1, from[1] + (e[1] - from[1]) * i / n1]);
+      for (let i = 1; i <= n2; i++) pts.push(bez(e, c2, to, i / n2)); }
+    else for (let i = 0; i <= steps; i++) pts.push(bez(from, ctl, to, i / steps));
+    pts.forEach(p => disc(m, p[0], p[1], o.leg ? 2.7 : 2.4, K));
+    // shine along the upper edge of the rubber
+    const N = pts.length - 1, along = []; let acc = 0; pts.forEach((p, i) => { if (i) acc += Math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]); along.push(acc); }); const tot = acc || 1;
+    pts.forEach((p, i) => { const d = along[i]; if (d > sl + 2 && d < tot - 3) { const k = Math.round(p[0] - nx * (ny > 0 ? 1 : -1)) + ',' + Math.round(p[1] - ny * (ny > 0 ? 1 : -1)); if (m.has(k)) m.set(k, C); } });
+    if (sl) { // sleeve and cuff near the shoulder
+      pts.filter((p, i) => along[i] <= sl).forEach(p => { disc(m, p[0], p[1], 3.6, K); });
+      pts.filter((p, i) => along[i] <= sl).forEach(p => { disc(m, p[0], p[1], 2.6, (x, y) => (x * nx + y * ny) * (ny > 0 ? 1 : -1) > 1.2 ? LV : WH); });
+      const cp = pts[Math.max(0, along.findIndex(d => d >= sl))] || pts[0];
+      disc(m, cp[0], cp[1], 4.3, K); disc(m, cp[0], cp[1], 3.4, (x, y) => (y > 1.4 ? LV : WH)); [[-3, -2], [3, -2], [0, 3], [-3, 2], [3, 2]].forEach(([u, v]) => m.set(Math.round(cp[0] + u) + ',' + Math.round(cp[1] + v), (x => x)(m.get(Math.round(cp[0] + u) + ',' + Math.round(cp[1] + v)) === K ? K : WH)));
+    }
+    if (o.ring) { // the orange motion ring around a stretched limb
+      const rp = pts[Math.round(N * .55)], R = 6;
+      for (let a = 0; a < 360; a += 6) { const r = a / 180 * Math.PI, x = rp[0] + Math.cos(r) * R * .55, y = rp[1] + Math.sin(r) * R; m.set(Math.round(x) + ',' + Math.round(y), Math.sin(r) > 0 ? AMD : OR); }
+    }
+    m.forEach((v, k) => { const [x, y] = k.split(',').map(Number); out.push([x, y, v]); });
+    if (o.leg) { const back = dx < -0.5, w = FOOT.g[0].length; stampArt(out, FOOT.g, Math.round(to[0] - (back ? w - 1 - FOOT.w[0] : FOOT.w[0])), Math.round(to[1] - FOOT.w[1]), back); }
+    else { const q = pts[Math.max(0, N - 6)]; handAt(out, o.hand || 'point', to[0], to[1], o.elbow ? to[0] - q[0] : dx, o.elbow ? to[1] - q[1] : dy); }
+  };
+  const FX = {
+    arm: (f, rec) => { const out = []; limb(out, f.from || rec.shoulder || [rec.w * .7, rec.h * .6], f.to, f); return out; },
+    leg: (f, rec) => { const out = []; limb(out, f.from || rec.hip || [rec.w * .6, rec.h * .85], f.to, { ...f, leg: true, sleeve: false }); return out; },
+    hand: f => { const out = []; handAt(out, f.kind || 'open', f.x, f.y, f.dx ?? 1, f.dy ?? -1); return out; },
+    stars: f => { const out = [], n = f.n || 3; for (let i = 0; i < n; i++) { const a = (f.a || 0) + i * Math.PI * 2 / n; stampArt(out, STAR, Math.round(f.x + Math.cos(a) * (f.rx || 12) - 3), Math.round(f.y + Math.sin(a) * (f.ry || 3) - 3)); } return out; },
+    spiral: f => { const out = []; (f.eyes || []).forEach(([x, y], i) => { const r0 = f.r || 3.6, m = new Map(), cx = Math.round(x), cy = Math.round(y), dir = (i % 2 ? -1 : 1), ph = (f.turn || 0) * 1.6 * dir;
+      disc(m, cx, cy, r0 + .9, K); disc(m, cx, cy, r0, WH);
+      for (let th = 0; th < Math.PI * 4.2; th += .12) { const r = .2 + (r0 - .6) * th / (Math.PI * 4.2), a = th * dir + ph; m.set(Math.round(cx + Math.cos(a) * r) + ',' + Math.round(cy + Math.sin(a) * r), K); }
+      m.forEach((v, k) => { const [a, b] = k.split(',').map(Number); out.push([a, b, v]); }); }); return out; },
+    tongue: f => { // hangs from the mouth and wags
+      const out = [], L = f.len || 4, s = f.sway || 0;
+      for (let i = 0; i <= L; i++) { const cx = Math.round(f.x + s * i / L), y = f.y + i; out.push([cx - 2, y, K], [cx + 2, y, K], [cx - 1, y, PK], [cx, y, i > 0 && i < L ? PKD : PK], [cx + 1, y, PK]); }
+      const tx = Math.round(f.x + s); out.push([tx - 1, f.y + L + 1, K], [tx, f.y + L + 1, K], [tx + 1, f.y + L + 1, K]); return out;
+    },
+    eyes: f => { // the eyes pop out of his head on springs
+      const out = [], o = f.out || 0, up = f.up ?? -.35;
+      (f.eyes || []).forEach(([x, y], i) => {
+        const sp = (i ? -1 : 1) * Math.min(1, o / 8) * 3, ex = x + o, ey = y + o * up + sp;
+        if (o > 2) for (let t = 1; t < o - 2; t++) { const k = t / o, sx = Math.round(x + t), sy = Math.round(y + (ey - y) * k + (t % 3 === 0 ? 1 : t % 3 === 1 ? 0 : -1)); out.push([sx, sy, K], [sx, sy + 1, K]); }
+        const R = 2.6 + Math.min(2.2, o / 4.5);
+        for (let yy = -5; yy <= 5; yy++) for (let xx = -5; xx <= 5; xx++) { const d = Math.hypot(xx, yy); if (d > R + .7) continue; const X = Math.round(ex) + xx, Y = Math.round(ey) + yy; const px = xx - 1, py = yy; const di = Math.hypot(px, py); out.push([X, Y, d > R - .3 ? K : di < 1.1 ? K : di < 2.3 ? (i ? OR : OR) : WH]); }
+      });
+      return out;
+    },
+    ring: f => { const out = [], r = f.r || 8; for (let a = 0; a < 360; a += Math.max(2, 40 / r)) { const t = a / 180 * Math.PI; const fl = f.flat || .8; [[r + 1, K], [r - 1, K], [r, f.col || WH]].forEach(([rr, c]) => out.push([Math.round(f.x + Math.cos(t) * rr), Math.round(f.y + Math.sin(t) * rr * fl), c])); } return out; },
+    puff: f => { const out = []; const g = PUFFS[Math.max(0, Math.min(2, f.s ?? 1))]; stampArt(out, g, Math.round(f.x - g[0].length / 2), Math.round(f.y - g.length / 2)); return out; },
+    burst: f => { const out = [], a0 = f.a ?? -2.2; for (let i = 0; i < 3; i++) { const a = a0 + i * .55; for (let d = 0; d < 3; d++) { const x = Math.round(f.x + Math.cos(a) * (3 + d)), y = Math.round(f.y + Math.sin(a) * (3 + d)); out.push([x, y, AM], [x + 1, y, AM]); } } return out; },
+    z: f => { const out = []; stampArt(out, ZED, Math.round(f.x), Math.round(f.y)); return out; },
+    bed: f => { // a little cloud to float on
+      const out = [], w = f.w || 26, x0 = Math.round(f.x - w / 2), y0 = Math.round(f.y), m = new Map();
+      for (let i = 0; i < w; i += 4) disc(m, x0 + i + 2, y0 + (i % 8 ? 1 : 0), 3.6, K);
+      for (let i = 0; i < w; i += 4) disc(m, x0 + i + 2, y0 + (i % 8 ? 1 : 0), 2.6, (x, y) => (y > 1 ? LV : WH));
+      m.forEach((v, k) => { const [x, y] = k.split(',').map(Number); out.push([x, y, v]); }); return out;
+    }
+  };
+  // smooth face gags, in sprite pixels; P maps a sprite point to the screen, u is one sprite pixel on screen
+  const INK = '#121113';
+  const SMOOTH = {
+    spiral: (x, f, P, u) => (f.eyes || []).forEach(([ex, ey], i) => {
+      const r = (f.r || 2.4) * u, [cx, cy] = P(ex, ey), dir = i % 2 ? -1 : 1, ph = (f.turn || 0) * 1.7 * dir;
+      x.fillStyle = '#fff'; x.strokeStyle = INK; x.lineWidth = .42 * u; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill(); x.stroke();
+      x.lineWidth = .38 * u; x.lineCap = 'round'; x.beginPath();
+      for (let th = 0; th <= Math.PI * 4.4; th += .15) { const rr = r * .86 * th / (Math.PI * 4.4), a = th * dir + ph; const px = cx + Math.cos(a) * rr, py = cy + Math.sin(a) * rr; th ? x.lineTo(px, py) : x.moveTo(px, py); }
+      x.stroke();
+    }),
+    /* tongue out, drawn the cartoon way: the mouth opens wide (a D shape, dark inside, a hint of upper teeth);
+       the tongue is narrower than the mouth, its root sits deep inside, it lies over the lower lip and hangs out,
+       widening a little to a round tip, with a groove down the middle and a shadow where it bends over the lip.
+       f.cav = [mouth width, mouth height, centre x, centre y]; f.len = how far it hangs below the lip; f.sway swings the tip */
+    tongue: (x, f, P, u) => {
+      x.lineJoin = 'round'; x.lineCap = 'round';
+      const cv = f.cav || [4.6, 3, f.x, f.y - 1], [cx, cy] = P(cv[2], cv[3]), a = cv[0] / 2 * u, b = cv[1] / 2 * u;
+      const mouth = () => { x.beginPath(); x.moveTo(cx - a, cy - b * .45); x.quadraticCurveTo(cx, cy - b * 1.15, cx + a, cy - b * .45); x.bezierCurveTo(cx + a * 1.02, cy + b * .55, cx + a * .55, cy + b * 1.12, cx, cy + b * 1.12); x.bezierCurveTo(cx - a * .55, cy + b * 1.12, cx - a * 1.02, cy + b * .55, cx - a, cy - b * .45); x.closePath(); };
+      // open mouth, teeth along the top
+      x.fillStyle = '#4a1712'; mouth(); x.fill();
+      x.save(); mouth(); x.clip(); x.fillStyle = '#fff'; x.fillRect(cx - a, cy - b * 1.3, a * 2, b * .62); x.strokeStyle = 'rgba(18,17,19,.35)'; x.lineWidth = .22 * u; x.beginPath(); x.moveTo(cx, cy - b * 1.2); x.lineTo(cx, cy - b * .7); x.stroke(); x.restore();
+      x.strokeStyle = INK; x.lineWidth = .45 * u; mouth(); x.stroke();
+      // the tongue
+      const tw = (f.w || Math.min(cv[0] * .6, 3.3)) * u, sw = (f.sway || 0) * u, root = cy - b * .1, lip = cy + b * 1.05, L = (f.len || 4) * u;
+      const tx = cx + sw, ty = lip + L, r = tw * .58;
+      const tongue = open => { x.beginPath(); x.moveTo(cx - tw / 2, root); x.bezierCurveTo(cx - tw / 2, lip, tx - r - sw * .1, ty - r * 1.6, tx - r, ty - r * .2); x.arc(tx, ty - r * .2, r, Math.PI, 0, true); x.bezierCurveTo(tx + r - sw * .1, ty - r * 1.6, cx + tw / 2, lip, cx + tw / 2, root); if (!open) x.closePath(); };
+      x.fillStyle = '#f08c96'; tongue(false); x.fill();
+      x.save(); tongue(false); x.clip(); x.fillStyle = '#c9506f'; x.globalAlpha = .55; x.beginPath(); x.ellipse(cx + sw * .15, lip + .25 * u, tw * .62, .55 * u, 0, 0, 7); x.fill(); x.restore(); // shadow where it bends over the lip
+      x.strokeStyle = INK; x.lineWidth = .42 * u; tongue(true); x.stroke();
+      x.strokeStyle = '#c9506f'; x.lineWidth = .3 * u; x.beginPath(); x.moveTo(cx + sw * .1, lip + .6 * u); x.quadraticCurveTo(cx + sw * .55, lip + L * .55, tx, ty - r * .9); x.stroke(); // groove
+    },
+    eyes: (x, f, P, u) => { // the eyes shoot out on thick stalks: huge, lashed, clean whites, tiny pupils; they wobble on the stalks
+      const o = f.out || 0, w = f.wob || 0;
+      if (o < .5) return;
+      const ends = (f.eyes || []).map(([ex, ey], i) => {
+        const k = i ? [1, -.05] : [.55, -.72], R = (2.2 + Math.min(3.3, o / 4.2)) * u;
+        const [sx, sy] = P(ex, ey), [tx, ty] = P(ex + o * k[0] + w * (i ? .6 : -.4), ey + o * k[1] + w * (i ? -.5 : .7));
+        return { sx, sy, tx, ty, R, i };
+      });
+      // stalks first, both, so the eyeballs sit on top of them
+      ends.forEach(({ sx, sy, tx, ty }) => {
+        const mx = (sx + tx) / 2, my = (sy + ty) / 2 + Math.abs(tx - sx) * .12 + w * u * .4;
+        [[2.5 * u + 1 * u, INK], [2.5 * u, '#f3ead8']].forEach(([lw, c]) => { x.strokeStyle = c; x.lineWidth = lw; x.lineCap = 'round'; x.beginPath(); x.moveTo(sx, sy); x.quadraticCurveTo(mx, my, tx, ty); x.stroke(); });
+        x.strokeStyle = '#d6c4a6'; x.lineWidth = .45 * u; x.beginPath(); x.moveTo(sx, sy + .5 * u); x.quadraticCurveTo(mx, my + .6 * u, tx, ty + .6 * u); x.stroke();
+      });
+      // the eyes left in his face go blank white while they are out
+      ends.forEach(({ sx, sy, i }) => { const r = (f.er ? f.er[i] : i ? 2.7 : 2.3) * u; x.fillStyle = '#fff'; x.strokeStyle = INK; x.lineWidth = .45 * u; x.beginPath(); x.ellipse(sx, sy, r, r * 1.08, 0, 0, 7); x.fill(); x.stroke(); });
+      ends.forEach(({ tx, ty, R, i }) => {
+        x.fillStyle = '#fff'; x.strokeStyle = INK; x.lineWidth = .5 * u; x.beginPath(); x.arc(tx, ty, R, 0, 7); x.fill(); x.stroke();
+        const ix = tx + R * .16, iy = ty + R * .04; // white eyes, black pupils, like his own
+        x.fillStyle = INK; x.beginPath(); x.arc(ix, iy, R * .3, 0, 7); x.fill();
+        x.fillStyle = '#fff'; x.beginPath(); x.arc(ix - R * .1, iy - R * .12, R * .09, 0, 7); x.fill();
+        x.strokeStyle = INK; x.lineWidth = .42 * u; x.lineCap = 'round'; // lashes
+        [-.55, -.15, .25].forEach((a, n) => { const ang = -Math.PI / 2 + a, bx = tx + Math.cos(ang) * R, by = ty + Math.sin(ang) * R; x.beginPath(); x.moveTo(bx, by); x.lineTo(bx + Math.cos(ang - .25) * R * .45, by + Math.sin(ang - .25) * R * .45); x.stroke(); });
+      });
+    },
+    sweat: (x, f, P, u) => { const [cx, cy] = P(f.x, f.y), r = (f.r || 1.6) * u; x.fillStyle = '#9fd4f5'; x.strokeStyle = INK; x.lineWidth = .35 * u; x.beginPath(); x.moveTo(cx, cy - r * 2); x.quadraticCurveTo(cx + r, cy - r * .3, cx + r, cy); x.arc(cx, cy, r, 0, Math.PI); x.quadraticCurveTo(cx - r, cy - r * .3, cx, cy - r * 2); x.fill(); x.stroke(); }
+  };
+  const LAYER = { ring: 'under', bed: 'under', puff: 'over', burst: 'over', z: 'over', arm: 'top', leg: 'top', hand: 'top', stars: 'top', spiral: 'top', tongue: 'top', eyes: 'top' };
+
+  // fr: { s, head, hx, hy, bob, waist, parts:{name:[dx,dy]}, face, dx, dy, sq:[x,y], fx:[...] }; extra fx come from the runtime
+  const compose = (fr, rim, extra) => {
+    const key = JSON.stringify(fr) + (rim ? 'r' : '') + (extra ? JSON.stringify(extra) : '');
     if (cache.has(key)) return cache.get(key);
-    const rec = SP[fr.s], W = rec.w + 2 * M, H = rec.h + 2 * M, buf = new Uint8Array(W * H);
-    const put = (g, gw, gh, x0, y0) => { for (let y = 0; y < gh; y++) for (let x = 0; x < gw; x++) { const v = g[y * gw + x]; if (!v) continue; const X = x0 + x, Y = y0 + y; if (X >= 0 && Y >= 0 && X < W && Y < H) buf[Y * W + X] = v; } };
-    const bob = fr.bob || 0, waist = Math.round(rec.h * (fr.waist || .6));
+    const rec = SP[fr.s], bob = fr.bob || 0, waist = Math.round(rec.h * (fr.waist || .6));
+    // where the head sits, so effects can follow the face
+    let head = null;
+    if (fr.head) {
+      const hd = SP[fr.head], fc = hd.w / 2;
+      // bodies drawn with their own head (the Gear 5 poses) take a whole head over it, matched face to face
+      const [axh, ayh] = rec.headAnchor || (rec.face && hd.face ? [rec.face.x + rec.face.w / 2 - (hd.face.x + hd.face.w / 2) + fc, rec.face.y + rec.face.h / 2 - (hd.face.y + hd.face.h / 2) + hd.h] : [rec.w / 2, hd.h]);
+      head = { hd, x: Math.round(axh - fc) + (fr.hx || 0), y: Math.round(ayh - hd.h) + (fr.hy || 0) + bob };
+    }
+    const fxs = (fr.fx || []).concat(extra || []), cells = { under: [], over: [], top: [] };
+    const smooth = [];
+    fxs.forEach(f => { if (SMOOTH[f.t]) { const rel = f.rel === 'head' && head ? [head.x, head.y] : [0, 0]; smooth.push(rel[0] || rel[1] ? shift(f, rel) : f); return; } const fn = FX[f.t]; if (!fn) return; const rel = f.rel === 'head' && head ? [head.x, head.y] : f.rel === 'face' && rec.face ? [rec.face.x, rec.face.y] : [0, 0]; const ff = rel[0] || rel[1] ? shift(f, rel) : f; cells[f.layer || LAYER[f.t] || 'top'].push(...fn(ff, rec)); });
+    let minX = 0, minY = 0, maxX = rec.w, maxY = rec.h;
+    [cells.under, cells.over, cells.top].forEach(l => l.forEach(([x, y]) => { if (x < minX) minX = x; if (y < minY) minY = y; if (x + 1 > maxX) maxX = x + 1; if (y + 1 > maxY) maxY = y + 1; }));
+    const OX = Math.max(M, 2 - minX), OY = Math.max(M, 2 - minY), W = Math.max(rec.w + 2 * M, maxX + OX + 2), H = Math.max(rec.h + 2 * M, maxY + OY + 2);
+    const buf = new Uint8Array(W * H), top = new Uint8Array(W * H);
+    const setc = (b, x, y, v) => { const X = OX + x, Y = OY + y; if (X >= 0 && Y >= 0 && X < W && Y < H) b[Y * W + X] = v; };
+    const put = (g, gw, gh, x0, y0) => { for (let y = 0; y < gh; y++) for (let x = 0; x < gw; x++) { const v = g[y * gw + x]; if (v) setc(buf, x0 + x, y0 + y, v); } };
+    cells.under.forEach(([x, y, v]) => setc(buf, x, y, v));
     const g = grid(rec);
-    for (let y = 0; y < rec.h; y++) for (let x = 0; x < rec.w; x++) { const v = g[y * rec.w + x]; if (!v || (fr.nobar && v === 13)) continue; const Y = M + y + (y < waist ? bob : 0); buf[Y * W + M + x] = v; }
-    if (bob) for (let x = 0; x < rec.w; x++) { const v = g[(waist - 1) * rec.w + x]; if (v && !buf[(M + waist) * W + M + x]) buf[(M + waist) * W + M + x] = v; }
+    for (let y = 0; y < rec.h; y++) for (let x = 0; x < rec.w; x++) { const v = g[y * rec.w + x]; if (!v || (fr.nobar && v === 13)) continue; setc(buf, x, y + (y < waist ? bob : 0), v); }
+    if (bob) for (let x = 0; x < rec.w; x++) { const v = g[(waist - 1) * rec.w + x]; if (v && !buf[(OY + waist) * W + OX + x]) setc(buf, x, waist, v); }
     for (const [n, p] of Object.entries(rec.parts || {})) {
       const [dx, dy] = (fr.parts && fr.parts[n]) || [0, 0];
-      put(pgrid(p), p.w, p.h, M + p.x + dx, M + p.y + dy + (p.y < waist ? bob : 0));
+      put(pgrid(p), p.w, p.h, p.x + dx, p.y + dy + (p.y < waist ? bob : 0));
     }
     const faces = [];
-    if (fr.head) {
-      const hd = SP[fr.head], [axh, ayh] = rec.headAnchor, fc = hd.w / 2;
-      const hx = Math.round(axh - fc) + (fr.hx || 0), hy = Math.round(ayh - hd.h) + (fr.hy || 0) + bob;
-      put(grid(hd), hd.w, hd.h, M + hx, M + hy);
-      if (hd.face) faces.push({ f: hd.face, x: hx + hd.face.x, y: hy + hd.face.y, w: hd.face.w, h: hd.face.h });
+    if (head) {
+      put(grid(head.hd), head.hd.w, head.hd.h, head.x, head.y);
+      if (head.hd.face) faces.push({ f: head.hd.face, x: head.x + head.hd.face.x, y: head.y + head.hd.face.y, w: head.hd.face.w, h: head.hd.face.h });
     } else if (rec.face) {
       const src = fr.face ? SP[fr.face].face : rec.face;
       faces.push({ f: src, x: rec.face.x, y: rec.face.y + (rec.face.y < waist ? bob : 0), w: rec.face.w, h: rec.face.h });
     }
-    const pad = rim ? 1 : 0, c = document.createElement('canvas'); c.width = W; c.height = H;
-    const x = c.getContext('2d'), img = x.createImageData(W, H);
-    for (let n = 0; n < buf.length; n++) {
-      let col = RGB[buf[n]];
-      if (!buf[n] && rim) { const X = n % W, Y = (n / W) | 0; if ((X > 0 && buf[n - 1]) || (X < W - 1 && buf[n + 1]) || (Y > 0 && buf[n - W]) || (Y < H - 1 && buf[n + W])) col = rim; }
-      if (col) img.data.set([col[0], col[1], col[2], 255], n * 4);
+    cells.over.forEach(([x, y, v]) => setc(buf, x, y, v));
+    cells.top.forEach(([x, y, v]) => setc(top, x, y, v));
+    /* squash and stretch, done the animator's way on the pixel grid:
+       - the soft body (below the neck) takes the deformation and keeps its volume: squashed lower, it gets wider,
+         most at the belly; stretched taller, it gets thinner; the feet stay planted on the anchor
+       - the head (hair and face) is nearly rigid: it scales only a little and rides on top of the body
+       - overlap: the head can lag behind the body (lag > 0 sinks it in after a landing, lag < 0 lifts it on the rebound)
+       fr.sq: { s } for a squash (s < 1) or stretch (s > 1), plus { lag }, or explicit { b: [x, y], h: [x, y] } (a balloon) */
+    const ox = rec.pivot ? rec.pivot[0] : rec.w / 2, oy = rec.pivot ? rec.pivot[1] : rec.h;
+    let Wc = W, Hc = H, b1 = buf, b2 = top, Ax = OX + ox, Ay = OY + oy, map = (x, y) => [OX + x, OY + y], hk = [1, 1];
+    if (fr.sq && !rec.pivot) {
+      const q = Array.isArray(fr.sq) ? { b: fr.sq, h: [1 + (fr.sq[0] - 1) * .25, 1 + (fr.sq[1] - 1) * .25] } : fr.sq;
+      const s = q.s ?? 1, bx = q.b ? q.b[0] : 1 + (1 / s - 1) * 1.25, by = q.b ? q.b[1] : s, hx = q.h ? q.h[0] : 1 + (1 / s - 1) * .22, hy = q.h ? q.h[1] : 1 + (s - 1) * .28, lag = q.lag || 0;
+      const neck = OY + (rec.neck ?? Math.round(rec.face ? rec.face.y + rec.face.h : rec.h * .55)), Ay0 = Ay, Ax0 = Ax;
+      const prof = q.round ? (t => Math.sin(Math.PI * Math.min(1, Math.max(0, t)))) : (t => .35 + .65 * Math.sin(Math.PI * Math.min(1, Math.max(0, t * 1.08))));
+      const headH = neck * hy, bodyH = (Ay0 - neck) * by, below = H - Ay0, grow = Math.max(bx, hx, 1);
+      Wc = Math.ceil(W * grow) + 2; Hc = Math.ceil(headH + bodyH + below + Math.max(0, lag)) + 1;
+      Ax = Ax0 + (Wc - W) / 2; Ay = headH + bodyH;
+      const kxAt = t => 1 + (bx - 1) * prof(t);
+      const rs = b => {
+        const o = new Uint8Array(Wc * Hc), px = (Y, sy, k) => { if (sy < 0 || sy >= H) return; for (let X = 0; X < Wc; X++) { const sx = Math.floor(Ax0 + (X + .5 - Ax) / k); if (sx >= 0 && sx < W) { const v = b[sy * W + sx]; if (v) o[Y * Wc + X] = v; } } };
+        for (let Y = Math.max(0, Math.floor(headH) + Math.round(Math.min(0, lag)) - 1); Y < Math.floor(headH); Y++) px(Y, neck, kxAt(0)); // a lifted head stretches the neck
+        for (let Y = Math.floor(headH); Y < Hc; Y++) { // body, then what hangs below the feet
+          if (Y < Ay) { const t = (Y + .5 - headH) / bodyH; px(Y, Math.floor(neck + t * (Ay0 - neck)), kxAt(t)); }
+          else px(Y, Math.floor(Ay0 + (Y - Ay)), 1);
+        }
+        for (let Y = 0; Y < Math.ceil(headH) + 2; Y++) { const Yo = Y + Math.round(lag); if (Yo < 0 || Yo >= Hc) continue; const sy = Math.floor((Y + .5) / hy); if (sy < neck) px(Yo, sy, hx); }
+        return o;
+      };
+      b1 = rs(buf); b2 = rs(top); hk = [hx, hy];
+      map = (x, y) => { const X = OX + x, Y = OY + y; if (Y < neck) return [Ax + (X - Ax0) * hx, Y * hy + lag]; if (Y < Ay0) { const t = (Y - neck) / (Ay0 - neck); return [Ax + (X - Ax0) * kxAt(t), headH + t * bodyH]; } return [Ax + (X - Ax0), Ay + (Y - Ay0)]; };
     }
-    x.putImageData(img, 0, 0);
-    const out = { c, faces, rec }; cache.set(key, out); return out;
+    const paint = b => {
+      if (!b.some(v => v)) return null;
+      const c = document.createElement('canvas'); c.width = Wc; c.height = Hc;
+      const x = c.getContext('2d'), img = x.createImageData(Wc, Hc);
+      for (let n = 0; n < b.length; n++) {
+        let col = RGB[b[n]];
+        if (!b[n] && rim) { const X = n % Wc, Y = (n / Wc) | 0; if ((X > 0 && b[n - 1]) || (X < Wc - 1 && b[n + 1]) || (Y > 0 && b[n - Wc]) || (Y < Hc - 1 && b[n + Wc])) col = rim; }
+        if (col) img.data.set([col[0], col[1], col[2], 255], n * 4);
+      }
+      x.putImageData(img, 0, 0); return c;
+    };
+    const out = { c: paint(b1), top: paint(b2), faces: faces.map(f => { const [X, Y] = map(f.x, f.y); return { ...f, X, Y, Wd: f.w * hk[0], Hd: f.h * hk[1] }; }), rec, Ax, Ay, map, hk, smooth };
+    if (cache.size > CMAX) cache.delete(cache.keys().next().value);
+    cache.set(key, out); return out;
+  };
+  const shift = (f, [dx, dy]) => {
+    const o = { ...f };
+    ['x'].forEach(k => { if (o[k] != null) o[k] += dx; }); ['y'].forEach(k => { if (o[k] != null) o[k] += dy; });
+    if (o.eyes) o.eyes = o.eyes.map(([x, y]) => [x + dx, y + dy]);
+    if (o.from) o.from = [o.from[0] + dx, o.from[1] + dy]; if (o.to) o.to = [o.to[0] + dx, o.to[1] + dy]; if (o.elbow) o.elbow = [o.elbow[0] + dx, o.elbow[1] + dy]; if (o.cav && o.cav[2] != null) o.cav = [o.cav[0], o.cav[1], o.cav[2] + dx, o.cav[3] + dy];
+    return o;
   };
   /* draw a frame: anchor (ax, ay) is the feet (bottom centre), or the tail pivot for hanging sprites */
   const drawFrame = (ctx, fr, ax, ay, S, o = {}) => {
     const rec = SP[fr.s]; if (!rec) return;
-    const { c, faces } = compose(fr, o.rim);
-    const ox = rec.pivot ? rec.pivot[0] : rec.w / 2, oy = rec.pivot ? rec.pivot[1] : rec.h;
-    const x0 = Math.round(ax + (fr.dx || 0) * S * (o.flip ? -1 : 1) - (M + ox) * S), y0 = Math.round(ay + (fr.dy || 0) * S - (M + oy) * S);
+    const { c, top, faces, Ax, Ay, map, hk, smooth } = compose(fr, o.rim, o.fx);
+    const x0 = Math.round(ax + (fr.dx || 0) * S * (o.flip ? -1 : 1) - Ax * S), y0 = Math.round(ay + (fr.dy || 0) * S - Ay * S);
     ctx.save();
     if (o.flip) { ctx.translate(Math.round(ax) * 2, 0); ctx.scale(-1, 1); }
-    ctx.imageSmoothingEnabled = false; ctx.drawImage(c, x0, y0, c.width * S, c.height * S);
+    ctx.imageSmoothingEnabled = false; if (c) ctx.drawImage(c, x0, y0, c.width * S, c.height * S);
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    faces.forEach(f => { const im = faceImg(f.f); if (im) ctx.drawImage(im, x0 + (M + f.x) * S, y0 + (M + f.y) * S, f.w * S, f.h * S); });
+    faces.forEach(f => { const im = faceImg(f.f); if (im) ctx.drawImage(im, x0 + f.X * S, y0 + f.Y * S, f.Wd * S, f.Hd * S); });
+    if (top) { ctx.imageSmoothingEnabled = false; ctx.drawImage(top, x0, y0, top.width * S, top.height * S); }
+    if (smooth.length) { const P = (x, y) => { const [X, Y] = map(x + .5, y + .5); return [x0 + X * S, y0 + Y * S]; }; smooth.forEach(f => SMOOTH[f.t](ctx, f, P, S * hk[0])); }
     ctx.restore();
+  };
+  // a new sprite from one of the owner's, with a few pixels changed: edits are [x, y, colour] or [x0, y0, x1, y1, from, to]
+  const derive = (name, base, edits, extra = {}) => {
+    const b = SP[base]; if (!b) return; const g = grid(b).slice();
+    edits.forEach(e => { if (e.length === 3) g[e[1] * b.w + e[0]] = e[2]; else for (let y = e[1]; y <= e[3]; y++) for (let x = e[0]; x <= e[2]; x++) { const i = y * b.w + x; if (e[4] == null || g[i] === e[4]) g[i] = e[5]; } });
+    SP[name] = Object.assign({ name, w: b.w, h: b.h, face: b.face, pivot: b.pivot, headAnchor: b.headAnchor, parts: b.parts, g8: g, px: '' }, extra);
   };
   const box = fr => { const r = SP[fr.s]; return r ? { w: r.w, h: r.h, pivot: r.pivot } : { w: 0, h: 0 }; };
   const layer = rec => compose({ s: rec.name }, null).c;
-  window.IMP2 = { SP, drawFrame, box, layer, whenFaces, PALC, M, cell: DATA.cell };
+  window.IMP2 = { SP, drawFrame, box, layer, whenFaces, PALC, M, cell: DATA.cell, derive, FX, HAND };
 })();
+
+
+/* Gear 5 bodies made from the owner's Settle pose: the arm that reaches has its resting fist taken off,
+   so a rubber arm can come out of the sleeve at the shoulder instead. */
+(() => {
+  const { derive, SP } = window.IMP2;
+  // reach: right fist (x 33-39, y 38-42) painted back into coat
+  derive('g5:reach', 'g5t:settle', [[32, 38, 39, 41, 3, 7], [32, 38, 39, 41, 4, 7], [32, 42, 39, 42, 3, 8], [32, 38, 39, 42, 8, 7], [33, 42, 38, 42, 7, 8]], { shoulder: [37, 33], hip: [33, 46] });
+  // kick: the right foot lifts off, so a rubber leg can stretch out from the hip
+  derive('g5:kick', 'g5t:settle', [[27, 47, 44, 51, null, 0]], { shoulder: [37, 33], hip: [31, 46] });
+})();
+
 
 /* Clips built only from the owner's drawings: one body per pose, whole-head swaps, moving parts, whole-pixel offsets. */
 (() => {
@@ -163,6 +399,104 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   G('face-blank', '._.', 'Blank stare', 'Nothing happened', [[300, {}], [1200, { hy: 1 }]]);
   // the way back from Gear 5: the transform, played in reverse
   T('gear5back', 'Gear 5 return', 'One minute in Gear 5', CLIPS.gear5.frames.slice().reverse().map(fr => Object.assign({}, fr, { ms: Math.min(fr.ms, 200) })), { from: 'Your six key poses, reversed' });
+  /* ---------- round 6b: Gear 5, redone. Your Gear 5 bodies and heads, the transform's Settle pose as his stance,
+     and Gear 5's own cartoon rules drawn on the same pixel grid: a rubber arm that stretches out of the sleeve to point,
+     wave, grab and flick; squash and stretch; the heartbeat drum; steam puffs from the hair; eyes that pop out on springs,
+     spiral eyes, stars and a tongue (smooth, like your faces). ---------- */
+  const g = (s, head, ms, o = {}) => Object.assign({ s: s.includes(':') ? s : 'g5:' + s, ms }, head ? { head: 'g5head:' + head } : {}, o);
+  const G5 = (k, name, trigger, frames, extra = {}) => T(k, name, trigger, frames, Object.assign({ g5: true, from: 'Your Gear 5 poses and heads, with Gear 5 effects' }, extra));
+  const ST = 'g5t:settle', RC = 'reach', GP = 'gear5', JY = 'joy', CL = 'cloud';
+  const SH = [37, 33], CHEST = [26, 38];
+  const SHOCK_EYES = [[9.8, 16.2], [16.1, 15.6]], MOUTH = { 'gear5-shock': [13.2, 24.1], 'joy-grin': [15, 23.2], 'gear5-laugh': [14.5, 24.8], 'joy-flat': [13.8, 23.4] };
+  const arm = (d, k, hand = 'point', wob = 0) => ({ t: 'arm', to: [Math.round(SH[0] + d[0] * k), Math.round(SH[1] + d[1] * k)], hand, wob });
+  const steam = (p, x0) => ({ t: 'puff', x: x0 + Math.sin(p * 7) * 1.5, y: 3 - p * 13, s: p < .34 ? 2 : p < .7 ? 1 : 0 });
+  const stars = (a, n = 4) => ({ t: 'stars', rel: 'head', x: 13, y: 3, rx: 14, ry: 3, n, a });
+  const ring = (r, c = CHEST) => ({ t: 'ring', x: c[0], y: c[1], r, flat: .78 });
+  const DIRS = { E: [27, -3], NE: [20, -21], N: [1, -30], SE: [22, 13], S: [3, 21] };
+  // the shape of a rubber reach: pull back, shoot out past the mark, wobble, settle, hold, snap back (also used live by the runtime)
+  const REACH = [[90, -.12, 'fist', 0], [55, .5, 'point', .08], [65, 1.18, 'point', .12], [75, .92, 'point', -.07], [85, 1.04, 'point', .04], [760, 1, 'point', 0], [180, 1, 'point', .02], [65, .45, 'point', -.05], [60, .12, 'fist', 0]];
+  const reachFrames = (d, head, hand) => REACH.map(([ms, k, h, wob]) => g(RC, head, ms, { fx: [arm(d, k, h === 'point' ? hand || 'point' : h, wob)] })).concat([g(ST, null, 120)]);
+
+  // standing: the transform's last pose, breathing, with steam curling up off the hair
+  G5('g5idle', 'Gear 5 idle', 'After the transform', [0, 1, 2, 3, 4, 5].map(i => g(ST, null, 260, { bob: i === 2 || i === 3 ? 1 : 0, fx: [steam(i / 6, 13), steam((i / 6 + .5) % 1, 33)] })), { loop: true, from: 'Your Settle pose, steam from the hair' });
+  // Drums of Liberation: ba-dum, ba-dum, a ring off the chest with each beat
+  const thump = (k, ms, fx) => g(ST, null, ms, { sq: { b: [1 + .07 * k, 1 - .035 * k], h: [1, 1] }, fx });
+  const beat = [thump(1, 80, [ring(10)]), thump(.3, 80, [ring(16)]), thump(1.2, 80, [ring(10), ring(21)]), thump(.4, 130, [ring(26)]), g(ST, null, 260, { fx: [ring(31)] })];
+  G5('g5-drum', 'Drums of Liberation', 'His heartbeat, now and then', beat.concat(beat), { from: 'Your Settle pose, the heartbeat drum' });
+  // the transform now starts on the drum
+  CLIPS.gear5.frames = [0, 1].flatMap(() => [f('g5t:base', 90, { fx: [ring(10)] }), f('g5t:base', 90, { fx: [ring(17)] }), f('g5t:base', 90, { fx: [ring(10), ring(22)] }), f('g5t:base', 220, { fx: [ring(28)] })])
+    .concat(CLIPS.gear5.frames.map((fr, i) => i === 6 || i === 7 ? Object.assign({}, fr, { fx: [{ t: 'puff', x: 6, y: 14, s: 2 }, { t: 'puff', x: 46, y: 10, s: 2 }, { t: 'puff', x: 26, y: -4, s: 1 }] }) : fr));
+  CLIPS.gear5.from = 'Your six key poses, on the heartbeat drum';
+
+  // pointing: the arm stretches out of the sleeve to the thing, in five directions (the left ones are mirrored)
+  const PN = { E: 'Gear 5 point', NE: 'Gear 5 point up and across', N: 'Gear 5 point up', SE: 'Gear 5 point down and across', S: 'Gear 5 point down' };
+  Object.entries(DIRS).forEach(([k, d]) => G5('g5-point' + (k === 'E' ? '' : '-' + k.toLowerCase()), PN[k], 'Pointing at what you hover', reachFrames(d), { from: 'Your Settle pose, a rubber arm and a pointing hand' }));
+  G5('g5-point-around', 'Gear 5 points around', 'Showing you around', [g(RC, null, 90, { fx: [arm(DIRS.S, .2, 'fist')] })].concat(['S', 'SE', 'E', 'NE', 'N', 'NE', 'E'].map((k, i) => g(RC, null, i ? 230 : 120, { fx: [arm(DIRS[k], i ? 1 : .6, 'point', i % 2 ? .08 : -.06)] }))).concat([g(RC, null, 70, { fx: [arm(DIRS.E, .3, 'fist')] }), g(ST, null, 120)]));
+  // waving: arm up high, hand swinging
+  // waving: upper arm out to the side, elbow bent, the forearm swings from the elbow with the palm towards you
+  const EL = [SH[0] + 14, SH[1] + 1], wv = (deg, len = 15, wob = 0) => { const t = deg * Math.PI / 180; return { t: 'arm', elbow: EL, to: [Math.round(EL[0] + Math.sin(t) * len), Math.round(EL[1] - Math.cos(t) * len)], hand: 'palm', wob }; };
+  G5('g5-wave', 'Gear 5 wave', 'Pointer comes close', [g(RC, null, 70, { fx: [{ t: 'arm', elbow: [SH[0] + 10, SH[1] + 2], to: [SH[0] + 13, SH[1] - 6], hand: 'fist' }] }), g(RC, null, 70, { fx: [wv(-5, 11)] }),
+    g(RC, null, 90, { fx: [wv(18, 15, -.08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }), g(RC, null, 90, { fx: [wv(-22, 15, .08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }),
+    g(RC, null, 90, { fx: [wv(18, 15, -.08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }), g(RC, null, 90, { fx: [wv(-22, 15, .08)] }), g(RC, null, 80, { fx: [wv(-4, 15)] }),
+    g(RC, null, 70, { fx: [{ t: 'arm', elbow: [SH[0] + 10, SH[1] + 2], to: [SH[0] + 12, SH[1] - 4], hand: 'fist' }] }), g(ST, null, 100)], { from: 'Your Settle pose, a rubber arm bent at the elbow and an open palm' });
+
+  // laughing: your Gear 5 pose, hand on his head, bouncing with the laugh
+  const burstL = a => ({ t: 'burst', x: a ? 46 : 4, y: 8, a: a ? -1.2 : -2.4 });
+  const LAUGH = [[.92, 1, 0], [1.06, -1, -2], [.94, 2, 0], [1.05, -1, -2], [.92, 1, 0], [1.06, -1, -2], [.95, 1, 0], [1.02, 0, -1]];
+  G5('g5-laugh', 'Gear 5 laugh', 'Poked, or told to laugh', LAUGH.map(([sv, lag, dy], i) => g(GP, null, 90, { dy, sq: { s: sv, lag }, fx: [burstL(i % 2)] })).concat([g(GP, null, 500)]), { from: 'Your Gear 5 pose, bouncing with the laugh' });
+  G5('g5-grin', 'Gear 5 grin', 'Something nice happened', [[120, { hy: -1 }], [120, { hy: -2, bob: 1 }], [120, { hy: -1 }], [120, { hy: -2, bob: 1 }], [700, { hy: -1 }]].map(([ms, o]) => g(JY, 'joy-grin', ms, o)));
+  const HOP = (head, body, h) => [g(body, head, 90, { sq: { s: 0.82, lag: 1 } }), g(body, head, 60, { dy: -4, sq: { s: 1.2, lag: -2 } }), g(body, head, 70, { dy: -9 * h, sq: { s: 1.1, lag: -1 } }), g(body, head, 120, { dy: -12 * h, fx: [burstL(1), burstL(0)] }), g(body, head, 70, { dy: -8 * h, sq: { s: 1.08, lag: 1 } }), g(body, head, 50, { dy: -2, sq: { s: 1.16 } }),
+    g(body, head, 70, { sq: { s: 0.76, lag: 2 } }), g(body, head, 70, { sq: { s: 0.9, lag: 3 } }), g(body, head, 70, { sq: { s: 1.05, lag: -1 } }), g(body, head, 90, { sq: { s: 0.98 } })];
+  G5('g5-cheer', 'Gear 5 cheer', 'A win, or the flagship', HOP('joy-grin', JY, 1).concat(HOP('joy-grin', JY, .7)).concat([g(JY, 'joy-grin', 500)]), { from: 'Your joy burst, hopping with squash and stretch' });
+
+  // startled: his eyes shoot out on springs, then snap back
+  const pop = (out, ms, o = {}) => g(RC, 'gear5-shock', ms, Object.assign({ fx: [{ t: 'eyes', rel: 'head', eyes: SHOCK_EYES, out, wob: o.wob || 0 }].concat(o.tongue ? [{ t: 'tongue', rel: 'head', cav: [5.6, 4, 13.2, 21.7], x: MOUTH['gear5-shock'][0], y: MOUTH['gear5-shock'][1], len: o.tongue * .62, sway: o.sway || 0 }] : []) }, o.sq ? { sq: o.sq } : {}, o.dy ? { dy: o.dy } : {}));
+  G5('g5-shock', 'Gear 5 eyes pop', 'Startled, or hit by the ball', [g(RC, null, 160), g(RC, 'joy-flat', 70, { sq: { s: 0.86, lag: 1 } }), g(RC, 'joy-flat', 60, { sq: { s: 0.8, lag: 2 } }),
+    pop(9, 40, { sq: { s: 1.22, lag: -2 }, dy: -2 }), pop(19, 50, { sq: { s: 1.16, lag: -3 }, dy: -4, tongue: 3 }), pop(17, 70, { sq: { s: 1.06, lag: -1 }, dy: -3, tongue: 5, wob: 2 }), pop(18, 70, { dy: -1, tongue: 6, sway: 1.5, wob: -2 }),
+    pop(17, 90, { tongue: 6, sway: -1.5, wob: 1.2 }), pop(17.5, 90, { tongue: 6, sway: 1.5, wob: -.6 }), pop(17, 260, { tongue: 5, sway: 0 }), pop(7, 40, { sq: { s: 0.9, lag: 1 } }), g(RC, 'gear5-shock', 70, { sq: { s: 0.86, lag: 2 } }),
+    g(RC, 'gear5-shock', 70, { sq: { s: 1.05, lag: -1 } }), g(RC, 'gear5-shock', 500, { fx: [{ t: 'sweat', rel: 'head', x: 23, y: 11 }] })], { from: 'Your shock head, eyes on stalks and a tongue' });
+  // boing: rubber wobble
+  G5('g5-boing', 'Gear 5 boing', 'Bumped, or a click right next to him', [[.74, 1, 'gear5-shock'], [1.24, -3, 'gear5-shock'], [.86, 2, 'joy-grin'], [1.1, -1, 'joy-grin'], [.95, 1, 'joy-grin'], [1.03, 0, 'joy-grin']].map(([sv, lag, h]) => g(RC, h, 70, { sq: { s: sv, lag } })).concat([g(RC, 'joy-grin', 300)]));
+  // dizzy: spiral eyes, tongue out, stars going round
+  G5('g5-dizzy', 'Gear 5 dizzy', 'Shaken, or his head circled', [...Array(14)].map((_, i) => g(RC, 'gear5-shock', 90, { dx: i % 4 < 2 ? 1 : -1, hx: i % 4 === 1 ? 1 : i % 4 === 3 ? -1 : 0, fx: [{ t: 'spiral', rel: 'head', eyes: SHOCK_EYES, r: 2.5, turn: i }, { t: 'tongue', rel: 'head', cav: [5.6, 4, 13.2, 21.7], x: MOUTH['gear5-shock'][0], y: MOUTH['gear5-shock'][1], len: 3.6, sway: i % 4 < 2 ? 1.4 : -1.4 }, stars(i * .45)] })).concat([g(RC, 'joy-flat', 260, { bob: 1 }), g(RC, 'joy-flat', 400)]), { from: 'Your shock head, spiral eyes and stars' });
+  // flattened like rubber, then boing back up
+  G5('g5-ko', 'Gear 5 flattened', 'Shaken hard, or a hard hit', [g(RC, 'gear5-shock', 60, { sq: { s: 0.8, lag: 1 } }), g(RC, 'joy-flat', 80, { sq: { b: [1.7, .42], h: [1.28, .62], lag: 2 } }), g(RC, 'joy-flat', 520, { sq: { b: [1.66, .44], h: [1.25, .64], lag: 2 }, fx: [stars(.3, 3)] }), g(RC, 'joy-flat', 300, { sq: { b: [1.62, .46], h: [1.22, .66], lag: 1 }, fx: [stars(1.2, 3)] }),
+    g(RC, 'gear5-shock', 70, { sq: { s: 1.3, lag: -3 } }), g(RC, 'joy-grin', 70, { sq: { s: 0.86, lag: 2 } }), g(RC, 'joy-grin', 70, { sq: { s: 1.08, lag: -1 } }), g(RC, 'joy-grin', 80, { sq: { s: 0.97 } }), g(RC, 'joy-grin', 300, { fx: [{ t: 'sweat', rel: 'head', x: 24, y: 12 }] })]);
+  // growing: he blows up like a balloon and pops back; shrinking: he lets the air out
+  const ring3 = [{ t: 'puff', x: -2, y: 26, s: 2 }, { t: 'puff', x: 54, y: 22, s: 2 }, { t: 'puff', x: 26, y: -6, s: 1 }];
+  const bal = k => ({ b: [1 + .8 * k, 1 + .16 * k], h: [1 + .08 * k, 1 + .06 * k], round: true });
+  G5('g5-inflate', 'Gear 5 balloon', 'Grown bigger', [g(RC, 'gear5-laugh', 90, { sq: bal(.3) }), g(RC, 'gear5-laugh', 90, { sq: bal(.65) }), g(RC, 'gear5-laugh', 140, { sq: bal(.95) }), g(RC, 'gear5-laugh', 260, { sq: bal(1), dy: -1 }), g(RC, 'gear5-shock', 60, { sq: { s: 1.25, lag: -3 }, fx: ring3 }), g(RC, 'joy-grin', 70, { sq: { s: 0.86, lag: 2 } }), g(RC, 'joy-grin', 70, { sq: { s: 1.06, lag: -1 } }), g(RC, 'joy-grin', 500, { fx: [burstL(1)] })]);
+  G5('g5-deflate', 'Gear 5 deflate', 'Shrunk smaller', [g(RC, 'joy-flat', 120, { sq: { s: 0.95, lag: 1 } }), g(RC, 'joy-flat', 160, { sq: { s: 0.88, lag: 2 }, fx: [{ t: 'puff', x: 52, y: 30, s: 2 }] }), g(RC, 'joy-flat', 160, { sq: { s: 0.84, lag: 3 }, fx: [{ t: 'puff', x: 58, y: 26, s: 1 }] }), g(RC, 'joy-flat', 260, { sq: { s: 0.85, lag: 3 }, fx: [{ t: 'puff', x: 63, y: 22, s: 0 }] }), g(RC, 'joy-flat', 120, { sq: { s: 0.92, lag: 1 } }), g(RC, 'joy-flat', 500, { fx: [{ t: 'sweat', rel: 'head', x: 23, y: 12 }] })]);
+
+  // the cursor rests on him: he peeks at you through his fingers, grinning
+  const peekArm = (k, dy = 0) => ({ t: 'arm', rel: 'head', to: [11, 17 + dy], hand: 'open', wob: .25 * k });
+  G5('g5-shy', 'Gear 5 peek', 'The cursor rests on him', [g(RC, 'joy-grin', 90, { fx: [arm([-6, -10], .5, 'open', .2)] }), g(RC, 'joy-grin', 120, { fx: [peekArm(1, -2)] }), g(RC, 'joy-grin', 500, { fx: [peekArm(1)] }), g(RC, 'joy-grin', 160, { hx: 1, fx: [peekArm(1, 2)] }), g(RC, 'joy-grin', 700, { hx: 1, fx: [peekArm(1, 3)] }), g(RC, 'joy-grin', 120, { fx: [peekArm(1)] }), g(ST, null, 100)], { from: 'Your joy grin head, an open hand over his eyes' });
+  G5('g5-wow', 'Gear 5 wow', 'Curious, or peeking in', [[200, { hx: 1 }], [220, { hx: 1, hy: 1 }], [520, { hx: 2, hy: 1 }], [220, { hx: 1, hy: 1, bob: 1 }], [700, { hx: 2, hy: 1 }]].map(([ms, o]) => g(RC, 'cloud-wow', ms, o)).concat([g(ST, null, 80)]));
+  G5('g5-focus', 'Gear 5 reading', 'You type', [[300, { hy: 1, hx: 1 }], [900, { hy: 1, hx: 1, bob: 1 }], [900, { hy: 1, hx: 1 }], [300, { hy: 1, bob: 1 }]].map(([ms, o]) => g(RC, 'cloud-wow', ms, o)));
+  G5('g5-smug', 'Gear 5 smug', 'Showing off', [[220, { hy: -1 }], [300, { hy: -1, hx: 1 }], [900, { hy: -1, hx: 1, bob: 1 }], [600, { hy: -1, hx: 1 }]].map(([ms, o]) => g(CL, 'cloud-smug', ms, o)));
+  G5('g5-flat', 'Gear 5 unimpressed', 'Annoyed', [[80, { hx: -1 }], [80, { hx: 1 }], [80, { hx: -1 }], [80, { hx: 1 }], [140, {}], [900, { bob: 1, fx: [{ t: 'sweat', rel: 'head', x: 23, y: 12 }] }]].map(([ms, o]) => g(RC, 'joy-flat', ms, o)));
+  // missed the catch: tongue out at you, wagging
+  G5('g5-taunt', 'Gear 5 taunt', 'Missing the catch', [...Array(6)].map((_, i) => g(RC, 'joy-grin', 120, { hx: i % 2 ? 1 : -1, fx: [{ t: 'tongue', rel: 'head', cav: [8.4, 4, 15, 21.4], x: MOUTH['joy-grin'][0], y: MOUTH['joy-grin'][1], len: 3.8, w: 3.6, sway: i % 2 ? 1.6 : -1.6 }] })).concat([g(RC, 'joy-grin', 400)]), { from: 'Your joy grin head and a tongue' });
+
+  // sleepy: he floats up on a little cloud and dozes
+  const bed = { t: 'bed', x: 26, y: 53, w: 34 }, zz = i => ({ t: 'z', x: 44 + i % 3, y: 4 - (i % 3) * 4 });
+  G5('g5-yawn', 'Gear 5 getting sleepy', 'Left alone for a while', [[300, {}], [300, { hy: 1 }], [420, { hy: 2, bob: 1 }], [90, { hy: -1 }], [300, {}], [520, { hy: 2, bob: 1 }]].map(([ms, o]) => g(RC, 'joy-flat', ms, o)).concat([g(RC, 'joy-flat', 220, { dy: -1, fx: [bed] }), g(RC, 'joy-flat', 220, { dy: -2, fx: [bed] })]));
+  G5('g5-sleep', 'Gear 5 floating nap', 'Left alone', [-3, -4, -5, -4].map((dy, i) => g(RC, 'joy-flat', 420, { dy, hy: 2, fx: [bed, zz(i)] })), { loop: true, from: 'Your flat head, floating on a cloud' });
+  G5('g5-watch', 'Gear 5 watching', 'A film is playing', [-2, -3].map(dy => g(RC, 'cloud-wow', 700, { dy, hy: 1, fx: [bed] })), { loop: true });
+
+  // hopping: crouch, fly, land with a squash
+  G5('g5-crouch', 'Gear 5 crouch', 'Before a hop', [g(ST, null, 90, { sq: { s: 0.88, lag: 1 } }), g(ST, null, 100, { sq: { s: 0.8, lag: 2 } })]);
+  G5('g5-air', 'Gear 5 in the air', 'Hopping, thrown or dropping in', [g(JY, null, 140, { sq: { s: 1.12, lag: -1 } }), g(JY, null, 140, { sq: { s: 1.08, lag: -1 }, dy: -1 })], { loop: true });
+  G5('g5-touch', 'Gear 5 touch down', 'Landing on a perch', [g(ST, null, 60, { sq: { s: 0.74, lag: 1 }, fx: [{ t: 'puff', x: 6, y: 50, s: 1 }, { t: 'puff', x: 46, y: 50, s: 1 }] }), g(ST, null, 70, { sq: { s: 0.86, lag: 3 } }), g(ST, null, 70, { sq: { s: 1.07, lag: -1 } }), g(ST, null, 80, { sq: { s: 0.97 } })]);
+  G5('g5-drag', 'Gear 5 stretched', 'Being dragged', [g(JY, null, 120, { sq: { s: 1.3, lag: -2 } }), g(JY, null, 120, { sq: { s: 1.22, lag: -1 } })], { loop: true, from: 'Your joy burst, stretched like rubber' });
+
+  // reaching for things: grab the cursor, a treat, the light switch; kick the ball (the runtime aims these live)
+  G5('g5-catch', 'Gear 5 grab', 'Wiggle the cursor above him', REACH.map(([ms, k, h, wob], i) => g(RC, 'cloud-wow', ms, { fx: [arm([4, -30], k, i >= 5 ? 'fist' : h === 'point' ? 'grab' : h, wob)] })).concat([g(ST, null, 100)]), { from: 'Your Settle pose, a rubber arm that grabs' });
+  G5('g5-chomp', 'Gear 5 snack', 'Fed a treat', [g(RC, 'gear5-laugh', 110, { hy: -1, sq: { s: 0.95, lag: 1 } }), g(RC, 'gear5-laugh', 110, { sq: { s: 1.04, lag: -1 } }), g(RC, 'gear5-laugh', 110, { hy: -1, sq: { s: 0.95, lag: 1 } }), g(RC, 'gear5-laugh', 110, { sq: { s: 1.03 } }), g(JY, 'joy-grin', 600, { hy: -1, fx: [burstL(1)] })]);
+  G5('g5-eat', 'Gear 5 grabs a snack', 'A treat nearby', REACH.slice(0, 6).map(([ms, k, h, wob], i) => g(RC, 'cloud-wow', ms, { fx: [arm([18, -16], k, i >= 5 ? 'fist' : 'grab', wob)] })).concat([g(RC, 'cloud-wow', 90, { fx: [{ t: 'arm', rel: 'head', to: [17, 22], hand: 'fist', wob: .2 }] })]).concat(CLIPS['g5-chomp'].frames));
+  const legKick = (k, ring, wob = 0) => ({ t: 'leg', to: [Math.round(33 + 28 * k), Math.round(46 - 6 * k)], ring, wob });
+  G5('g5-kick', 'Gear 5 kick', 'The ball rolls up to him', [g('kick', 'joy-grin', 90, { fx: [legKick(.1)] }), g('kick', 'joy-grin', 60, { fx: [legKick(.6, true)] }), g('kick', 'joy-grin', 90, { fx: [legKick(1.15, true, .1)] }), g('kick', 'joy-grin', 220, { fx: [legKick(1, false, -.05)] }), g('kick', 'joy-grin', 70, { fx: [legKick(.4)] }), g(ST, null, 120)], { from: 'Your Settle pose, a rubber leg and the orange ring' });
+  G5('g5-hold', 'Gear 5 reaching', 'While his arm is out', [g(RC, null, 1000)], { loop: true });
   window.IMP2CLIPS = { CLIPS, FACES, GLYPHS };
 })();
 
@@ -170,6 +504,9 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
    The brain knows nothing about this design: it finds perches through a selector map and data-imp
    attributes, so a redesign only needs a new map (ImpLive.configure) or a few data-imp attributes.
    v2: size control, wiggle and project reactions, a one-minute Gear 5, inner scroll areas,
+   v3: Gear 5 has his own version of every move; a speech bubble; toys (bonk, feed, kick, hopToSpot).
+   v4: Gear 5 redone: a rubber arm (or leg) that reaches real things on the page, squash and stretch, the heartbeat drum,
+       eyes that pop out on stalks, spiral eyes and a tongue; grab(x, y, kind, cb) for toys.
    riding moving elements, and noticing the cursor, clicks, videos, typing and copying. */
 (() => {
   if (window.ImpLive) return;
@@ -331,19 +668,69 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     return a < -62 ? 'point-up' : a < -22 ? 'point-upright' : a < 24 ? 'point' : a < 64 ? 'point-downright' : 'point-down';
   };
   const pointAtEl = el => { const r = el.getBoundingClientRect(); return pointAt(r.left + r.width / 2, r.top + r.height / 2); };
-  const calm = () => ['idle', 'blink', 'sit', 'hook'].includes(me.clip);
+  const calm = () => ['idle', 'blink', 'sit', 'hook', 'g5idle', 'g5-watch'].includes(me.clip);
 
   /* ---------- clip player ---------- */
-  const idleClip = () => me.costume === 'gear5' ? 'g5idle' : (me.perch?.type === 'hang' || me.perch?.type === 'header') ? 'hook' : (me.watching ? 'sit' : 'idle');
-  const PERSIST = ['idle', 'g5idle', 'hook', 'dangle', 'air', 'sleep', 'sit'];
-  const play = (k, then) => { me.clip = k; me.fi = 0; me.ft = 0; me.cycles = 0; me.queue = then ? [then] : []; };
+  // v3: in Gear 5 every move has its Gear 5 version, so he behaves the same in either costume
+  const G5MAP = {
+    wave: 'g5-wave', point: 'g5-point', 'point-upright': 'g5-point-ne', 'point-up': 'g5-point-n', 'point-downright': 'g5-point-se', 'point-down': 'g5-point-s', 'point-around': 'g5-point-around',
+    jump: 'g5-boing', catch: 'g5-catch', 'catch-miss': 'g5-taunt', shrug: 'g5-smug', smug: 'g5-smug', stretch: 'g5-drum', sit: 'g5-watch', yawn: 'g5-yawn', sleep: 'g5-sleep', rest: 'g5-sleep', peek: 'g5-wow',
+    crouch: 'g5-crouch', touch: 'g5-touch', air: 'g5-air', dangle: 'g5-drag', hook: 'g5idle', idle: 'g5idle', blink: 'g5idle', tap: 'g5-air', kick: 'g5-kick', eat: 'g5-chomp',
+    'react-smile': 'g5-grin', 'react-laugh': 'g5-laugh', 'react-shock': 'g5-shock', 'react-curious': 'g5-wow', 'react-focused': 'g5-focus', 'react-annoyed': 'g5-flat', 'react-smug': 'g5-smug',
+    'react-shy': 'g5-shy', 'react-sleepy': 'g5-yawn', 'react-sad': 'g5-deflate', 'react-dizzy': 'g5-dizzy', 'react-triumph': 'g5-cheer',
+    'face-swirl': 'g5-dizzy', 'face-ko': 'g5-ko', 'face-grr': 'g5-flat', 'face-happy': 'g5-grin', 'face-sparkle': 'g5-cheer', 'face-kitty': 'g5-shy', 'face-blank': 'g5-flat'
+  };
+  const look = k => { if (!k || me.costume !== 'gear5') return k; if (G5MAP[k]) return G5MAP[k]; return CLIPS[k]?.g5 || /^(g5|gear5|cloud)/.test(k) ? k : 'g5-grin'; };
+  const idleClip = () => me.costume === 'gear5' ? (me.watching ? 'g5-watch' : 'g5idle') : (me.perch?.type === 'hang' || me.perch?.type === 'header') ? 'hook' : (me.watching ? 'sit' : 'idle');
+  const PERSIST = ['idle', 'g5idle', 'hook', 'dangle', 'air', 'sleep', 'sit', 'g5-sleep', 'g5-watch', 'g5-hold', 'g5-air', 'g5-drag'];
+  const play = (k, then) => { k = look(k); me.clip = CLIPS[k] ? k : idleClip(); me.fi = 0; me.ft = 0; me.cycles = 0; me.queue = then ? [look(then)] : []; };
   const frame = () => (CLIPS[me.clip] || CLIPS.idle).frames[me.fi];
-  // a reaction where he stands; costumes and hooks get their own version
+  // a reaction where he stands; hooks get their own version, Gear 5 gets his through look()
   const react = name => {
-    if (me.costume === 'gear5') { play('g5joy', 'g5idle'); return; }
     if (!standing()) { play('dangle', 'hook'); return; }
     if (CLIPS[name]) play(name, idleClip());
   };
+  const asleep = () => me.clip === 'sleep' || me.clip === 'g5-sleep';
+
+  /* ---------- Gear 5 reaches: the rubber arm stretches out of the sleeve to a real spot on the page ---------- */
+  // pull back, shoot past the mark, wobble, settle, hold, snap back: [ms, reach 0..1, hand, wobble]
+  const REACH_T = [[90, -.12, 'fist', 0], [55, .5, 'go', .08], [65, 1.18, 'go', .12], [75, .92, 'go', -.07], [85, 1.04, 'go', .04], [0, 1, 'go', 0], [180, 1, 'go', .02], [65, .45, 'go', -.05], [60, .12, 'fist', 0]];
+  const REACH_K = { // per kind: hand, head, how long he holds, the longest arm (art pixels), what he does after
+    point: { hand: 'point', head: null, hold: 760, max: 54, short: 6, then: null },
+    catch: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 110, max: 95, then: 'g5-taunt' },
+    eat: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 140, max: 95, then: 'g5-chomp' },
+    flick: { hand: 'point', head: 'joy-grin', hold: 220, max: 110, then: 'g5-laugh' },
+    kick: { leg: true, head: 'joy-grin', hold: 170, max: 95, then: 'g5-cheer' }
+  };
+  const SHOULDER = [37, 33], HIP = [31, 46];
+  const toLocal = (sx, sy, flip) => { const a = { x: Math.round(me.x / S) * S, y: Math.round(me.y / S) * S }; return [(flip ? a.x - sx : sx - a.x) / S + 26, (sy - a.y) / S + 52]; };
+  const canReach = (kind, x, y) => { const K = REACH_K[kind], from = K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(x, y, x < me.x); return Math.hypot(lx - from[0], ly - from[1]) <= K.max; };
+  const startReach = (kind, x, y, o = {}) => {
+    if (me.costume !== 'gear5' || me.mode !== 'perch' || !standing() || me.hidden || me.reach) return false;
+    const K = REACH_K[kind]; if (!K) return false;
+    if (K.max < 90 ? false : !canReach(kind, x, y)) return false;
+    me.flip = x < me.x; me.lastTouch = performance.now();
+    me.reach = { kind, K, x, y, el: o.el || null, follow: o.follow || null, cb: o.cb || null, t: 0, i: 0, hit: false };
+    play('g5-hold'); return true;
+  };
+  const reachTick = dt => {
+    const r = me.reach; if (!r) return null;
+    if (me.mode !== 'perch' || me.costume !== 'gear5' || me.hidden) { me.reach = null; return null; }
+    r.t += dt;
+    let row = REACH_T[r.i], len = r.i === 5 ? r.K.hold : row[0];
+    while (r.t >= len) { r.t -= len; r.i++; if (r.i >= REACH_T.length) { const then = r.K.then; me.reach = null; play(then || idleClip(), then ? idleClip() : null); return null; } row = REACH_T[r.i]; len = r.i === 5 ? r.K.hold : row[0]; }
+    // where the thing is now
+    if (r.el && r.el.isConnected) { const b = r.el.getBoundingClientRect(); r.x = b.left + b.width / 2; r.y = b.top + b.height / 2; }
+    if (r.follow) { const p = r.follow(); if (p) { r.x = p[0]; r.y = p[1]; } }
+    const from = r.K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(r.x, r.y, me.flip), dx = lx - from[0], dy = ly - from[1], dist = Math.hypot(dx, dy) || 1;
+    const L = Math.max(4, Math.min(r.K.max, dist - (r.K.short || 0))), k = row[1];
+    if (!r.hit && r.i >= 2) { r.hit = true; try { r.cb && r.cb(); } catch { } }
+    const to = [Math.round(from[0] + dx / dist * L * k), Math.round(from[1] + dy / dist * L * k)];
+    const hand = row[2] === 'fist' ? 'fist' : (r.hit && r.K.got) ? r.K.got : r.K.hand;
+    return { fr: { s: r.K.leg ? 'g5:kick' : 'g5:reach', head: r.K.head ? 'g5head:' + r.K.head : undefined, ms: 1 }, fx: [r.K.leg ? { t: 'leg', to, ring: r.i >= 1 && r.i <= 3, wob: row[3] } : { t: 'arm', to, hand, wob: row[3] }] };
+  };
+  // point at an element: the arm in Gear 5, the hand in eight directions otherwise
+  const pointEl = el => { const b = el.getBoundingClientRect(); if (me.costume === 'gear5') return startReach('point', b.left + b.width / 2, b.top + b.height / 2, { el }); play(pointAtEl(el), idleClip()); return true; };
 
   /* ---------- moving between perches ---------- */
   const hopTo = (p, after) => {
@@ -364,7 +751,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   };
   const dropIn = p => { // fall into view from the top edge onto a perch below
     settle(p); const a = anchorOf(p);
-    me.perch = null; me.x = a.x; me.y = -20; me.vx = 0; me.vy = 0; me.mode = 'fall'; me.target = p; play(me.costume === 'gear5' ? 'g5joy' : 'air');
+    me.perch = null; me.x = a.x; me.y = -20; me.vx = 0; me.vy = 0; me.mode = 'fall'; me.target = p; play('air');
     if (RM) { me.perch = p; me.x = a.x; me.y = a.y; me.mode = 'perch'; arrive(); }
   };
   const leapIn = p => { // the reader scrolled back up: jump up from the bottom edge and land on a perch
@@ -372,17 +759,17 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     if (RM) { me.perch = p; me.x = a.x; me.y = a.y; me.mode = 'perch'; arrive(); return; }
     const apex = Math.max(20, a.y - 40 - spriteH() * .3), y0 = H + spriteH() * .4;
     me.perch = null; me.x = a.x; me.y = y0; me.vx = 0; me.vy = -Math.sqrt(2 * 2200 * Math.max(60, y0 - apex)); me.mode = 'fall'; me.target = p;
-    play(me.costume === 'gear5' ? 'g5joy' : 'air');
+    play('air');
   };
 
   const follow = (from = 'top') => { // the reader scrolled away from him: come back into view from the side they left him on
     const list = candidates().filter(c => c.type === 'ledge' || c.type === 'base');
     const c = pick(list);
-    if (c && me.costume === 'base' && Math.random() < .5) me.pending = any(['peek', 'react-curious']);
+    if (c && Math.random() < .5) me.pending = any(['peek', 'react-curious']);
     if (c) return from === 'bottom' ? leapIn(c) : dropIn(c);
-    me.perch = null; me.x = W * (.55 + Math.random() * .35); me.y = -20; me.vx = me.vy = 0; me.target = null; me.mode = 'fall'; play(me.costume === 'gear5' ? 'g5joy' : 'air');
+    me.perch = null; me.x = W * (.55 + Math.random() * .35); me.y = -20; me.vx = me.vy = 0; me.target = null; me.mode = 'fall'; play('air');
   };
-  const fallFromHere = () => { if (me.costume === 'base' && !me.pending) me.pending = any(['react-sad', 'react-shock', 'react-annoyed']); me.perch = null; me.mode = 'fall'; me.vx = 0; me.vy = -260; me.target = null; me.rise = 0; play(me.costume === 'gear5' ? 'g5joy' : 'air'); };
+  const fallFromHere = () => { if (!me.pending) me.pending = any(['react-sad', 'react-shock', 'react-annoyed']); me.perch = null; me.mode = 'fall'; me.vx = 0; me.vy = -260; me.target = null; me.rise = 0; play('air'); };
   // where is his perch now: 'ok', 'gone' (closed, hidden, shrunk away), 'covered', or the side it scrolled off to
   const perchState = () => {
     const p = me.perch; if (!p || p.type === 'free') return 'ok';
@@ -400,22 +787,22 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
 
   /* ---------- the brain ---------- */
   const think = now => {
-    if (me.mode !== 'perch') return;
+    if (me.mode !== 'perch' || me.reach) return;
     const quiet = now - me.lastTouch, st = perchState();
     if (st === 'gone') { fallFromHere(); return; }
     if (me.watching && (!me.watching.isConnected || me.watching.paused || me.watching.ended)) me.watching = null;
     if (st === 'top' || st === 'bottom') { follow(st); return; }
     if (me.watching && !me.watching.paused && !me.watching.ended && me.watching.isConnected) return; // watching a film
-    if (quiet > 60000 && standing() && me.costume === 'base') { if (me.clip !== 'sleep' && me.clip !== 'yawn') play('sleep'); return; }
-    if (quiet > 35000 && standing() && me.costume === 'base' && ready('yawn', 40000)) { play('yawn', 'sleep'); return; }
+    if (quiet > 60000 && standing()) { if (!asleep() && !['yawn', 'g5-yawn'].includes(me.clip)) play('sleep'); return; }
+    if (quiet > 35000 && standing() && ready('yawn', 40000)) { play('yawn', 'sleep'); return; }
     const r = Math.random();
     if (r < .38) { const c = pick(candidates(), me.perch); if (c) { me.flip = anchorOf(settle(c)).x < me.x; return hopTo(c); } }
     if (r < .46 && !me.stuntDone && quiet > 20000) return stunt();
-    if (r < .58 && standing() && me.costume === 'base') { // point at something on screen
+    if (r < .58 && standing()) { // point at something on screen
       const pts = find('point').map(el => ({ el, r: el.getBoundingClientRect() })).filter(o => visible(o.r) && Math.abs(o.r.top + o.r.height / 2 - me.y) < H * .6);
-      if (pts.length) { const o = any(pts); play(pointAtEl(o.el), idleClip()); return; }
+      if (pts.length) { const o = any(pts); pointEl(o.el); return; }
     }
-    if (me.perch.type === 'ledge' || me.perch.type === 'base' || me.perch.type === 'free') play(me.costume === 'gear5' ? any(['g5joy', 'cloud', 'cloud', 'g5idle']) : any(IDLE_FUN), idleClip());
+    if (me.perch.type === 'ledge' || me.perch.type === 'base' || me.perch.type === 'free') play(me.costume === 'gear5' ? any(['g5-drum', 'g5-drum', 'g5-laugh', 'g5-wave', 'g5-grin', 'g5-cheer', 'g5-smug', 'g5-point-around', 'g5-wow', 'g5-inflate']) : any(IDLE_FUN), idleClip());
     else if (me.perch.type === 'inside') { leaveInside(); }
     else play('dangle', 'hook');
   };
@@ -431,6 +818,13 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     const hr = header.getBoundingClientRect(), br = target.getBoundingClientRect();
     if (hr.bottom < 10 || hr.bottom > H * .5) return;
     me.stuntDone = true;
+    if (me.costume === 'gear5' && startReach('flick', br.left + br.width / 2, br.top + br.height / 2, { el: target, cb: () => { target.click(); target.blur?.(); } })) return;
+    if (me.costume === 'gear5') { // no hanging in Gear 5: one big bounce up to the switch, slap it at the top, fall back
+      const bx = br.left + br.width / 2, apex = br.bottom + spriteH() * .82, h = Math.max(80, me.y - apex), g = 2200;
+      const vy = -Math.sqrt(2 * g * h), t = -vy / g;
+      me.flip = bx < me.x; me.perch = null; me.target = null; me.mode = 'fall'; me.vy = vy; me.vx = Math.max(-1400, Math.min(1400, (bx - me.x) / t));
+      me.slap = target; play('g5-catch'); return;
+    }
     const p = { type: 'header', el: header, fx: (br.left + br.width / 2 - hr.left) / hr.width };
     me.flip = br.left + br.width / 2 < me.x;
     hopTo(p, () => {
@@ -457,33 +851,32 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     const to = baseScale() * f;
     if (RM) { S = to; } else me.sizeTw = { from: S, to, t: 0 };
     emit('imp:size', { size: f, min: f === SIZES[0], max: f === SIZES[SIZES.length - 1], sizes: SIZES });
-    if (why && f !== before) { const k = any(why === 'grow' ? GROW : SHRINK); if (me.mode === 'perch') react(k); else me.pending = k; }
+    if (why && f !== before) { const k = me.costume === 'gear5' ? (why === 'grow' ? 'g5-inflate' : 'g5-deflate') : any(why === 'grow' ? GROW : SHRINK); if (me.mode === 'perch') react(k); else me.pending = k; }
     return f;
   };
   const step = d => {
     const i = SIZES.indexOf(me.size), j = Math.max(0, Math.min(SIZES.length - 1, i + d));
-    if (j === i) { if (me.mode === 'perch' && standing() && me.costume === 'base') play('shrug', idleClip()); return false; }
+    if (j === i) { if (me.mode === 'perch' && standing()) play('shrug', idleClip()); return false; }
     return setSize(SIZES[j], d > 0 ? 'grow' : 'shrink');
   };
 
   /* ---------- poke, drag, throw, shake ---------- */
   const REACT = ['react-laugh', 'react-shock', 'react-curious', 'react-smug', 'react-shy', 'react-triumph', 'react-dizzy', 'react-smile'];
   const poke = () => {
-    me.lastTouch = performance.now();
+    me.lastTouch = performance.now(); me.reach = null;
     const t = me.lastTouch; me.pokes = me.pokes.filter(p => t - p < 4000); me.pokes.push(t);
     if (me.pokes.length >= 10 && me.costume === 'base' && standing()) { me.pokes = []; setCostume('gear5'); play('gear5', 'g5idle'); return; }
-    if (me.costume === 'gear5') { play('g5joy', 'g5idle'); return; }
     if (me.perch?.type === 'hang' || me.perch?.type === 'header') { play('dangle', 'hook'); return; }
     if (me.perch?.type === 'inside') { leaveInside(); return; }
-    if (me.clip === 'sleep') { play('stretch', idleClip()); return; }
+    if (asleep()) { play('stretch', idleClip()); return; }
     if (me.pokes.length >= 5 && me.pokes.length < 7) { play('react-annoyed', idleClip()); return; }
-    play(any(REACT), idleClip());
+    play(me.costume === 'gear5' ? any(['g5-laugh', 'g5-laugh', 'g5-boing', 'g5-shock', 'g5-cheer', 'g5-grin']) : any(REACT), idleClip());
   };
   let drag = null;
   hit.addEventListener('pointerdown', e => { e.preventDefault(); hit.setPointerCapture(e.pointerId); drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, moved: false, samples: [[e.clientX, e.clientY, performance.now()]], lx: e.clientX, ly: e.clientY, sx2: 0, sy2: 0, revs: [], wiggled: false }; me.lastTouch = performance.now(); });
   hit.addEventListener('pointermove', e => {
     if (!drag || e.pointerId !== drag.id) return;
-    if (!drag.moved && Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) > 5) { drag.moved = true; me.mode = 'drag'; me.perch = null; me.rise = 0; me.watching = null; play(me.costume === 'gear5' ? 'g5joy' : 'dangle'); hit.style.cursor = 'grabbing'; }
+    if (!drag.moved && Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) > 5) { drag.moved = true; me.mode = 'drag'; me.perch = null; me.rise = 0; me.watching = null; play('dangle'); me.reach = null; hit.style.cursor = 'grabbing'; }
     if (drag.moved) {
       me.x = e.clientX; me.y = e.clientY; const now = performance.now();
       drag.samples.push([e.clientX, e.clientY, now]); if (drag.samples.length > 6) drag.samples.shift();
@@ -503,7 +896,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     me.vx = Math.max(-900, Math.min(900, .6 * (b[0] - a[0]) / dt)); me.vy = Math.max(-700, Math.min(900, .6 * (b[1] - a[1]) / dt));
     if (me.costume !== 'gear5') me.y += 40 * S; // from the tail pivot down to the feet
     if (d.wiggled) me.pending = any(WIGGLE);
-    me.mode = 'fall'; me.target = null; play(me.costume === 'gear5' ? 'g5joy' : 'air');
+    me.mode = 'fall'; me.target = null; play('air');
   };
   hit.addEventListener('pointerup', release); hit.addEventListener('pointercancel', release);
   hit.addEventListener('keydown', e => { if (e.key === 'Escape') ImpLive.hide(); if (e.key === '+' || e.key === '=') step(1); if (e.key === '-') step(-1); });
@@ -512,9 +905,9 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   hit.addEventListener('pointerleave', () => clearTimeout(dwell));
   hit.addEventListener('pointerenter', e => { // the cursor lands on him; stay there and he gets shy
     clearTimeout(dwell);
-    if (e.pointerType !== 'touch') dwell = setTimeout(() => { if (!drag && me.mode === 'perch' && standing() && me.costume === 'base' && calm() && ready('shy', 9000)) play(any(['react-shy', 'face-kitty']), idleClip()); }, 2600);
-    if (e.pointerType === 'touch' || drag || me.mode !== 'perch' || !standing() || me.costume !== 'base' || !calm()) return;
-    if (me.clip === 'sleep') return;
+    if (e.pointerType !== 'touch') dwell = setTimeout(() => { if (!drag && me.mode === 'perch' && standing() && calm() && ready('shy', 9000)) play(any(['react-shy', 'face-kitty']), idleClip()); }, 2600);
+    if (e.pointerType === 'touch' || drag || me.mode !== 'perch' || !standing() || !calm()) return;
+    if (asleep()) return;
     if (ready('hover', 5000)) play(any(['react-curious', 'react-smile', 'react-shy']), idleClip());
   });
 
@@ -527,24 +920,24 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   document.addEventListener('pointerover', e => { // things that ask for a reaction: data-imp-react="smug face-sparkle"
     const t = e.target.closest?.('[data-imp-react]'); if (t === askEl) return; askEl = t; clearTimeout(askT); if (!t) return;
     askT = setTimeout(() => {
-      if (askEl !== t || me.mode !== 'perch' || !standing() || me.costume !== 'base' || !ready('ask', 5000)) return;
+      if (askEl !== t || me.mode !== 'perch' || !standing() || !ready('ask', 5000)) return;
       const k = any(t.dataset.impReact.split(/\s+/)); if (!CLIPS[k]) return;
-      if (k === 'point') { play(pointAtEl(t), idleClip()); return; }
+      if (k === 'point') { pointEl(t); return; }
       const r = t.getBoundingClientRect(); me.flip = r.left + r.width / 2 < me.x; play(k, idleClip());
     }, 650);
   }, { passive: true });
   document.addEventListener('pointerover', e => { // he points at what you are looking at
-    if (me.mode !== 'perch' || !standing() || me.costume !== 'base' || me.watching) return;
+    if (me.mode !== 'perch' || !standing() || me.watching || me.reach) return;
     const t = e.target.closest?.(pointSel());
     if (!t || t === me.pointing || t.closest('[data-imp-react]')) return; me.pointing = t;
     me.lastTouch = performance.now();
-    if (!me.clip.startsWith('point') && me.clip !== 'react-laugh') play(pointAtEl(t), idleClip());
+    if (!me.clip.startsWith('point') && !me.clip.startsWith('g5-point') && me.clip !== 'react-laugh' && !me.reach) pointEl(t);
   }, { passive: true });
   /* ---------- gestures: circle his head and he gets dizzy; wiggle above him and he tries to catch it ---------- */
   const gest = { last: null, turns: [], xs: [], tries: [], lx: null };
   document.addEventListener('pointermove', e => {
-    if (e.pointerType === 'touch' || drag || me.hidden || me.mode !== 'perch' || !standing() || me.costume !== 'base') { gest.last = null; gest.lx = null; return; }
-    const now = performance.now(), hx = me.x, hy = me.y - spriteH() * .72, px = e.clientX, py = e.clientY;
+    if (e.pointerType === 'touch' || drag || me.hidden || me.mode !== 'perch' || !standing()) { gest.last = null; gest.lx = null; return; }
+    const now = performance.now(), hx = me.x, hy = me.y - spriteH() * .72, px = e.clientX, py = e.clientY; gest.cur = [px, py];
     // circling the head
     const r = Math.hypot(px - hx, py - hy);
     if (r < spriteH() * .62 && r > 8) {
@@ -563,10 +956,11 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       gest.xs = gest.xs.filter(t => now - t[0] < 1100);
       let flips = 0, sx = 0, ax = 0, ay = 0;
       gest.xs.forEach(t => { if (t[1] && sx && t[1] !== sx) flips++; if (t[1]) sx = t[1]; ax += t[2]; ay += t[3]; });
-      if (flips >= 3 && ax > ay * 2.2 && ax > 120 && !['catch', 'catch-miss'].includes(me.clip) && ready('catch', 900)) {
+      if (flips >= 3 && ax > ay * 2.2 && ax > 120 && !['catch', 'catch-miss'].includes(me.clip) && !me.reach && ready('catch', 900)) {
         gest.xs = []; me.lastTouch = now; me.flip = px < me.x;
         gest.tries = gest.tries.filter(t => now - t < 9000); gest.tries.push(now);
-        if (gest.tries.length >= 4) { gest.tries = []; play('catch', any(['catch-miss', 'react-laugh', 'face-grr'])); }
+        if (me.costume === 'gear5') { const many = gest.tries.length >= 3; if (many) gest.tries = []; if (startReach('catch', px, py, { follow: () => gest.cur })) { REACH_K.catch.then = many ? 'g5-taunt' : any(['g5-laugh', 'g5-grin', 'g5-taunt']); } }
+        else if (gest.tries.length >= 4) { gest.tries = []; play('catch', any(['catch-miss', 'react-laugh', 'face-grr'])); }
         else play('catch', idleClip());
       }
     } else { gest.xs = []; gest.lx = null; }
@@ -574,31 +968,31 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   let lastPM = 0, near = false;
   document.addEventListener('pointermove', e => { // he turns to the cursor, waves when it comes close, wakes up
     const now = performance.now(); if (now - lastPM < 90) return; lastPM = now;
-    if (e.pointerType === 'touch' || drag || me.hidden || me.mode !== 'perch' || !standing() || me.costume !== 'base') return;
+    if (e.pointerType === 'touch' || drag || me.hidden || me.mode !== 'perch' || !standing()) return;
     const dx = e.clientX - me.x, dy = e.clientY - (me.y - spriteH() * .5), d = Math.hypot(dx, dy);
-    if (me.clip === 'sleep') { if (d < 240) { me.lastTouch = now; play('stretch', idleClip()); } return; }
-    if (d < 320 && ['idle', 'blink'].includes(me.clip) && Math.abs(dx) > 40) me.flip = dx < 0;
+    if (asleep()) { if (d < 240) { me.lastTouch = now; play('stretch', idleClip()); } return; }
+    if (d < 320 && ['idle', 'blink', 'g5idle'].includes(me.clip) && Math.abs(dx) > 40) me.flip = dx < 0;
     const isNear = d < 170;
     if (isNear && !near && calm() && !me.watching && ready('wave', 9000)) { me.lastTouch = now; play('wave', idleClip()); }
     near = isNear;
   }, { passive: true });
   document.addEventListener('pointerdown', e => { // a click right next to him startles him into a hop
-    if (mine(e.target) || me.hidden || me.mode !== 'perch' || !standing() || me.costume !== 'base') return;
+    if (mine(e.target) || me.hidden || me.mode !== 'perch' || !standing()) return;
     const d = Math.hypot(e.clientX - me.x, e.clientY - (me.y - spriteH() * .5));
     if (d < 150 && ready('startle', 2500)) { me.lastTouch = performance.now(); me.flip = e.clientX < me.x; play(Math.random() < .6 ? 'jump' : 'react-shock', idleClip()); }
   }, { passive: true, capture: true });
   document.addEventListener('play', e => { // he sits down to watch a film
     const v = e.target; if (!(v instanceof HTMLVideoElement)) return;
-    const r = v.getBoundingClientRect(); if (r.width < 300 || me.costume !== 'base') return;
+    const r = v.getBoundingClientRect(); if (r.width < 300) return;
     me.watching = v;
     if (me.mode === 'perch' && standing()) { me.flip = r.left + r.width / 2 < me.x; play('sit'); }
   }, true);
-  const stopWatching = e => { if (e.target !== me.watching) return; me.watching = null; if (me.mode === 'perch' && standing() && me.clip === 'sit') react(e.type === 'ended' ? 'react-sad' : 'react-smile'); };
+  const stopWatching = e => { if (e.target !== me.watching) return; me.watching = null; if (me.mode === 'perch' && standing() && (me.clip === 'sit' || me.clip === 'g5-watch')) react(e.type === 'ended' ? 'react-sad' : 'react-smile'); };
   document.addEventListener('pause', stopWatching, true); document.addEventListener('ended', stopWatching, true);
   document.addEventListener('copy', () => { if (me.mode === 'perch' && standing() && ready('copy', 3000)) react('react-triumph'); });
   document.addEventListener('input', e => { // typing: he leans in to read
     const t = e.target; if (!t || !(t.matches?.('input, textarea') || t.isContentEditable)) return;
-    if (me.mode !== 'perch' || !standing() || me.costume !== 'base' || !calm() || !ready('type', 6000)) return;
+    if (me.mode !== 'perch' || !standing() || !calm() || !ready('type', 6000)) return;
     const r = t.getBoundingClientRect(); me.flip = r.left + r.width / 2 < me.x; play('react-focused', idleClip());
   }, true);
   document.addEventListener('click', e => { const l = e.target.closest?.('.lang-switch, [data-imp~="lang"]'); if (l) { store.set({ flip: !me.flip }); setTimeout(() => { if (me.mode === 'perch' && standing()) react('react-curious'); }, 400); } }, true);
@@ -606,10 +1000,29 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   let awayAt = 0;
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { awayAt = performance.now(); return; }
-    if (performance.now() - awayAt < 15000 || me.mode !== 'perch' || !standing() || me.costume !== 'base') return;
-    me.lastTouch = performance.now(); const asleep = me.clip === 'sleep'; play(asleep ? 'stretch' : 'wave', asleep ? 'wave' : idleClip());
+    if (performance.now() - awayAt < 15000 || me.mode !== 'perch' || !standing()) return;
+    me.lastTouch = performance.now(); const zz = asleep(); play(zz ? 'stretch' : 'wave', zz ? 'wave' : idleClip());
   });
   let lastScroll = 0; document.addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true, capture: true });
+
+  /* ---------- a speech bubble over his head, for the page to give him a line ---------- */
+  const bub = document.createElement('div');
+  bub.className = 'imp-chrome imp-say'; bub.setAttribute('role', 'status'); bub.setAttribute('aria-live', 'polite');
+  Object.assign(bub.style, { position: 'fixed', left: '0', top: '0', zIndex: '2147483001', pointerEvents: 'none', maxWidth: '220px', padding: '6px 11px', borderRadius: '12px', font: '600 13px/1.35 system-ui, "Segoe UI", sans-serif', background: '#FBF7F0', color: '#1A2A30', boxShadow: '0 0 0 2px #1A2A30, 0 8px 18px rgba(0,0,0,.28)', opacity: '0', transition: 'opacity .18s', whiteSpace: 'normal', textAlign: 'center' });
+  const tailEl = document.createElement('i'); Object.assign(tailEl.style, { position: 'absolute', left: '50%', bottom: '-7px', width: '12px', height: '12px', marginLeft: '-6px', background: '#FBF7F0', transform: 'rotate(45deg)', boxShadow: '2px 2px 0 0 #1A2A30' });
+  let sayT = 0, sayOn = false;
+  const say = (text, ms = 2400) => {
+    if (me.hidden || me.mode === 'off' || !text) return false;
+    bub.textContent = text; bub.append(tailEl); bub.style.opacity = '1'; sayOn = true; clearTimeout(sayT);
+    sayT = setTimeout(() => { bub.style.opacity = '0'; sayOn = false; }, ms); return true;
+  };
+  const placeBubble = () => {
+    if (!sayOn) return; if (me.hidden) { bub.style.opacity = '0'; sayOn = false; return; }
+    const bw = bub.offsetWidth, bh = bub.offsetHeight, hanging = me.mode === 'perch' && !standing();
+    const top = hanging ? me.y - bh - 14 : me.y - spriteH() * (me.costume === 'gear5' ? 1.28 : 1.08) - bh - 10;
+    const x = Math.max(8, Math.min(W - bw - 8, me.x - bw / 2)), y = Math.max(8, top);
+    bub.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`; tailEl.style.left = Math.max(14, Math.min(bw - 14, me.x - x)) + 'px';
+  };
 
   /* ---------- one clock ---------- */
   let prev = performance.now(), lastCheck = 0;
@@ -646,7 +1059,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
         if (Math.abs(dx) > 3) { const s = Math.sign(dx); if (rd.sign && s !== rd.sign) rd.revs.push(now); rd.sign = s; }
         rd.revs = rd.revs.filter(t => now - t < 1400);
         if (rd.revs.length >= 4) { rd.shaken = true; rd.revs = []; }
-        if (v > 1.4 && standing() && me.costume === 'base' && now - rd.shockAt > 2500 && calm()) { rd.shockAt = now; play('react-shock', idleClip()); }
+        if (v > 1.4 && standing() && now - rd.shockAt > 2500 && calm()) { rd.shockAt = now; play('react-shock', idleClip()); }
         if (v < .05) rd.still += ddt; else rd.still = 0;
         if (rd.shaken && rd.still > 250) { rd.shaken = false; react(any(WIGGLE)); }
       }
@@ -672,9 +1085,10 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       if (me.perch) { const a = anchorOf(me.perch); me.x = a.x; me.y = a.y; }
     } else if (me.mode === 'fall') {
       const y0 = me.y;
-      me.vy += 2200 * dt / 1000; me.x += me.vx * dt / 1000; me.y += me.vy * dt / 1000; me.vx *= .995;
+      me.vy += 2200 * dt / 1000; me.x += me.vx * dt / 1000; me.y += me.vy * dt / 1000; me.vx *= me.slap ? 1 : .995;
+      if (me.slap && me.vy >= 0) { const t = me.slap; me.slap = null; me.vx *= .3; t.click(); t.blur?.(); play('g5joy'); }
       if (me.x < 30) { me.x = 30; me.vx = -me.vx * .4; } if (me.x > W - 30) { me.x = W - 30; me.vx = -me.vx * .4; }
-      if (me.y < 30 && me.vy < 0 && !me.target) me.vy = Math.abs(me.vy) * .3;
+      if (me.y < 30 && me.vy < 0 && !me.target && !me.slap) me.vy = Math.abs(me.vy) * .3;
       if (me.vy > 0) { // land on the first ledge top crossed, or the bottom of the window
         const ts = topSafe();
         const ledges = find('ledge').map(el => ({ el, r: el.getBoundingClientRect(), type: 'ledge' })).filter(({ el, r }) => r.width > 80 && r.top > ts && me.x > r.left + 10 && me.x < r.right - 10 && r.top >= y0 - 2 && r.top <= me.y + 2 && (el === me.target?.el || spotOK('ledge', el, me.x)))
@@ -699,17 +1113,20 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     }
     // draw
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
-    let fr = frame();
+    let fr = frame(), fx = null;
+    const rf = reachTick(dt); if (rf) { fr = rf.fr; fx = rf.fx; }
     if (me.faces === 'simple' && fr.s === 'idle:0') fr = { s: 'idle:body', head: 'glyph:-u-', ms: fr.ms };
     const a = { x: Math.round(me.x / S) * S, y: Math.round(me.y / S) * S }, clip = me.perch?.type === 'inside' ? anchorOf(me.perch).clip : null;
     if (clip) { ctx.save(); ctx.beginPath(); ctx.rect(clip.left * R, clip.top * R, clip.width * R, clip.height * R); ctx.clip(); }
-    drawFrame(ctx, fr, a.x * R, a.y * R, S * R, { flip: me.flip, rim });
+    drawFrame(ctx, fr, a.x * R, a.y * R, S * R, { flip: me.flip, rim, fx });
     if (clip) ctx.restore();
     // hit box over the sprite
     const b = box(fr), w = b.w * S, h = b.h * S, px = b.pivot ? b.pivot[0] * S : w / 2, py = b.pivot ? b.pivot[1] * S : h;
     let left = a.x - (me.flip ? w - px : px), top = a.y - py + (fr.dy || 0) * S, hh = h;
     if (clip) { const cut = Math.max(0, top + h - clip.bottom); hh = Math.max(0, h - cut); }
     Object.assign(hit.style, { display: hh > 10 ? 'block' : 'none', width: w + 'px', height: hh + 'px', transform: `translate(${Math.round(left)}px, ${Math.round(top)}px)` });
+    me.hb = { left, top, width: w, height: hh };
+    placeBubble();
     requestAnimationFrame(tick);
   };
 
@@ -721,12 +1138,14 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   window.ImpLive = {
     configure(o = {}) { if (o.map) MAP = o.map.concat(DATA_MAP); if (o.extend) MAP = MAP.concat(o.extend); return MAP; },
     hide(now) { // a quick wave goodbye, unless it has to be instant (a lightbox opening)
-      if (now || me.hidden || me.mode !== 'perch' || !standing() || me.costume !== 'base' || RM) { me.hidden = true; store.set({ hidden: true }); syncChrome(); return; }
+      if (now || me.hidden || me.mode !== 'perch' || !standing() || RM) { me.hidden = true; store.set({ hidden: true }); syncChrome(); return; }
       store.set({ hidden: true }); me.leaving = true; syncChrome(); play('wave');
       me.leaveT = setTimeout(() => { me.leaving = false; me.hidden = true; }, 650);
     },
     play(k, then) { if (!CLIPS[k] || me.hidden) return false; if (me.mode === 'perch') { if (k.startsWith('react-') || k.startsWith('face-')) react(k); else play(k, then || idleClip()); } else me.pending = k; return true; },
-    pointAt(el) { if (me.mode !== 'perch' || !standing() || me.costume !== 'base' || !el) return false; play(pointAtEl(el), idleClip()); return true; },
+    pointAt(el) { if (me.mode !== 'perch' || !standing() || !el || me.reach) return false; return pointEl(el); },
+    // Gear 5 only: reach out with the rubber arm (eat, flick) or leg (kick) to a point; false when he cannot reach it
+    grab(x, y, kind, cb) { if (me.costume !== 'gear5' || !REACH_K[kind] || !canReach(kind, x, y)) return false; return startReach(kind, x, y, { cb }); },
     show() { clearTimeout(me.leaveT); me.leaving = false; me.hidden = false; store.set({ hidden: false }); syncChrome(); if (me.mode === 'off' || !me.perch) start(); },
     lights() { me.stuntDone = false; me.wantStunt = true; }, // runs as soon as he is perched
     go(type) { const c = pick(candidates().filter(c => c.type === type), me.perch); if (c && me.mode === 'perch') { me.flip = anchorOf(settle(c)).x < me.x; hopTo(c); return true; } return false; },
@@ -744,19 +1163,42 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       const go = () => {
         me.lastTouch = performance.now();
         const c = el && candidateIn(el);
-        const after = () => { me.nextThink = performance.now() + 7000; if (k === 'point' && el && standing() && me.costume === 'base') { play(pointAtEl(el.querySelector('h1,h2,h3') || el), idleClip()); return; } me.flip = Math.random() < .5 ? me.flip : !me.flip; react(k); };
+        const after = () => { me.nextThink = performance.now() + 7000; if (k === 'point' && el && standing()) { play(pointAtEl(el.querySelector('h1,h2,h3') || el), idleClip()); return; } me.flip = Math.random() < .5 ? me.flip : !me.flip; react(k); };
         if (c && c.el !== me.perch?.el) { me.flip = anchorOf(settle(c)).x < me.x; hopTo(c, after); } else after();
       };
       setTimeout(() => { if (me.mode === 'perch') go(); else me.wantGo = go; }, el ? 380 : 0);
       return k;
     },
     react(name) { if (me.hidden) return false; const k = Array.isArray(name) ? any(name) : name; if (!CLIPS[k]) return false; if (me.mode === 'perch') react(k); else me.pending = k; return k; },
+    /* v3: toys and lines */
+    say: (text, ms) => say(text, ms),
+    // where he is drawn now (viewport pixels), for toys that bump into him
+    body: () => (me.hidden || me.mode === 'off' || !me.hb) ? null : { ...me.hb, x: me.x, y: me.y, standing: me.mode === 'perch' && standing(), mode: me.mode },
+    // something hit him (a thrown ball): a wobble, or flat on his back when it was hard
+    bonk(fromX, hard) {
+      if (me.hidden || me.mode !== 'perch' || !standing() || !ready('bonk', 1200)) return false;
+      me.lastTouch = performance.now(); me.flip = fromX < me.x; me.reach = null;
+      if (me.costume === 'gear5') { play(hard ? 'g5-ko' : any(['g5-shock', 'g5-boing', 'g5-shock']), idleClip()); return true; }
+      react(hard ? any(['face-ko', 'face-swirl', 'react-dizzy']) : any(['react-shock', 'face-grr', 'react-annoyed'])); return true;
+    },
+    // a treat landed on him
+    feed() { if (me.hidden) return false; me.lastTouch = performance.now(); if (me.mode === 'perch' && standing()) play('eat', idleClip()); else me.pending = 'eat'; return true; },
+    // the ball came to rest next to him: give it a kick (the page moves the ball)
+    kick(toX) { if (me.hidden || me.mode !== 'perch' || !standing() || !ready('kick', 900)) return false; me.lastTouch = performance.now(); me.flip = toX < me.x; play('kick', idleClip()); return true; },
+    // hop to the perch under a point (a ledge top or the bottom of the screen), then run `after`
+    hopToSpot(x, y, after) {
+      if (me.hidden || me.mode !== 'perch') return false;
+      const l = find('ledge').map(el => ({ el, r: el.getBoundingClientRect() })).find(({ el, r }) => Math.abs(r.top - y) < 14 && x > r.left + 10 && x < r.right - 10 && spotOK('ledge', el, x));
+      const p = l ? { type: 'ledge', el: l.el, fx: (x - l.r.left) / l.r.width } : y > H - 24 ? { type: 'free', x: Math.max(30, Math.min(W - 30, x)), y: H - 2 } : null;
+      if (!p) return false;
+      me.flip = x < me.x; hopTo(p, after); return true;
+    },
     grow: () => step(1),
     shrink: () => step(-1),
     setSize: f => setSize(f),
     size: () => me.size,
     sizes: SIZES,
-    state: () => ({ mode: me.mode, clip: me.clip, perch: me.perch?.type, x: Math.round(me.x), y: Math.round(me.y), costume: me.costume, hidden: me.hidden || !!me.leaving, size: me.size, g5Left: me.costume === 'gear5' ? Math.max(0, me.g5Until - Date.now()) : 0 })
+    state: () => ({ mode: me.mode, clip: me.clip, reach: me.reach ? me.reach.kind : null, perch: me.perch?.type, x: Math.round(me.x), y: Math.round(me.y), costume: me.costume, hidden: me.hidden || !!me.leaving, size: me.size, g5Left: me.costume === 'gear5' ? Math.max(0, me.g5Until - Date.now()) : 0 })
   };
   const syncChrome = () => { const off = me.hidden || !!me.leaving; document.querySelectorAll('[data-imp-ctl="toggle"]').forEach(b => { b.setAttribute('aria-pressed', String(!off)); if (!b.hasAttribute('data-keep-label')) b.textContent = off ? (b.dataset.off || 'Mascot off') : (b.dataset.on || 'Mascot on'); }); emit('imp:visibility', { hidden: off }); };
   document.addEventListener('click', e => {
@@ -776,7 +1218,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     me.nextThink = performance.now() + 7000; me.nextBlink = performance.now() + 3000;
   };
   const boot = () => {
-    document.body.append(cv, hit); resize(); updateRim(); syncChrome();
+    document.body.append(cv, hit, bub); resize(); updateRim(); syncChrome();
     emit('imp:size', { size: me.size, min: me.size === SIZES[0], max: me.size === SIZES[SIZES.length - 1], sizes: SIZES });
     if (me.costume === 'gear5') emit('imp:costume', { costume: 'gear5', until: me.g5Until });
     if (!me.hidden) setTimeout(start, 500);
