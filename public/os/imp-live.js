@@ -58,10 +58,10 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       for (let i = 0; i <= n1; i++) pts.push([from[0] + (e[0] - from[0]) * i / n1, from[1] + (e[1] - from[1]) * i / n1]);
       for (let i = 1; i <= n2; i++) pts.push(bez(e, c2, to, i / n2)); }
     else for (let i = 0; i <= steps; i++) pts.push(bez(from, ctl, to, i / steps));
-    pts.forEach(p => disc(m, p[0], p[1], o.leg ? 2.7 : 2.4, K));
+    pts.forEach(p => disc(m, p[0], p[1], o.th || (o.leg ? 2.7 : 2.4), K));
     // shine along the upper edge of the rubber
     const N = pts.length - 1, along = []; let acc = 0; pts.forEach((p, i) => { if (i) acc += Math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]); along.push(acc); }); const tot = acc || 1;
-    pts.forEach((p, i) => { const d = along[i]; if (d > sl + 2 && d < tot - 3) { const k = Math.round(p[0] - nx * (ny > 0 ? 1 : -1)) + ',' + Math.round(p[1] - ny * (ny > 0 ? 1 : -1)); if (m.has(k)) m.set(k, C); } });
+    if (!o.noshine) pts.forEach((p, i) => { const d = along[i]; if (d > sl + 2 && d < tot - 3) { const k = Math.round(p[0] - nx * (ny > 0 ? 1 : -1)) + ',' + Math.round(p[1] - ny * (ny > 0 ? 1 : -1)); if (m.has(k)) m.set(k, C); } });
     if (sl) { // sleeve and cuff near the shoulder
       pts.filter((p, i) => along[i] <= sl).forEach(p => { disc(m, p[0], p[1], 3.6, K); });
       pts.filter((p, i) => along[i] <= sl).forEach(p => { disc(m, p[0], p[1], 2.6, (x, y) => (x * nx + y * ny) * (ny > 0 ? 1 : -1) > 1.2 ? LV : WH); });
@@ -74,7 +74,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     }
     m.forEach((v, k) => { const [x, y] = k.split(',').map(Number); out.push([x, y, v]); });
     if (o.leg) { const back = dx < -0.5, w = FOOT.g[0].length; stampArt(out, FOOT.g, Math.round(to[0] - (back ? w - 1 - FOOT.w[0] : FOOT.w[0])), Math.round(to[1] - FOOT.w[1]), back); }
-    else { const q = pts[Math.max(0, N - 6)]; handAt(out, o.hand || 'point', to[0], to[1], o.elbow ? to[0] - q[0] : dx, o.elbow ? to[1] - q[1] : dy); }
+    else { const q = pts[Math.max(0, N - 6)]; handAt(out, o.hand || 'point', to[0], to[1], o.hdir ? o.hdir[0] : o.elbow ? to[0] - q[0] : dx, o.hdir ? o.hdir[1] : o.elbow ? to[1] - q[1] : dy); }
   };
   const FX = {
     arm: (f, rec) => { const out = []; limb(out, f.from || rec.shoulder || [rec.w * .7, rec.h * .6], f.to, f); return out; },
@@ -169,7 +169,59 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     },
     sweat: (x, f, P, u) => { const [cx, cy] = P(f.x, f.y), r = (f.r || 1.6) * u; x.fillStyle = '#9fd4f5'; x.strokeStyle = INK; x.lineWidth = .35 * u; x.beginPath(); x.moveTo(cx, cy - r * 2); x.quadraticCurveTo(cx + r, cy - r * .3, cx + r, cy); x.arc(cx, cy, r, 0, Math.PI); x.quadraticCurveTo(cx - r, cy - r * .3, cx, cy - r * 2); x.fill(); x.stroke(); }
   };
-  const LAYER = { ring: 'under', bed: 'under', puff: 'over', burst: 'over', z: 'over', arm: 'top', leg: 'top', hand: 'top', stars: 'top', spiral: 'top', tongue: 'top', eyes: 'top' };
+  /* ---------- round 7: hands, props and face gags for the meme reactions and the rubber moves ---------- */
+  // a flat hand seen edge-on (the time-out T): fingers east, wrist at the west end; turned for the stem
+  const BLADE_E = art(['.kkkkkkkkkk.', 'kIIIIIIIIIIk', 'kIIIIIIIIIIk', 'kiiiiiiiiiik', '.kkkkkkkkkk.']);
+  HAND.blade = { E: { g: BLADE_E, w: [0, 2] }, NE: { g: BLADE_E, w: [0, 2] }, SE: { g: BLADE_E, w: [0, 2] }, N: { g: rotCW(rotCW(rotCW(BLADE_E))), w: [2, 11] }, S: { g: rotCW(BLADE_E), w: [2, 0] } };
+  // a V-sign: two fingers up, the folded ones and thumb below, palm to the viewer
+  HAND.peace = { any: { g: art(['.kk...kk.', 'kIIk.kIIk', 'kIIk.kIIk', 'kIIk.kIIk', '.kIIkIIk.', '.kIIIIIk.', 'kIIIIIIIk', 'kiIIIIIIk', '.kiIIIik.', '..kkkkk..']), w: [4, 9] } };
+  // a sheet of paper, ruled with lines of writing; mark: a red tick
+  const PAPER = art(['kkkkkkkkkkkk', 'kWWWWWWWWWWk', 'kWcccccccWWk', 'kWWWWWWWWWWk', 'kWccccccccWk', 'kWWWWWWWWWWk', 'kWcccccWWWWk', 'kWWWWWWWWWWk', 'kWccccccccWk', 'kWWWWWWWWWWk', 'kWccccWWWWWk', 'kWWWWWWWWWWk', 'kkkkkkkkkkkk']);
+  const TICK = [[4, 10], [5, 11], [6, 10], [7, 9], [8, 8], [9, 7], [10, 6]];
+  const HEART = art(['.kk.kk.', 'kRRkRRk', 'kRWRRRk', 'kRRRRRk', '.kRRRk.', '..kRk..', '...k...']);
+  const HEART_S = art(['.k.k.', 'kRRRk', '.kRk.', '..k..']);
+  Object.assign(FX, {
+    paper: f => { const out = [], x0 = Math.round(f.x), y0 = Math.round(f.y); stampArt(out, PAPER, x0, y0); if (f.mark) TICK.forEach(([x, y]) => out.push([x0 + x, y0 + y, RD], [x0 + x + 1, y0 + y, RD])); return out; },
+    heart: f => { const out = [], g = f.s ? HEART_S : HEART; stampArt(out, g, Math.round(f.x - g[0].length / 2), Math.round(f.y - g.length / 2)); return out; },
+    // a comic impact star: spiky, yellow with a white heart and a black edge
+    pow: f => {
+      const R = f.r || 7, r = R * (f.sharp || .5), n = f.n || 8, pts = [], a0 = f.a || 0;
+      for (let i = 0; i < n * 2; i++) { const a = a0 + i * Math.PI / n, rr = i % 2 ? r : R; pts.push([f.x + Math.cos(a) * rr, f.y + Math.sin(a) * rr]); }
+      const inside = (x, y) => { let c = false; for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) { const [xi, yi] = pts[i], [xj, yj] = pts[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; };
+      const set = new Set(), X0 = Math.floor(f.x - R) - 1, Y0 = Math.floor(f.y - R) - 1, X1 = Math.ceil(f.x + R) + 1, Y1 = Math.ceil(f.y + R) + 1;
+      for (let y = Y0; y <= Y1; y++) for (let x = X0; x <= X1; x++) if (inside(x + .5, y + .5)) set.add(x + ',' + y);
+      const out = [];
+      set.forEach(k => { const [x, y] = k.split(',').map(Number), edge = !set.has((x - 1) + ',' + y) || !set.has((x + 1) + ',' + y) || !set.has(x + ',' + (y - 1)) || !set.has(x + ',' + (y + 1)); out.push([x, y, edge ? K : Math.hypot(x + .5 - f.x, y + .5 - f.y) < r * .55 ? WH : YE]); });
+      return out;
+    },
+    // speed lines trailing behind a point: n lines of length len, fanned across the direction (dx, dy)
+    streak: f => {
+      const out = [], n = f.n || 3, L = f.len || 8, dx = f.dx ?? -1, dy = f.dy ?? 0, nx = -dy, ny = dx;
+      for (let i = 0; i < n; i++) { const c = (n - 1) / 2, o = (i - c) * (f.gap || 3), l = Math.max(2, L - Math.abs(i - c) * 3), x0 = f.x + nx * o, y0 = f.y + ny * o;
+        for (let t = 0; t < l; t++) out.push([Math.round(x0 + dx * (t + (f.off || 0))), Math.round(y0 + dy * (t + (f.off || 0))), AM]); }
+      return out;
+    }
+  });
+  Object.assign(SMOOTH, {
+    /* smug kissy lips, drawn the cartoon way over the mouth: the old mouth is covered with a soft patch of his mask colour,
+       a small pursed pair of pink lips with a dark slit and a shine; p: how tightly he puckers (0.5 loose, 1 tight); x, y: the mouth */
+    kiss: (x, f, P, u) => {
+      const [cx, cy] = P(f.x, f.y), p = f.p ?? 1, rx = (2.1 - .5 * p) * u, ry = 1.5 * u;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, 3.6 * u); g.addColorStop(0, '#f3ead8'); g.addColorStop(.72, '#f3ead8'); g.addColorStop(1, 'rgba(243,234,216,0)');
+      x.fillStyle = g; x.beginPath(); x.ellipse(cx, cy, 3.6 * u, 3 * u, 0, 0, 7); x.fill();
+      x.lineJoin = 'round'; x.strokeStyle = INK; x.lineWidth = .42 * u; x.fillStyle = '#ee7a8c';
+      x.beginPath(); x.moveTo(cx - rx, cy); x.bezierCurveTo(cx - rx, cy - ry * 1.25, cx - rx * .25, cy - ry * 1.15, cx, cy - ry * .55); x.bezierCurveTo(cx + rx * .25, cy - ry * 1.15, cx + rx, cy - ry * 1.25, cx + rx, cy); // upper lip, a small bow
+      x.bezierCurveTo(cx + rx, cy + ry * 1.2, cx + rx * .4, cy + ry * 1.45, cx, cy + ry * 1.45); x.bezierCurveTo(cx - rx * .4, cy + ry * 1.45, cx - rx, cy + ry * 1.2, cx - rx, cy); x.closePath(); x.fill(); x.stroke();
+      x.strokeStyle = '#8a2d3e'; x.lineWidth = .3 * u; x.beginPath(); x.moveTo(cx - rx * .62, cy + ry * .08); x.lineTo(cx + rx * .62, cy + ry * .08); x.stroke(); // the pursed line
+      x.fillStyle = 'rgba(255,255,255,.75)'; x.beginPath(); x.ellipse(cx - rx * .3, cy + ry * .78, rx * .28, ry * .2, 0, 0, 7); x.fill();
+    },
+    /* a raised eyebrow, for the sceptical read: a thick dark arc above the eye, hiked up and tilted; x, y: its centre */
+    brow: (x, f, P, u) => {
+      const [cx, cy] = P(f.x, f.y), w = (f.w || 4.6) * u, t = (f.tilt || 0) * u;
+      x.strokeStyle = '#f7a623'; x.lineWidth = .95 * u; x.lineCap = 'round'; x.beginPath(); x.moveTo(cx - w / 2, cy + t); x.quadraticCurveTo(cx, cy - 1.5 * u + t * .3, cx + w / 2, cy - t); x.stroke();
+    }
+  });
+  const LAYER = { paper: 'top', heart: 'top', pow: 'top', streak: 'over', kiss: 'top', brow: 'top', ring: 'under', bed: 'under', puff: 'over', burst: 'over', z: 'over', arm: 'top', leg: 'top', hand: 'top', stars: 'top', spiral: 'top', tongue: 'top', eyes: 'top' };
 
   // fr: { s, head, hx, hy, bob, waist, parts:{name:[dx,dy]}, face, dx, dy, sq:[x,y], fx:[...] }; extra fx come from the runtime
   const compose = (fr, rim, extra) => {
@@ -297,6 +349,14 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   derive('g5:reach', 'g5t:settle', [[32, 38, 39, 41, 3, 7], [32, 38, 39, 41, 4, 7], [32, 42, 39, 42, 3, 8], [32, 38, 39, 42, 8, 7], [33, 42, 38, 42, 7, 8]], { shoulder: [37, 33], hip: [33, 46] });
   // kick: the right foot lifts off, so a rubber leg can stretch out from the hip
   derive('g5:kick', 'g5t:settle', [[27, 47, 44, 51, null, 0]], { shoulder: [37, 33], hip: [31, 46] });
+})();
+
+
+/* Round 7 bodies. idle:bare is the owner's idle body with the arm that hangs at his left (and its hand) taken off,
+   so both arms can be drawn in any pose; the scarf, tail, legs and the right side are untouched. */
+(() => {
+  const { derive } = window.IMP2;
+  derive('idle:bare', 'idle:body', [[5, 29, 12, 35, 1, 0], [5, 36, 10, 38, 1, 0]], { parts: {} });
 })();
 
 
@@ -499,6 +559,222 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   const legKick = (k, ring, wob = 0) => ({ t: 'leg', to: [Math.round(33 + 28 * k), Math.round(46 - 6 * k)], ring, wob });
   G5('g5-kick', 'Gear 5 kick', 'The ball rolls up to him', [g('kick', 'joy-grin', 90, { fx: [legKick(.1)] }), g('kick', 'joy-grin', 60, { fx: [legKick(.6, true)] }), g('kick', 'joy-grin', 90, { fx: [legKick(1.15, true, .1)] }), g('kick', 'joy-grin', 220, { fx: [legKick(1, false, -.05)] }), g('kick', 'joy-grin', 70, { fx: [legKick(.4)] }), g(ST, null, 120)], { from: 'Your Settle pose, a rubber leg and the orange ring' });
   G5('g5-hold', 'Gear 5 reaching', 'While his arm is out', [g(RC, null, 1000)], { loop: true });
+
+  /* ---------- round 7: reactions from your memes, and rubber moves from your Luffy sheets ----------
+     Base imp: your idle body (or the same body with the hanging arm taken off) and your faces; the arms, hands and props are
+     drawn on the same pixel grid, in your hand style (black arm, ivory hand with a black outline). */
+  const BARE = 'idle:bare', LS = [14, 32], RS = [31, 31];
+  const R7 = (k, name, trigger, frames, extra = {}) => T(k, name, trigger, frames, Object.assign({ r7: true, from: 'Your idle body and faces, with arms drawn in' }, extra));
+  const ba = (from, to, hand, o = {}) => Object.assign({ t: 'arm', from, to, hand, sleeve: false, noshine: true }, o);
+  const bf = (face, ms, fx, o = {}) => Object.assign({ s: BARE, head: 'face:' + face, ms, fx }, o);   // both arms drawn in
+  const sf = (face, ms, fx, o = {}) => Object.assign({ s: BODY, head: 'face:' + face, ms, fx }, o);   // his left arm stays where it was
+  const restL = ba(LS, [10, 38], 'fist', { elbow: [8, 34] });
+  const sparkle = (x, y) => ({ t: 'stars', x, y, rx: 0, ry: 0, n: 1 });
+
+  // TIME OUT: the T-sign. One flat hand across, the other standing under it.
+  const TBAR = (dy = 0, k = 1) => ba(LS, [Math.round(18 + 0 * k), 33 + dy - 1], 'blade', { elbow: [10, 37 + dy], hdir: [1, -.2] });
+  const TSTEM = (dy = 0) => ba(RS, [24, 44 + dy], 'blade', { elbow: [35, 41 + dy], hdir: [0, -1] });
+  R7('timeout', 'Time out', 'Spamming clicks, shaking windows', [
+    bf('annoyed', 70, [restL]),
+    bf('curious', 70, [ba(LS, [9, 33], 'fist', { elbow: [7, 36] }), ba(RS, [36, 36], 'fist', { elbow: [37, 34] })], { hy: -1 }),
+    bf('annoyed', 70, [TSTEM(-2), TBAR(-2)], { hy: -1 }),
+    bf('annoyed', 600, [TSTEM(), TBAR()], { hy: 1 }),
+    bf('annoyed', 90, [TSTEM(1), TBAR(1)], { hy: 1, bob: 1 }),
+    bf('annoyed', 90, [TSTEM(), TBAR()], { hy: 1 }),
+    bf('annoyed', 600, [TSTEM(), TBAR()], { hy: 1 }),
+    bf('annoyed', 80, [ba(LS, [9, 36], 'fist', { elbow: [7, 36] })], { hy: 0 }),
+    bf('annoyed', 90, [restL])
+  ], { from: 'Your idle body and annoyed face, a flat hand and a standing hand drawn in' });
+
+  // WASN'T ME: both palms up beside his head, a small shrug, the eyes darting
+  const PALMS = (dy = 0, k = 1) => [ba(LS, [Math.round(14 - 8 * k), 30 + dy], 'palm', { elbow: [Math.round(14 - 7 * k), 37], hdir: [0, -1] }), ba(RS, [Math.round(31 + 9 * k), 30 + dy], 'palm', { elbow: [Math.round(31 + 8 * k), 37], hdir: [0, -1] })];
+  R7('innocent', "Wasn't me", 'An error, a delete, a 404', [
+    bf('shock', 60, PALMS(4, .4), { hy: -2 }),
+    bf('curious', 70, PALMS(1, .9), { hy: -2 }),
+    bf('curious', 500, PALMS(0), { hy: -1, bob: 0 }),
+    bf('annoyed', 120, PALMS(0), { hy: 0, hx: -1 }),
+    bf('annoyed', 700, PALMS(1), { hy: 1, hx: 1, bob: 1 }),
+    bf('curious', 400, PALMS(0), { hy: -1, hx: 0 }),
+    bf('annoyed', 90, PALMS(3, .6)), bf('annoyed', 90, [restL])
+  ], { from: 'Your curious and annoyed faces, two open palms drawn in' });
+
+  // HANDS UP: both hands high over his head, a flat stare (the surrender)
+  const HI = (dy = 0, k = 1) => [ba(LS, [Math.round(14 - 11 * k), 12 + dy], 'palm', { elbow: [Math.round(14 - 9 * k), 24 + dy], hdir: [0, -1] }), ba(RS, [Math.round(31 + 11 * k), 12 + dy], 'palm', { elbow: [Math.round(31 + 9 * k), 24 + dy], hdir: [0, -1] })];
+  R7('hands-up', 'Hands up', 'An error, a delete, a 404', [
+    bf('shock', 60, HI(14, .5), { hy: -2 }),
+    bf('shock', 70, HI(-2), { hy: -3, dy: -1 }),
+    bf('annoyed', 700, HI(0), { hy: 0, hx: -1 }),
+    bf('annoyed', 600, HI(1), { hy: 1, hx: 1, bob: 1 }),
+    bf('annoyed', 500, HI(0), { hy: 0, hx: 0 }),
+    bf('annoyed', 90, HI(10, .6)), bf('annoyed', 90, [restL])
+  ], { from: 'Your shock and annoyed faces, both palms raised above his head' });
+
+  // TA-DA: both arms swept out, open palms, chin up, a little bow (the showman: for a project that just opened)
+  const OPEN2 = (k = 1, dy = 0) => [ba(LS, [Math.round(14 - 17 * k), 27 + dy], 'open', { elbow: [Math.round(14 - 9 * k), 31 + dy], hdir: [-1, -.6] }), ba(RS, [Math.round(31 + 17 * k), 27 + dy], 'open', { elbow: [Math.round(31 + 9 * k), 31 + dy], hdir: [1, -.6] })];
+  R7('present', 'Ta-da', 'A project opens, All windows', [
+    bf('smile', 70, [restL], { hy: 0 }),
+    bf('smile', 70, OPEN2(.4, 3), { hy: 1, bob: 1 }),
+    bf('laugh', 80, OPEN2(1.12, -2), { hy: -2, dy: -1 }),
+    bf('laugh', 90, OPEN2(1, 0), { hy: -2 }),
+    bf('smile', 600, OPEN2(1, 0).concat([sparkle(-4, 24), sparkle(50, 24)]), { hy: -1 }),
+    bf('smile', 140, OPEN2(1, 1), { hy: 0, bob: 1 }),
+    bf('smile', 500, OPEN2(1, 0), { hy: -1 }),
+    bf('smile', 80, OPEN2(.5, 3)), bf('smile', 90, [restL])
+  ], { from: 'Your smile and laugh faces, both arms thrown wide with open palms' });
+
+  // THE SHEET: he reads a page with a sceptical eye, then stamps it
+  const PAP = (dy = 0, mark = false) => [ba(LS, [13, 31 + dy], 'grab', { elbow: [8, 37 + dy], hdir: [1, -.3] }), ba(RS, [26, 31 + dy], 'grab', { elbow: [34, 37 + dy], hdir: [-1, -.3] }), { t: 'paper', x: 14, y: 19 + dy, mark }];
+  R7('read', 'Reading the sheet', 'Opening a spec, the CV or the tech stack', [
+    bf('curious', 80, [ba(LS, [12, 40], 'fist', { elbow: [9, 38] })], { hy: 0 }),
+    bf('focused', 80, PAP(8), { hy: 1 }),
+    bf('focused', 90, PAP(2), { hy: 1, hx: -1 }),
+    bf('focused', 500, PAP(0), { hy: 1, hx: -1 }),
+    bf('annoyed', 500, PAP(0), { hy: 1, hx: 1 }),
+    bf('annoyed', 700, PAP(0), { hy: 1, hx: -1, bob: 1 }),
+    bf('smug', 300, PAP(1), { hy: 0, hx: 0 }),
+    bf('smug', 110, PAP(5), { hy: -1 }),
+    bf('smug', 120, PAP(9, true), { hy: -1 }),
+    bf('smile', 800, PAP(9, true), { hy: -1 }),
+    bf('smile', 90, PAP(14, true)), bf('smile', 90, [restL])
+  ], { from: 'Your focused, annoyed and smug faces, a sheet of paper and two hands drawn in' });
+
+  // SHH / WATCHING: a finger on his lips, the eyes sliding sideways (the film is tense)
+  const SHH = (dy = 0) => [ba(RS, [23, 30 + dy], 'point', { elbow: [35, 35 + dy], hdir: [0, -1] })];
+  R7('shh', 'Finger on lips', 'A film is on, or a long wait', [
+    sf('curious', 80, [], { hy: 0 }),
+    sf('curious', 80, SHH(6), { hy: 0, hx: 1 }),
+    sf('curious', 500, SHH(0), { hy: 0, hx: 1 }),
+    sf('curious', 240, SHH(0), { hy: 0, hx: -1 }),
+    sf('curious', 520, SHH(0), { hy: 0, hx: -2 }),
+    sf('curious', 240, SHH(0), { hy: 0, hx: 1 }),
+    sf('focused', 560, SHH(1), { hy: 1, hx: 1, bob: 1 }),
+    sf('curious', 100, SHH(5)), sf('curious', 80, [])
+  ], { from: 'Your curious and focused faces, a pointing finger drawn up to his lips' });
+
+  // HOLD ON: an open palm raised to stop you (the mouse is leaving the page)
+  const STOP = (dy = 0, k = 1) => [ba(RS, [Math.round(31 + 9 * k), 28 + dy], 'palm', { elbow: [Math.round(31 + 8 * k), 36 + dy], hdir: [0, -1] })];
+  R7('wait', 'Hold on', 'The cursor heads for the browser tabs', [
+    sf('shock', 60, STOP(6, .5), { hy: -2 }),
+    sf('shock', 80, STOP(-2), { hy: -3, hx: 0, dy: -1 }),
+    sf('curious', 700, STOP(0), { hy: -2 }),
+    sf('curious', 110, STOP(1), { hy: -1, bob: 1 }),
+    sf('curious', 600, STOP(0), { hy: -2 }),
+    sf('sad', 400, STOP(2), { hy: 1 }),
+    sf('sad', 80, STOP(6, .4)), sf('sad', 80, [])
+  ], { from: 'Your shock and curious faces, an open palm drawn up beside his head' });
+
+  // CHEESE: a screenshot. He notices, stares into the lens with nothing on his face, then (sometimes) flashes a V
+  R7('cheese-flat', 'Deadpan to camera', 'A screenshot is taken', [
+    sf('curious', 70, [], { hy: -1 }),
+    sf('focused', 90, [], { hy: 0 }),
+    sf('focused', 1200, [], { hy: 0 }),
+    sf('annoyed', 80, [], { hy: 0 }),
+    sf('focused', 1000, [], { hy: 0 })
+  ], { from: 'Your focused face held dead still, one slow lid drop' });
+  const PEACE = (dy = 0, k = 1) => [ba(RS, [Math.round(31 + 9 * k), 27 + dy], 'peace', { elbow: [Math.round(31 + 8 * k), 36 + dy], hdir: [0, -1] })];
+  R7('cheese-peace', 'Peace sign', 'A screenshot is taken', [
+    sf('curious', 70, [], { hy: -1 }),
+    sf('smile', 80, PEACE(7, .5), { hy: 0 }),
+    sf('laugh', 90, PEACE(-2), { hy: -2, dy: -1 }),
+    sf('laugh', 900, PEACE(0).concat([sparkle(46, 12)]), { hy: -1 }),
+    sf('smile', 700, PEACE(0), { hy: -1 }),
+    sf('smile', 90, PEACE(5, .5)), sf('smile', 80, [])
+  ], { from: 'Your laugh face, a V-sign drawn beside his head' });
+
+  // SMOOCH: smug lips and a heart (when you say thanks)
+  const LIPS = (p, y = 0) => ({ t: 'kiss', rel: 'head', x: 16.6, y: 21 + y, p });
+  const HRT = (i, s = 0) => ({ t: 'heart', rel: 'head', x: 27 + i * 2, y: 14 - i * 4, s });
+  R7('smooch', 'Smooch', 'You thank him, or copy the email', [
+    sf('smug', 90, [], { hy: -1 }),
+    sf('smug', 90, [LIPS(.5)], { hy: -1, hx: 1 }),
+    sf('smug', 110, [LIPS(1)], { hy: -1, hx: 1, bob: 1 }),
+    sf('smug', 140, [LIPS(1), HRT(0)], { hy: -2, hx: 1 }),
+    sf('smug', 160, [LIPS(.85, -.2), HRT(1)], { hy: -1, hx: 1 }),
+    sf('smug', 200, [LIPS(1), HRT(2), HRT(0, 1)], { hy: -1, hx: 1 }),
+    sf('smug', 500, [LIPS(.8), HRT(3), HRT(1, 1)], { hy: -1, hx: 1 }),
+    sf('smug', 300, [], { hy: -1, hx: 1 })
+  ], { from: 'Your smug face, with pursed lips drawn on (smooth, like your faces) and pixel hearts' });
+
+  /* ---------- Gear 5, the Luffy moves: he is rubber, so these are bigger than anything the plain imp can do ---------- */
+  const E5 = [SH[0], SH[1]];
+  const fist = (dx, dy, o = {}) => Object.assign({ t: 'arm', to: [E5[0] + dx, E5[1] + dy], hand: 'fist' }, o);
+  const POW = (dx, dy, r = 8, a = 0) => ({ t: 'pow', x: E5[0] + dx, y: E5[1] + dy, r, a });
+  // Gum-Gum Pistol: wind the arm back behind him, then one long punch with speed lines and an impact star
+  G5('g5-pistol', 'Gear 5 pistol', 'A press from across the screen', [
+    g(RC, 'joy-grin', 100, { dx: -1, sq: { s: .94, lag: 1 }, fx: [fist(-8, 4, { wob: .12, layer: 'under' })] }),
+    g(RC, 'joy-grin', 80, { dx: -2, sq: { s: .88, lag: 2 }, fx: [fist(-14, 6, { wob: .15, layer: 'under' })] }),
+    g(RC, 'gear5-laugh', 30, { dx: 1, sq: { b: [1.1, .94], h: [1.02, 1] }, fx: [fist(30, -3, { wob: .02 }), { t: 'streak', x: E5[0] + 22, y: E5[1] - 3, n: 3, len: 12, gap: 4 }] }),
+    g(RC, 'gear5-laugh', 70, { dx: 1, sq: { s: 1.05 }, fx: [fist(56, -3, { wob: .05 }), POW(60, -3, 8, .2)] }),
+    g(RC, 'gear5-laugh', 180, { fx: [fist(52, -3, { wob: .02 }), POW(58, -3, 6.5, .5)] }),
+    g(RC, 'joy-grin', 80, { fx: [fist(26, -2, { wob: -.08 })] }),
+    g(RC, 'joy-grin', 70, { fx: [fist(8, 2, { wob: .1 })] }),
+    g(ST, null, 130)
+  ], { from: 'Your Settle pose, one long rubber arm, speed lines and an impact star' });
+  // Gum-Gum Gatling: the fist is everywhere at once; stacked fists along the arm, the body shaking with it
+  const GAT = [-9, 6, -3, 9, -7, 3, -10, 7, -2, 8];
+  G5('g5-gatling', 'Gear 5 gatling', 'You type fast, or mash a button', [
+    g(RC, 'joy-grin', 90, { dx: -1, sq: { s: .93, lag: 1 }, fx: [fist(-8, 4, { wob: .12, layer: 'under' })] })
+  ].concat(GAT.map((o, i) => g(RC, 'gear5-laugh', 42, { dx: i % 2 ? 1 : -1, sq: { s: i % 2 ? 1.03 : .97, lag: i % 2 ? -1 : 1 }, fx: [
+    fist(46 + (i % 2 ? 4 : 0), o, { wob: i % 2 ? .05 : -.05 }),
+    { t: 'hand', kind: 'fist', x: E5[0] + 33, y: E5[1] + o * .6 + 1, dx: 1, dy: 0 }, { t: 'hand', kind: 'fist', x: E5[0] + 22, y: E5[1] + o * .3 + 2, dx: 1, dy: 0 },
+    { t: 'streak', x: E5[0] + 18, y: E5[1] + o * .3, n: 4, len: 10, gap: 3 }, POW(52 + (i % 3) * 2, o, 4.5 + (i % 2) * 1.5, i)] })))
+    .concat([g(RC, 'joy-grin', 70, { fx: [fist(20, 0, { wob: -.1 })] }), g(RC, 'joy-flat', 360, { bob: 1, fx: [fist(6, 4)] }), g(ST, null, 100)]), { from: 'Your Settle pose, a rubber arm, stacked fists and speed lines' });
+  // Gum-Gum Balloon: when he falls from high up he blows up and floats down instead of dropping
+  const BAL = k => ({ b: [1 + .8 * k, 1 + .16 * k], h: [1 + .08 * k, 1 + .06 * k], round: true });
+  G5('g5-float', 'Gear 5 balloon float', 'Dropped or thrown from high up', [-1, 0, -1, -2].map((dy, i) => g(RC, i % 2 ? 'joy-grin' : 'gear5-laugh', 260, { dy, sq: BAL(.95 + (i % 2) * .05) })), { loop: true, from: 'Your Settle pose, blown up like a balloon' });
+  // hold on: a stop palm at the end of a rubber arm
+  const palmUp = (k, h = 'palm', wob = 0) => ({ t: 'arm', to: [E5[0] + Math.round(18 * k), E5[1] - Math.round(24 * k)], hand: h, wob });
+  G5('g5-stop', 'Gear 5 hold on', 'The cursor leaves, or too many clicks', [
+    g(RC, 'gear5-shock', 70, { sq: { s: .9, lag: 1 }, fx: [palmUp(.2, 'fist')] }), g(RC, 'gear5-shock', 60, { sq: { s: 1.12, lag: -2 }, fx: [palmUp(1.25, 'palm', .12)] }),
+    g(RC, 'gear5-shock', 90, { fx: [palmUp(.95, 'palm', -.08)] }), g(RC, 'joy-flat', 750, { fx: [palmUp(1, 'palm', .02)] }),
+    g(RC, 'joy-flat', 400, { bob: 1, fx: [palmUp(1, 'palm', .02), { t: 'sweat', rel: 'head', x: 23, y: 12 }] }), g(RC, 'joy-flat', 80, { fx: [palmUp(.4, 'palm', .1)] }), g(ST, null, 100)
+  ], { from: 'Your Settle pose, a rubber arm and an open palm' });
+  // ta-da: the arm sweeps out wide, open palm up, sparkles
+  const sweep = (a, k, wob = 0) => ({ t: 'arm', to: [E5[0] + Math.round(Math.cos(a) * 34 * k), E5[1] + Math.round(Math.sin(a) * 34 * k)], hand: 'open', wob });
+  G5('g5-present', 'Gear 5 ta-da', 'A project opens', [
+    g(RC, 'joy-grin', 80, { sq: { s: .92, lag: 1 }, fx: [fist(-6, 3, { wob: .1, layer: 'under' })] }),
+    g(RC, 'joy-grin', 60, { sq: { s: 1.1, lag: -1 }, fx: [sweep(-.25, 1.25, .2)] }),
+    g(RC, 'gear5-laugh', 90, { fx: [sweep(-.5, 1, -.12)] }),
+    g(RC, 'gear5-laugh', 700, { hy: -1, fx: [sweep(-.45, 1, .1), { t: 'stars', x: E5[0] + 30, y: E5[1] - 16, rx: 6, ry: 6, n: 2, a: 0 }] }),
+    g(RC, 'joy-grin', 400, { fx: [sweep(-.4, 1, .05)] }), g(RC, 'joy-grin', 70, { fx: [sweep(-.2, .4, .1)] }), g(ST, null, 100)
+  ], { from: 'Your Settle pose, a rubber arm swept wide with an open palm' });
+  // peace sign at the end of a rubber arm (the screenshot)
+  const vee = (k, wob = 0) => ({ t: 'arm', to: [E5[0] + Math.round(14 * k), E5[1] - Math.round(26 * k)], hand: 'peace', wob });
+  G5('g5-cheese', 'Gear 5 peace sign', 'A screenshot is taken', [
+    g(RC, 'cloud-wow', 70, { fx: [fist(6, -4, { wob: .1 })] }), g(RC, 'joy-grin', 60, { sq: { s: 1.1, lag: -1 }, fx: [vee(1.3, .1)] }), g(RC, 'gear5-laugh', 100, { fx: [vee(.95, -.06)] }),
+    g(RC, 'gear5-laugh', 900, { hy: -1, fx: [vee(1, .02), { t: 'stars', x: E5[0] + 20, y: E5[1] - 36, rx: 5, ry: 4, n: 2, a: 1 }] }),
+    g(RC, 'joy-grin', 500, { fx: [vee(1, .02)] }), g(RC, 'joy-grin', 80, { fx: [vee(.4, .1)] }), g(ST, null, 100)
+  ], { from: 'Your Settle pose, a rubber arm and a V-sign' });
+  // finger on lips
+  const MO = MOUTH['joy-grin'], lip = (k, wob = 0) => ({ t: 'arm', rel: 'head', to: [MO[0] + 2 + Math.round((1 - k) * 12), MO[1] + 10 + Math.round((1 - k) * 6)], hand: 'point', hdir: [0, -1], wob });
+  G5('g5-shh', 'Gear 5 finger on lips', 'A film is on', [
+    g(RC, 'cloud-wow', 80, { fx: [fist(6, -2, { wob: .1 })] }), g(RC, 'cloud-wow', 90, { fx: [lip(.4, .3)] }),
+    g(RC, 'cloud-wow', 700, { hx: 1, fx: [lip(1, .25)] }), g(RC, 'cloud-wow', 300, { hx: -1, fx: [lip(1, .25)] }), g(RC, 'cloud-wow', 600, { hx: 1, hy: 1, bob: 1, fx: [lip(1, .25)] }),
+    g(RC, 'cloud-wow', 90, { fx: [lip(.4, .3)] }), g(ST, null, 100)
+  ], { from: 'Your cloud-wow head, a rubber arm up to his lips' });
+  // the sheet, held out on a long arm
+  const held = (k, mark = false, dy = 0) => { const to = [E5[0] + Math.round(24 * k), E5[1] - Math.round(10 * k) + dy]; return [{ t: 'arm', to, hand: 'grab', wob: .05 }, { t: 'paper', x: to[0] - 3, y: to[1] - 16, mark }]; };
+  G5('g5-read', 'Gear 5 reading', 'Opening a spec or the CV', [
+    g(RC, 'cloud-wow', 80, { fx: [fist(6, 0, { wob: .1 })] }), g(RC, 'cloud-wow', 80, { fx: held(.6) }), g(RC, 'cloud-wow', 700, { hx: 1, hy: 1, fx: held(1) }), g(RC, 'joy-flat', 700, { hx: -1, hy: 1, bob: 1, fx: held(1) }),
+    g(RC, 'cloud-smug', 420, { fx: held(1) }), g(RC, 'cloud-smug', 120, { fx: held(1, true, 1) }), g(RC, 'joy-grin', 800, { hy: -1, fx: held(1, true) }), g(RC, 'joy-grin', 80, { fx: held(.4, true) }), g(ST, null, 100)
+  ], { from: 'Your cloud-wow and flat heads, a rubber arm and a sheet of paper' });
+  // wasn't me: a shrug with one rubber hand out, sweat
+  const shrugArm = (k = 1, wob = .1) => ({ t: 'arm', to: [E5[0] + Math.round(25 * k), E5[1] - Math.round(8 * k)], hand: 'palm', wob });
+  G5('g5-innocent', "Gear 5 wasn't me", 'An error, a delete, a 404', [
+    g(RC, 'gear5-shock', 70, { sq: { s: .9, lag: 1 }, fx: [fist(6, -2, { wob: .1 })] }), g(RC, 'gear5-shock', 60, { sq: { s: 1.12, lag: -2 }, fx: [shrugArm(1.1, .2)] }),
+    g(RC, 'joy-flat', 800, { sq: { s: .97, lag: 1 }, hy: 1, fx: [shrugArm(1), { t: 'sweat', rel: 'head', x: 23, y: 12 }] }), g(RC, 'joy-flat', 300, { hx: 1, bob: 1, fx: [shrugArm(1)] }),
+    g(RC, 'joy-flat', 80, { fx: [fist(8, 0)] }), g(ST, null, 100)
+  ], { from: 'Your flat head, one open rubber hand and a drop of sweat' });
+  // smooch with the cloud-smug head
+  const LIP5 = (p, y = 0) => ({ t: 'kiss', rel: 'head', x: MOUTH['joy-grin'][0], y: MOUTH['joy-grin'][1] + y, p });
+  const HRT5 = (i, s = 0) => ({ t: 'heart', rel: 'head', x: 26 + i * 2, y: 10 - i * 5, s });
+  G5('g5-smooch', 'Gear 5 smooch', 'You thank him, or copy the email', [
+    g(RC, 'cloud-smug', 90, { hy: -1 }), g(RC, 'cloud-smug', 90, { hy: -1, fx: [LIP5(.5, -.4)] }), g(RC, 'cloud-smug', 120, { hy: -1, bob: 1, fx: [LIP5(1, -.4)] }),
+    g(RC, 'cloud-smug', 160, { hy: -2, fx: [LIP5(1, -.4), HRT5(0)] }), g(RC, 'cloud-smug', 220, { hy: -1, fx: [LIP5(.85, -.5), HRT5(1), HRT5(0, 1)] }),
+    g(RC, 'cloud-smug', 600, { hy: -1, fx: [LIP5(.8, -.4), HRT5(2), HRT5(1, 1)] }), g(ST, null, 100)
+  ], { from: 'Your cloud-smug head, pursed lips drawn on and pixel hearts' });
+  ['g5-pistol', 'g5-gatling', 'g5-float', 'g5-stop', 'g5-present', 'g5-cheese', 'g5-shh', 'g5-read', 'g5-innocent', 'g5-smooch'].forEach(k => { CLIPS[k].r7 = true; });
+
   window.IMP2CLIPS = { CLIPS, FACES, GLYPHS };
 })();
 
@@ -538,8 +814,8 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   const GROW = ['react-smug', 'react-triumph', 'react-laugh'];
   const SHRINK = ['react-annoyed', 'react-sad', 'react-shy'];
   const WIGGLE = ['react-dizzy', 'react-annoyed', 'face-swirl', 'face-ko', 'face-grr'];
-  const ENTER = ['rest', 'smug', 'shrug', 'react-smug', 'point', 'jump', 'peek'];
-  const IDLE_FUN = ['wave', 'shrug', 'smug', 'stretch', 'sit', 'react-curious', 'react-smile', 'face-happy', 'face-kitty', 'face-blank', 'point-around'];
+  const ENTER = ['rest', 'smug', 'shrug', 'react-smug', 'point', 'jump', 'peek', 'present', 'present', 'read'];
+  const IDLE_FUN = ['wave', 'shrug', 'smug', 'stretch', 'sit', 'react-curious', 'react-smile', 'face-happy', 'face-kitty', 'face-blank', 'point-around', 'read'];
   const G5_MS = 60000;
 
   /* ---------- state ---------- */
@@ -557,6 +833,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     pending: null, watching: null, ride: { t: 0, x: 0, y: 0, revs: [], sign: 0, shockAt: 0, still: 0, shaken: false }, sizeTw: null, cool: {}
   };
   const ready = (k, ms) => { const now = performance.now(); if (now - (me.cool[k] || 0) < ms) return false; me.cool[k] = now; return true; };
+  const cool =(k, ms) => { const now = performance.now(), last = me.cool[k]; if (last != null && now - last < ms) return false; me.cool[k] = now; return true; };
   let S = 3, R = 1, W = innerWidth, H = innerHeight;
   const baseScale = () => (W < 640 ? 2 : 3);
   const emit = (name, detail) => document.dispatchEvent(new CustomEvent(name, { detail }));
@@ -680,11 +957,12 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     crouch: 'g5-crouch', touch: 'g5-touch', air: 'g5-air', dangle: 'g5-drag', hook: 'g5idle', idle: 'g5idle', blink: 'g5idle', tap: 'g5-air', kick: 'g5-kick', eat: 'g5-chomp',
     'react-smile': 'g5-grin', 'react-laugh': 'g5-laugh', 'react-shock': 'g5-shock', 'react-curious': 'g5-wow', 'react-focused': 'g5-focus', 'react-annoyed': 'g5-flat', 'react-smug': 'g5-smug',
     'react-shy': 'g5-shy', 'react-sleepy': 'g5-yawn', 'react-sad': 'g5-deflate', 'react-dizzy': 'g5-dizzy', 'react-triumph': 'g5-cheer',
-    'face-swirl': 'g5-dizzy', 'face-ko': 'g5-ko', 'face-grr': 'g5-flat', 'face-happy': 'g5-grin', 'face-sparkle': 'g5-cheer', 'face-kitty': 'g5-shy', 'face-blank': 'g5-flat'
+    'face-swirl': 'g5-dizzy', 'face-ko': 'g5-ko', 'face-grr': 'g5-flat', 'face-happy': 'g5-grin', 'face-sparkle': 'g5-cheer', 'face-kitty': 'g5-shy', 'face-blank': 'g5-flat',
+    timeout: 'g5-stop', wait: 'g5-stop', innocent: 'g5-innocent', present: 'g5-present', read: 'g5-read', shh: 'g5-shh', 'cheese-flat': 'g5-cheese', 'cheese-peace': 'g5-cheese', smooch: 'g5-smooch', 'hands-up': 'g5-innocent'
   };
   const look = k => { if (!k || me.costume !== 'gear5') return k; if (G5MAP[k]) return G5MAP[k]; return CLIPS[k]?.g5 || /^(g5|gear5|cloud)/.test(k) ? k : 'g5-grin'; };
   const idleClip = () => me.costume === 'gear5' ? (me.watching ? 'g5-watch' : 'g5idle') : (me.perch?.type === 'hang' || me.perch?.type === 'header') ? 'hook' : (me.watching ? 'sit' : 'idle');
-  const PERSIST = ['idle', 'g5idle', 'hook', 'dangle', 'air', 'sleep', 'sit', 'g5-sleep', 'g5-watch', 'g5-hold', 'g5-air', 'g5-drag'];
+  const PERSIST = ['idle', 'g5idle', 'hook', 'dangle', 'air', 'sleep', 'sit', 'g5-sleep', 'g5-watch', 'g5-hold', 'g5-air', 'g5-drag', 'g5-float'];
   const play = (k, then) => { k = look(k); me.clip = CLIPS[k] ? k : idleClip(); me.fi = 0; me.ft = 0; me.cycles = 0; me.queue = then ? [look(then)] : []; };
   const frame = () => (CLIPS[me.clip] || CLIPS.idle).frames[me.fi];
   // a reaction where he stands; hooks get their own version, Gear 5 gets his through look()
@@ -702,10 +980,13 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     catch: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 110, max: 95, then: 'g5-taunt' },
     eat: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 140, max: 95, then: 'g5-chomp' },
     flick: { hand: 'point', head: 'joy-grin', hold: 220, max: 110, then: 'g5-laugh' },
-    kick: { leg: true, head: 'joy-grin', hold: 170, max: 95, then: 'g5-cheer' }
+    kick: { leg: true, head: 'joy-grin', hold: 170, max: 95, then: 'g5-cheer' },
+    punch: { hand: 'fist', head: 'gear5-laugh', hold: 220, max: 150, then: 'g5-laugh', pow: true }, // Gum-Gum Pistol: a fist that lands with an impact star
+    pull: { hand: 'grab', got: 'grab', head: 'cloud-wow', hold: 1e9, max: 190, then: 'g5-laugh', lead: .55 } // Gum-Gum Slingshot: a held arm that follows what it holds
   };
   const SHOULDER = [37, 33], HIP = [31, 46];
   const toLocal = (sx, sy, flip) => { const a = { x: Math.round(me.x / S) * S, y: Math.round(me.y / S) * S }; return [(flip ? a.x - sx : sx - a.x) / S + 26, (sy - a.y) / S + 52]; };
+  const fromLocal = (lx, ly, flip) => { const a = { x: Math.round(me.x / S) * S, y: Math.round(me.y / S) * S }; return [flip ? a.x - (lx - 26) * S : a.x + (lx - 26) * S, a.y + (ly - 52) * S]; };
   const canReach = (kind, x, y) => { const K = REACH_K[kind], from = K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(x, y, x < me.x); return Math.hypot(lx - from[0], ly - from[1]) <= K.max; };
   const startReach = (kind, x, y, o = {}) => {
     if (me.costume !== 'gear5' || me.mode !== 'perch' || !standing() || me.hidden || me.reach) return false;
@@ -715,7 +996,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     me.reach = { kind, K, x, y, el: o.el || null, follow: o.follow || null, cb: o.cb || null, t: 0, i: 0, hit: false };
     play('g5-hold'); return true;
   };
-  const rowLen = r => r.i === 5 ? r.K.hold : r.i < 5 ? REACH_T[r.i][0] * (r.K.lead || 1) : REACH_T[r.i][0];
+  const rowLen = r => r.i === 5 ? (r.rel ? 0 : r.K.hold) : r.i < 5 ? REACH_T[r.i][0] * (r.K.lead || 1) : REACH_T[r.i][0];
   const reachTick = dt => {
     const r = me.reach; if (!r) return null;
     if (me.mode !== 'perch' || me.costume !== 'gear5' || me.hidden) { me.reach = null; return null; }
@@ -730,9 +1011,9 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     const from = r.K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(r.ax, r.ay, me.flip), dx = lx - from[0], dy = ly - from[1], dist = Math.hypot(dx, dy) || 1;
     const L = Math.max(4, Math.min(r.K.max, dist - (r.K.short || 0))), k = row[1];
     if (!r.hit && r.i >= 2) { r.hit = true; try { r.cb && r.cb(); } catch { } }
-    const to = [Math.round(from[0] + dx / dist * L * k), Math.round(from[1] + dy / dist * L * k)];
+    const to = [Math.round(from[0] + dx / dist * L * k), Math.round(from[1] + dy / dist * L * k)]; me.hand = fromLocal(to[0], to[1], me.flip);
     const hand = row[2] === 'fist' ? 'fist' : (r.hit && r.K.got) ? r.K.got : r.K.hand;
-    return { fr: { s: r.K.leg ? 'g5:kick' : 'g5:reach', head: r.K.head ? 'g5head:' + r.K.head : undefined, ms: 1 }, fx: [r.K.leg ? { t: 'leg', to, ring: r.i >= 1 && r.i <= 3, wob: row[3] } : { t: 'arm', to, hand, wob: row[3] + r.sw }] };
+    return { fr: { s: r.K.leg ? 'g5:kick' : 'g5:reach', head: r.K.head ? 'g5head:' + r.K.head : undefined, ms: 1, ...(r.tension ? { dx: -Math.round(r.tension * 2), sq: { s: 1 - .07 * r.tension, lag: Math.round(r.tension * 2) } } : {}) }, fx: [r.K.leg ? { t: 'leg', to, ring: r.i >= 1 && r.i <= 3, wob: row[3] } : { t: 'arm', to, hand, wob: row[3] + r.sw }].concat(r.K.pow && r.i >= 2 && r.i <= 5 ? [{ t: 'pow', x: to[0] + 5, y: to[1], r: r.i === 2 ? 8 : 6.5, a: r.i }] : []) };
   };
   const reaimReach = el => {
     const r = me.reach; if (!r || r.kind !== 'point' || !el) return false;
@@ -748,10 +1029,31 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   const pointEl = el => { const b = el.getBoundingClientRect(); if (me.costume === 'gear5') return startReach('point', b.left + b.width / 2, b.top + b.height / 2, { el }); play(pointAtEl(el), idleClip()); return true; };
 
   /* ---------- moving between perches ---------- */
+  /* ---------- round 7: Gum-Gum Rocket ---------- */
+  const zipOK = p => { if (RM || !['ledge', 'base', 'free'].includes(p.type) || !standing()) return false; const b = anchorOf(p), d = Math.hypot(b.x - me.x, b.y - me.y); return d > 240 && d < 820; };
+  const zipStart = (p, after) => {
+    const b = anchorOf(p); me.flip = b.x < me.x; me.lastTouch = performance.now();
+    me.zip = { p, after, t: 0, phase: 'shoot', a0: { x: me.x, y: me.y }, dur: 300 }; me.mode = 'zip'; play('g5-hold');
+  };
+  const zipStep = dt => {
+    const z = me.zip; if (!z) { me.mode = 'perch'; return; }
+    if (!shownEl(z.p.el ?? doc)) { me.zip = null; fallFromHere(); return; }
+    z.t += dt; const b = anchorOf(z.p);
+    if (z.phase === 'shoot') { if (z.t >= 170) { z.phase = 'pull'; z.t = 0; z.dur = Math.min(560, 230 + Math.hypot(b.x - z.a0.x, b.y - z.a0.y) * .32); } }
+    else { const k = Math.min(1, z.t / z.dur), e = k * k * (1.6 - .6 * k); me.x = z.a0.x + (b.x - z.a0.x) * e; me.y = z.a0.y + (b.y - z.a0.y) * e - Math.sin(Math.PI * k) * 10; if (k >= 1) { me.perch = z.p; me.mode = 'perch'; me.zip = null; arrive(); z.after && z.after(); } }
+  };
+  const zipFrame = () => {
+    const z = me.zip; if (!z) return null; const b = anchorOf(z.p), [lx, ly] = toLocal(b.x, b.y - 3 * S, me.flip), dx = lx - SHOULDER[0], dy = ly - SHOULDER[1], dist = Math.hypot(dx, dy) || 1;
+    let k = 1, hand = 'grab';
+    if (z.phase === 'shoot') { const u = Math.min(1, z.t / 170); k = u < .6 ? -.12 + (u / .6) * 1.3 : 1.18 - (u - .6) / .4 * .18; hand = u < .35 ? 'fist' : 'grab'; }
+    const L = Math.max(4, dist) * k, to = [Math.round(SHOULDER[0] + dx / dist * L), Math.round(SHOULDER[1] + dy / dist * L)];
+    return { fr: { s: 'g5:reach', head: 'g5head:' + (z.phase === 'shoot' ? 'joy-grin' : 'gear5-laugh'), ms: 1, sq: z.phase === 'pull' ? { b: [1.28, .9], h: [1.04, .97] } : { s: .93, lag: 1 } }, fx: [{ t: 'arm', to, hand, wob: z.phase === 'shoot' ? .06 : 0 }] };
+  };
   const hopTo = (p, after) => {
     settle(p);
     const a0 = { x: me.x, y: me.y };
     if (RM) { me.perch = p; const a = anchorOf(p); me.x = a.x; me.y = a.y; me.mode = 'perch'; arrive(); after && after(); return; }
+    if (me.costume === 'gear5' && zipOK(p)) return zipStart(p, after);
     me.mode = 'hop'; play('crouch');
     me.tw = { p, a0, t: 0, dur: 0, after, phase: 'crouch' };
   };
@@ -807,7 +1109,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     if (st === 'gone') { fallFromHere(); return; }
     if (me.watching && (!me.watching.isConnected || me.watching.paused || me.watching.ended)) me.watching = null;
     if (st === 'top' || st === 'bottom') { follow(st); return; }
-    if (me.watching && !me.watching.paused && !me.watching.ended && me.watching.isConnected) return; // watching a film
+    if (me.watching && !me.watching.paused && !me.watching.ended && me.watching.isConnected) { if (standing() && cool('suspense', 16000)) play('shh', 'sit'); return; } // watching a film
     if (quiet > 60000 && standing()) { if (!asleep() && !['yawn', 'g5-yawn'].includes(me.clip)) play('sleep'); return; }
     if (quiet > 35000 && standing() && ready('yawn', 40000)) { play('yawn', 'sleep'); return; }
     const r = Math.random();
@@ -1096,6 +1398,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
           if (k >= 1) { me.perch = tw.p; me.mode = 'perch'; me.tw = null; arrive(); tw.after && tw.after(); }
         }
       }
+    } else if (me.mode === 'zip') { zipStep(dt);
     } else if (me.mode === 'rise' || me.mode === 'sink') {
       const stp = 34 * S / 7;
       if (me.mode === 'rise') { me.rise = Math.max(0, me.rise - stp * dt / 60); if (!me.rise) { me.mode = 'perch'; play('blink', 'react-curious'); } }
@@ -1103,7 +1406,8 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       if (me.perch) { const a = anchorOf(me.perch); me.x = a.x; me.y = a.y; }
     } else if (me.mode === 'fall') {
       const y0 = me.y;
-      me.vy += 2200 * dt / 1000; me.x += me.vx * dt / 1000; me.y += me.vy * dt / 1000; me.vx *= me.slap ? 1 : .995;
+      if (me.costume === 'gear5' && !me.slap && me.vy > 520 && me.clip !== 'g5-float') play('g5-float');
+      me.vy += 2200 * dt / 1000; if (me.clip === 'g5-float') me.vy = Math.min(me.vy, 240); me.x += me.vx * dt / 1000; me.y += me.vy * dt / 1000; me.vx *= me.slap ? 1 : .995;
       if (me.slap && me.vy >= 0) { const t = me.slap; me.slap = null; me.vx *= .3; t.click(); t.blur?.(); play('g5joy'); }
       if (me.x < 30) { me.x = 30; me.vx = -me.vx * .4; } if (me.x > W - 30) { me.x = W - 30; me.vx = -me.vx * .4; }
       if (me.y < 30 && me.vy < 0 && !me.target && !me.slap) me.vy = Math.abs(me.vy) * .3;
@@ -1112,7 +1416,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
         const ledges = find('ledge').map(el => ({ el, r: el.getBoundingClientRect(), type: 'ledge' })).filter(({ el, r }) => r.width > 80 && r.top > ts && me.x > r.left + 10 && me.x < r.right - 10 && r.top >= y0 - 2 && r.top <= me.y + 2 && (el === me.target?.el || spotOK('ledge', el, me.x)))
           .concat(find('base').map(el => ({ el, r: el.getBoundingClientRect(), type: 'base' })).filter(({ el, r }) => r.height > spriteH() + 40 && me.x > r.left + 30 && me.x < r.right - 30 && r.bottom - 8 >= y0 - 2 && r.bottom - 8 <= me.y + 2 && r.bottom - 8 > ts && (el === me.target?.el || spotOK('base', el, me.x))));
         const hitL = me.target ? ledges.find(l => l.el === me.target.el) || ledges[0] : ledges[0];
-        if (hitL) { me.perch = { type: hitL.type, el: hitL.el, fx: (me.x - hitL.r.left) / hitL.r.width }; me.mode = 'perch'; me.vx = me.vy = 0; me.target = null; arrive(); }
+        if (hitL) { const lv = me.vy; me.perch = { type: hitL.type, el: hitL.el, fx: (me.x - hitL.r.left) / hitL.r.width }; me.mode = 'perch'; me.vx = me.vy = 0; me.target = null; arrive(); emit('imp:land', { el: hitL.el, x: me.x, y: me.y, vy: lv, g5: me.costume === 'gear5' }); }
         else if (me.y >= H - 2) { me.y = H - 2; me.perch = { type: 'free', x: me.x, y: H - 2 }; me.mode = 'perch'; me.vx = me.vy = 0; me.target = null; arrive(); me.nextThink = now + 2500; }
       }
     }
@@ -1133,6 +1437,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
     let fr = frame(), fx = null;
     const rf = reachTick(dt); if (rf) { fr = rf.fr; fx = rf.fx; }
+    if (me.mode === 'zip') { const zf = zipFrame(); if (zf) { fr = zf.fr; fx = zf.fx; } }
     if (me.faces === 'simple' && fr.s === 'idle:0') fr = { s: 'idle:body', head: 'glyph:-u-', ms: fr.ms };
     const a = { x: Math.round(me.x / S) * S, y: Math.round(me.y / S) * S }, clip = me.perch?.type === 'inside' ? anchorOf(me.perch).clip : null;
     if (clip) { ctx.save(); ctx.beginPath(); ctx.rect(clip.left * R, clip.top * R, clip.width * R, clip.height * R); ctx.clip(); }
@@ -1147,6 +1452,42 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     placeBubble();
     requestAnimationFrame(tick);
   };
+
+  /* ---------- round 7: moments. The browser or the page tells him something happened; he acts it out ---------- */
+  const SIGNAL = { snap: ['cheese-flat', 'cheese-peace', 'cheese-peace'], timeout: 'timeout', wait: 'wait', error: ['innocent', 'innocent', 'hands-up'], empty: 'innocent', present: 'present', read: 'read', suspense: 'shh', thanks: 'smooch' };
+  const signal = (type, o = {}) => {
+    if (me.hidden || me.mode === 'off') return false;
+    const pool = SIGNAL[type]; if (!pool) return false; const k = any([].concat(pool)); if (!CLIPS[k]) return false;
+    me.lastTouch = performance.now();
+    if (me.mode === 'perch' && standing() && !me.reach) { play(k, idleClip()); if (o.say) say(o.say, o.ms || 2200); } else me.pending = k;
+    emit('imp:signal', { type, clip: k }); return k;
+  };
+  let flashEl = null;
+  const flash = () => {
+    if (RM) return;
+    if (!flashEl) { flashEl = document.createElement('div'); flashEl.className = 'imp-chrome'; Object.assign(flashEl.style, { position: 'fixed', inset: '0', background: '#fff', opacity: '0', pointerEvents: 'none', zIndex: '2147483002' }); document.body.append(flashEl); }
+    flashEl.style.transition = 'none'; flashEl.style.opacity = '.45'; void flashEl.offsetWidth; flashEl.style.transition = 'opacity .35s ease-out'; flashEl.style.opacity = '0';
+  };
+  const snap = (o = {}) => { if (me.hidden || me.mode === 'off' || !cool('snap', 2500)) return false; if (o.flash !== false) flash(); return signal('snap', o); };
+  // Gum-Gum Pistol at a real element or a point (Gear 5 only; false when he is not in Gear 5 or it is out of reach)
+  const punch = (t, cb) => {
+    if (me.costume !== 'gear5') return false; let x, y, el = null;
+    if (Array.isArray(t)) [x, y] = t; else if (t && t.getBoundingClientRect) { el = t; const b = t.getBoundingClientRect(); x = b.left + b.width / 2; y = b.top + b.height / 2; } else return false;
+    return startReach('punch', x, y, { el, cb });
+  };
+  document.addEventListener('keyup', e => { if (e.key === 'PrintScreen') snap(); });
+  document.addEventListener('keydown', e => { if (!e.repeat && e.metaKey && e.shiftKey && (e.key.toLowerCase() === 's' || ['Digit3', 'Digit4', 'Digit5'].includes(e.code))) snap(); }, true);
+  const clicks = []; // a flurry of clicks: time out
+  document.addEventListener('pointerdown', e => {
+    if (mine(e.target) || e.pointerType === 'touch') return; const now = performance.now();
+    clicks.push(now); while (clicks.length && now - clicks[0] > 1600) clicks.shift();
+    if (clicks.length >= 6 && me.mode === 'perch' && standing() && calm() && cool('rage', 25000)) { clicks.length = 0; signal('timeout'); }
+  }, true);
+  doc.addEventListener('mouseleave', e => { if (e.clientY > 3 || e.relatedTarget) return; if (me.mode === 'perch' && standing() && calm() && cool('plead', 60000)) signal('wait'); });
+  addEventListener('offline', () => signal('error'));
+  document.addEventListener('input', e => { const v = e.target && e.target.value; if (typeof v === 'string' && /\b(thanks|thank you|thx)\b|شكر/i.test(v.slice(-24)) && cool('thanks', 20000)) signal('thanks'); }, true);
+  const keys = []; // typing fast in Gear 5: a flurry of fists
+  document.addEventListener('keydown', e => { if (me.costume !== 'gear5' || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return; const now = performance.now(); keys.push(now); while (keys.length && now - keys[0] > 1300) keys.shift(); if (keys.length >= 10 && cool('gatling', 15000) && me.mode === 'perch' && standing() && (calm() || me.clip === 'g5-focus') && !me.reach) { keys.length = 0; play('g5-gatling', idleClip()); } }, true);
 
   /* ---------- public handle ---------- */
   const candidateIn = (el, type) => {
@@ -1190,6 +1531,17 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     react(name) { if (me.hidden) return false; const k = Array.isArray(name) ? any(name) : name; if (!CLIPS[k]) return false; if (me.mode === 'perch') react(k); else me.pending = k; return k; },
     /* v3: toys and lines */
     say: (text, ms) => say(text, ms),
+    signal: (t, o) => signal(t, o), snap: o => snap(o), punch: (t, cb) => punch(t, cb),
+    // Gear 5: hold on to something with a rubber arm. target = { x, y, follow: () => [x, y] }; the arm tracks follow(); release() lets go
+    hold(target, cb) { return startReach('pull', target.x, target.y, { follow: target.follow || null, cb }); },
+    release() { if (!me.reach) return false; me.reach.rel = true; return true; },
+    strain(t) { if (me.reach) me.reach.tension = t; },
+    hand() { return me.reach && me.hand ? me.hand.slice() : null; },
+    holding() { return !!me.reach && me.reach.kind === 'pull'; },
+    shoulder(flip = me.flip) { return fromLocal(SHOULDER[0], SHOULDER[1], flip); },
+    perchEl() { return me.perch && me.perch.el || null; },
+    reachable(x, y, kind = 'pull') { return me.costume === 'gear5' && me.mode === 'perch' && !me.reach && canReach(kind, x, y); },
+    busy() { return !!me.reach || me.mode !== 'perch' || me.hidden; },
     // where he is drawn now (viewport pixels), for toys that bump into him
     body: () => (me.hidden || me.mode === 'off' || !me.hb) ? null : { ...me.hb, x: me.x, y: me.y, standing: me.mode === 'perch' && standing(), mode: me.mode },
     // something hit him (a thrown ball): a wobble, or flat on his back when it was hard
@@ -1211,6 +1563,9 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
       if (!p) return false;
       me.flip = x < me.x; hopTo(p, after); return true;
     },
+    // demo handles: switch Gear 5 on or off, throw him up in the air
+    gear5(on = true) { if (me.hidden || me.mode !== 'perch') return false; if (on && me.costume !== 'gear5') { me.pokes = []; setCostume('gear5'); play('gear5', 'g5idle'); } else if (!on && me.costume === 'gear5') { setCostume('base'); play('react-dizzy', idleClip()); } return true; },
+    toss() { if (me.hidden || me.mode !== 'perch') return false; me.reach = null; me.perch = null; me.target = null; me.mode = 'fall'; me.vx = (Math.random() - .5) * 240; me.vy = -1500; play('air'); return true; },
     grow: () => step(1),
     shrink: () => step(-1),
     setSize: f => setSize(f),

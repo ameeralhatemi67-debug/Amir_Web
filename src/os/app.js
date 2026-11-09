@@ -5,7 +5,7 @@
 import {
   A, esc, clamp, env, mod, lang, useLang, T, rtl, other, U, u, filmTitle, I, P, ALLFILMS, stageLabel, img,
   href, tileFor, SYS, appTile, appTitle, titleFor, clockHTML, clockNow, wallHTML, lbLists, playerFilms, sound, dur, filmTitleHTML,
-  ACCENTS, WALLS, TERM, appMeta, topbarHTML, iconsHTML, widgetsHTML, homeHTML, dockHTML, bootHTML, FILM,
+  ACCENTS, WALLS, TERM, appMeta, topbarHTML, iconsHTML, iconIds, widgetsHTML, homeHTML, dockHTML, bootHTML, FILM,
   TAGS, techsOf, featImg, stageChip, reachChip, lbLists as lbListsCore
 } from './core.js';
 
@@ -28,7 +28,8 @@ useLang(doc.lang === 'ar' ? 'ar' : 'en');
 
 /* settings, remembered per browser */
 const SKEY = 'pf-a-settings';
-const DEF = { theme: 'auto', accent: 'amber', wall: 'corniche', motion: 'auto', icons: 'default', widgets: true, ball: true, pulse: false, pulseEdge: 'left' };
+// iconOrder, winPos and deskHome are what Imp rearranged in Gear 5 (see rubber-os.js): a custom icon order, where he put windows, and the cells his files came from
+const DEF = { theme: 'auto', accent: 'amber', wall: 'corniche', motion: 'auto', icons: 'default', widgets: true, ball: true, pulse: false, pulseEdge: 'left', iconOrder: null, winPos: null, deskHome: null };
 let S = (() => { let s = {}; try { s = JSON.parse(ls.get(SKEY) || '{}') || {}; } catch { } const old = ls.get('pf-a-theme'); if (!s.theme && old) s.theme = old; return { ...DEF, ...s }; })();
 const saveS = () => ls.set(SKEY, JSON.stringify(S));
 const rm = () => osRM.matches || S.motion === 'reduce';
@@ -102,6 +103,13 @@ const impArrived = () => {
   if (booting && !Imp().state().hidden) { Imp().hide(true); bootHid = true; }
   syncImpSize();
   impWait.splice(0).forEach(f => f());
+};
+// small reasons for him to react (the runtime picks the moment: a screenshot, a mistake, an empty result, a ta-da);
+// each kind has its own cool-down so he never nags. Silent when he is hidden or has not arrived yet.
+const impSigAt = {};
+const impSig = (type, ms = 8000) => {
+  const i = Imp(); if (!i || !i.signal || i.state().hidden) return; const now = performance.now();
+  if (now - (impSigAt[type] || -1e9) < ms) return; impSigAt[type] = now; i.signal(type);
 };
 
 
@@ -203,6 +211,8 @@ const openWin = (id, from, o = {}) => {
     const ww = Math.min(m.size[0], a.W - 32), hh = Math.min(m.size[1], a.bottom - a.top - 20);
     w.geo = { x: (a.W - ww) / 2 + ((n % 5) - 2) * 26, y: clamp(a.top + 16 + (n % 5) * 22, a.top + 6, Math.max(a.top + 6, a.bottom - hh)), w: ww, h: hh };
   }
+  w.home = { x: w.geo.x, y: w.geo.y }; // where it opens; Reset layout brings it back here
+  const sp = id !== 'start' && S.winPos && S.winPos[id]; if (sp) { w.geo.x = sp.x; w.geo.y = sp.y; } // where Imp last put it (Gear 5)
   fillWin(w); applyGeo(w); $('#wins').append(el); fitGeo(w); applyGeo(w);
   focusWin(w); el.focus({ preventScroll: true });
   if (!rm() && !o.instant) {
@@ -213,6 +223,7 @@ const openWin = (id, from, o = {}) => {
   }
   dockSync(); dockBounce(id); setTimeout(syncPerches, 500);
   if (id.startsWith('p:')) setTimeout(() => { if (!w.closing && !w.min) Imp()?.enter?.(el); }, rm() ? 60 : 520);
+  else if (id === 'privacy' || id === 'aboutos' || id === 'help') setTimeout(() => { if (!w.closing && !w.min) impSig('read', 25000); }, rm() ? 200 : 900); // he reads the small print with you
   return w;
 };
 const stopMedia = el => $$('video', el).forEach(v => v.pause());
@@ -322,7 +333,7 @@ const tileWins = () => {
 };
 const showDesktop = () => {
   const vis = visibleWins();
-  if (vis.length) { WM.hiddenByDesk = vis.map(w => w.key); vis.forEach(w => minimizeWin(w)); toast(u('t_desktop'), I.eye); }
+  if (vis.length) { WM.hiddenByDesk = vis.map(w => w.key); vis.forEach(w => minimizeWin(w)); toast(u('t_desktop'), I.eye); setTimeout(() => impSig('present', 12000), rm() ? 80 : 520); }
   else { WM.hiddenByDesk.forEach(id => { const w = WM.wins.get(id); if (w?.min) restoreWin(w); }); WM.hiddenByDesk = []; }
 };
 const snapKey = (w, k) => {
@@ -451,7 +462,7 @@ const fillTopbar = () => {
 /* ---- desktop: icons and widgets ---- */
 const fillDesk = () => {
   $('.desk').setAttribute('aria-label', u('desktop')); $('.icons').setAttribute('aria-label', T(A.ui.allWork));
-  $('.icons').innerHTML = iconsHTML(S.icons);
+  $('.icons').innerHTML = iconsHTML(S.icons, S.iconOrder);
   $('.widgets').hidden = !S.widgets;
   $('.widgets').innerHTML = widgetsHTML();
   const h1 = $('.desk h1'); if (h1) h1.textContent = `${T(A.person.name)} · ${T(A.person.headline)}`;
@@ -592,7 +603,12 @@ document.addEventListener('imp:visibility', e => {
   $$('[data-mi-imp]').forEach(b => b.setAttribute('aria-checked', String(!e.detail.hidden)));
   $$('[data-set="imp"]').forEach(b => b.setAttribute('aria-checked', String(!e.detail.hidden)));
 });
-document.addEventListener('imp:costume', e => { if (e.detail?.costume === 'gear5') toast(u('t_gear5'), I.sparkle); });
+document.addEventListener('imp:costume', e => {
+  const g5 = e.detail?.costume === 'gear5';
+  if (g5) toast(u('t_gear5'), I.sparkle);
+  // Gear 5 turns the desktop to rubber (loaded the first time it is needed; nothing on a phone or with reduced motion)
+  if (g5 && isDesk() && !rm()) loadRubber().then(r => { if (Imp()?.state().costume === 'gear5') r.setActive(true); }); else RB?.setActive(false);
+});
 
 /* ---- menus ---- */
 let menu = null;
@@ -619,6 +635,7 @@ const menuItems = kind => {
     MI(u('grow'), impGrow, { icon: I.plus, disabled: !Imp() || atMax(), keep: true, attr: 'data-imp-size="grow"' }), MI(u('shrink'), impShrink, { icon: I.minus, disabled: !Imp() || atMin(), keep: true, attr: 'data-imp-size="shrink"' }), SEP,
     MI(u('flip'), lights, { icon: I.sparkle }), MI(u('laugh'), laugh, { icon: I.paw, disabled: !Imp() }), MI(u('giveTreat'), spawnTreat, { icon: I.treatI }), ...(desk ? [MI(u('throwBall'), throwBall, { icon: I.ballI })] : []), ...(kind === 'impctx' ? [MI(u('hideImp'), () => Imp()?.hide(), { icon: I.eye })] : [])];
   if (kind === 'desk') return [{ head: u('arrangeIcons') }, ...['default', 'name', 'stage'].map(k => MI(u({ default: 'byDefault', name: 'byName', stage: 'byStage' }[k]), () => setSetting('icons', k), { role: 'menuitemradio', checked: S.icons === k })), SEP,
+    MI(u('resetLayout'), resetLayout, { icon: I.restart }), SEP,
     { head: u('changeWall') }, ...WALLS.map(k => MI(u('W_' + k), () => setSetting('wall', k), { role: 'menuitemradio', checked: S.wall === k })), SEP,
     MI(u('newNote'), () => openApp('notes'), { icon: SYS.notes() }), MI(u('throwBall'), throwBall, { icon: I.ballI }), MI(u('giveTreat'), spawnTreat, { icon: I.treatI }), SEP,
     MI(u('taskView'), openTaskView, { icon: I.tasks, kbd: 'F3' }), MI(u('tileAll'), tileWins, { icon: I.grid, disabled: !visibleWins().length }), MI(u('cascade'), cascadeWins, { icon: I.stack, disabled: !visibleWins().length }), MI(u('showDesktop'), showDesktop, { icon: I.eye }), MI(u('settingsDots'), () => openApp('settings'), { icon: I.gear })];
@@ -773,6 +790,7 @@ const renderSpot = q => {
   $$('#spot [data-sf]').forEach(b => { const f = b.dataset.sf, c = f === 'all' ? Object.values(counts).reduce((a, b) => a + b, 0) : (counts[f] || 0); $('em', b).textContent = toks.length && c ? c : ''; if (f === 'details') $('em', b).textContent = toks.length && c ? c : ''; });
   spot.list = list; spot.sel = list.length && v == null && toks.length && spot.f === 'all' ? 0 : 0;
   $('#spot-list').innerHTML = rows.length ? rows.join('') : `<li class="empty">${esc(u('noResults'))}</li>`;
+  if (!rows.length) impSig('empty', 15000);
   markSpot();
   clearTimeout(shrugT);
   if (toks.length && !list.length && n.length >= 3) shrugT = setTimeout(() => { if (spot && !spot.list.length) { Imp()?.play?.('shrug'); Imp()?.say?.(u('say_nothing'), 2200); } }, 700);
@@ -831,7 +849,7 @@ const setSetting = (k, v) => {
   if (k === 'accent') { applyAccent(); toast(u('t_accent'), I.sparkle); }
   if (k === 'wall') { applyWall(); toast(u('t_wall'), I.image); }
   if (k === 'motion') { applyMotion(); toast(u('t_motion')); }
-  if (k === 'icons') fillDesk();
+  if (k === 'icons') { S.iconOrder = null; saveS(); fillDesk(); } // choosing an arrangement replaces whatever Imp had moved
   if (k === 'widgets') { fillDesk(); layoutDesk(); }
   if (k === 'ball') syncBall();
   if (k === 'pulse') loadFiles().then(f => f.pulse(!!v));
@@ -910,7 +928,7 @@ const runCmd = raw => {
     case 'clear': TERM.lines = []; $$('.term-out').forEach(o => { o.innerHTML = ''; }); break;
     case 'exit': { const w = findWin('terminal'); if (w) closeWin(w); const s2 = SH.find(x => x.id === 'terminal'); if (s2) closeSheet(s2); break; }
     case 'sudo': dim('nice try.'); break;
-    default: dim(u('termUnknown'));
+    default: dim(u('termUnknown')); impSig('error', 4000);
   }
 };
 const mountTerminal = root => {
@@ -957,7 +975,7 @@ document.addEventListener('click', async e => {
   if (act) {
     const a = act.dataset.act;
     if (a === 'lights') lights(); if (a === 'laugh') laugh(); if (a === 'search') openSpot(); if (a === 'restart') restart(); if (a === 'reset') resetSettings();
-    if (a === 'imp-grow') impGrow(); if (a === 'imp-shrink') impShrink(); if (a === 'tasks') openTaskView();
+    if (a === 'imp-grow') impGrow(); if (a === 'imp-shrink') impShrink(); if (a === 'tasks') openTaskView(); if (a === 'resetlayout') resetLayout();
     return;
   }
   const tab = t.closest('[data-tab]');
@@ -1632,6 +1650,52 @@ const OSAPI = {
 };
 const loadFiles = () => filesP || (filesP = import('./files.js').then(m => { FILES_API = m.init(OSAPI); return FILES_API; }));
 
+/* ---------- Gear 5 turns the desktop to rubber (src/os/rubber-os.js, loaded the first time it starts) ----------
+   Imp can stretch windows, icons and files; what he rearranges is real and saved: icon order (S.iconOrder), where a window
+   sits (S.winPos, by app), and the cell a file came from (S.deskHome). Reset layout undoes all of it. */
+let RB = null, rbP = null;
+const winOf = el => [...WM.wins.values()].find(w => w.el === el);
+const applyIconOrder = () => { // put the icons that are on the desk in the saved order, without redrawing them
+  const box = $('.desk .icons'); if (!box) return; const by = new Map($$('.icon:not(.rb-clone)', box).map(e => [e.dataset.open, e]));
+  iconIds(S.icons, S.iconOrder).forEach(id => { const e = by.get(id); if (e) box.append(e); });
+};
+const RBAPI = {
+  $, $$, rm, isDesk, files: () => FILES_API,
+  wm: {
+    visible: () => visibleWins().filter(w => !w.closing).map(w => w.el),
+    pullable: el => !!winOf(el) && $('.win-bar', el)?.hasAttribute('data-imp'), // its title bar is not covered
+    movable: el => { const w = winOf(el); return !!w && !w.snap && !!$('.win-bar', el)?.hasAttribute('data-imp'); },
+    bounds: () => { const a = area(); return { left: 6, top: a.top, right: a.W - 6, bottom: a.bottom + 8 }; },
+    focus: el => { const w = winOf(el); if (w && !w.min && !w.closing && front() !== w) focusWin(w); },
+    move: (el, dx, dy) => {
+      const w = winOf(el); if (!w || w.snap) return; const a = area(), h = w.geo.h || el.offsetHeight;
+      w.geo.x = clamp(Math.round(w.geo.x + dx), 0, Math.max(0, a.W - w.geo.w)); w.geo.y = clamp(Math.round(w.geo.y + dy), a.top, Math.max(a.top, a.bottom + 8 - h));
+      applyGeo(w); syncPerches(); S.winPos = { ...(S.winPos || {}), [w.id]: { x: w.geo.x, y: w.geo.y } }; saveS();
+    }
+  },
+  icons: {
+    swap: (a, b) => {
+      const ids = $$('.desk .icons .icon:not(.rb-clone)').map(e => e.dataset.open), i = ids.indexOf(a.dataset.open), j = ids.indexOf(b.dataset.open); if (i < 0 || j < 0) return;
+      [ids[i], ids[j]] = [ids[j], ids[i]]; S.iconOrder = ids; saveS(); applyIconOrder();
+    }
+  },
+  filesMove: (el, cell) => { // a file carried to another cell: the note's own cell changes (and the first cell is remembered for Reset)
+    const id = el.dataset.file, n = noteById(id); if (!n || !n.desk) return el;
+    S.deskHome = S.deskHome || {}; if (!S.deskHome[id]) S.deskHome[id] = { c: n.desk.c, r: n.desk.r }; saveS();
+    n.desk = { c: cell.c, r: cell.r }; notesSave(); notesRender();
+    return $(`.dfiles [data-file="${CSS.escape(id)}"]`) || el;
+  }
+};
+const loadRubber = () => rbP || (rbP = loadFiles().then(() => import('./rubber-os.js')).then(m => (RB = m.init(RBAPI))));
+const resetLayout = () => {
+  closeMenus(); const snap = RB?.snapshot();
+  S.iconOrder = null; S.winPos = null; const home = S.deskHome; S.deskHome = null; saveS();
+  visibleWins().forEach(w => { if (w.snap || !w.home) return; w.geo = { ...w.geo, x: w.home.x, y: w.home.y }; fitGeo(w); applyGeo(w); });
+  if (home) { Object.entries(home).forEach(([id, cell]) => { const n = noteById(id); if (n?.desk) n.desk = { c: cell.c, r: cell.r }; }); notesSave(); notesRender(); }
+  applyIconOrder(); syncPerches(); RB?.glide(snap);
+  toast(u('t_layoutReset'), I.restart);
+};
+
 /* ---------- toys: a ball to throw at Imp, treats to feed him ---------- */
 const PIX = (rows, pal) => { let r = ''; rows.forEach((row, y) => [...row].forEach((ch, x) => { if (pal[ch]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${pal[ch]}"/>`; })); return `<svg viewBox="0 0 ${rows[0].length} ${rows.length}" shape-rendering="crispEdges" aria-hidden="true">${r}</svg>`; };
 const BALL_SVG = PIX(['....kkkk....', '..kkaaiikk..', '.kaaaaiiiik.', '.kaaaiiippk.', 'kaaaiiipppik', 'kaaiiipppiik', 'kiiiipppaaik', 'kiiipppaaaak', '.kiipppaaak.', '.kiippaaaak.', '..kkiaaakk..', '....kkkk....'], { k: '#121113', a: '#f7a623', i: '#f3ead8', p: '#8048b0' });
@@ -1771,7 +1835,7 @@ const openWorkTech = name => { openApp('work'); setTimeout(() => { const root = 
 setMode(); applyLangAttrs(); applyTheme(); applyAccent(); applyWall(); applyMotion();
 // the build drew the default desktop; redraw only what this browser's settings change
 if (MAC) fillTopbar(); else tickClock();
-if (S.icons !== 'default' || !S.widgets) fillDesk();
+if (S.icons !== 'default' || !S.widgets) fillDesk(); else if (S.iconOrder) applyIconOrder(); // the page is drawn in the default order; put it the way Imp left it
 dockSync(); layoutDesk();
 // what nothing needs for the first paint waits for an idle moment, so start-up stays one short task
 const idle = f => (window.requestIdleCallback || (g => setTimeout(g, 1)))(f, { timeout: 1200 });
@@ -1806,7 +1870,7 @@ if (!navigator.connection?.saveData) {
 }
 window.ImpOS = {
   openApp, addTab: (id, into) => addTab(into ? findWin(into) : front(), id), switchTab: (key, id) => switchTab(WM.wins.get(key) || findWin(key), id), mergeAll, openTaskView, closeTaskView, openCC, closeCC, openNC, closeNC, throwBall, spawnTreat, toys: () => TOYS.map(t => ({ kind: t.kind, x: Math.round(t.x), y: Math.round(t.y), rest: !!t.rest })),
-  closeAllWins, setLang, setSetting, tileWins, cascadeWins, showDesktop, snapTo: (id, f, l) => snapTo(findWin(id), f, l || 'test', false), openSpot, restart,
+  rubber: () => RB, resetLayout, closeAllWins, setLang, setSetting, tileWins, cascadeWins, showDesktop, snapTo: (id, f, l) => snapTo(findWin(id), f, l || 'test', false), openSpot, restart,
   state: () => ({ wins: [...WM.wins.values()].map(w => ({ id: w.id, key: w.key, tabs: w.tabs.map(t => t.id), pin: !!w.pin, min: w.min, snap: w.snap?.layout || null, geo: { ...w.geo } })), sheets: SH.map(s => s.id), lang, theme, S: { ...S }, imp: !!Imp() })
 };
 

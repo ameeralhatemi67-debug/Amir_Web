@@ -53,7 +53,7 @@ export const U = {
   W_corniche: ['Corniche', 'الكورنيش'], W_aurora: ['Aurora', 'شفق'], W_dunes: ['Dunes', 'كثبان'], W_pixel: ['Pixel sun', 'شمس بكسلية'],
   A_amber: ['Amber', 'كهرماني'], A_coral: ['Coral', 'مرجاني'], A_teal: ['Teal', 'فيروزي'], A_sky: ['Sky', 'سماوي'], A_lime: ['Lime', 'ليموني'],
   t_copied: ['Email copied', 'تم نسخ البريد'], t_theme: ['Lights flipped', 'تم قلب الإضاءة'], t_wall: ['Wallpaper changed', 'تم تغيير الخلفية'], t_accent: ['Accent changed', 'تم تغيير اللون'],
-  t_tiled: ['Windows tiled', 'تم تجانب النوافذ'], t_cascaded: ['Windows cascaded', 'تم ترتيب النوافذ'], t_snapped: ['Snapped', 'تمت المحاذاة'], t_desktop: ['Desktop shown', 'ظهر سطح المكتب'],
+  t_tiled: ['Windows tiled', 'تم تجانب النوافذ'], t_cascaded: ['Windows cascaded', 'تم ترتيب النوافذ'], resetLayout: ['Reset layout', 'إعادة ضبط التخطيط'], t_layoutReset: ['Layout reset', 'تمت إعادة ضبط التخطيط'], t_snapped: ['Snapped', 'تمت المحاذاة'], t_desktop: ['Desktop shown', 'ظهر سطح المكتب'],
   t_grow: ['Imp grew', 'كبر إمب'], t_shrink: ['Imp shrank', 'صغر إمب'], t_limit: ['That is as far as he goes', 'هذا أقصى حد'], t_reset: ['Settings reset', 'تمت استعادة الإعدادات'], t_gear5: ['Gear 5!', 'الترس الخامس!'],
   t_motion: ['Motion updated', 'تم تحديث الحركة'], t_lang: ['Now in English', 'الآن بالعربية'],
   assist: ['Choose a window for this space', 'اختر نافذة لهذه المساحة'], snapLayouts: ['Snap layouts', 'تخطيطات المحاذاة'],
@@ -803,6 +803,7 @@ export const topbarHTML = ({ hidden = false, langHref = href('start', other()) }
     <button type="button" class="tb-btn theme-btn js-only" id="themeBtn" aria-label="${esc(u('flip'))}">${I.moon}</button>
     <button type="button" class="tb-btn icon-only js-only" id="ccBtn" data-cc-open aria-haspopup="dialog" aria-expanded="false" aria-label="${esc(u('controlCenter'))}" title="${esc(u('controlCenter'))}">${I.sliders}</button>
     <button type="button" class="tb-btn js-only ${hidden ? 'imp-off' : ''}" id="impBtn" data-menu="imp" aria-haspopup="menu" aria-expanded="false"><span class="imp-dot" aria-hidden="true"></span>${esc(u('impName'))}</button>
+    <button type="button" class="tb-btn icon-only quiet desk-only js-only" id="resetBtn" data-act="resetlayout" aria-label="${esc(u('resetLayout'))}" title="${esc(u('resetLayout'))}">${I.restart}</button>
     <button type="button" class="tb-btn clock-btn desk-only js-only" data-nc aria-haspopup="dialog" aria-expanded="false"><time class="clock" data-clock="label"></time><span class="vh">, ${esc(u('ncLabel'))}</span><span class="nc-dot" hidden></span></button>`;
 
 const shipRows = () => FLAG.map(p => opener('p:' + p.slug, 'ship-row', `${tileFor(p)}<span><b>${esc(T(p.name))}</b><small>${esc(T(p.status))}</small></span><span class="dot" style="--sc:var(--s-${p.stage})" title="${esc(stageLabel(p.stage))}"></span>`, 'data-imp="point"')).join('');
@@ -820,8 +821,15 @@ export const iconOrder = (by = 'default') => {
   if (by === 'stage') list.sort((a, b) => STAGE_ORDER.indexOf(a.stage) - STAGE_ORDER.indexOf(b.stage));
   return list;
 };
-export const iconsHTML = (by = 'default') => iconOrder(by).map(p => opener('p:' + p.slug, 'icon', `${tileFor(p)}<span>${esc(T(p.name))}</span>`, 'data-imp="point"')).join('') +
-  opener('lab', 'icon', `${SYS.lab()}<span>${esc(u('lab'))}</span>`, 'data-imp="point"');
+// every desktop icon in order: the chosen arrangement, or (after Imp has moved things around in Gear 5) the saved custom order
+export const iconIds = (by = 'default', custom = null) => {
+  const ids = [...iconOrder(by).map(p => 'p:' + p.slug), 'lab'];
+  if (!Array.isArray(custom) || !custom.length) return ids;
+  const out = custom.filter(id => ids.includes(id)); ids.forEach(id => { if (!out.includes(id)) out.push(id); }); return out;
+};
+const iconHTML = id => id === 'lab' ? opener('lab', 'icon', `${SYS.lab()}<span>${esc(u('lab'))}</span>`, 'data-imp="point"')
+  : (p => opener('p:' + p.slug, 'icon', `${tileFor(p)}<span>${esc(T(p.name))}</span>`, 'data-imp="point"'))(A.projects.find(q => 'p:' + q.slug === id));
+export const iconsHTML = (by = 'default', custom = null) => iconIds(by, custom).map(iconHTML).join('');
 export const widgetsHTML = () => `<section class="widget glass" id="w-ship" data-imp="ledge" aria-label="${esc(u('nowShipping'))}"><div class="w-eyebrow">${esc(u('nowShipping'))}</div>${shipRows()}</section>
     <section class="widget glass" id="w-edu" data-imp="ledge" aria-label="${esc(u('edu'))}">${opener('about', 'edu-w', eduInner())}</section>
     <section class="widget glass reach-w" id="w-reach" data-imp="ledge" aria-label="${esc(u('reachAmir'))}">${reachInner()}</section>`;

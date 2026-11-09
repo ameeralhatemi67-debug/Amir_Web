@@ -458,6 +458,7 @@ const lsAction = k => {
   if (k === 'done') {
     const h = lsHeight(), out = canvasOf(LS.full.width, h); out.getContext('2d').drawImage(LS.full, 0, 0);
     const name = LS.title; blobOf(out, 'image/png').then(b => done(b, name)); closeLongshot();
+    O.Imp()?.snap?.(); // the screenshot is taken: he poses
   }
 };
 const closeLongshot = () => { if (!LS) return; clearInterval(LS.auto); if (LS.follow) LS.follow.removeEventListener('scroll', LS.onScroll); cancelAnimationFrame(LS.raf); LS.frame?.remove(); LS.el.remove(); LS = null; };
@@ -620,5 +621,7 @@ const wire = () => {
 export const init = api => {
   O = api; wire(); refresh();
   if (O.getS().pulse) pulse(true);
-  return { refresh, freeCell, dragNote: (e, id, el) => startDrag(e, id, el, 'note'), menuFor, mountTrash, tryTool, pulse, justDragged, openWheel, openLongshot };
+  // the free cell nearest to a screen point, with its centre on screen (Gear 5: Imp carries a file there)
+  const freeCellAt = (px, py, self = null) => { const cell = freeNear(cellAt(px, py), self), b = cellBox(cell); return { ...cell, x: b.l + CW / 2, y: b.t + CH / 2 - 4 }; };
+  return { refresh, freeCell, freeCellAt, dragNote: (e, id, el) => startDrag(e, id, el, 'note'), menuFor, mountTrash, tryTool, pulse, justDragged, openWheel, openLongshot };
 };
