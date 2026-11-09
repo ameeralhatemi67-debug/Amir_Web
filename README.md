@@ -77,13 +77,12 @@ The five pages under 95 are the image-heaviest. Their real first paint and LCP a
 
 ## Owner TODO list
 
-1. **Hatan** is a client prototype marked proprietary and confidential: confirm the client's OK before this site is pushed or deployed, or remove it from `src/os/content.json` and `public/media/hatan/`.
-2. Supply the personal origin story and motivations, and confirm the working principles on the About window.
-3. Confirm solo/team context and exact contribution on each project.
-4. Confirm public naming and any disclosure restrictions for NBC, Comms Hub, Hida and DnFOM (the DnFOM client stays unnamed until it agrees).
-5. Choose BookQuest versus Marginalia as the final portfolio name.
-6. Provide approved Hadayah app privacy-policy and account-deletion URLs. No placeholder legal links are published.
-7. Recheck Hedayah dashboard source health and confirm contribution scope.
+1. Supply the personal origin story and motivations, and confirm the working principles on the About window.
+2. Confirm solo/team context and exact contribution on each project.
+3. Confirm public naming and any disclosure restrictions for NBC, Comms Hub, Hida and DnFOM (the DnFOM client stays unnamed until it agrees).
+4. Choose BookQuest versus Marginalia as the final portfolio name.
+5. Provide approved Hadayah app privacy-policy and account-deletion URLs. No placeholder legal links are published.
+6. Recheck Hedayah dashboard source health and confirm contribution scope.
 
 The production domain is `https://amir-web-alpha.vercel.app/`. If it moves, update `astro.config.mjs`, the `origin` in `src/layouts/OsPage.astro` and `src/pages/sitemap.xml.ts`, and `public/robots.txt` together.
 

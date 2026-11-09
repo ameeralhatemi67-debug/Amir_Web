@@ -30,7 +30,7 @@ Amir Alhatemi / أمير الحاتمي, based in Al Khobar. Approved headline: 
 
 Project facts and figures come from the content pack built for the mood board (`src/os/content.json`, generated from the previous site's verified data plus the owner's 2026-11-08 figures). Contact details (email ameeralhatemi67@gmail.com, phone and WhatsApp +966 57 367 6065) were supplied by the owner. Education was confirmed by the owner on 2026-11-09: Degree in Computer Science, Artificial Intelligence, Multimedia University (MMU), Melaka. Memory Card 1.6.0 is out as a public APK on GitHub. Hida is a local departmental pilot; HAYZ is a paused private build with a concept name that is not cleared and no staging URL; DnFOM ships without screenshots because its prototypes contain realistic personal names.
 
-**Hatan** is a client prototype marked proprietary and confidential. It needs the client's OK before any public use, so the owner must confirm that before this build is pushed or deployed.
+**Hatan** is a client prototype marked proprietary and confidential in its own repository. On 2026-11-09, asked whether the client had approved public use, the owner chose to keep Hatan on the public site.
 
 ## Accessibility and Inclusion
 
