@@ -83,28 +83,63 @@ svg.i.fill { fill: currentColor; stroke: none; }
 :root[data-theme="light"] .scene.morning { opacity: 1; }
 :root[data-theme="light"] .scene.dusk { opacity: 0; }
 .blob { position: absolute; border-radius: 50%; will-change: transform; animation: drift 46s ease-in-out infinite alternate; }
-.dusk .b1 { width: 95vmax; height: 70vmax; left: 34%; top: 26%; background: radial-gradient(closest-side, rgba(255, 128, 84, .55), rgba(255, 128, 84, .18) 45%, transparent 72%); animation-duration: 52s; }
-.dusk .b2 { width: 80vmax; height: 55vmax; left: -22%; top: -20%; background: radial-gradient(closest-side, rgba(43, 160, 148, .42), transparent 70%); animation-duration: 61s; animation-delay: -12s; }
-.dusk .b3 { width: 60vmax; height: 45vmax; left: 52%; top: -12%; background: radial-gradient(closest-side, rgba(255, 181, 71, .22), transparent 70%); animation-duration: 57s; animation-delay: -30s; }
-.dusk .b4 { width: 70vmax; height: 50vmax; left: -10%; top: 48%; background: radial-gradient(closest-side, rgba(255, 107, 87, .26), transparent 70%); animation-duration: 66s; animation-delay: -8s; }
-.dusk .sun { position: absolute; width: 22vmin; height: 22vmin; left: 62%; top: calc(63% - 8vmin); border-radius: 50%; background: radial-gradient(circle at 50% 45%, #FFD9A0, #FF9B5E 46%, rgba(255, 107, 87, 0) 70%); filter: blur(2px); opacity: .85; animation: sink 30s ease-in-out infinite alternate; }
-.morning .b1 { width: 70vmax; height: 60vmax; left: 46%; top: -14%; background: radial-gradient(closest-side, rgba(255, 200, 115, .75), rgba(255, 200, 115, .2) 50%, transparent 72%); animation-duration: 55s; }
-.morning .b2 { width: 80vmax; height: 55vmax; left: -24%; top: 4%; background: radial-gradient(closest-side, rgba(127, 184, 194, .5), transparent 70%); animation-duration: 63s; animation-delay: -20s; }
-.morning .b3 { width: 70vmax; height: 50vmax; left: 30%; top: 50%; background: radial-gradient(closest-side, rgba(255, 186, 150, .45), transparent 70%); animation-duration: 58s; animation-delay: -6s; }
-.morning .sun { position: absolute; width: 16vmin; height: 16vmin; left: 70%; top: 13%; border-radius: 50%; background: radial-gradient(circle, #FFF4D6, #FFD089 50%, rgba(255, 208, 137, 0) 71%); animation: rise 40s ease-in-out infinite alternate; }
 @keyframes drift { 0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); } 50% { transform: translate3d(4vw, -3vh, 0) scale(1.08) rotate(8deg); } 100% { transform: translate3d(-3vw, 2vh, 0) scale(.96) rotate(-6deg); } }
-@keyframes sink { from { transform: translateY(-1.5vh); } to { transform: translateY(1.5vh); } }
-@keyframes rise { from { transform: translate(0, 1vh); } to { transform: translate(-2vw, -1vh); } }
-.skyline { position: absolute; left: 0; right: 0; top: calc(66% - 15vh); height: 15vh; width: 100%; }
-.dusk .skyline { fill: rgba(4, 18, 24, .62); }
-.morning .skyline { fill: rgba(70, 104, 112, .26); }
-.shimmer { position: absolute; left: 0; right: 0; top: 66%; height: 16%; background: repeating-linear-gradient(180deg, transparent 0 9px, rgba(255, 190, 130, .1) 9px 10px); -webkit-mask: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); mask: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); animation: shimmer 9s ease-in-out infinite alternate; }
-.morning .shimmer { background: repeating-linear-gradient(180deg, transparent 0 9px, rgba(255, 255, 255, .35) 9px 10px); }
-@keyframes shimmer { from { transform: translateX(-3%); opacity: .55; } to { transform: translateX(3%); opacity: 1; } }
-.stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #FFF3DC; opacity: .5; animation: twinkle 4s ease-in-out infinite alternate; }
-@keyframes twinkle { from { opacity: .15; } to { opacity: .8; } }
 .grain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .09; mix-blend-mode: overlay; }
 :root[data-theme="light"] .grain { opacity: .07; mix-blend-mode: multiply; }
+/* Corniche, Dunes and Pixel sun (src/os/core.js): one drawing each, coloured by --k0 to --k15, with --night fading
+   what only shows after dark. The colours are registered, so switching theme blends the scene from dusk to morning. */
+@property --k0 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k1 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k2 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k3 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k4 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k5 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k6 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k7 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k8 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k9 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k10 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k11 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k12 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k13 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k14 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --k15 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --night { syntax: '<number>'; inherits: true; initial-value: 1; }
+.wp.tod { transition: --k0 1.1s, --k1 1.1s, --k2 1.1s, --k3 1.1s, --k4 1.1s, --k5 1.1s, --k6 1.1s, --k7 1.1s, --k8 1.1s, --k9 1.1s, --k10 1.1s, --k11 1.1s, --k12 1.1s, --k13 1.1s, --k14 1.1s, --k15 1.1s, --night 1.1s; transition-timing-function: var(--ease); }
+.wsvg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wsvg .f0 { fill: var(--k0); } .wsvg .f1 { fill: var(--k1); } .wsvg .f2 { fill: var(--k2); } .wsvg .f3 { fill: var(--k3); }
+.wsvg .f4 { fill: var(--k4); } .wsvg .f5 { fill: var(--k5); } .wsvg .f6 { fill: var(--k6); } .wsvg .f7 { fill: var(--k7); }
+.wsvg .f8 { fill: var(--k8); } .wsvg .f9 { fill: var(--k9); } .wsvg .f10 { fill: var(--k10); } .wsvg .f11 { fill: var(--k11); }
+.wsvg .f12 { fill: var(--k12); } .wsvg .f13 { fill: var(--k13); } .wsvg .f14 { fill: var(--k14); } .wsvg .f15 { fill: var(--k15); }
+.wsvg .s0 { stop-color: var(--k0); } .wsvg .s1 { stop-color: var(--k1); } .wsvg .s2 { stop-color: var(--k2); } .wsvg .s3 { stop-color: var(--k3); }
+.wsvg .s4 { stop-color: var(--k4); } .wsvg .s7 { stop-color: var(--k7); } .wsvg .s8 { stop-color: var(--k8); } .wsvg .s11 { stop-color: var(--k11); }
+.wsvg .night { opacity: var(--night); }
+.wsvg .day { opacity: calc(1 - var(--night)); }
+.wsvg .tw { animation: twinkle 5s ease-in-out infinite alternate; }
+.wsvg .tw1 { animation-duration: 6.5s; animation-delay: -1.7s; } .wsvg .tw2 { animation-duration: 4.2s; animation-delay: -3.1s; }
+.wsvg .gl { animation: glint 2.6s steps(3, jump-none) infinite alternate; } .wsvg .gb { animation-delay: -1.3s; }
+@keyframes twinkle { from { opacity: .15; } to { opacity: .85; } }
+@keyframes glint { from { opacity: .2; } to { opacity: 1; } }
+.wsvg .dhow { animation: bob 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes bob { from { transform: translateY(0) rotate(-1.2deg); } to { transform: translateY(3px) rotate(1.2deg); } }
+/* on a tall screen, centre each scene on its sun instead of the drawing's middle */
+@media (max-aspect-ratio: 3/4) {
+  .wp.tod .wsvg { left: 50%; width: auto; aspect-ratio: 1.6; transform: translateX(calc(var(--fx, .5) * -100%)); }
+  .wp.tod .pxwrap .wsvg { aspect-ratio: 1.6; }
+}
+
+.wp[data-wp="corniche"] { --fx: .72; --night: 1; --k0: #0E1530; --k1: #4A3462; --k2: #F2925E; --k3: #FFE6B8; --k4: #FF8A57; --k5: #2B2847; --k6: #1A1A32; --k7: #3D3558; --k8: #0D1328; --k9: #FFC07A; --k10: #0A0C1C; --k11: #FFD27E; --k12: #232240; --k13: rgba(255, 150, 120, .35); --k14: #1E1B33; --k15: #FFF1DA; }
+:root[data-theme="light"] .wp[data-wp="corniche"] { --night: 0; --k0: #7FC3E0; --k1: #BFE3EE; --k2: #FBE7C6; --k3: #FFFBEE; --k4: #FFD98F; --k5: #9DBCC6; --k6: #6E929B; --k7: #8CCFD6; --k8: #2E8A9A; --k9: #FFFFFF; --k10: #2E5560; --k11: #FFD27E; --k12: #7E9FA8; --k13: rgba(255, 255, 255, .75); --k14: #F6EEDC; --k15: #FFFFFF; }
+.wp[data-wp="dunes"] { --fx: .7; --night: 1; --k0: #141838; --k1: #5A3A63; --k2: #F39A62; --k3: #FFEFD2; --k4: #FF9A5C; --k5: #C07A62; --k6: #7C4A5C; --k7: #D98652; --k8: #6E3A4A; --k9: #E99A55; --k10: #4F2638; --k11: #F2AE62; --k12: #36182A; --k13: rgba(120, 40, 50, .35); --k14: #2A1424; --k15: #FFF1DA; }
+:root[data-theme="light"] .wp[data-wp="dunes"] { --night: 0; --k0: #8CC8E2; --k1: #D4ECF0; --k2: #FAEBD0; --k3: #FFFBEF; --k4: #FFE3A6; --k5: #EED3AE; --k6: #DDB98F; --k7: #F2C58B; --k8: #D9A26C; --k9: #F7CF93; --k10: #CB8F58; --k11: #FADBA4; --k12: #BC7C45; --k13: rgba(150, 90, 40, .28); --k14: #6A4428; --k15: #FFFFFF; }
+.wp[data-wp="pixel"] { --fx: .64; --night: 1; --k0: #1A1440; --k1: #3B1D5A; --k2: #6E2A6B; --k3: #B0466B; --k4: #E9786A; --k5: #FFE08A; --k6: #FF9A55; --k7: #7A3A6A; --k8: #3E2357; --k9: #1D1638; --k10: #FFC46B; --k11: #120C24; --k12: #2A1A33; --k13: #1E1236; --k14: #4A2450; --k15: #8E3A6E; }
+:root[data-theme="light"] .wp[data-wp="pixel"] { --night: 0; --k0: #6CC0E0; --k1: #92D2E8; --k2: #B9E3EC; --k3: #DDF0EA; --k4: #FBEFD6; --k5: #FFF8DC; --k6: #FFD36A; --k7: #8FD3D6; --k8: #55AFBD; --k9: #2F879A; --k10: #FFFFFF; --k11: #7A4E2E; --k12: #F3D49B; --k13: #3F9A5E; --k14: #FFF6E6; --k15: #FFFFFF; }
+/* pixel clouds: the scene's own pixel size, drifting in pixel steps */
+.pxwrap { position: absolute; inset: 0; --px: max(.5vw, .8vh); }
+.pxcloud { position: absolute; left: -12%; height: calc(6 * var(--px)); width: calc(30 * var(--px)); animation: cloud 110s steps(140) infinite; }
+.pxcloud path { fill: var(--k15); }
+.pxcloud.c1 { top: 11%; } .pxcloud.c2 { top: 24%; width: calc(22 * var(--px)); animation-delay: -45s; animation-duration: 140s; } .pxcloud.c3 { top: 5%; width: calc(38 * var(--px)); animation-delay: -80s; }
+@keyframes cloud { to { transform: translateX(135vw); } }
 
 /* ---------- glass ---------- */
 .glass { position: relative; background: var(--glass); -webkit-backdrop-filter: blur(22px) saturate(1.45); backdrop-filter: blur(22px) saturate(1.45); border: 1px solid var(--line); box-shadow: inset 0 1px 0 var(--hi), var(--shadow); }
@@ -564,7 +599,7 @@ html.is-phone #lightbox .lb-bar { padding-bottom: calc(124px + env(safe-area-ins
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-  .blob, .sun, .shimmer, .stars i, .dock-item .tile, .portrait { animation: none !important; }
+  .blob, .wsvg .tw, .wsvg .gl, .wsvg .dhow, .pxcloud, .dock-item .tile, .portrait { animation: none !important; }
 }
 
 /* stacking inside glass: the glow sits under content */
@@ -863,40 +898,10 @@ html.is-phone .spot-in input { height: 54px; font-size: 17px; }
 .morning .a3 { width: 65vmax; height: 38vmax; left: 10%; top: 50%; background: radial-gradient(closest-side, rgba(255, 160, 140, .45), transparent); animation-duration: 52s; animation-delay: -22s; }
 .morning .a4 { width: 55vmax; height: 30vmax; left: 55%; top: 60%; background: radial-gradient(closest-side, rgba(150, 200, 235, .5), transparent); animation-duration: 47s; animation-delay: -5s; }
 .veil { position: absolute; inset: 0; background: repeating-linear-gradient(100deg, transparent 0 60px, rgba(255, 255, 255, .025) 60px 61px); }
-.wp[data-wp="dunes"] .scene.dusk { background: linear-gradient(180deg, #0A1E28 0%, #1C3A44 40%, #4C5149 62%, #8A5E43 70%); }
-.wp[data-wp="dunes"] .scene.morning { background: linear-gradient(180deg, #BCDCE8 0%, #DCEBEA 36%, #F7E6C8 62%); }
-.dunes { position: absolute; inset: 0; width: 100%; height: 100%; }
-.dusk .d0a { stop-color: #3F5A5A; } .dusk .d0b { stop-color: #233B40; }
-.dusk .d1a { stop-color: #5B5144; } .dusk .d1b { stop-color: #2A3436; }
-.dusk .d2a { stop-color: #7A5638; } .dusk .d2b { stop-color: #2E2A26; }
-.dusk .d3a { stop-color: #2C3E40; } .dusk .d3b { stop-color: #0E1C20; }
-.morning .d0a { stop-color: #EBD3AE; } .morning .d0b { stop-color: #D9B88A; }
-.morning .d1a { stop-color: #F0C994; } .morning .d1b { stop-color: #DDA86B; }
-.morning .d2a { stop-color: #F6D7A6; } .morning .d2b { stop-color: #E4B47A; }
-.morning .d3a { stop-color: #EDC48E; } .morning .d3b { stop-color: #CF9E62; }
-.ridge { animation: ridge 60s ease-in-out infinite alternate; transform-box: fill-box; }
-.ridge.r1 { animation-duration: 48s; } .ridge.r2 { animation-duration: 40s; } .ridge.r3 { animation: none; }
-@keyframes ridge { from { transform: translateX(-1.5%); } to { transform: translateX(1.5%); } }
-.dsun { position: absolute; width: 18vmin; height: 18vmin; left: 64%; top: 44%; border-radius: 50%; }
-.dusk .dsun { background: radial-gradient(circle, #FFD7A0, #FF9B5E 50%, rgba(255, 107, 87, 0) 72%); animation: sink 30s ease-in-out infinite alternate; }
-.morning .dsun { top: 14%; background: radial-gradient(circle, #FFF6DE, #FFE0A6 50%, rgba(255, 224, 166, 0) 72%); animation: rise 40s ease-in-out infinite alternate; }
-.wp[data-wp="pixel"] .scene.dusk { background: linear-gradient(180deg, #0B1E27 0%, #143440 55%, #24474D 100%); }
-.wp[data-wp="pixel"] .scene.morning { background: linear-gradient(180deg, #F8EEDD 0%, #F1E2C8 55%, #E9D2AE 100%); }
-.dots { position: absolute; inset: 0; background: radial-gradient(circle, rgba(255, 255, 255, .13) 1.1px, transparent 1.7px) 0 0 / 24px 24px; }
-.morning .dots { background: radial-gradient(circle, rgba(60, 40, 20, .12) 1.1px, transparent 1.7px) 0 0 / 24px 24px; }
-.psun { position: absolute; width: 30vmin; height: 30vmin; left: 58%; top: 26%; image-rendering: pixelated; animation: sink 34s steps(8) infinite alternate; }
-.dusk .psun rect { fill: #FFB547; } .dusk .psun rect.band { fill: #143440; }
-.morning .psun rect { fill: #FF8A5B; } .morning .psun rect.band { fill: #F1E2C8; }
-.pcloud { position: absolute; width: 14vmin; animation: cloud 70s linear infinite; }
-.dusk .pcloud { fill: rgba(255, 255, 255, .08); } .morning .pcloud { fill: rgba(255, 255, 255, .85); }
-.pcloud.c1 { top: 16%; left: -15%; } .pcloud.c2 { top: 30%; left: -15%; animation-delay: -30s; width: 10vmin; } .pcloud.c3 { top: 9%; left: -15%; animation-delay: -52s; width: 18vmin; }
-@keyframes cloud { to { transform: translateX(135vw); } }
-.pfloor { position: absolute; left: 0; right: 0; bottom: 0; height: 22%; background: repeating-linear-gradient(90deg, transparent 0 23px, rgba(255, 255, 255, .05) 23px 24px), linear-gradient(180deg, #102A33, #0A1C22); }
-.morning .pfloor { background: repeating-linear-gradient(90deg, transparent 0 23px, rgba(0, 0, 0, .05) 23px 24px), linear-gradient(180deg, #E2C9A2, #D6B98C); }
 
 /* user-chosen reduced motion */
 :root.reduce *, :root.reduce *::before, :root.reduce *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-:root.reduce .blob, :root.reduce .sun, :root.reduce .shimmer, :root.reduce .stars i, :root.reduce .dock-item .tile, :root.reduce .portrait, :root.reduce .ridge, :root.reduce .psun, :root.reduce .pcloud, :root.reduce .dsun { animation: none !important; }
+:root.reduce .blob, :root.reduce .wsvg .tw, :root.reduce .wsvg .gl, :root.reduce .wsvg .dhow, :root.reduce .pxcloud, :root.reduce .dock-item .tile, :root.reduce .portrait { animation: none !important; }
 
 /* type floor for the new pieces */
 @media (max-width: 759px) {

@@ -26,8 +26,8 @@ The output is `dist/`. There is no server adapter, database, account system, ana
 ## How it is built
 
 - `src/os/content.json`: all content: the person, contact routes, education, the eleven projects (stage, access, status, problem, audience, highlights, facts, boundary, links, screens, phone screens, films, tools, features), the lab, stages and interface words, in English and Arabic.
-- `src/os/core.js`: words, icons, tiles, routes and the HTML of every window and of the desktop. It does no DOM work, so the build uses it to draw each page and the browser uses it to draw windows. Nothing costly runs when it loads: the clock is plain UTC+3 arithmetic, because a time-zone `Intl` formatter would add about 25 ms to the desktop's start-up on a phone.
-- `src/os/app.js`: the desktop in the browser: window manager (with window tabs, All windows, shake, keep on top), sheets, dock, menus, search, Control Center, notifications and calendar, Notes, Imp's toys, lightbox, film player, settings, terminal, boot screen, address syncing and the mascot hook-up.
+- `src/os/core.js`: words, icons, tiles, routes and the HTML of every window and of the desktop. It does no DOM work, so the build uses it to draw each page and the browser uses it to draw windows. It also draws the wallpapers: Corniche, Dunes and Pixel sun are one SVG each, coloured by the custom properties `--k0` to `--k15` and `--night` that `style.css` sets per scene and theme (registered with `@property`, so a theme switch blends them). Only Corniche is drawn into every page (about 5 KB gzipped); the others are drawn when chosen. Nothing costly runs when it loads: the clock is plain UTC+3 arithmetic, because a time-zone `Intl` formatter would add about 25 ms to the desktop's start-up on a phone.
+- `src/os/app.js`: the desktop in the browser: window manager (with window tabs, All windows, shake, keep on top), sheets, dock, menus, search, Control Center, notifications and calendar, Notes (many notes in localStorage `pf-a-notes`, autosave, Save and Ctrl/Cmd+S, download as .txt or .md), Imp's toys, lightbox, film player, settings, terminal, boot screen, address syncing and the mascot hook-up.
 - `src/os/style.css`: the stylesheet (inlined into every page at build time).
 - `src/os/app.css`: the styles for what only the desktop script draws (window tabs, Control Center, notifications, All windows, Notes, search, toys). `OsPage.astro` loads it just before the script. Don't import it from `app.js`, or Astro inlines it into every page again.
 - `src/layouts/OsPage.astro`: one page: metadata, JSON-LD, the wallpaper, menu bar, icons, widgets, home screen, dock and the page's own window drawn as a sheet. It starts the desktop script once the page has loaded and painted (or at the visitor's first input, or three seconds after load), so the script never competes with the first paint or the main screenshot.
@@ -72,9 +72,9 @@ Verified local results for this build (2026-11-09):
 | Static output | 40 pages; links, srcset, metadata, language/direction, image and video budgets passed |
 | axe accessibility/layout | 152 language/theme/viewport combinations with the mascot loaded; 0 issues |
 | Interaction checks | 13 of 13 passed |
-| Mobile Lighthouse (36 pages) | Accessibility, best practices and SEO 100 on every page. Performance 95 to 98 on every page (17 pages at 96, 14 at 97 or 98) |
+| Mobile Lighthouse (36 pages) | Accessibility, best practices and SEO 100 on every page. Performance 95 to 99 on every page (32 of 36 at 97 or higher) |
 
-The lowest scores (95) are the image-heaviest pages: Work, Films, Hatan and Amir Lap in English, and Films in Arabic. Lighthouse's simulated slow 4G puts their LCP at 2.6 to 2.8 s (1.8 to 2.2 s for the Arabic pages). Total blocking time is 90 to 220 ms, mostly the desktop script starting after the first paint. Details are in `qa/accessibility.json` and `qa/lighthouse-summary.json`. These are local lab results, not a guarantee for every device; physical-device and screen-reader acceptance remain unverified.
+The lowest scores (95 and 96) are the image-heaviest English pages: Work, Films, Hatan and Amir Lap. Lighthouse's simulated slow 4G puts their LCP at 2.6 to 2.9 s (1.8 to 2.2 s for the Arabic pages). Total blocking time is 50 to 150 ms. Details are in `qa/accessibility.json` and `qa/lighthouse-summary.json`. These are local lab results, not a guarantee for every device; physical-device and screen-reader acceptance remain unverified.
 
 ## Owner TODO list
 

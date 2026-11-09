@@ -96,7 +96,11 @@ Object.assign(U, {
   treat: ['Treat', 'حلوى'], giveTreat: ['Give Imp a treat', 'أعطِ إمب حلوى'], throwBall: ['Throw the ball', 'ارمِ الكرة'], ballOn: ['Ball on the desktop', 'الكرة على سطح المكتب'],
   dragTreat: ['Drag the treat onto Imp', 'اسحب الحلوى إلى إمب'], ballLabel: ['Imp’s ball. Drag and throw it.', 'كرة إمب. اسحبها وارمِها.'], treatLabel: ['A treat for Imp. Drag it onto him.', 'حلوى لإمب. اسحبها إليه.'],
   notes: ['Notes', 'ملاحظات'], notesPh: ['Write something. Imp reads over your shoulder.', 'اكتب شيئًا. إمب يقرأ من فوق كتفك.'], notesSaved: ['Saved on this device only', 'محفوظة على هذا الجهاز فقط'],
-  notesWords: ['words', 'كلمة'], newNote: ['New note', 'ملاحظة جديدة'], pip: ['Picture in picture', 'صورة داخل صورة'],
+  notesWords: ['words', 'كلمة'], newNote: ['New note', 'ملاحظة جديدة'], notesFind: ['Search notes', 'ابحث في الملاحظات'], notesSave: ['Save', 'حفظ'],
+  notesDownload: ['Download', 'تنزيل'], notesDelete: ['Delete note', 'احذف الملاحظة'], notesTxt: ['Plain text', 'نص عادي'], notesMd: ['Markdown', 'ماركداون'], notesBody: ['Note text', 'نص الملاحظة'],
+  notesSaving: ['Saving…', 'جارٍ الحفظ…'], notesSavedAt: ['Saved', 'حُفظت'], notesEmpty: ['New note', 'ملاحظة جديدة'], notesNone: ['No notes match.', 'لا ملاحظات مطابقة.'], notesCount: ['notes', 'ملاحظات'], notesOne: ['note', 'ملاحظة'], wordOne: ['word', 'كلمة'],
+  notesDeleted: ['Note deleted', 'حُذفت الملاحظة'], undo: ['Undo', 'تراجع'], notesDownloaded: ['Downloaded', 'نُزّلت'], notesNothing: ['Write something first, then download it.', 'اكتب شيئًا أولًا ثم نزّله.'],
+  notesFail: ['Not saved: this browser is blocking storage.', 'لم تُحفظ: المتصفّح يمنع التخزين.'], notesUntitled: ['note', 'ملاحظة'], notesList: ['Your notes', 'ملاحظاتك'], pip: ['Picture in picture', 'صورة داخل صورة'],
   say_ow: ['Ow!', 'آخ!'], say_hey: ['Hey!', 'هيه!'], say_yum: ['Yum!', 'لذيذ!'], say_mine: ['Mine!', 'لي!'], say_whoa: ['Whoa!', 'واو!'], say_nothing: ['Nothing by that name. I looked.', 'لا شيء بهذا الاسم. بحثت.'],
   say_tabs: ['Tabs! Tidy.', 'علامات تبويب! مرتّب.'], say_today: ['That’s today.', 'هذا اليوم.']
 });
@@ -124,7 +128,7 @@ export const PRIVACY = {
     intro: 'This policy covers this portfolio website only. Each featured application has its own data practices.',
     sections: [
       ['What this site collects', 'This site has no contact form, user accounts, analytics, advertising, or tracking cookies. It does not ask you to submit personal information.'],
-      ['Your preferences', 'Settings you change on the desktop (theme, accent colour, wallpaper, motion, icon order and widgets) are stored in your browser’s local storage. Imp’s size and position, and whether you have seen the start-up screen, are kept only for the current browser session. None of this is sent anywhere.'],
+      ['Your preferences', 'Settings you change on the desktop (theme, accent colour, wallpaper, motion, icon order and widgets) and the notes you write in Notes are stored in your browser’s local storage. Imp’s size and position, and whether you have seen the start-up screen, are kept only for the current browser session. None of this is sent anywhere.'],
       ['Hosting and external links', 'The hosting provider may process ordinary request information, such as IP addresses and server logs, to serve and protect the website. GitHub, LinkedIn, WhatsApp and the linked project sites have their own privacy policies.'],
       ['Fonts, images and video', 'Fonts, images and the short videos are served with this site. No third-party video player, social feed, or font service is embedded. Project images are screenshots from public sites or captures from the project files. Captures with sample data are labelled.'],
       ['Questions', 'Use the email address or phone number in the Contact window.']
@@ -135,7 +139,7 @@ export const PRIVACY = {
     intro: 'تخص هذه السياسة موقع الأعمال هذا فقط. ولكل تطبيق معروض ممارساته الخاصة في التعامل مع البيانات.',
     sections: [
       ['ما يجمعه الموقع', 'لا يحتوي الموقع على نموذج تواصل أو حسابات مستخدمين أو تحليلات أو إعلانات أو ملفات تعريف ارتباط للتتبّع، ولا يطلب منك تقديم بيانات شخصية.'],
-      ['تفضيلاتك', 'يحفظ متصفّحك محليًا الإعدادات التي تغيّرها على سطح المكتب: السمة ولون التمييز والخلفية والحركة وترتيب الأيقونات والأدوات المصغّرة. أما حجم إمب وموضعه، وظهور شاشة البدء، فتُحفظ لجلسة التصفّح الحالية فقط. لا يُرسل شيء من ذلك إلى أي جهة.'],
+      ['تفضيلاتك', 'يحفظ متصفّحك محليًا الإعدادات التي تغيّرها على سطح المكتب: السمة ولون التمييز والخلفية والحركة وترتيب الأيقونات والأدوات المصغّرة، والملاحظات التي تكتبها في تطبيق الملاحظات. أما حجم إمب وموضعه، وظهور شاشة البدء، فتُحفظ لجلسة التصفّح الحالية فقط. لا يُرسل شيء من ذلك إلى أي جهة.'],
       ['الاستضافة والروابط الخارجية', 'قد يعالج مزوّد الاستضافة معلومات الطلب المعتادة، مثل عنوان IP وسجلات الخادم، لتقديم الموقع وحمايته. ولمواقع GitHub وLinkedIn وواتساب والمشاريع المرتبطة سياسات خصوصية مستقلة.'],
       ['الخطوط والصور والفيديو', 'تُحمّل الخطوط والصور والمقاطع القصيرة من الموقع نفسه. لا يوجد مشغّل فيديو خارجي أو خلاصات اجتماعية أو خدمات خطوط خارجية مضمّنة. صور المشاريع لقطات من المواقع العامة أو من ملفات المشاريع، مع الإشارة إلى البيانات التوضيحية.'],
       ['الاستفسارات', 'استخدم البريد الإلكتروني أو رقم الهاتف في نافذة التواصل.']
@@ -162,7 +166,8 @@ export const I = {
   left: sv('<path d="M15 5l-7 7 7 7"/>'), right: sv('<path d="M9 5l7 7-7 7"/>'), out: sv('<path d="M7 17L17 7M9 7h8v8"/>'), arrow: sv('<path d="M5 12h14M13 6l6 6-6 6"/>', 'flip-rtl'),
   folder: sv('<path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2.2h7.5A2.5 2.5 0 0 1 21 9.7v7.8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M3 10h18"/>'),
   film: sv('<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7.5 4v16M16.5 4v16M3 9h4.5M3 15h4.5M16.5 9H21M16.5 15H21"/>'),
-  flask: sv('<path d="M9 3h6M10 3v6.2l-5.1 8.6A2.2 2.2 0 0 0 6.8 21h10.4a2.2 2.2 0 0 0 1.9-3.2L14 9.2V3"/><path d="M7.4 14.5h9.2"/>'),
+  // an Erlenmeyer flask: a rim, a straight neck, a cone with rounded feet, and a filled liquid level with a wave
+  flask: sv('<path d="M9.2 3h5.6"/><path d="M10.3 3.4v5.1L5.6 16.6a2.4 2.4 0 0 0 2.1 3.6h8.6a2.4 2.4 0 0 0 2.1-3.6L13.7 8.5V3.4"/><path d="M7.6 13.2Q9.8 12.3 12 13.2T16.4 13.2L18.4 16.6a2.4 2.4 0 0 1-2.1 3.6H7.7a2.4 2.4 0 0 1-2.1-3.6z" fill="currentColor" stroke="none" opacity=".92"/><circle cx="12.6" cy="10.4" r=".9" fill="currentColor" stroke="none"/>'),
   pin: sv('<path d="M12 21s-7-6.1-7-11.2a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/>'),
   cap: sv('<path d="M2 9.5l10-5 10 5-10 5z"/><path d="M6 11.5v4.8c3.3 2.2 8.7 2.2 12 0v-4.8M21.5 9.5v5"/>'),
   paw: `<svg class="i fill" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="16" rx="4.6" ry="3.8"/><circle cx="6" cy="10.5" r="2"/><circle cx="9.5" cy="6.8" r="2.1"/><circle cx="14.5" cy="6.8" r="2.1"/><circle cx="18" cy="10.5" r="2"/></svg>`,
@@ -186,6 +191,8 @@ const ICON2 = {
   pen: sv('<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>'),
   pinI: sv('<path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/>'),
   ballI: sv('<circle cx="12" cy="12" r="8.5"/><path d="M5 8.5c4 1 9 1 14 0M4.5 14c5 1.5 10 1.5 15 0M12 3.5c-2.5 3-2.5 14 0 17"/>'),
+  download: sv('<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/>'),
+  trash: sv('<path d="M4.5 7h15M9.5 7V4.8h5V7M6.5 7l.9 12.2a1.6 1.6 0 0 0 1.6 1.5h6a1.6 1.6 0 0 0 1.6-1.5L17.5 7M10.2 11v6M13.8 11v6"/>'),
   treatI: sv('<path d="M5 15c4 4 11 3 14-6 .5-1.5 0-3-1-4-1 3-4 8-12 8z"/><path d="M18 5l1.5-1.5"/>')
 };
 Object.assign(I, ICON2);
@@ -238,7 +245,7 @@ export const SYS = {
   aboutos: () => `<span class="tile mark-tile alt" aria-hidden="true">a</span>`,
   work: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#58D2BC,#1F7A7A)">${I.folder}</span>`,
   films: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#FFA27A,#D9483A)">${I.film}</span>`,
-  lab: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#F7D9A0,#CC8A36)">${I.flask}</span>`,
+  lab: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#F5BE6E,#BF6A24)">${I.flask}</span>`,
   about: () => `<span class="tile face"><img src="${A.person.portrait.replace(/\.webp$/, '-160.webp')}" alt="" width="52" height="65" loading="lazy" decoding="async" draggable="false"></span>`,
   contact: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#79C6D6,#2C6E85)">${I.mail}</span>`,
   settings: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#A9B7BE,#4D5E66)">${I.gear}</span>`,
@@ -271,54 +278,189 @@ export const clockNow = () => { const d = new Date(Date.now() + 3 * 3600e3); ret
 export const clockHTML = () => { const [h, m] = clockNow().split(':'); return `${h}<span class="colon">:</span>${m}`; };
 
 
-/* ===== wallpapers: four coded scenes, each with a dusk (dark) and a morning (light) version =====
-   `only` picks which scenes to draw (the build draws the default one; the others are drawn when chosen).
-   Every piece is always computed, so a scene comes out the same whichever others are drawn with it. */
-export const wallHTML = (only = ['corniche', 'aurora', 'dunes', 'pixel'], grain = true) => {
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  // corniche skyline: low blocks, the water tower, a minaret and dome, palms
-  let d = 'M0 160V146';
-  for (let x = 0; x < 1440;) { const w = 18 + rnd() * 34, h = 6 + rnd() * (x > 520 && x < 900 ? 34 : 18); d += `H${x.toFixed(0)}V${(146 - h).toFixed(0)}H${(x + w).toFixed(0)}V146`; x += w + rnd() * 10; }
-  d += 'H1440V160Z';
-  const tower = 'M843 160V64h6v96zM810 72h72l-26 26h-20zM846 30a15 15 0 1 1 0 30a15 15 0 1 1 0-30zM845 18h2v14h-2z';
-  const minaret = 'M52 160V58h12v102zM48 74h20v6h-20zM58 40l8 18h-16zM84 160v-18a26 26 0 0 1 52 0v18z';
-  const palm = (x, h, s = 1) => `M${x - 1.5} 160c1-${h * .4} 3-${h * .8} ${2 * s + 1}-${h}h3c-1 ${h * .3}-2 ${h * .7}-1.5 ${h}z` +
-    [[-26, -6], [-20, -14], [-6, -18], [10, -16], [24, -8], [22, 0], [-24, 2]].map(([dx, dy]) => `M${x + 2 * s} ${160 - h}q${dx * .5} ${dy - 6} ${dx} ${dy + 4}q${-dx * .45} ${-dy * .2 - 2} ${-dx} ${-dy - 4}z`).join('');
-  const sky = `<svg class="skyline" viewBox="0 0 1440 160" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path d="${d}"/><path d="${tower}"/><path d="${minaret}"/><path d="${palm(150, 62)}${palm(780, 70)}${palm(905, 56)}${palm(1180, 76)}${palm(1250, 58)}${palm(1380, 66)}"/></svg>`;
-  const stars = Array.from({ length: 30 }, () => `<i style="left:${(rnd() * 100).toFixed(1)}%;top:${(rnd() * 38).toFixed(1)}%;animation-delay:${(-rnd() * 4).toFixed(2)}s;transform:scale(${(.6 + rnd() * .9).toFixed(2)})"></i>`).join('');
-  // dunes: four layered ridges
-  const dune = (y, amp, ph) => { let p = `M0 900V${y}`; for (let x = 0; x <= 1440; x += 120) p += ` Q${x + 60} ${(y - amp * Math.sin((x + ph) / 230)).toFixed(0)} ${x + 120} ${(y + amp * .4 * Math.cos((x + ph) / 170)).toFixed(0)}`; return p + ' V900Z'; };
-  const dunes = k => `<svg class="dunes" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs>
-      ${[0, 1, 2, 3].map(i => `<linearGradient id="dg${k}${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="d${i}a"/><stop offset="1" class="d${i}b"/></linearGradient>`).join('')}</defs>
-      <path class="ridge r0" d="${dune(560, 40, 0)}" fill="url(#dg${k}0)"/><path class="ridge r1" d="${dune(640, 55, 400)}" fill="url(#dg${k}1)"/>
-      <path class="ridge r2" d="${dune(730, 48, 900)}" fill="url(#dg${k}2)"/><path class="ridge r3" d="${dune(820, 36, 1500)}" fill="url(#dg${k}3)"/></svg>`;
-  // pixel sun: a disc snapped to a 14 px grid
-  const pix = (() => { let r = ''; const R = 9; for (let y = -R; y <= R; y++) for (let x = -R; x <= R; x++) if (x * x + y * y <= R * R + 2) r += `<rect x="${(x + R) * 14}" y="${(y + R) * 14}" width="14" height="14" class="${y > 2 && (y % 3 === 0) ? 'band' : ''}"/>`; return `<svg class="psun" viewBox="0 0 266 266" aria-hidden="true">${r}</svg>`; })();
-  const cloud = (cls) => `<svg class="pcloud ${cls}" viewBox="0 0 140 42" aria-hidden="true"><path d="M14 28h14v-14h28v-14h28v14h14v14h28v14H14z"/></svg>`;
-  const scene = (mood, inner) => `<div class="scene ${mood}">${inner}</div>`;
-  const scenes = {
-    corniche: `
-    <div class="wp" data-wp="corniche">
-      ${scene('dusk', `<div class="blob b2"></div><div class="blob b3"></div><div class="stars">${stars}</div><div class="blob b1"></div><div class="sun"></div><div class="blob b4"></div>${sky}<div class="shimmer"></div>`)}
-      ${scene('morning', `<div class="blob b2"></div><div class="blob b1"></div><div class="sun"></div><div class="blob b3"></div>${sky}<div class="shimmer"></div>`)}
-    </div>`,
-    aurora: `
-    <div class="wp" data-wp="aurora">
-      ${scene('dusk', `<div class="blob a1"></div><div class="blob a2"></div><div class="blob a3"></div><div class="blob a4"></div><div class="veil"></div>`)}
-      ${scene('morning', `<div class="blob a1"></div><div class="blob a2"></div><div class="blob a3"></div><div class="blob a4"></div><div class="veil"></div>`)}
-    </div>`,
-    dunes: `
-    <div class="wp" data-wp="dunes">
-      ${scene('dusk', `<div class="dsun"></div><div class="stars">${stars}</div>${dunes('n')}`)}
-      ${scene('morning', `<div class="dsun"></div>${dunes('m')}`)}
-    </div>`,
-    pixel: `
-    <div class="wp" data-wp="pixel">
-      ${scene('dusk', `<div class="dots"></div>${pix}${cloud('c1')}${cloud('c2')}${cloud('c3')}<div class="pfloor"></div>`)}
-      ${scene('morning', `<div class="dots"></div>${pix}${cloud('c1')}${cloud('c2')}${cloud('c3')}<div class="pfloor"></div>`)}
-    </div>`
+/* ===== wallpapers: four coded scenes, each with a Dusk (dark) and a Morning (light) look =====
+   Corniche, Dunes and Pixel sun are one SVG drawing each. Its colours are CSS custom properties (--k0 to --k15, set per
+   scene and theme in style.css) and --night fades what only shows after dark (stars, lit windows, the setting sun), so
+   the theme switch blends one drawing from dusk to morning instead of carrying two. Aurora is soft colour fields.
+   `only` picks which scenes to draw (the build draws the default one; the others are drawn when chosen). Each scene has
+   its own seeded randomness, so it comes out the same whichever others are drawn with it. */
+const seeded = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const n1 = v => +v.toFixed(1), n0 = Math.round;
+const wsvg = (inner, vb = '0 0 1600 1000', extra = '') => `<svg class="wsvg" viewBox="${vb}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"${extra}>${inner}</svg>`;
+const grad = (id, stops, attrs = 'x1="0" y1="0" x2="0" y2="1"') => `<linearGradient id="${id}" ${attrs}>${stops.map(([o, k, op]) => `<stop offset="${o}" class="s${k}"${op != null ? ` stop-opacity="${op}"` : ''}/>`).join('')}</linearGradient>`;
+const rgrad = (id, stops) => `<radialGradient id="${id}">${stops.map(([o, k, op]) => `<stop offset="${o}" class="s${k}"${op != null ? ` stop-opacity="${op}"` : ''}/>`).join('')}</radialGradient>`;
+// a palm: a gently curved trunk and eight arching fronds that droop at the tips
+const palmPath = (x, base, h, lean = 0, s = 1) => {
+  const tx = x + lean, ty = base - h, w = 2.6 * s;
+  let d = `M${n1(x - w)} ${base}Q${n1(x + lean * .35 - w * .7)} ${n1(base - h * .5)} ${n1(tx - w * .45)} ${n1(ty)}h${n1(w * .9)}Q${n1(x + lean * .35 + w * .7)} ${n1(base - h * .5)} ${n1(x + w)} ${base}Z`;
+  [[-172, 1], [-146, 1.05], [-118, .9], [-72, .9], [-40, 1.05], [-10, 1], [158, .8], [24, .8]].forEach(([deg, k]) => {
+    const a = deg * Math.PI / 180, L = h * .5 * k * s ** .2, ex = tx + Math.cos(a) * L, ey = ty + Math.sin(a) * L + L * .42;
+    d += `M${n1(tx)} ${n1(ty)}Q${n1(tx + Math.cos(a) * L * .5)} ${n1(ty + Math.sin(a) * L * .5 - L * .3)} ${n1(ex)} ${n1(ey)}Q${n1(tx + Math.cos(a) * L * .55)} ${n1(ty + Math.sin(a) * L * .5 - L * .12)} ${n1(tx)} ${n1(ty + 2.2 * s)}Z`;
+  });
+  return d;
+};
+const starField = (rnd, n, top, w = 1600) => [0, 1, 2].map(g => `<g class="tw tw${g}">${Array.from({ length: n }, () => `<circle cx="${n0(rnd() * w)}" cy="${n0(rnd() * top)}" r="${n1(.7 + rnd() * 1.1)}"/>`).join('')}</g>`).join('');
+
+// Corniche: Al Khobar from the water at the two ends of the day. The skyline with its lit windows, the water tower,
+// a minaret and dome, the causeway on the horizon, palms and lamps along the promenade, a dhow, and the sun on the water.
+const cornicheSVG = () => {
+  const r = seeded(11), H = 618;
+  let city = `M-10 ${H}`, x = -10;
+  while (x < 1610) {
+    const core = Math.exp(-(((x - 820) / 300) ** 2)), w = 16 + r() * 30, h = 12 + r() * 34 + core * (36 + r() * 120), t = H - h, k = r();
+    if (k < .14 && h > 60) city += `V${n1(t)}h${n1(w * .38)}v${n1(-h * .16)}h${n1(w * .24)}v${n1(h * .16)}h${n1(w * .38)}`;
+    else if (k < .3) city += `V${n1(t + h * .22)}h${n1(w * .22)}V${n1(t)}h${n1(w * .56)}V${n1(t + h * .22)}h${n1(w * .22)}`;
+    else if (k < .38 && h > 48) city += `V${n1(t + w / 2)}a${n1(w / 2)} ${n1(w / 2)} 0 0 1 ${n1(w)} 0`;
+    else city += `V${n1(t)}h${n1(w)}`;
+    x += w; city += `V${H}`; const gap = r() * 7; x += gap; city += `h${n1(gap)}`;
+  }
+  city += `V${H + 4}H-10Z`;
+  // the near shore: minaret and dome on the left, the water tower right of the sun
+  const mosque = 'M196 618V470h14v148zM191 488h24v6h-24zM193 470l10-26 10 26zM202 444v-12h2v12zM226 618v-28a40 40 0 0 1 80 0v28zM264 552v-14h2v14zM300 618v-42h10v42z';
+  const tower = 'M1287 618V352h12v266zM1248 352h90l-30 34h-30zM1293 290a21 21 0 1 1 0 42a21 21 0 1 1 0-42zM1292 252h2v40h-2z';
+  const cause = `M0 ${H - 5}h430v2.4H0zM168 ${H - 5}v-26h3v26zM186 ${H - 5}v-26h3v26zM160 ${H - 34}h36v4h-36zM172 ${H - 52}h12v18h-12z` + Array.from({ length: 22 }, (_, i) => `M${4 + i * 19.5} ${H - 3}v3h1.6v-3z`).join('');
+  // promenade: a low wall, lamps and palms
+  let lamps = '', glows = '';
+  for (let lx = 40; lx < 1600; lx += 86) { lamps += `M${lx} ${H}v-30h1.6v30zM${lx - 3} ${H - 32}h7.6v3h-7.6z`; glows += `<circle cx="${lx + .8}" cy="${H - 30}" r="11"/>`; }
+  const palms = [[110, 52, 4], [362, 64, -6], [470, 48, 3], [690, 58, 5], [930, 50, -4], [1130, 62, 6], [1390, 54, -3], [1520, 66, 4]].map(([px, ph, ln]) => palmPath(px, H + 2, ph, ln, .8)).join('');
+  // the sun's path on the water: dashes that widen and scatter towards you; two sets that take turns, so it glitters
+  const glitter = (cx, n, seed) => { const q = seeded(seed); let d = ''; for (let i = 0; i < n; i++) { const t = (i / n) ** 1.35, y = H + 6 + t * 370, w = 6 + t * 90 * (.4 + q()), xx = cx + (q() - .5) * (24 + t * 300); const W = n0(w); d += `M${n0(xx - w / 2)} ${n0(y)}h${W}v${n0(1.4 + t * 3)}h${-W}z`; } return d; };
+  let ripples = ''; for (let i = 0; i < 20; i++) { const t = (i / 20) ** 1.7, y = H + 10 + t * 380; for (let j = 0; j < 3; j++) { const w = n0(30 + r() * 160 * (.4 + t)), xx = r() * 1600; ripples += `M${n0(xx)} ${n0(y)}h${w}v${n0(1 + t * 1.5)}h${-w}z`; } }
+  const birds = [[1010, 410, 1], [1046, 392, .8], [1074, 420, .7], [610, 300, .9]].map(([bx, by, s]) => `M${bx} ${by}q${n1(6 * s)} ${n1(-6 * s)} ${n1(12 * s)} 0q${n1(6 * s)} ${n1(-6 * s)} ${n1(12 * s)} 0`).join('');
+  const dhow = 'M448 708q74 6 156-6q-10 22-46 28l-78 1q-22-5-32-23zM546 704l1-118h2.6l-1 118zM470 652q66-34 136-64l3 4q-48 30-54 106q-46-12-85-46z';
+  const clouds = [[180, 520, 360], [470, 548, 220], [1180, 506, 300], [1390, 540, 240], [820, 470, 180]].map(([cx, cy, w]) => `<rect x="${cx}" y="${cy}" width="${w}" height="7" rx="3.5"/><rect x="${cx + w * .18}" y="${cy - 8}" width="${n1(w * .5)}" height="6" rx="3"/>`).join('');
+  return wsvg(`<defs>${grad('wcSky', [[0, 0], [.52, 1], [.9, 2], [1, 2]])}${grad('wcSea', [[0, 7], [1, 8]])}${grad('wcGlowSea', [[0, 2, .42], [1, 2, 0]])}
+    ${rgrad('wcSun', [[0, 3], [.62, 3], [1, 4]])}${rgrad('wcGlow', [[0, 4, .7], [.4, 4, .22], [1, 4, 0]])}${rgrad('wcLamp', [[0, 11, .9], [1, 11, 0]])}
+    <pattern id="wcWin" width="46" height="40" patternUnits="userSpaceOnUse"><g class="f11"><rect x="4" y="6" width="4" height="5"/><rect x="18" y="6" width="4" height="5"/><rect x="32" y="20" width="4" height="5"/><rect x="11" y="27" width="4" height="5"/><rect x="25" y="13" width="4" height="5"/><rect x="39" y="33" width="4" height="5"/></g></pattern></defs>
+    <rect width="1600" height="${H + 2}" fill="url(#wcSky)"/>
+    <g class="night f15">${starField(r, 14, 360)}</g>
+    <g class="day"><circle cx="1214" cy="226" r="250" fill="url(#wcGlow)"/><circle cx="1214" cy="226" r="56" fill="url(#wcSun)"/></g>
+    <g class="night"><circle cx="1036" cy="602" r="330" fill="url(#wcGlow)"/><circle cx="1036" cy="606" r="80" fill="url(#wcSun)"/></g>
+    <g class="f13">${clouds}</g>
+    <path class="f5" opacity=".75" d="${cause}"/>
+    <path class="f5" d="${city}"/>
+    <path class="night" fill="url(#wcWin)" opacity=".8" d="${city}"/>
+    <path class="f12" d="${tower}"/><circle class="night f11" cx="1293" cy="250" r="2.4"/>
+    <path class="f6" d="${mosque}M-10 ${H - 4}h1620v8h-1620z${lamps}"/>
+    <g class="night">${glows.replace(/<circle /g, '<circle fill="url(#wcLamp)" ')}</g>
+    <path class="f10" d="${palms}"/>
+    <rect y="${H + 3}" width="1600" height="${1000 - H}" fill="url(#wcSea)"/>
+    <rect y="${H + 3}" width="1600" height="170" fill="url(#wcGlowSea)"/>
+    <path class="f5" opacity=".35" d="${ripples}"/>
+    <g class="night f9"><path class="gl ga" d="${glitter(1036, 38, 5)}"/><path class="gl gb" d="${glitter(1036, 38, 9)}"/></g>
+    <g class="day f9"><path class="gl ga" d="${glitter(1214, 24, 21)}" opacity=".7"/><path class="gl gb" d="${glitter(1214, 24, 23)}" opacity=".7"/></g>
+    <g class="dhow"><path class="f10" d="${dhow.split('z')[0]}z${dhow.split('z')[1]}z"/><path class="f14" d="${dhow.split('z')[2]}z"/></g>
+    <path class="f10" fill="none" stroke-width="2" stroke-linecap="round" style="stroke:var(--k10);fill:none" d="${birds}"/>
+    <path class="f10" d="${palmPath(70, 1010, 380, 34, 2.4)}"/>`);
+};
+
+// Dunes: the sand sea at the ends of the day. Each dune is lit on one face and shadowed on the other, split by a sharp
+// crest; far dunes fade into the haze. A camel caravan crests a ridge; wind ripples cross the near dune.
+const dunesSVG = () => {
+  const r = seeded(23);
+  const layer = (peaks, ty) => {
+    // silhouette through troughs and peaks; returns the outline, the shadowed faces and a sampler for the ridge height
+    const T = [[-140, ty]]; peaks.forEach((p, i) => { const nx = i < peaks.length - 1 ? (p[0] + peaks[i + 1][0]) / 2 : 1760; T.push(p, [nx, ty + (r() - .5) * 18]); });
+    let d = `M-140 1010V${ty}`, sh = '', line = [[-140, ty]];
+    const cub = (a, c1, c2, b) => { for (let i = 1; i <= 24; i++) { const t = i / 24, u = 1 - t; line.push([u * u * u * a[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * b[0], u * u * u * a[1] + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t * t * t * b[1]]); } };
+    for (let i = 0; i + 2 < T.length; i += 2) {
+      const L = T[i], P = T[i + 1], N = T[i + 2];
+      const c1 = [L[0] + (P[0] - L[0]) * .55, L[1]], c2 = [P[0] - (P[0] - L[0]) * .2, P[1] + 1], c3 = [P[0] + (N[0] - P[0]) * .1, P[1] + (N[1] - P[1]) * .06], c4 = [P[0] + (N[0] - P[0]) * .42, N[1]];
+      d += `C${n1(c1[0])} ${n1(c1[1])} ${n1(c2[0])} ${n1(c2[1])} ${n1(P[0])} ${n1(P[1])}C${n1(c3[0])} ${n1(c3[1])} ${n1(c4[0])} ${n1(c4[1])} ${n1(N[0])} ${n1(N[1])}`;
+      cub(L, c1, c2, P); cub(P, c3, c4, N);
+      // the shadowed windward face: the rising slope, then the crest sweeping down towards you
+      const w = P[0] - L[0];
+      sh += `M${n1(L[0] - w * 1.1)} 1010Q${n1(L[0] - w * .12)} ${n1(L[1] + 70)} ${n1(L[0])} ${n1(L[1])}C${n1(c1[0])} ${n1(c1[1])} ${n1(c2[0])} ${n1(c2[1])} ${n1(P[0])} ${n1(P[1])}C${n1(P[0] - w * .1)} ${n1(P[1] + (L[1] - P[1]) * .7)} ${n1(P[0] - w * .42)} ${n1(L[1] + 30)} ${n1(P[0] - w * .58)} 1010Z`;
+    }
+    d += 'V1010Z';
+    const yAt = x => { for (let i = 1; i < line.length; i++) if (line[i][0] >= x) { const a = line[i - 1], b = line[i], t = (x - a[0]) / ((b[0] - a[0]) || 1); return a[1] + (b[1] - a[1]) * t; } return ty; };
+    return { d, sh, yAt };
   };
-  return only.map(k => scenes[k] || '').join('') + (grain ? `
+  const far = layer([[150, 566], [470, 574], [800, 560], [1120, 572], [1450, 566]], 606);
+  const mid = layer([[260, 618], [720, 604], [1200, 630], [1600, 612]], 690);
+  const near = layer([[-30, 706], [520, 690], [1010, 720], [1420, 700]], 800);
+  const front = layer([[360, 800], [1360, 826]], 960);
+  // a camel walking right, feet at 0,0 (about 30 by 24)
+  const camel = (cx, cy, s, rider) => { const p = (x, y) => `${n1(cx + x * s)} ${n1(cy + y * s)}`;
+    return `M${p(-10, -9)}Q${p(-12, -13)} ${p(-9, -15)}Q${p(-5, -16)} ${p(-3, -21)}Q${p(0, -23)} ${p(2, -17)}Q${p(5, -15)} ${p(8, -15)}Q${p(10, -16)} ${p(11, -21)}L${p(15, -22)}Q${p(18, -21)} ${p(17.5, -19)}L${p(13.5, -18)}Q${p(12, -12)} ${p(7, -9)}Z`
+      + [-8.5, -5.6, 3.4, 6].map((lx, i) => `M${p(lx, -10)}L${p(lx + (i % 2 ? .8 : -.8), 0)}h${n1(1.5 * s)}L${p(lx + 1.4, -10)}Z`).join('')
+      + (rider ? `M${p(-3.4, -21)}h${n1(3 * s)}v${n1(-5 * s)}h${n1(-3 * s)}zM${p(-1.9, -29.5)}a${n1(1.9 * s)} ${n1(1.9 * s)} 0 1 1 0 .1z` : ''); };
+  const caravan = [[600, 1, 1], [636, .95, 0], [672, .95, 1], [708, .9, 0], [744, .9, 0]].map(([cx, s, rd]) => camel(cx, mid.yAt(cx) + 1, s * 1.15, rd)).join('');
+  // wind ripples across the near dune's lit face
+  let rip = ''; for (let i = 0; i < 16; i++) { const y0 = 850 + i * 11 + r() * 4, x0 = 520 + i * 24 + r() * 30, w = 160 + r() * 140; rip += `M${n1(x0)} ${n1(y0)}q${n1(w * .5)} ${n1(-10 - r() * 6)} ${n1(w)} ${n1(4 + r() * 6)}`; }
+  for (let i = 0; i < 10; i++) { const y0 = 905 + i * 9, x0 = 1440 + i * 10, w = 120 + r() * 80; rip += `M${n1(x0)} ${n1(y0)}q${n1(w * .5)} ${n1(-8)} ${n1(w)} 4`; }
+  return wsvg(`<defs>${grad('wdSky', [[0, 0], [.4, 1], [.6, 2]])}${rgrad('wdSun', [[0, 3], [.6, 3], [1, 4]])}${rgrad('wdGlow', [[0, 4, .75], [.45, 4, .2], [1, 4, 0]])}${grad('wdHaze', [[0, 2, 0], [.5, 2, .55], [1, 2, 0]])}
+    <mask id="wdMoon"><rect width="1600" height="1000" fill="#000"/><circle cx="330" cy="200" r="34" fill="#fff"/><circle cx="346" cy="188" r="30" fill="#000"/></mask></defs>
+    <rect width="1600" height="1000" fill="url(#wdSky)"/>
+    <g class="night"><g class="f15">${starField(r, 22, 460)}</g><rect class="f3" width="1600" height="1000" mask="url(#wdMoon)"/></g>
+    <g class="night"><circle cx="1250" cy="586" r="320" fill="url(#wdGlow)"/><circle cx="1250" cy="586" r="62" fill="url(#wdSun)"/></g>
+    <g class="day"><circle cx="1190" cy="196" r="260" fill="url(#wdGlow)"/><circle cx="1190" cy="196" r="50" fill="url(#wdSun)"/></g>
+    <path class="f5" d="${far.d}"/><path class="f6" d="${far.sh}"/>
+    <rect y="520" width="1600" height="120" fill="url(#wdHaze)"/>
+    <path class="f7" d="${mid.d}"/><path class="f8" d="${mid.sh}"/><path class="f14" d="${caravan}"/>
+    <path class="f9" d="${near.d}"/><path class="f10" d="${near.sh}"/>
+    <path class="f11" d="${front.d}"/><path class="f12" d="${front.sh}"/>
+    <path fill="none" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--k13);fill:none" d="${rip}"/>`);
+};
+
+// Pixel sun: a seascape on a 200 by 125 pixel grid. A dithered sky, a striped sun, its broken reflection, a dhow, a
+// palm island and slow pixel clouds. Each colour is one path of pixel runs; --k0 to --k15 colour them.
+const pixelSVG = () => {
+  const W = 200, Hh = 125, HZ = 78, g = Array.from({ length: Hh }, () => new Array(W).fill(0)), r = seeded(41);
+  const BAY = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+  const set = (x, y, c) => { if (x >= 0 && x < W && y >= 0 && y < Hh) g[y][x] = c; };
+  // sky: five bands, dithered into each other
+  for (let y = 0; y < HZ; y++) { const f = y / HZ * 4, b = Math.min(3, Math.floor(f)), t = Math.min(1, Math.max(0, (f - b - .3) / .55)); for (let x = 0; x < W; x++) set(x, y, t * 16 > BAY[y % 4][x % 4] ? b + 1 : b); }
+  // the sun, cut by widening stripes in its lower half
+  const SX = 132, SY = 58, SR = 23;
+  for (let y = SY - SR; y <= SY + SR; y++) for (let x = SX - SR; x <= SX + SR; x++) {
+    const dx = x - SX, dy = y - SY; if (dx * dx + dy * dy > SR * SR + 6 || y >= HZ) continue;
+    const k = y - SY; if (k > 2 && (k % 6) < Math.min(5, 1 + Math.floor(k / 5))) continue;
+    set(x, y, Math.min(1, Math.max(0, (y - SY + 4) / 9)) * 16 > BAY[y % 4][x % 4] ? 6 : 5);
+  }
+  // sea: three bands, dithered
+  for (let y = HZ; y < Hh; y++) { const f = (y - HZ) / (Hh - HZ) * 2, b = Math.min(1, Math.floor(f)), t = Math.min(1, Math.max(0, (f - b - .3) / .55)); for (let x = 0; x < W; x++) set(x, y, 7 + (t * 16 > BAY[y % 4][x % 4] ? b + 1 : b)); }
+  // the horizon line, a shade lighter
+  for (let x = 0; x < W; x++) set(x, HZ, 4);
+  // the dhow: hull, mast, lateen sail
+  const DX = 46, DY = 92;
+  for (let x = -14; x <= 14; x++) { const top = DY - (Math.abs(x) > 10 ? Math.abs(x) - 10 : 0), bot = DY + 3 - (Math.abs(x) > 8 ? 1 : 0) - (Math.abs(x) > 11 ? 1 : 0); for (let y = top; y <= bot; y++) set(DX + x, y, 11); }
+  for (let y = DY - 28; y < DY; y++) set(DX - 1, y, 11);
+  for (let y = DY - 27; y < DY - 2; y++) { const t = (y - (DY - 27)) / 24, x1 = DX + Math.round(t * 17); for (let x = DX; x <= x1; x++) set(x, y, 14); }
+  // the island and two palms, bottom left
+  for (let y = 112; y < Hh; y++) { const half = Math.round(Math.sqrt(Math.max(0, 1 - ((y - 125) / 13) ** 2)) * 30); for (let x = 22 - half; x <= 22 + half; x++) set(x, y, y === 112 || (y === 113 && Math.abs(x - 22) > half - 3) ? 12 : 12); }
+  const palm = (bx, h, lean) => {
+    for (let i = 0; i < h; i++) { const x = bx + Math.round(lean * (i / h) ** 1.6); set(x, 112 - i, 11); set(x + 1, 112 - i, 11); }
+    const cx = bx + lean, cy = 112 - h;
+    [[-9, 2], [-8, -2], [-4, -4], [4, -4], [8, -2], [9, 2], [-5, 4], [6, 4]].forEach(([fx, fy]) => { const n = Math.max(Math.abs(fx), Math.abs(fy)); for (let i = 0; i <= n; i++) { const x = cx + Math.round(fx * i / n), y = cy + Math.round(fy * i / n + (i / n) ** 2 * 3); set(x, y, 13); set(x, y + 1, 13); } });
+  };
+  palm(12, 22, 4); palm(30, 15, -3);
+  // stars and birds
+  const stars = []; for (let i = 0; i < 46; i++) { const x = Math.floor(r() * W), y = Math.floor(r() * 44); if (g[y][x] < 2) stars.push([x, y]); }
+  [[84, 30], [90, 27], [96, 32]].forEach(([bx, by]) => { set(bx, by, 11); set(bx + 1, by - 1, 11); set(bx + 2, by, 11); set(bx + 3, by - 1, 11); set(bx + 4, by, 11); });
+  // runs of one colour become one path each
+  const runs = Array.from({ length: 16 }, () => '');
+  for (let y = 0; y < Hh; y++) { let x = 0; while (x < W) { const c = g[y][x]; let e = x; while (e < W && g[y][e] === c) e++; runs[c] += `M${x} ${y}h${e - x}v1h${x - e}z`; x = e; } }
+  // the sun's reflection: broken dashes under the sun, in two sets that take turns
+  const refl = seed => { const q = seeded(seed); let d = ''; for (let y = HZ + 2; y < Hh - 2; y += 2) { const t = (y - HZ) / (Hh - HZ), w = Math.round(3 + (1 - t) * 14 * q() + 2), x = Math.round(SX - w / 2 + (q() - .5) * (6 + t * 18)); if (x > 52) d += `M${x} ${y}h${w}v1h${-w}z`; } return d; };
+  const cloud = (cls, w) => `<svg class="pxcloud ${cls}" viewBox="0 0 ${w} 6" preserveAspectRatio="none" shape-rendering="crispEdges" aria-hidden="true"><path class="f15" d="M3 0h${w - 9}v2h3v2h3v2H0V4h1V2h2z"/></svg>`;
+  return `<div class="pxwrap">${wsvg(runs.map((d, c) => d ? `<path class="f${c}" d="${d}"/>` : '').join('')
+    + `<path class="night f10 tw tw1" d="${stars.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join('')}"/>`
+    + `<path class="f10 gl ga" d="${refl(3)}"/><path class="f10 gl gb" d="${refl(7)}"/>`, `0 0 ${W} ${Hh}`, ' shape-rendering="crispEdges"')}${cloud('c1', 30)}${cloud('c2', 22)}${cloud('c3', 38)}</div>`;
+};
+
+export const wallHTML = (only = ['corniche', 'aurora', 'dunes', 'pixel'], grain = true) => {
+  const scenes = {
+    corniche: () => `<div class="wp tod" data-wp="corniche"><div class="scene">${cornicheSVG()}</div></div>`,
+    aurora: () => `
+    <div class="wp" data-wp="aurora">
+      <div class="scene dusk"><div class="blob a1"></div><div class="blob a2"></div><div class="blob a3"></div><div class="blob a4"></div><div class="veil"></div></div>
+      <div class="scene morning"><div class="blob a1"></div><div class="blob a2"></div><div class="blob a3"></div><div class="blob a4"></div><div class="veil"></div></div>
+    </div>`,
+    dunes: () => `<div class="wp tod" data-wp="dunes"><div class="scene">${dunesSVG()}</div></div>`,
+    pixel: () => `<div class="wp tod" data-wp="pixel"><div class="scene">${pixelSVG()}</div></div>`
+  };
+  return only.map(k => scenes[k] ? scenes[k]() : '').join('') + (grain ? `
     <svg class="grain" aria-hidden="true"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>` : '');
 };
 
@@ -561,11 +703,26 @@ export const notFoundHTML = () => `<div class="app notfound"><div class="scrolle
     <div class="row" style="justify-content:center;margin-top:18px">${opener('start', 'btn primary', esc(u('returnHome')))}${opener('work', 'btn', esc(u('allProjects')))}</div>
   </div></div></div>`;
 
-/* notes: one note, kept in this browser (app.js fills it in) */
-export const notesHTML = (v = '') => `<div class="app notes"><div class="pad">
-  <span class="eyebrow">${I.pen} AmirOS</span><h2 class="h2 hang-title" style="margin:6px 0 12px">${esc(u('notes'))}</h2>
-  <textarea class="note-ta" spellcheck="true" placeholder="${esc(u('notesPh'))}" aria-label="${esc(u('notes'))}">${esc(v)}</textarea>
-  <p class="note-foot muted small"><span>${esc(u('notesSaved'))}</span><span class="note-n" dir="ltr">${v.trim() ? v.trim().split(/\s+/).length : 0} ${esc(u('notesWords'))}</span></p></div></div>`;
+/* notes: as many notes as you like, kept in this browser. The list sits beside the editor; app.js fills both. */
+export const notesHTML = () => `<div class="app notes"><div class="nt-grid">
+  <aside class="nt-side">
+    <div class="nt-top"><b class="nt-h">${esc(u('notes'))}</b><button type="button" class="btn sm nt-new" data-nt="new" title="${esc(u('newNote'))} (Alt+N)">${I.plus}<span>${esc(u('newNote'))}</span></button></div>
+    <label class="nt-find">${I.search}<input type="search" data-nt="find" placeholder="${esc(u('notesFind'))}" aria-label="${esc(u('notesFind'))}" autocomplete="off"></label>
+    <ul class="nt-list" aria-label="${esc(u('notesList'))}"></ul>
+  </aside>
+  <section class="nt-main">
+    <div class="nt-bar">
+      <span class="nt-status muted small" role="status" aria-live="polite"></span>
+      <span class="nt-acts">
+        <button type="button" class="btn sm" data-nt="save" aria-label="${esc(u('notesSave'))}" title="${esc(u('notesSave'))} (${mod()}+S)">${I.check}<span>${esc(u('notesSave'))}</span></button>
+        <span class="nt-dlw"><button type="button" class="btn sm" data-nt="dl" aria-label="${esc(u('notesDownload'))}" aria-haspopup="menu" aria-expanded="false">${I.download}<span>${esc(u('notesDownload'))}</span></button>
+          <span class="nt-dl glass" role="menu" hidden><button type="button" role="menuitem" data-nt="dl-txt"><b>${esc(u('notesTxt'))}</b><small dir="ltr">.txt</small></button><button type="button" role="menuitem" data-nt="dl-md"><b>${esc(u('notesMd'))}</b><small dir="ltr">.md</small></button></span></span>
+        <button type="button" class="btn sm nt-del" data-nt="del" aria-label="${esc(u('notesDelete'))}" title="${esc(u('notesDelete'))}">${I.trash}</button>
+      </span>
+    </div>
+    <textarea class="note-ta" spellcheck="true" placeholder="${esc(u('notesPh'))}" aria-label="${esc(u('notesBody'))}"></textarea>
+    <p class="note-foot muted small"><span>${esc(u('notesSaved'))}</span><span class="note-n" dir="ltr"></span></p>
+  </section></div></div>`;
 
 /* terminal */
 export const TERM = { lines: [], hist: [], hi: 0 };
@@ -578,7 +735,7 @@ export const appMeta = id => {
     start: { size: [620, 0], min: [420, 300], html: startHTML }, work: { size: [1000, 690], min: [420, 320], html: workHTML }, films: { size: [1060, 650], min: [480, 340], html: filmsHTML },
     lab: { size: [900, 650], min: [420, 320], html: labHTML }, about: { size: [880, 690], min: [420, 320], html: aboutHTML }, contact: { size: [620, 640], min: [400, 320], html: contactHTML },
     settings: { size: [680, 690], min: [420, 320], html: settingsHTML }, help: { size: [660, 640], min: [420, 300], html: helpHTML }, aboutos: { size: [520, 540], min: [400, 300], html: aboutOSHTML },
-    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notes: { size: [540, 560], min: [380, 300], html: () => notesHTML() }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
+    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notes: { size: [780, 580], min: [420, 340], html: () => notesHTML() }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
   })[id] || null;
 };
 // a sheet (phone) as it is drawn; the build draws the page's own window this way so the page reads without JavaScript

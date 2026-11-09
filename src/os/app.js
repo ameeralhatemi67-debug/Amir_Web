@@ -41,12 +41,13 @@ const tickClock = () => $$('[data-clock]').forEach(c => { c.innerHTML = (c.datas
 
 /* toasts (each one is also kept for the notification centre) */
 const NOTIFS = [];
-const toast = (msg, icon = I.check) => {
+const toast = (msg, icon = I.check, act = null) => {
   const box = $('#toasts'); if (!box) return;
   const t = document.createElement('div'); t.className = 'toast glass'; t.innerHTML = `<span class="ti">${icon}</span><span>${esc(msg)}</span>`;
+  if (act) { const b = document.createElement('button'); b.type = 'button'; b.className = 'toast-act'; b.textContent = act.label; b.addEventListener('click', () => { act.run(); t.remove(); }); t.append(b); }
   NOTIFS.unshift({ msg, icon, at: Date.now() }); if (NOTIFS.length > 30) NOTIFS.pop();
   box.append(t); document.dispatchEvent(new CustomEvent('os:toast', { detail: { el: t } })); while (box.children.length > 3) box.firstElementChild.remove();
-  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, 2600);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, act ? 6000 : 2600);
 };
 
 /* a small canvas that plays one of the owner's Pixel imp clips (boot screen, Imp's menu); needs the mascot runtime */
@@ -539,7 +540,7 @@ const mountApp = root => {
   if ($('.settings', root)) syncSettingsUI(root);
   if ($('[data-clock]', root)) tickClock();
   if (!document.pictureInPictureEnabled) $$('[data-pc="pip"]', root).forEach(b => b.remove());
-  $$('.note-ta', root).forEach(ta => { const v = ls.get('pf-a-note') || ''; if (ta.value !== v) { ta.value = v; $$('.note-n', root).forEach(n => { n.textContent = `${v.trim() ? v.trim().split(/\s+/).length : 0} ${u('notesWords')}`; }); } if (isDesk()) setTimeout(() => ta.focus({ preventScroll: true }), 120); });
+  if ($('.app.notes', root)) mountNotes(root);
 };
 
 /* ---- lightbox: Imp steps aside while a screen is enlarged ---- */
@@ -1450,12 +1451,137 @@ document.addEventListener('os:toast', e => { // Imp glances at fresh notificatio
   setTimeout(() => { if (e.detail?.el?.isConnected) Imp()?.pointAt?.(e.detail.el); }, 160);
 });
 
-/* ---------- Notes: a tiny app that keeps one note on this device ---------- */
-const notesHTML = () => { const v = ls.get('pf-a-note') || ''; return `<div class="app notes"><div class="pad">
-  <span class="eyebrow">${I.pen} AmirOS</span><h2 class="h2 hang-title" style="margin:6px 0 12px">${esc(u('notes'))}</h2>
-  <textarea class="note-ta" spellcheck="true" placeholder="${esc(u('notesPh'))}" aria-label="${esc(u('notes'))}">${esc(v)}</textarea>
-  <p class="note-foot muted small"><span>${esc(u('notesSaved'))}</span><span class="note-n" dir="ltr">${v.trim() ? v.trim().split(/\s+/).length : 0} ${esc(u('notesWords'))}</span></p></div></div>`; };
-document.addEventListener('input', e => { const t = e.target; if (!t.classList?.contains('note-ta')) return; ls.set('pf-a-note', t.value); $$('.note-ta').forEach(o => { if (o !== t) o.value = t.value; }); $$('.note-n').forEach(n => { n.textContent = `${t.value.trim() ? t.value.trim().split(/\s+/).length : 0} ${u('notesWords')}`; }); });
+/* ---------- Notes: as many notes as you like, kept in this browser ----------
+   localStorage 'pf-a-notes' holds [{ id, text, made, at }], newest first. The first line of a note is its title.
+   Typing saves half a second after you stop (and on leaving the page); Save and Ctrl/Cmd+S save at once.
+   Every open Notes window, tab and phone sheet shows the same notes. Download gives the note as .txt or .md. */
+const NK = 'pf-a-notes';
+const NT = { list: null, sel: null, timer: 0, dirty: false, savedAt: 0, failed: false };
+const notesLoad = () => {
+  let list = null; try { list = JSON.parse(localStorage.getItem(NK) || 'null'); } catch { }
+  if (!Array.isArray(list)) { // the one note the first Notes kept comes along as the first note
+    const old = ls.get('pf-a-note'), now = Date.now();
+    list = old && old.trim() ? [{ id: 'n' + now.toString(36), text: old, made: now, at: now }] : [];
+  }
+  return list.filter(n => n && typeof n.id === 'string' && typeof n.text === 'string');
+};
+const notesAll = () => NT.list || (NT.list = notesLoad());
+const noteCur = () => notesAll().find(n => n.id === NT.sel) || null;
+const noteTitle = t => (t.split('\n').find(l => l.trim()) || '').trim().replace(/^#+\s*/, '').slice(0, 80);
+const notePeek = t => { const ls2 = t.split('\n').filter(l => l.trim()); return (ls2[1] || '').trim().slice(0, 90); };
+const noteWords = t => t.trim() ? t.trim().split(/\s+/).length : 0;
+const noteTime = ms => {
+  const d = new Date(ms), now = new Date(), loc = rtl() ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB';
+  return d.toDateString() === now.toDateString() ? d.toLocaleTimeString(loc, { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }) : d.toLocaleDateString(loc, { day: 'numeric', month: 'short' });
+};
+// write everything now; an empty note that is not the open one is dropped
+const notesSave = () => {
+  clearTimeout(NT.timer); NT.timer = 0;
+  NT.list = notesAll().filter(n => n.text.trim() || n.id === NT.sel);
+  try {
+    localStorage.setItem(NK, JSON.stringify(NT.list.filter(n => n.text.trim())));
+    try { localStorage.removeItem('pf-a-note'); } catch { }
+    NT.dirty = false; NT.failed = false; NT.savedAt = Date.now();
+  } catch { NT.failed = true; }
+  notesStatus(); return !NT.failed;
+};
+// every Notes on the page, plus one being mounted that is not on the page yet
+const notesRoots = r => { const set = new Set($$('.app.notes')), a = r && (r.matches?.('.app.notes') ? r : $('.app.notes', r)); if (a) set.add(a); return [...set]; };
+const notesStatus = (r = null) => {
+  const txt = NT.failed ? u('notesFail') : NT.dirty ? u('notesSaving') : NT.savedAt ? `${u('notesSavedAt')} ${noteTime(NT.savedAt)}` : '';
+  notesRoots(r).map(x => $('.nt-status', x)).filter(Boolean).forEach(s => { s.textContent = txt; s.classList.toggle('bad', NT.failed); });
+};
+const notesListHTML = root => {
+  const q = norm($('[data-nt="find"]', root)?.value || ''), all = notesAll();
+  const shown = all.filter(n => !q || norm(n.text).includes(q));
+  if (!shown.length) return `<li class="nt-none muted small">${esc(q ? u('notesNone') : u('notesEmpty'))}</li>`;
+  return shown.map(n => `<li><button type="button" class="nt-item" data-nt-id="${esc(n.id)}"${n.id === NT.sel ? ' aria-current="true"' : ''}>
+    <b dir="auto">${esc(noteTitle(n.text) || u('notesEmpty'))}</b><span class="nt-meta"><time dir="ltr">${esc(noteTime(n.at))}</time><span dir="auto">${esc(notePeek(n.text))}</span></span></button></li>`).join('');
+};
+// draw every open Notes; `keep` is the editor being typed in, which is left alone
+const notesRender = (keep = null, r = null) => {
+  if (!NT.sel || !noteCur()) NT.sel = notesAll()[0]?.id || null;
+  const cur = noteCur();
+  notesRoots(r).forEach(root => {
+    const ul = $('.nt-list', root); if (ul) ul.innerHTML = notesListHTML(root);
+    const ta = $('.note-ta', root);
+    if (ta && ta !== keep && ta.value !== (cur?.text || '')) ta.value = cur?.text || '';
+    const n = $('.note-n', root); if (n) { const w = noteWords(cur?.text || ''), c = notesAll().filter(x => x.text.trim()).length; n.textContent = `${w} ${u(w === 1 ? 'wordOne' : 'notesWords')} · ${c} ${u(c === 1 ? 'notesOne' : 'notesCount')}`; }
+    const del = $('[data-nt="del"]', root); if (del) del.disabled = !cur || (!cur.text.trim() && notesAll().length < 2);
+  });
+  notesStatus(r);
+};
+const noteFocus = root => { const ta = root && $('.note-ta', root); if (ta) { ta.focus({ preventScroll: true }); ta.setSelectionRange(ta.value.length, ta.value.length); } };
+const noteNew = root => {
+  const cur = noteCur();
+  if (cur && !cur.text.trim()) { noteFocus(root); return; } // the open note is still empty: write there
+  const now = Date.now(), n = { id: 'n' + now.toString(36) + Math.floor(Math.random() * 1e4).toString(36), text: '', made: now, at: now };
+  notesAll().unshift(n); NT.sel = n.id; notesSave(); notesRender(null, root); noteFocus(root);
+};
+const noteSelect = (id, root) => { if (NT.dirty) notesSave(); NT.sel = id; NT.list = notesAll().filter(n => n.text.trim() || n.id === id); notesRender(); if (isDesk()) noteFocus(root); };
+const noteDelete = root => {
+  const all = notesAll(), i = all.findIndex(n => n.id === NT.sel); if (i < 0) return;
+  const [gone] = all.splice(i, 1); NT.sel = (all[i] || all[i - 1])?.id || null; notesSave(); notesRender();
+  if (gone.text.trim()) toast(u('notesDeleted'), I.trash, { label: u('undo'), run: () => { notesAll().splice(Math.min(i, notesAll().length), 0, gone); NT.sel = gone.id; notesSave(); notesRender(); } });
+  if (!notesAll().length) noteNew(root);
+};
+const mdOf = t => { const lines = t.split('\n'), i = lines.findIndex(l => l.trim()); if (i < 0 || /^#/.test(lines[i].trim())) return t; lines[i] = '# ' + lines[i].trim(); return lines.join('\n'); };
+const noteDownload = fmt => {
+  if (NT.dirty) notesSave();
+  const n = noteCur(); if (!n || !n.text.trim()) { toast(u('notesNothing'), I.pen); return; }
+  const base = noteTitle(n.text).replace(/[\\/:*?"<>|\u0000-\u001f]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60) || u('notesUntitled');
+  const name = `${base}.${fmt}`, text = n.text.replace(/\r\n?/g, '\n'), body = fmt === 'md' ? mdOf(text) : text;
+  const url = URL.createObjectURL(new Blob([body.endsWith('\n') ? body : body + '\n'], { type: fmt === 'md' ? 'text/markdown;charset=utf-8' : 'text/plain;charset=utf-8' }));
+  const a = document.createElement('a'); a.href = url; a.download = name; a.hidden = true; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  toast(`${u('notesDownloaded')}: ${name}`, I.download);
+};
+const noteMenu = (root, open) => {
+  const m = root && $('.nt-dl', root), b = root && $('[data-nt="dl"]', root); if (!m) return;
+  const on = open ?? m.hidden; m.hidden = !on; b.setAttribute('aria-expanded', String(on)); if (on) $('button', m)?.focus();
+};
+// the window is not on the page yet when it is mounted, so the editor takes focus a moment later
+const mountNotes = root => { notesAll(); notesRender(null, root); if (!noteCur()) noteNew(root); if (isDesk()) setTimeout(() => noteFocus(root), 120); };
+document.addEventListener('input', e => {
+  const t = e.target, root = t.closest?.('.app.notes'); if (!root) return;
+  if (t.matches('[data-nt="find"]')) { const ul = $('.nt-list', root); if (ul) ul.innerHTML = notesListHTML(root); return; }
+  if (!t.classList.contains('note-ta')) return;
+  let cur = noteCur(); if (!cur) { noteNew(root); cur = noteCur(); }
+  cur.text = t.value; cur.at = Date.now();
+  const all = notesAll(), i = all.indexOf(cur); if (i > 0) { all.splice(i, 1); all.unshift(cur); } // the note you are writing moves to the top
+  NT.dirty = true; clearTimeout(NT.timer); NT.timer = setTimeout(() => { notesSave(); notesRender(t); }, 500);
+  notesRender(t);
+});
+document.addEventListener('click', e => {
+  const root = e.target.closest?.('.app.notes');
+  $$('.app.notes .nt-dl:not([hidden])').forEach(m => { if (!m.closest('.nt-dlw').contains(e.target)) noteMenu(m.closest('.app.notes'), false); });
+  if (!root) return;
+  const item = e.target.closest('[data-nt-id]'); if (item) { noteSelect(item.dataset.ntId, root); return; }
+  const b = e.target.closest('[data-nt]'); if (!b) return;
+  const k = b.dataset.nt;
+  if (k === 'new') noteNew(root);
+  else if (k === 'save') { if (notesSave()) { b.classList.remove('flash-ok'); void b.offsetWidth; b.classList.add('flash-ok'); } }
+  else if (k === 'del') noteDelete(root);
+  else if (k === 'dl') noteMenu(root);
+  else if (k === 'dl-txt' || k === 'dl-md') { noteMenu(root, false); noteDownload(k === 'dl-md' ? 'md' : 'txt'); }
+});
+document.addEventListener('keydown', e => {
+  const root = e.target.closest?.('.app.notes'); if (!root) return;
+  if ((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === 's') { e.preventDefault(); e.stopPropagation(); notesSave(); return; }
+  if (e.altKey && !e.ctrlKey && !e.metaKey && e.code === 'KeyN') { e.preventDefault(); noteNew(root); return; }
+  const m = $('.nt-dl', root);
+  if (e.key === 'Escape' && m && !m.hidden) { e.preventDefault(); e.stopPropagation(); noteMenu(root, false); $('[data-nt="dl"]', root)?.focus(); return; }
+  if (m && !m.hidden && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) { e.preventDefault(); const bs = $$('button', m), i = bs.indexOf(document.activeElement); bs[(i + (e.key === 'ArrowDown' ? 1 : bs.length - 1)) % bs.length]?.focus(); return; }
+  // up and down move through the list
+  const it = e.target.closest('.nt-item');
+  if (it && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) { e.preventDefault(); const items = $$('.nt-item', root), i = items.indexOf(it), nx = items[i + (e.key === 'ArrowDown' ? 1 : -1)]; nx?.focus(); }
+}, true);
+// nothing typed is lost when the page goes away
+const notesFlush = () => { if (NT.dirty) notesSave(); };
+addEventListener('pagehide', notesFlush);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') notesFlush(); });
+// another tab of this site changed the notes
+addEventListener('storage', e => { if (e.key !== NK || NT.dirty) return; NT.list = null; notesRender(); });
 
 /* ---------- toys: a ball to throw at Imp, treats to feed him ---------- */
 const PIX = (rows, pal) => { let r = ''; rows.forEach((row, y) => [...row].forEach((ch, x) => { if (pal[ch]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${pal[ch]}"/>`; })); return `<svg viewBox="0 0 ${rows[0].length} ${rows.length}" shape-rendering="crispEdges" aria-hidden="true">${r}</svg>`; };

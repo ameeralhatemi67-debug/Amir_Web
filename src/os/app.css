@@ -98,14 +98,58 @@ html.is-phone .panel-pop { inset-inline: 8px; width: auto; }
 .tv-empty { grid-column: 1 / -1; text-align: center; color: var(--ink-2); font-size: 15px; padding: 60px 0; }
 .tv-foot { margin: 12px auto 0; font: 500 13px var(--f-mono); color: var(--ink-2); text-align: center; }
 
-/* --- Notes --- */
-.app.notes .pad { display: flex; flex-direction: column; height: 100%; padding: 22px 24px; }
+/* --- Notes: the list beside the editor; stacked in a narrow window or a phone sheet --- */
+.app.notes { container-type: inline-size; height: 100%; min-height: 0; }
+.nt-grid { display: grid; grid-template-columns: minmax(200px, 240px) 1fr; height: 100%; min-height: 0; }
+.nt-side { display: flex; flex-direction: column; gap: 10px; min-height: 0; padding: 16px 12px 12px 16px; border-inline-end: 1px solid var(--line); background: color-mix(in srgb, var(--card) 60%, transparent); }
+[dir="rtl"] .nt-side { padding: 16px 16px 12px 12px; }
+.nt-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.nt-h { font: 700 17px var(--f-display); }
+.nt-new span { white-space: nowrap; }
+.nt-find { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--ink-2); }
+.nt-find .i { width: 15px; height: 15px; flex: none; }
+.nt-find input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--ink); font: 500 14px var(--f-ui); }
+.nt-find:focus-within { box-shadow: 0 0 0 2px var(--acc2); }
+.nt-list { list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 4px; }
+.nt-item { display: grid; gap: 2px; width: 100%; text-align: start; padding: 9px 10px; border-radius: 10px; border: 1px solid transparent; background: none; color: var(--ink); cursor: pointer; }
+.nt-item:hover { background: var(--card); }
+.nt-item[aria-current="true"] { background: var(--card); border-color: var(--line); box-shadow: inset 3px 0 0 var(--acc1); }
+[dir="rtl"] .nt-item[aria-current="true"] { box-shadow: inset -3px 0 0 var(--acc1); }
+.nt-item b { font: 600 14px var(--f-ui); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-meta { display: flex; gap: 8px; font-size: 13px; color: var(--ink-2); min-width: 0; }
+.nt-meta time { flex: none; font-variant-numeric: tabular-nums; }
+.nt-meta span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-none { padding: 10px; }
+.nt-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 14px 18px 14px; }
+.nt-bar { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; min-height: 34px; }
+.nt-status { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-status.bad { color: #E5484D; }
+.nt-acts { display: flex; align-items: center; gap: 6px; flex: none; }
+.nt-dlw { position: relative; }
+.nt-dl { position: absolute; top: calc(100% + 6px); inset-inline-end: 0; z-index: 5; display: grid; min-width: 180px; padding: 6px; border-radius: 12px; }
+.nt-dl[hidden] { display: none; }
+.nt-dl button { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 10px; border: 0; border-radius: 8px; background: none; color: var(--ink); font: 500 14px var(--f-ui); cursor: pointer; text-align: start; }
+.nt-dl button:hover, .nt-dl button:focus-visible { background: var(--card); }
+.nt-dl small { color: var(--ink-2); font-family: var(--f-mono); }
+.nt-del:disabled { opacity: .45; cursor: default; }
+.btn.flash-ok { animation: okpop .6s var(--spring); }
+@keyframes okpop { 40% { transform: scale(1.08); box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc1) 45%, transparent); } }
 .note-ta { flex: 1; min-height: 220px; width: 100%; resize: none; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--line); outline: none; font: 500 15.5px/1.7 var(--f-ui); color: #3a2a10; background: repeating-linear-gradient(transparent 0 26px, rgba(150, 110, 40, .16) 26px 27px) #FFF3C4; background-position: 0 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 10px 24px -14px rgba(0, 0, 0, .4); }
 .note-ta:focus-visible { box-shadow: 0 0 0 2px var(--acc2); }
-.note-ta::placeholder { color: rgba(58, 42, 16, .5); }
-.note-foot { display: flex; justify-content: space-between; margin: 10px 0 0; }
-.sheet .app.notes .pad { height: auto; }
-.sheet .note-ta { min-height: 50vh; }
+.note-ta::placeholder { color: rgba(58, 42, 16, .62); }
+.note-foot { display: flex; justify-content: space-between; gap: 10px; margin: 10px 0 0; }
+@container (max-width: 560px) {
+  .nt-grid { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .nt-side { border-inline-end: 0; border-bottom: 1px solid var(--line); padding: 12px 14px; }
+  .nt-list { max-height: 168px; }
+  .nt-main { padding: 12px 14px; }
+  .nt-bar .btn span { display: none; }
+}
+.sheet .app.notes, .sheet .nt-grid { height: auto; }
+.sheet .note-ta { min-height: 46vh; }
+/* a toast with one action (Undo) */
+.toast-act { pointer-events: auto; margin-inline-start: 6px; padding: 6px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: 600 13px var(--f-ui); cursor: pointer; }
+.toast-act:hover { background: var(--acc1); color: var(--acc-ink); }
 
 /* --- the flash that marks a search hit inside a window --- */
 .flash { animation: flash 1.6s var(--ease); border-radius: 10px; }

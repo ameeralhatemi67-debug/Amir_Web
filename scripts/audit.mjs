@@ -162,7 +162,9 @@ try {
     const ctx = await ctxFor('desktop', { reducedMotion: 'reduce' }), page = await ctx.newPage();
     await page.goto(`${base}/en/`);
     assert.equal(await page.locator('#boot').isVisible(), false);
-    assert.equal(await page.evaluate(() => getComputedStyle(document.querySelector('.wp[data-wp="corniche"] .blob')).animationName), 'none');
+    // the corniche's twinkling stars, glittering water and bobbing dhow all hold still
+    assert.deepEqual(await page.evaluate(() => [...document.querySelectorAll('.wp[data-wp="corniche"] :is(.tw, .gl, .dhow)')].map(el => getComputedStyle(el).animationName).filter(n => n !== 'none')), []);
+    assert.ok(await page.evaluate(() => document.querySelectorAll('.wp[data-wp="corniche"] :is(.tw, .gl, .dhow)').length) > 5);
     await ctx.close();
   });
   // the mascot loads with the first interaction and settles on the desktop

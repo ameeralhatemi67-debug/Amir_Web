@@ -2,7 +2,7 @@
   {
     "url": "http://127.0.0.1:4321/en/",
     "scores": {
-      "performance": 96,
+      "performance": 97,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -10,17 +10,11 @@
     "metrics": {
       "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "90 ms",
+      "total-blocking-time": "50 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "3.7 s"
+      "speed-index": "3.6 s"
     },
     "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.1 s"
-      },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
@@ -30,20 +24,14 @@
       {
         "id": "speed-index",
         "title": "Speed Index",
-        "score": 0.86,
-        "display": "3.7 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.98,
-        "display": "90 ms"
+        "score": 0.87,
+        "display": "3.6 s"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.86,
-        "display": "140 ms"
+        "score": 0.97,
+        "display": "100 ms"
       },
       {
         "id": "interactive",
@@ -55,13 +43,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 16 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -97,10 +85,10 @@
     },
     "metrics": {
       "first-contentful-paint": "1.1 s",
-      "largest-contentful-paint": "2.8 s",
-      "total-blocking-time": "120 ms",
+      "largest-contentful-paint": "2.9 s",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.9 s"
+      "speed-index": "1.7 s"
     },
     "failed": [
       {
@@ -112,20 +100,20 @@
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.83,
-        "display": "2.8 s"
+        "score": 0.81,
+        "display": "2.9 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "120 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.76,
-        "display": "170 ms"
+        "score": 0.9,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
@@ -137,19 +125,19 @@
         "id": "largest-contentful-paint-element",
         "title": "Largest Contentful Paint element",
         "score": 0,
-        "display": "2,800 ms"
+        "display": "2,870 ms"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -160,7 +148,7 @@
       {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0.5,
+        "score": 0,
         "display": "Est savings of 197 KiB"
       },
       {
@@ -173,7 +161,7 @@
   {
     "url": "http://127.0.0.1:4321/en/films/",
     "scores": {
-      "performance": 95,
+      "performance": 96,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -181,9 +169,9 @@
     "metrics": {
       "first-contentful-paint": "1.0 s",
       "largest-contentful-paint": "2.7 s",
-      "total-blocking-time": "110 ms",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
@@ -195,20 +183,20 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "110 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.8,
-        "display": "160 ms"
+        "score": 0.93,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
         "score": 0.97,
-        "display": "2.8 s"
+        "display": "2.7 s"
       },
       {
         "id": "largest-contentful-paint-element",
@@ -220,13 +208,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -255,7 +243,7 @@
   {
     "url": "http://127.0.0.1:4321/en/lab/",
     "scores": {
-      "performance": 96,
+      "performance": 97,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -263,9 +251,9 @@
     "metrics": {
       "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.6 s",
-      "total-blocking-time": "110 ms",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
@@ -277,32 +265,32 @@
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.86,
+        "score": 0.88,
         "display": "2.6 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "110 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.79,
-        "display": "160 ms"
+        "score": 0.93,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
-        "score": 0.97,
-        "display": "2.7 s"
+        "score": 0.98,
+        "display": "2.6 s"
       },
       {
         "id": "largest-contentful-paint-element",
         "title": "Largest Contentful Paint element",
         "score": 0,
-        "display": "2,650 ms"
+        "display": "2,570 ms"
       },
       {
         "id": "lcp-lazy-loaded",
@@ -313,13 +301,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 15 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -348,15 +336,15 @@
   {
     "url": "http://127.0.0.1:4321/en/about/",
     "scores": {
-      "performance": 96,
+      "performance": 97,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.4 s",
-      "total-blocking-time": "140 ms",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
       "speed-index": "1.4 s"
     },
@@ -365,7 +353,7 @@
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -376,38 +364,38 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "140 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.71,
-        "display": "190 ms"
+        "score": 0.91,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
         "score": 0.98,
-        "display": "2.5 s"
+        "display": "2.4 s"
       },
       {
         "id": "mainthread-work-breakdown",
         "title": "Minimize main-thread work",
         "score": 0,
-        "display": "3.1 s"
+        "display": "2.0 s"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 15 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -431,7 +419,7 @@
   {
     "url": "http://127.0.0.1:4321/en/contact/",
     "scores": {
-      "performance": 98,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
@@ -439,17 +427,11 @@
     "metrics": {
       "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "100 ms",
+      "total-blocking-time": "50 ms",
       "cumulative-layout-shift": "0.001",
       "speed-index": "1.3 s"
     },
     "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.1 s"
-      },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
@@ -457,16 +439,10 @@
         "display": "2.3 s"
       },
       {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.98,
-        "display": "100 ms"
-      },
-      {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.84,
-        "display": "150 ms"
+        "score": 0.96,
+        "display": "100 ms"
       },
       {
         "id": "interactive",
@@ -478,13 +454,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 15 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -508,60 +484,48 @@
   {
     "url": "http://127.0.0.1:4321/en/privacy/",
     "scores": {
-      "performance": 98,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
       "first-contentful-paint": "1.1 s",
-      "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "100 ms",
+      "largest-contentful-paint": "2.2 s",
+      "total-blocking-time": "60 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.3 s"
+      "speed-index": "1.2 s"
     },
     "failed": [
       {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.1 s"
-      },
-      {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.94,
-        "display": "2.3 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.98,
-        "display": "100 ms"
+        "score": 0.95,
+        "display": "2.2 s"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.85,
-        "display": "150 ms"
+        "score": 0.95,
+        "display": "110 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
         "score": 0.99,
-        "display": "2.3 s"
+        "display": "2.2 s"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 16 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -593,9 +557,9 @@
     "metrics": {
       "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.5 s",
-      "total-blocking-time": "100 ms",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
@@ -613,14 +577,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.98,
-        "display": "100 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.83,
-        "display": "150 ms"
+        "score": 0.9,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
@@ -632,19 +596,25 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
         "score": 0.5,
         "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "871 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -669,8 +639,97 @@
     },
     "metrics": {
       "first-contentful-paint": "1.1 s",
-      "largest-contentful-paint": "2.4 s",
-      "total-blocking-time": "120 ms",
+      "largest-contentful-paint": "2.6 s",
+      "total-blocking-time": "90 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.3 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.88,
+        "display": "2.6 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99,
+        "display": "90 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.88,
+        "display": "140 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.98,
+        "display": "2.6 s"
+      },
+      {
+        "id": "largest-contentful-paint-element",
+        "title": "Largest Contentful Paint element",
+        "score": 0,
+        "display": "2,570 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "945 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 74 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/comms-hub/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "2.3 s",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
       "speed-index": "1.4 s"
     },
@@ -684,103 +743,20 @@
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.91,
-        "display": "2.4 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "120 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.78,
-        "display": "170 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.96,
-        "display": "2.9 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "dom-size",
-        "title": "Avoid an excessive DOM size",
-        "score": 0,
-        "display": "859 elements"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 74 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/en/projects/comms-hub/",
-    "scores": {
-      "performance": 97,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "130 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
         "score": 0.92,
         "display": "2.3 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.75,
-        "display": "180 ms"
+        "score": 0.91,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
@@ -792,13 +768,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -810,7 +786,7 @@
         "id": "dom-size",
         "title": "Avoid an excessive DOM size",
         "score": 0,
-        "display": "832 elements"
+        "display": "918 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -828,78 +804,78 @@
   {
     "url": "http://127.0.0.1:4321/en/projects/hatan/",
     "scores": {
-      "performance": 95,
+      "performance": 96,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.6 s",
-      "total-blocking-time": "130 ms",
+      "total-blocking-time": "90 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.87,
+        "score": 0.88,
         "display": "2.6 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.98,
+        "display": "90 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.72,
-        "display": "180 ms"
+        "score": 0.86,
+        "display": "140 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
-        "score": 0.97,
-        "display": "2.7 s"
+        "score": 0.98,
+        "display": "2.6 s"
       },
       {
         "id": "largest-contentful-paint-element",
         "title": "Largest Contentful Paint element",
         "score": 0,
-        "display": "2,640 ms"
+        "display": "2,570 ms"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 12 KiB"
+        "display": "Est savings of 13 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
-        "score": 0,
+        "score": 0.5,
         "display": "Est savings of 27 KiB"
       },
       {
         "id": "dom-size",
         "title": "Avoid an excessive DOM size",
         "score": 0,
-        "display": "991 elements"
+        "display": "1,077 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -917,42 +893,42 @@
   {
     "url": "http://127.0.0.1:4321/en/projects/amir-lap/",
     "scores": {
-      "performance": 95,
+      "performance": 96,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.6 s",
-      "total-blocking-time": "130 ms",
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "2.7 s",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.87,
-        "display": "2.6 s"
+        "score": 0.85,
+        "display": "2.7 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.75,
-        "display": "180 ms"
+        "score": 0.89,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
@@ -964,19 +940,19 @@
         "id": "largest-contentful-paint-element",
         "title": "Largest Contentful Paint element",
         "score": 0,
-        "display": "2,640 ms"
+        "display": "2,720 ms"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -988,7 +964,7 @@
         "id": "dom-size",
         "title": "Avoid an excessive DOM size",
         "score": 0,
-        "display": "847 elements"
+        "display": "933 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -1006,24 +982,24 @@
   {
     "url": "http://127.0.0.1:4321/en/projects/hayz/",
     "scores": {
-      "performance": 96,
+      "performance": 97,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.5 s",
-      "total-blocking-time": "130 ms",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.3 s"
+      "speed-index": "1.2 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1034,38 +1010,44 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.72,
-        "display": "180 ms"
+        "score": 0.92,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
-        "score": 0.97,
-        "display": "2.8 s"
+        "score": 0.98,
+        "display": "2.5 s"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
         "score": 0.5,
         "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "834 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -1083,15 +1065,15 @@
   {
     "url": "http://127.0.0.1:4321/en/projects/nbc/",
     "scores": {
-      "performance": 96,
+      "performance": 97,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.5 s",
-      "total-blocking-time": "130 ms",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
       "speed-index": "1.3 s"
     },
@@ -1100,7 +1082,7 @@
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1111,14 +1093,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.74,
-        "display": "180 ms"
+        "score": 0.92,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
@@ -1130,19 +1112,25 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
         "score": 0.5,
         "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "853 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -1160,24 +1148,24 @@
   {
     "url": "http://127.0.0.1:4321/en/projects/bookquest/",
     "scores": {
-      "performance": 97,
+      "performance": 98,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "130 ms",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.2 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1188,14 +1176,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.96,
-        "display": "130 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.75,
-        "display": "180 ms"
+        "score": 0.91,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
@@ -1207,13 +1195,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1222,9 +1210,15 @@
         "display": "Est savings of 27 KiB"
       },
       {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "881 elements"
+      },
+      {
         "id": "image-delivery-insight",
         "title": "Improve image delivery",
-        "score": 0.5,
+        "score": 0,
         "display": "Est savings of 41 KiB"
       },
       {
@@ -1243,18 +1237,18 @@
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.5 s",
-      "total-blocking-time": "120 ms",
+      "total-blocking-time": "70 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.2 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1265,14 +1259,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "120 ms"
+        "score": 0.99,
+        "display": "70 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.76,
-        "display": "170 ms"
+        "score": 0.93,
+        "display": "120 ms"
       },
       {
         "id": "interactive",
@@ -1284,19 +1278,25 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
         "title": "Properly size images",
         "score": 0.5,
         "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "833 elements"
       },
       {
         "id": "image-delivery-insight",
@@ -1322,7 +1322,90 @@
     "metrics": {
       "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "120 ms",
+      "total-blocking-time": "80 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.92,
+        "display": "2.3 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99,
+        "display": "80 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.89,
+        "display": "130 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.4 s"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "833 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/en/projects/dnfom/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "2.3 s",
+      "total-blocking-time": "80 ms",
       "cumulative-layout-shift": "0",
       "speed-index": "1.3 s"
     },
@@ -1342,14 +1425,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "120 ms"
+        "score": 0.99,
+        "display": "80 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.78,
-        "display": "170 ms"
+        "score": 0.89,
+        "display": "130 ms"
       },
       {
         "id": "interactive",
@@ -1361,90 +1444,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/en/projects/dnfom/",
-    "scores": {
-      "performance": 97,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.3 s",
-      "total-blocking-time": "160 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.94,
-        "display": "2.3 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.94,
-        "display": "160 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.64,
-        "display": "210 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.99,
-        "display": "2.3 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1468,24 +1474,24 @@
   {
     "url": "http://127.0.0.1:4321/ar/",
     "scores": {
-      "performance": 98,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "1.8 s",
-      "total-blocking-time": "120 ms",
+      "total-blocking-time": "60 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "2.2 s"
+      "speed-index": "2.1 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1497,31 +1503,25 @@
         "id": "speed-index",
         "title": "Speed Index",
         "score": 0.99,
-        "display": "2.2 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.97,
-        "display": "120 ms"
+        "display": "2.1 s"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.76,
-        "display": "170 ms"
+        "score": 0.94,
+        "display": "110 ms"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 16 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1550,60 +1550,54 @@
   {
     "url": "http://127.0.0.1:4321/ar/projects/",
     "scores": {
-      "performance": 96,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.0 s",
-      "total-blocking-time": "180 ms",
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "110 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.97,
-        "display": "2.0 s"
+        "score": 0.98,
+        "display": "1.9 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.91,
-        "display": "180 ms"
+        "score": 0.98,
+        "display": "110 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.55,
-        "display": "230 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.99,
-        "display": "2.0 s"
+        "score": 0.81,
+        "display": "160 ms"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1627,60 +1621,54 @@
   {
     "url": "http://127.0.0.1:4321/ar/films/",
     "scores": {
-      "performance": 95,
+      "performance": 98,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.0 s",
-      "largest-contentful-paint": "2.2 s",
-      "total-blocking-time": "220 ms",
+      "first-contentful-paint": "0.9 s",
+      "largest-contentful-paint": "2.1 s",
+      "total-blocking-time": "110 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.3 s"
+      "speed-index": "1.1 s"
     },
     "failed": [
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
-        "score": 0.95,
-        "display": "2.2 s"
+        "score": 0.96,
+        "display": "2.1 s"
       },
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.87,
-        "display": "220 ms"
+        "score": 0.98,
+        "display": "110 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.52,
-        "display": "240 ms"
+        "score": 0.81,
+        "display": "160 ms"
       },
       {
         "id": "interactive",
         "title": "Time to Interactive",
         "score": 0.99,
-        "display": "2.2 s"
-      },
-      {
-        "id": "mainthread-work-breakdown",
-        "title": "Minimize main-thread work",
-        "score": 0,
         "display": "2.1 s"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 13 KiB"
+        "display": "Est savings of 14 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1709,25 +1697,19 @@
   {
     "url": "http://127.0.0.1:4321/ar/lab/",
     "scores": {
-      "performance": 98,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "1.8 s",
-      "total-blocking-time": "150 ms",
+      "total-blocking-time": "100 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
+      "speed-index": "1.2 s"
     },
     "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
       {
         "id": "largest-contentful-paint",
         "title": "Largest Contentful Paint",
@@ -1737,14 +1719,14 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.95,
-        "display": "150 ms"
+        "score": 0.98,
+        "display": "100 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.68,
-        "display": "200 ms"
+        "score": 0.85,
+        "display": "150 ms"
       },
       {
         "id": "lcp-lazy-loaded",
@@ -1755,13 +1737,13 @@
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 15 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1790,24 +1772,24 @@
   {
     "url": "http://127.0.0.1:4321/ar/about/",
     "scores": {
-      "performance": 96,
+      "performance": 99,
       "accessibility": 100,
       "best-practices": 100,
       "seo": 100
     },
     "metrics": {
-      "first-contentful-paint": "1.2 s",
+      "first-contentful-paint": "1.1 s",
       "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "200 ms",
+      "total-blocking-time": "120 ms",
       "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
+      "speed-index": "1.3 s"
     },
     "failed": [
       {
         "id": "first-contentful-paint",
         "title": "First Contentful Paint",
         "score": 0.99,
-        "display": "1.2 s"
+        "display": "1.1 s"
       },
       {
         "id": "largest-contentful-paint",
@@ -1818,32 +1800,32 @@
       {
         "id": "total-blocking-time",
         "title": "Total Blocking Time",
-        "score": 0.89,
-        "display": "200 ms"
+        "score": 0.97,
+        "display": "120 ms"
       },
       {
         "id": "max-potential-fid",
         "title": "Max Potential First Input Delay",
-        "score": 0.47,
-        "display": "260 ms"
+        "score": 0.77,
+        "display": "170 ms"
       },
       {
         "id": "mainthread-work-breakdown",
         "title": "Minimize main-thread work",
         "score": 0,
-        "display": "3.3 s"
+        "display": "2.2 s"
       },
       {
         "id": "unused-css-rules",
         "title": "Reduce unused CSS",
         "score": 0.5,
-        "display": "Est savings of 14 KiB"
+        "display": "Est savings of 15 KiB"
       },
       {
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",
@@ -1867,6 +1849,936 @@
   {
     "url": "http://127.0.0.1:4321/ar/contact/",
     "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.8 s",
+      "total-blocking-time": "100 ms",
+      "cumulative-layout-shift": "0.001",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.8 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.98,
+        "display": "100 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.84,
+        "display": "150 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 15 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/privacy/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.8 s",
+      "total-blocking-time": "110 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.8 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.98,
+        "display": "110 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.81,
+        "display": "160 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 15 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hadayah-live/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.2 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "130 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.96,
+        "display": "130 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.73,
+        "display": "180 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "871 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 51 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/memory-card/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.2 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "140 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.4 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.96,
+        "display": "140 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.71,
+        "display": "190 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "945 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 74 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/comms-hub/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "130 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.96,
+        "display": "130 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.74,
+        "display": "180 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "918 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 40 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hatan/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.2 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "140 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.3 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.95,
+        "display": "140 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.69,
+        "display": "190 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "1,077 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 106 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/amir-lap/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.2 s",
+      "largest-contentful-paint": "2.0 s",
+      "total-blocking-time": "140 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.2 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.97,
+        "display": "2.0 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.95,
+        "display": "140 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.7,
+        "display": "190 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.0 s"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "933 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 68 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hayz/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "120 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.3 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.97,
+        "display": "120 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.77,
+        "display": "170 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "834 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 41 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/nbc/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "2.0 s",
+      "total-blocking-time": "130 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.97,
+        "display": "2.0 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.96,
+        "display": "130 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.73,
+        "display": "180 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.0 s"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "853 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 52 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/bookquest/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "120 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.97,
+        "display": "120 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.76,
+        "display": "170 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "881 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 41 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hedayah-dashboard/",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "2.0 s",
+      "total-blocking-time": "130 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.97,
+        "display": "2.0 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.96,
+        "display": "130 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.75,
+        "display": "180 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99,
+        "display": "2.0 s"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "833 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "display": "Est savings of 52 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/hida/",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.1 s",
+      "largest-contentful-paint": "1.9 s",
+      "total-blocking-time": "120 ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
+    },
+    "failed": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "1.1 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98,
+        "display": "1.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.97,
+        "display": "120 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.76,
+        "display": "170 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "display": "Est savings of 46 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "dom-size",
+        "title": "Avoid an excessive DOM size",
+        "score": 0,
+        "display": "833 elements"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "display": "Est savings of 27 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4321/ar/projects/dnfom/",
+    "scores": {
       "performance": 98,
       "accessibility": 100,
       "best-practices": 100,
@@ -1876,8 +2788,8 @@
       "first-contentful-paint": "1.2 s",
       "largest-contentful-paint": "1.8 s",
       "total-blocking-time": "150 ms",
-      "cumulative-layout-shift": "0.001",
-      "speed-index": "1.5 s"
+      "cumulative-layout-shift": "0",
+      "speed-index": "1.2 s"
     },
     "failed": [
       {
@@ -1914,907 +2826,7 @@
         "id": "unused-javascript",
         "title": "Reduce unused JavaScript",
         "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/privacy/",
-    "scores": {
-      "performance": 97,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "1.8 s",
-      "total-blocking-time": "170 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.3 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.8 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.92,
-        "display": "170 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.58,
-        "display": "220 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 14 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/hadayah-live/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.3 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "190 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.3 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "190 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.45,
-        "display": "270 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 51 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/memory-card/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.45,
-        "display": "270 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "dom-size",
-        "title": "Avoid an excessive DOM size",
-        "score": 0,
-        "display": "859 elements"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 74 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/comms-hub/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.47,
-        "display": "260 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "dom-size",
-        "title": "Avoid an excessive DOM size",
-        "score": 0,
-        "display": "832 elements"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/hatan/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.3 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.3 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.44,
-        "display": "270 ms"
-      },
-      {
-        "id": "mainthread-work-breakdown",
-        "title": "Minimize main-thread work",
-        "score": 0,
-        "display": "2.1 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 12 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "dom-size",
-        "title": "Avoid an excessive DOM size",
-        "score": 0,
-        "display": "991 elements"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 106 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/amir-lap/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.3 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.6 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.3 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.89,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.43,
-        "display": "270 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "dom-size",
-        "title": "Avoid an excessive DOM size",
-        "score": 0,
-        "display": "847 elements"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 68 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/hayz/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "190 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "190 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.52,
-        "display": "240 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 41 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/nbc/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.3 s",
-      "largest-contentful-paint": "2.0 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.3 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.97,
-        "display": "2.0 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.89,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.41,
-        "display": "280 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.99,
-        "display": "2.0 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 52 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/bookquest/",
-    "scores": {
-      "performance": 97,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "1.9 s",
-      "total-blocking-time": "190 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.9 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.91,
-        "display": "190 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.53,
-        "display": "240 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 41 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/hedayah-dashboard/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.0 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.5 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.97,
-        "display": "2.0 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.5,
-        "display": "250 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.99,
-        "display": "2.0 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0,
-        "display": "Est savings of 52 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/hida/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.2 s",
-      "largest-contentful-paint": "2.0 s",
-      "total-blocking-time": "200 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.99,
-        "display": "1.2 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.97,
-        "display": "2.0 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.9,
-        "display": "200 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.5,
-        "display": "250 ms"
-      },
-      {
-        "id": "interactive",
-        "title": "Time to Interactive",
-        "score": 0.99,
-        "display": "2.0 s"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
-      },
-      {
-        "id": "uses-responsive-images",
-        "title": "Properly size images",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "image-delivery-insight",
-        "title": "Improve image delivery",
-        "score": 0.5,
-        "display": "Est savings of 27 KiB"
-      },
-      {
-        "id": "network-dependency-tree-insight",
-        "title": "Network dependency tree",
-        "score": 0
-      }
-    ]
-  },
-  {
-    "url": "http://127.0.0.1:4321/ar/projects/dnfom/",
-    "scores": {
-      "performance": 96,
-      "accessibility": 100,
-      "best-practices": 100,
-      "seo": 100
-    },
-    "metrics": {
-      "first-contentful-paint": "1.3 s",
-      "largest-contentful-paint": "1.8 s",
-      "total-blocking-time": "210 ms",
-      "cumulative-layout-shift": "0",
-      "speed-index": "1.4 s"
-    },
-    "failed": [
-      {
-        "id": "first-contentful-paint",
-        "title": "First Contentful Paint",
-        "score": 0.98,
-        "display": "1.3 s"
-      },
-      {
-        "id": "largest-contentful-paint",
-        "title": "Largest Contentful Paint",
-        "score": 0.98,
-        "display": "1.8 s"
-      },
-      {
-        "id": "total-blocking-time",
-        "title": "Total Blocking Time",
-        "score": 0.89,
-        "display": "210 ms"
-      },
-      {
-        "id": "max-potential-fid",
-        "title": "Max Potential First Input Delay",
-        "score": 0.4,
-        "display": "280 ms"
-      },
-      {
-        "id": "unused-css-rules",
-        "title": "Reduce unused CSS",
-        "score": 0.5,
-        "display": "Est savings of 13 KiB"
-      },
-      {
-        "id": "unused-javascript",
-        "title": "Reduce unused JavaScript",
-        "score": 0.5,
-        "display": "Est savings of 40 KiB"
+        "display": "Est savings of 46 KiB"
       },
       {
         "id": "uses-responsive-images",

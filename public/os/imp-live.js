@@ -432,13 +432,15 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   const PN = { E: 'Gear 5 point', NE: 'Gear 5 point up and across', N: 'Gear 5 point up', SE: 'Gear 5 point down and across', S: 'Gear 5 point down' };
   Object.entries(DIRS).forEach(([k, d]) => G5('g5-point' + (k === 'E' ? '' : '-' + k.toLowerCase()), PN[k], 'Pointing at what you hover', reachFrames(d), { from: 'Your Settle pose, a rubber arm and a pointing hand' }));
   G5('g5-point-around', 'Gear 5 points around', 'Showing you around', [g(RC, null, 90, { fx: [arm(DIRS.S, .2, 'fist')] })].concat(['S', 'SE', 'E', 'NE', 'N', 'NE', 'E'].map((k, i) => g(RC, null, i ? 230 : 120, { fx: [arm(DIRS[k], i ? 1 : .6, 'point', i % 2 ? .08 : -.06)] }))).concat([g(RC, null, 70, { fx: [arm(DIRS.E, .3, 'fist')] }), g(ST, null, 120)]));
-  // waving: arm up high, hand swinging
-  // waving: upper arm out to the side, elbow bent, the forearm swings from the elbow with the palm towards you
-  const EL = [SH[0] + 14, SH[1] + 1], wv = (deg, len = 15, wob = 0) => { const t = deg * Math.PI / 180; return { t: 'arm', elbow: EL, to: [Math.round(EL[0] + Math.sin(t) * len), Math.round(EL[1] - Math.cos(t) * len)], hand: 'palm', wob }; };
-  G5('g5-wave', 'Gear 5 wave', 'Pointer comes close', [g(RC, null, 70, { fx: [{ t: 'arm', elbow: [SH[0] + 10, SH[1] + 2], to: [SH[0] + 13, SH[1] - 6], hand: 'fist' }] }), g(RC, null, 70, { fx: [wv(-5, 11)] }),
-    g(RC, null, 90, { fx: [wv(18, 15, -.08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }), g(RC, null, 90, { fx: [wv(-22, 15, .08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }),
-    g(RC, null, 90, { fx: [wv(18, 15, -.08)] }), g(RC, null, 70, { fx: [wv(0, 15)] }), g(RC, null, 90, { fx: [wv(-22, 15, .08)] }), g(RC, null, 80, { fx: [wv(-4, 15)] }),
-    g(RC, null, 70, { fx: [{ t: 'arm', elbow: [SH[0] + 10, SH[1] + 2], to: [SH[0] + 12, SH[1] - 4], hand: 'fist' }] }), g(ST, null, 100)], { from: 'Your Settle pose, a rubber arm bent at the elbow and an open palm' });
+  // waving, rubber-hose style: no elbow (a rubber arm has none). One smooth arm bows out under the tail and up to an open palm.
+  // The hand swings side to side and the curve flexes against each swing, so the arm drags behind the hand like a noodle.
+  const wv = (x, y, bow, hand = 'palm') => ({ t: 'arm', to: [SH[0] + x, SH[1] + y], hand, wob: bow });
+  const WVP = { in: [24, -20], mid: [29, -22], out: [34, -19] };
+  const wSwing = [['out', .2, 90], ['mid', .3, 60], ['in', .4, 90], ['mid', .3, 60]];
+  G5('g5-wave', 'Gear 5 wave', 'Pointer comes close', [g(RC, null, 70, { fx: [wv(12, -2, .25, 'fist')] }), g(RC, null, 60, { fx: [wv(22, -12, .38)] }), g(RC, null, 70, { fx: [wv(30, -24, .3)] }), g(RC, null, 60, { fx: [wv(...WVP.mid, .3)] })]
+    .concat([0, 1].flatMap(() => wSwing.map(([k, bow, ms]) => g(RC, null, ms, { fx: [wv(...WVP[k], bow)] }))))
+    .concat([g(RC, null, 70, { fx: [wv(...WVP.mid, .3)] }), g(RC, null, 60, { fx: [wv(20, -9, .38)] }), g(RC, null, 60, { fx: [wv(11, -1, .25, 'fist')] }), g(ST, null, 100)]),
+    { from: 'Your Settle pose, a smooth rubber arm and an open palm' });
 
   // laughing: your Gear 5 pose, hand on his head, bouncing with the laugh
   const burstL = a => ({ t: 'burst', x: a ? 46 : 4, y: 8, a: a ? -1.2 : -2.4 });
@@ -696,7 +698,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   // pull back, shoot past the mark, wobble, settle, hold, snap back: [ms, reach 0..1, hand, wobble]
   const REACH_T = [[90, -.12, 'fist', 0], [55, .5, 'go', .08], [65, 1.18, 'go', .12], [75, .92, 'go', -.07], [85, 1.04, 'go', .04], [0, 1, 'go', 0], [180, 1, 'go', .02], [65, .45, 'go', -.05], [60, .12, 'fist', 0]];
   const REACH_K = { // per kind: hand, head, how long he holds, the longest arm (art pixels), what he does after
-    point: { hand: 'point', head: null, hold: 760, max: 54, short: 6, then: null },
+    point: { hand: 'point', head: null, hold: 760, max: 54, short: 6, then: null, lead: .55 }, // lead: the wind-up and shoot-out run at 55% so he is on target fast
     catch: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 110, max: 95, then: 'g5-taunt' },
     eat: { hand: 'grab', got: 'fist', head: 'cloud-wow', hold: 140, max: 95, then: 'g5-chomp' },
     flick: { hand: 'point', head: 'joy-grin', hold: 220, max: 110, then: 'g5-laugh' },
@@ -713,22 +715,35 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     me.reach = { kind, K, x, y, el: o.el || null, follow: o.follow || null, cb: o.cb || null, t: 0, i: 0, hit: false };
     play('g5-hold'); return true;
   };
+  const rowLen = r => r.i === 5 ? r.K.hold : r.i < 5 ? REACH_T[r.i][0] * (r.K.lead || 1) : REACH_T[r.i][0];
   const reachTick = dt => {
     const r = me.reach; if (!r) return null;
     if (me.mode !== 'perch' || me.costume !== 'gear5' || me.hidden) { me.reach = null; return null; }
     r.t += dt;
-    let row = REACH_T[r.i], len = r.i === 5 ? r.K.hold : row[0];
-    while (r.t >= len) { r.t -= len; r.i++; if (r.i >= REACH_T.length) { const then = r.K.then; me.reach = null; play(then || idleClip(), then ? idleClip() : null); return null; } row = REACH_T[r.i]; len = r.i === 5 ? r.K.hold : row[0]; }
+    let row = REACH_T[r.i], len = rowLen(r);
+    while (r.t >= len) { r.t -= len; r.i++; if (r.i >= REACH_T.length) { const then = r.K.then; me.reach = null; play(then || idleClip(), then ? idleClip() : null); return null; } row = REACH_T[r.i]; len = rowLen(r); }
     // where the thing is now
     if (r.el && r.el.isConnected) { const b = r.el.getBoundingClientRect(); r.x = b.left + b.width / 2; r.y = b.top + b.height / 2; }
     if (r.follow) { const p = r.follow(); if (p) { r.x = p[0]; r.y = p[1]; } }
-    const from = r.K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(r.x, r.y, me.flip), dx = lx - from[0], dy = ly - from[1], dist = Math.hypot(dx, dy) || 1;
+    if (r.ax == null) { r.ax = r.x; r.ay = r.y; } else { const a = 1 - Math.exp(-dt / 40); r.ax += (r.x - r.ax) * a; r.ay += (r.y - r.ay) * a; }
+    r.sw = (r.sw || 0) * Math.exp(-dt / 110);
+    const from = r.K.leg ? HIP : SHOULDER, [lx, ly] = toLocal(r.ax, r.ay, me.flip), dx = lx - from[0], dy = ly - from[1], dist = Math.hypot(dx, dy) || 1;
     const L = Math.max(4, Math.min(r.K.max, dist - (r.K.short || 0))), k = row[1];
     if (!r.hit && r.i >= 2) { r.hit = true; try { r.cb && r.cb(); } catch { } }
     const to = [Math.round(from[0] + dx / dist * L * k), Math.round(from[1] + dy / dist * L * k)];
     const hand = row[2] === 'fist' ? 'fist' : (r.hit && r.K.got) ? r.K.got : r.K.hand;
-    return { fr: { s: r.K.leg ? 'g5:kick' : 'g5:reach', head: r.K.head ? 'g5head:' + r.K.head : undefined, ms: 1 }, fx: [r.K.leg ? { t: 'leg', to, ring: r.i >= 1 && r.i <= 3, wob: row[3] } : { t: 'arm', to, hand, wob: row[3] }] };
+    return { fr: { s: r.K.leg ? 'g5:kick' : 'g5:reach', head: r.K.head ? 'g5head:' + r.K.head : undefined, ms: 1 }, fx: [r.K.leg ? { t: 'leg', to, ring: r.i >= 1 && r.i <= 3, wob: row[3] } : { t: 'arm', to, hand, wob: row[3] + r.sw }] };
   };
+  const reaimReach = el => {
+    const r = me.reach; if (!r || r.kind !== 'point' || !el) return false;
+    const b = el.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2, flip = x < me.x;
+    r.sw = (y < (r.ay ?? r.y) ? -1 : 1) * .14; r.el = el; r.x = x; r.y = y;
+    if (flip !== me.flip) { me.flip = flip; r.ax = null; }
+    if (r.i > 5) { r.i = 4; r.t = 0; } else if (r.i === 5) r.t = 0;
+    me.lastTouch = performance.now(); return true;
+  };
+  // the same for the hand-pointing clips: straight to the held point in the new direction
+  const reaimClip = el => { const k = look(pointAtEl(el)), c = CLIPS[k]; if (!c) return false; me.clip = k; me.fi = Math.min(1, c.frames.length - 1); me.ft = 0; me.cycles = 0; me.queue = [idleClip()]; return true; };
   // point at an element: the arm in Gear 5, the hand in eight directions otherwise
   const pointEl = el => { const b = el.getBoundingClientRect(); if (me.costume === 'gear5') return startReach('point', b.left + b.width / 2, b.top + b.height / 2, { el }); play(pointAtEl(el), idleClip()); return true; };
 
@@ -927,11 +942,13 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     }, 650);
   }, { passive: true });
   document.addEventListener('pointerover', e => { // he points at what you are looking at
-    if (me.mode !== 'perch' || !standing() || me.watching || me.reach) return;
+    if (me.mode !== 'perch' || !standing() || me.watching) return;
     const t = e.target.closest?.(pointSel());
-    if (!t || t === me.pointing || t.closest('[data-imp-react]')) return; me.pointing = t;
-    me.lastTouch = performance.now();
-    if (!me.clip.startsWith('point') && !me.clip.startsWith('g5-point') && me.clip !== 'react-laugh' && !me.reach) pointEl(t);
+    if (!t || t === me.pointing || t.closest('[data-imp-react]')) return;
+    if (me.reach) { if (reaimReach(t)) me.pointing = t; return; } // only a point re-aims; a catch, kick or flick finishes
+    me.pointing = t; me.lastTouch = performance.now();
+    if (/^point(-|$)/.test(me.clip)) { reaimClip(t); return; }
+    if (!me.clip.startsWith('g5-point') && me.clip !== 'react-laugh') pointEl(t);
   }, { passive: true });
   /* ---------- gestures: circle his head and he gets dizzy; wiggle above him and he tries to catch it ---------- */
   const gest = { last: null, turns: [], xs: [], tries: [], lx: null };
@@ -983,6 +1000,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
   }, { passive: true, capture: true });
   document.addEventListener('play', e => { // he sits down to watch a film
     const v = e.target; if (!(v instanceof HTMLVideoElement)) return;
+    if (v.classList.contains('preview') || (v.muted && v.loop)) return; // a looping silent preview is decoration, not a film to sit down for
     const r = v.getBoundingClientRect(); if (r.width < 300) return;
     me.watching = v;
     if (me.mode === 'perch' && standing()) { me.flip = r.left + r.width / 2 < me.x; play('sit'); }
@@ -1198,7 +1216,7 @@ window.IMPDATA={"cell": 7.0, "sprites": {"idle:0": {"name": "idle:0", "ox": 13, 
     setSize: f => setSize(f),
     size: () => me.size,
     sizes: SIZES,
-    state: () => ({ mode: me.mode, clip: me.clip, reach: me.reach ? me.reach.kind : null, perch: me.perch?.type, x: Math.round(me.x), y: Math.round(me.y), costume: me.costume, hidden: me.hidden || !!me.leaving, size: me.size, g5Left: me.costume === 'gear5' ? Math.max(0, me.g5Until - Date.now()) : 0 })
+    state: () => ({ mode: me.mode, clip: me.clip, reach: me.reach ? me.reach.kind : null, aim: me.reach ? [Math.round(me.reach.x), Math.round(me.reach.y)] : null, perch: me.perch?.type, x: Math.round(me.x), y: Math.round(me.y), costume: me.costume, hidden: me.hidden || !!me.leaving, size: me.size, g5Left: me.costume === 'gear5' ? Math.max(0, me.g5Until - Date.now()) : 0 })
   };
   const syncChrome = () => { const off = me.hidden || !!me.leaving; document.querySelectorAll('[data-imp-ctl="toggle"]').forEach(b => { b.setAttribute('aria-pressed', String(!off)); if (!b.hasAttribute('data-keep-label')) b.textContent = off ? (b.dataset.off || 'Mascot off') : (b.dataset.on || 'Mascot on'); }); emit('imp:visibility', { hidden: off }); };
   document.addEventListener('click', e => {
