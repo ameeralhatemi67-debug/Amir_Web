@@ -266,12 +266,13 @@ export const opener = (id, cls, inner, attrs = '') => {
 };
 
 /* app icons: the products' own square icons, full-bleed in the squircle */
-const INSET = new Set(['amir-lap', 'companion']);
+// icons that carry their own rounded shape (transparent corners) sit on a clear tile; `zoom` ones have a logo that floats in a lot of white
+const OWN = new Set(['amir-lap', 'companion', 'memory-card']), ZOOM = new Set(['hedayah-dashboard']);
 const iconKey = p => p.slug || (p.icon || '').split('/').pop().replace(/\.png$/, '');
 export const tileFor = (p, extra = '') => {
   const src = p.brand?.icon || p.icon, rib = p.ribbon ? '<i class="rib-mini" aria-hidden="true"></i>' : '';
   // lazy: of the many icon copies (desktop, home grid, dock, menus), only the ones on screen load
-  if (src) return `<span class="tile ic ${INSET.has(iconKey(p)) ? 'inset' : ''} ${extra}"><img src="${src}" alt="" width="52" height="52" loading="lazy" decoding="async" draggable="false">${rib}</span>`;
+  if (src) return `<span class="tile ic ${OWN.has(iconKey(p)) ? 'own' : ZOOM.has(iconKey(p)) ? 'zoom' : ''} ${extra}"><img src="${src}" alt="" width="52" height="52" loading="lazy" decoding="async" draggable="false">${rib}</span>`;
   const b = p.brand || p;
   return `<span class="tile glyph ${extra}" style="--tc:${b.color || '#5B7A3A'}" aria-hidden="true">${esc(b.glyph || (p.name?.en || p.name || '?').slice(0, 2))}${rib}</span>`;
 };

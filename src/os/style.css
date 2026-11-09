@@ -662,7 +662,9 @@ html.is-desk .porch-wrap { display: none; }
 /* app icons: the products' own square icons, full-bleed in the squircle */
 .tile.ic { background: #0d1a1f; padding: 0; }
 .tile.ic img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.tile.ic.inset img { transform: scale(1.075); }
+.tile.ic.own { background: none; box-shadow: none; overflow: visible; }
+.tile.ic.own img { object-fit: contain; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .3)); }
+.tile.ic.zoom img { transform: scale(1.3); }
 .tile.ic.big { --t: 96px; }
 .rib-mini { position: absolute; top: 15%; right: -32%; width: 100%; height: 15%; transform: rotate(45deg); background: repeating-linear-gradient(-45deg, #FFC24A 0 5px, #1d1d1d 5px 10px); box-shadow: 0 1px 3px rgba(0, 0, 0, .45); pointer-events: none; }
 .app.project { position: relative; }
