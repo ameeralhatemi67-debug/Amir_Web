@@ -100,7 +100,34 @@ Object.assign(U, {
   notesDownload: ['Download', 'تنزيل'], notesDelete: ['Delete note', 'احذف الملاحظة'], notesTxt: ['Plain text', 'نص عادي'], notesMd: ['Markdown', 'ماركداون'], notesBody: ['Note text', 'نص الملاحظة'],
   notesSaving: ['Saving…', 'جارٍ الحفظ…'], notesSavedAt: ['Saved', 'حُفظت'], notesEmpty: ['New note', 'ملاحظة جديدة'], notesNone: ['No notes match.', 'لا ملاحظات مطابقة.'], notesCount: ['notes', 'ملاحظات'], notesOne: ['note', 'ملاحظة'], wordOne: ['word', 'كلمة'],
   notesDeleted: ['Note deleted', 'حُذفت الملاحظة'], undo: ['Undo', 'تراجع'], notesDownloaded: ['Downloaded', 'نُزّلت'], notesNothing: ['Write something first, then download it.', 'اكتب شيئًا أولًا ثم نزّله.'],
-  notesFail: ['Not saved: this browser is blocking storage.', 'لم تُحفظ: المتصفّح يمنع التخزين.'], notesUntitled: ['note', 'ملاحظة'], notesList: ['Your notes', 'ملاحظاتك'], pip: ['Picture in picture', 'صورة داخل صورة'],
+  notesFail: ['Not saved: this browser is blocking storage.', 'لم تُحفظ: المتصفّح يمنع التخزين.'],
+  trash: ['Trash', 'سلة المهملات'], toDesk: ['Put on desktop', 'ضعها على سطح المكتب'], toHome: ['Add to home screen', 'أضِفها إلى الشاشة الرئيسية'],
+  offDesk: ['Move back to Notes', 'أعِدها إلى الملاحظات'], offHome: ['Remove from home screen', 'أزِلها من الشاشة الرئيسية'], onDesk: ['On desktop', 'على سطح المكتب'], onHome: ['On home screen', 'على الشاشة الرئيسية'],
+  fileOpen: ['Open in Notes', 'افتح في الملاحظات'], fileRename: ['Rename', 'إعادة تسمية'], fileToTrash: ['Move to Trash', 'انقلها إلى المهملات'], movedTrash: ['Moved to Trash', 'نُقلت إلى المهملات'],
+  fileBack: ['Back in Notes', 'عادت إلى الملاحظات'], fileOnDesk: ['Now on the desktop', 'صارت على سطح المكتب'], fileOnHome: ['Now on the home screen', 'صارت على الشاشة الرئيسية'],
+  fileNote: ['Note', 'ملاحظة'], files: ['Files', 'الملفات'], deskFiles: ['Files on the desktop', 'الملفات على سطح المكتب'], quickLook: ['Quick Look', 'نظرة سريعة'], openTb: ['Open in File Toolbox', 'افتح في صندوق الملفات'],
+  dragHint: ['Drop it on the desktop. Tap Shift for File Toolbox.', 'أفلتها على سطح المكتب. اضغط Shift لصندوق الملفات.'], dropHint: ['Tap Shift for File Toolbox, or drop it anywhere.', 'اضغط Shift لصندوق الملفات، أو أفلته في أي مكان.'],
+  trashEmpty: ['The Trash is empty.', 'سلة المهملات فارغة.'], trashRestore: ['Restore', 'استعادة'], trashDelete: ['Delete forever', 'احذف نهائيًا'], trashEmptyAll: ['Empty Trash', 'أفرغ السلة'],
+  trashSure: ['Delete these notes for good? This cannot be undone.', 'حذف هذه الملاحظات نهائيًا؟ لا يمكن التراجع عن ذلك.'], trashNote: ['Notes in the Trash are deleted for good after 30 days.', 'تُحذف الملاحظات في السلة نهائيًا بعد 30 يومًا.'],
+  restored: ['Restored', 'استُعيدت'], deletedOn: ['Deleted', 'حُذفت'], cancel: ['Cancel', 'إلغاء'], gone: ['Deleted for good', 'حُذفت نهائيًا'],
+  toolbox: ['File Toolbox', 'صندوق الملفات'], tbConvert: ['Convert', 'تحويل'], tbTools: ['Tools', 'أدوات'], tbShare: ['Share', 'مشاركة'], tbConvertTo: ['Convert to', 'حوّل إلى'],
+  tbPick: ['Choose an image', 'اختر صورة'], tbUseNote: ['Use a note', 'استخدم ملاحظة'], tbSample: ['Use a sample image', 'استخدم صورة مثال'], tbLocal: ['Everything happens in your browser. Nothing is uploaded.', 'كل شيء يحدث في متصفّحك. لا يُرفع أي شيء.'],
+  tbHint: ['Drag a file, tap Shift, drop it on the wheel.', 'اسحب ملفًا، اضغط Shift، أفلته على العجلة.'], tbPages: ['Tap Shift again for the next page.', 'اضغط Shift مرة أخرى للصفحة التالية.'], tbDrop: ['Drop a file here', 'أفلت ملفًا هنا'],
+  tbNotImage: ['That file is not an image this browser can read.', 'هذا الملف ليس صورة يستطيع المتصفّح قراءتها.'], tbTooBig: ['Images up to 40 MB, please.', 'الصور حتى 40 ميغابايت من فضلك.'], tbSaved: ['Saved', 'حُفظ'], tbCopied: ['Copied', 'نُسخ'],
+  tbNoCopy: ['This browser would not copy that.', 'لم يسمح المتصفّح بالنسخ.'], tbNoteMade: ['Made a note from', 'أُنشئت ملاحظة من'], tbWords: ['words', 'كلمة'],
+  tRotate: ['Rotate', 'تدوير'], tFlip: ['Flip', 'قلب'], tGray: ['Black and white', 'أبيض وأسود'], tHalf: ['Half size', 'نصف الحجم'], tSmall: ['Compress', 'ضغط'], tClean: ['No metadata', 'بلا بيانات وصفية'],
+  tCopy: ['Copy text', 'انسخ النص'], tDup: ['Duplicate', 'نسخة مكررة'], tCount: ['Count words', 'عدّ الكلمات'], tCopyImg: ['Copy image', 'انسخ الصورة'], tShareOS: ['Share…', 'مشاركة…'],
+  tDownload: ['Download', 'تنزيل'], tEmail: ['Email', 'بريد'], tCopyMd: ['Copy as Markdown', 'انسخ كماركداون'], dupOf: ['copy', 'نسخة'],
+  longshot: ['Longshot', 'لونق شوت'], lsExtend: ['Extend', 'تمديد'], lsAuto: ['Auto', 'تلقائي'], lsFollow: ['Follow', 'تتبّع'], lsUndo: ['Undo', 'تراجع'], lsDone: ['Done', 'تم'], lsReset: ['Start again', 'ابدأ من جديد'],
+  lsParts: ['parts', 'أجزاء'], lsPart: ['part', 'جزء'], lsAdded: ['Added', 'أُضيف'], lsEnd: ['That is the whole page.', 'هذه الصفحة كلها.'],
+  lsHelp: ['Esc stops Auto and Follow. Follow adds a part as you scroll the note.', 'Esc يوقف التلقائي والتتبّع. التتبّع يضيف جزءًا كلما مرّرت الملاحظة.'],
+  lsDemo: ['Demo: the real Longshot captures any window. Here it stacks this project’s screens.', 'عرض توضيحي: لونق شوت الحقيقي يلتقط أي نافذة. هنا يكدّس شاشات هذا المشروع.'],
+  pulse: ['Pulse', 'بلس'], pRealApp: ['What it shows in Amir Lap', 'ما تعرضه في Amir Lap'],
+  pClaudeTxt: ['On your PC this card shows your Claude session and weekly limits and Claude Code’s status, read from Claude Code itself. A website cannot read them, so this is the real card.', 'على جهازك تعرض هذه البطاقة حدود جلسة Claude والحدود الأسبوعية وحالة Claude Code، مقروءة من Claude Code نفسه. لا يستطيع موقع قراءتها، لذا هذه صورة البطاقة الحقيقية.'],
+  pCodexTxt: ['On your PC this card shows Codex’s five-hour and weekly limits. A website cannot read them, so this is the real card.', 'على جهازك تعرض هذه البطاقة حدود Codex لخمس ساعات وللأسبوع. لا يستطيع موقع قراءتها، لذا هذه صورة البطاقة الحقيقية.'],
+  pShortcuts: ['Shortcuts', 'اختصارات'], pImpCard: ['Imp right now', 'إمب الآن'], pImpG5: ['Gear 5, seconds left:', 'الجير 5، الثواني المتبقية:'], pImpBase: ['Himself', 'على طبيعته'], pImpHidden: ['Hidden', 'مختبئ'],
+  pMove: ['Drag the grip to move Pulse to another edge.', 'اسحب المقبض لنقل بلس إلى حافة أخرى.'], pHide: ['Hide Pulse', 'أخفِ بلس'], pOnEdge: ['Pulse is on the edge of the screen.', 'بلس على حافة الشاشة.'], pGrip: ['Move Pulse', 'انقل بلس'],
+  tryIt: ['Try it', 'جرّبها'], notesUntitled: ['note', 'ملاحظة'], notesList: ['Your notes', 'ملاحظاتك'], pip: ['Picture in picture', 'صورة داخل صورة'],
   say_ow: ['Ow!', 'آخ!'], say_hey: ['Hey!', 'هيه!'], say_yum: ['Yum!', 'لذيذ!'], say_mine: ['Mine!', 'لي!'], say_whoa: ['Whoa!', 'واو!'], say_nothing: ['Nothing by that name. I looked.', 'لا شيء بهذا الاسم. بحثت.'],
   say_tabs: ['Tabs! Tidy.', 'علامات تبويب! مرتّب.'], say_today: ['That’s today.', 'هذا اليوم.']
 });
@@ -128,7 +155,7 @@ export const PRIVACY = {
     intro: 'This policy covers this portfolio website only. Each featured application has its own data practices.',
     sections: [
       ['What this site collects', 'This site has no contact form, user accounts, analytics, advertising, or tracking cookies. It does not ask you to submit personal information.'],
-      ['Your preferences', 'Settings you change on the desktop (theme, accent colour, wallpaper, motion, icon order and widgets) and the notes you write in Notes are stored in your browser’s local storage. Imp’s size and position, and whether you have seen the start-up screen, are kept only for the current browser session. None of this is sent anywhere.'],
+      ['Your preferences', 'Settings you change on the desktop (theme, accent colour, wallpaper, motion, icon order and widgets) and the notes you write in Notes are stored in your browser’s local storage. Images and files you give File Toolbox are converted inside your browser and never uploaded. Imp’s size and position, and whether you have seen the start-up screen, are kept only for the current browser session. None of this is sent anywhere.'],
       ['Hosting and external links', 'The hosting provider may process ordinary request information, such as IP addresses and server logs, to serve and protect the website. GitHub, LinkedIn, WhatsApp and the linked project sites have their own privacy policies.'],
       ['Fonts, images and video', 'Fonts, images and the short videos are served with this site. No third-party video player, social feed, or font service is embedded. Project images are screenshots from public sites or captures from the project files. Captures with sample data are labelled.'],
       ['Questions', 'Use the email address or phone number in the Contact window.']
@@ -139,7 +166,7 @@ export const PRIVACY = {
     intro: 'تخص هذه السياسة موقع الأعمال هذا فقط. ولكل تطبيق معروض ممارساته الخاصة في التعامل مع البيانات.',
     sections: [
       ['ما يجمعه الموقع', 'لا يحتوي الموقع على نموذج تواصل أو حسابات مستخدمين أو تحليلات أو إعلانات أو ملفات تعريف ارتباط للتتبّع، ولا يطلب منك تقديم بيانات شخصية.'],
-      ['تفضيلاتك', 'يحفظ متصفّحك محليًا الإعدادات التي تغيّرها على سطح المكتب: السمة ولون التمييز والخلفية والحركة وترتيب الأيقونات والأدوات المصغّرة، والملاحظات التي تكتبها في تطبيق الملاحظات. أما حجم إمب وموضعه، وظهور شاشة البدء، فتُحفظ لجلسة التصفّح الحالية فقط. لا يُرسل شيء من ذلك إلى أي جهة.'],
+      ['تفضيلاتك', 'يحفظ متصفّحك محليًا الإعدادات التي تغيّرها على سطح المكتب: السمة ولون التمييز والخلفية والحركة وترتيب الأيقونات والأدوات المصغّرة، والملاحظات التي تكتبها في تطبيق الملاحظات. والصور والملفات التي تعطيها لصندوق الملفات تُحوَّل داخل متصفّحك ولا تُرفع أبدًا. أما حجم إمب وموضعه، وظهور شاشة البدء، فتُحفظ لجلسة التصفّح الحالية فقط. لا يُرسل شيء من ذلك إلى أي جهة.'],
       ['الاستضافة والروابط الخارجية', 'قد يعالج مزوّد الاستضافة معلومات الطلب المعتادة، مثل عنوان IP وسجلات الخادم، لتقديم الموقع وحمايته. ولمواقع GitHub وLinkedIn وواتساب والمشاريع المرتبطة سياسات خصوصية مستقلة.'],
       ['الخطوط والصور والفيديو', 'تُحمّل الخطوط والصور والمقاطع القصيرة من الموقع نفسه. لا يوجد مشغّل فيديو خارجي أو خلاصات اجتماعية أو خدمات خطوط خارجية مضمّنة. صور المشاريع لقطات من المواقع العامة أو من ملفات المشاريع، مع الإشارة إلى البيانات التوضيحية.'],
       ['الاستفسارات', 'استخدم البريد الإلكتروني أو رقم الهاتف في نافذة التواصل.']
@@ -191,6 +218,14 @@ const ICON2 = {
   pen: sv('<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>'),
   pinI: sv('<path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/>'),
   ballI: sv('<circle cx="12" cy="12" r="8.5"/><path d="M5 8.5c4 1 9 1 14 0M4.5 14c5 1.5 10 1.5 15 0M12 3.5c-2.5 3-2.5 14 0 17"/>'),
+  fileI: sv('<path d="M6.5 3.5h7.5l4 4v12a1 1 0 0 1-1 1h-10.5a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1z"/><path d="M14 3.5v4h4M9 12h6M9 15.5h6"/>'),
+  wheelI: sv('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5.5M12 15v5.5M3.5 12H9M15 12h5.5"/>'),
+  longI: sv('<rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M9 7h6M9 10.5h6M9 14h6M12 17v3M10 19l2 2 2-2"/>'),
+  pulseI: sv('<path d="M3 12h4l2.5-6 4 12 2.5-6h5"/>'),
+  claudeI: sv('<path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/>'),
+  codexI: sv('<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>'),
+  boxI: sv('<rect x="3.5" y="8" width="17" height="11.5" rx="2"/><path d="M9 8V5.5h6V8M3.5 12.5h17M10.5 12.5v2h3v-2"/>'),
+  grip: sv('<circle cx="9" cy="7" r=".9" fill="currentColor"/><circle cx="15" cy="7" r=".9" fill="currentColor"/><circle cx="9" cy="12" r=".9" fill="currentColor"/><circle cx="15" cy="12" r=".9" fill="currentColor"/><circle cx="9" cy="17" r=".9" fill="currentColor"/><circle cx="15" cy="17" r=".9" fill="currentColor"/>'),
   download: sv('<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/>'),
   trash: sv('<path d="M4.5 7h15M9.5 7V4.8h5V7M6.5 7l.9 12.2a1.6 1.6 0 0 0 1.6 1.5h6a1.6 1.6 0 0 0 1.6-1.5L17.5 7M10.2 11v6M13.8 11v6"/>'),
   treatI: sv('<path d="M5 15c4 4 11 3 14-6 .5-1.5 0-3-1-4-1 3-4 8-12 8z"/><path d="M18 5l1.5-1.5"/>')
@@ -253,10 +288,11 @@ export const SYS = {
   terminal: () => `<span class="tile sys term" style="--tg:linear-gradient(150deg,#2B3A40,#0B1418)">${I.term}</span>`,
   privacy: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#9FB8A8,#3E5F55)">${I.shield}</span>`,
   notes: () => `<span class="tile sys" style="--tg:linear-gradient(150deg,#FFE08A,#E3A21A)">${I.pen}</span>`,
+  trash: () => `<span class="tile sys trash-tile" style="--tg:linear-gradient(150deg,#D5DEE2,#7C8C95)">${I.trash}<i class="trash-dot" aria-hidden="true"></i></span>`,
   notfound: () => `<span class="tile mark-tile alt" aria-hidden="true">?</span>`
 };
 export const appTile = id => id.startsWith('p:') ? tileFor(P[id.slice(2)]) : (SYS[id] ? SYS[id]() : '');
-export const appTitle = id => id.startsWith('p:') ? T(P[id.slice(2)].name) : ({ start: u('start'), work: u('work'), films: u('films'), lab: u('lab'), about: u('aboutAmir'), contact: u('contact'), settings: u('settings'), help: u('shortcuts'), terminal: u('terminal'), aboutos: u('aboutOS'), privacy: u('privacy'), notfound: u('nfShort'), notes: u('notes') })[id] || id;
+export const appTitle = id => id.startsWith('p:') ? T(P[id.slice(2)].name) : ({ trash: u('trash'), start: u('start'), work: u('work'), films: u('films'), lab: u('lab'), about: u('aboutAmir'), contact: u('contact'), settings: u('settings'), help: u('shortcuts'), terminal: u('terminal'), aboutos: u('aboutOS'), privacy: u('privacy'), notfound: u('nfShort'), notes: u('notes') })[id] || id;
 
 /* page titles and descriptions, the same at build time and after the address changes */
 export const siteName = () => T(A.person.name);
@@ -562,7 +598,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
       ${links ? `<div class="row sect">${links}</div>` : ''}
       ${rel.length ? `<section class="sect"><h3 class="h3">${esc(u('moreLike'))}</h3><div class="rel">${rel.map(q => opener('p:' + q.slug, 'rel-item', `${tileFor(q)}<span><b>${esc(T(q.name))}</b><small>${esc(T(q.category))}</small></span>`, 'data-imp="point"')).join('')}</div></section>` : ''}`,
     tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card" data-find="tool-${k}">
-        <header><span class="tool-n">0${k + 1}</span><div><h3 class="h2 hang-title">${esc(T(t.name))}</h3><p class="muted m0">${esc(T(t.line))}</p></div></header>
+        <header><span class="tool-n">0${k + 1}</span><div><h3 class="h2 hang-title">${esc(T(t.name))}</h3><p class="muted m0">${esc(T(t.line))}</p></div>${TRY[t.name.en] ? `<button type="button" class="btn sm primary js-only try-btn" data-try="${TRY[t.name.en]}">${I.sparkle}${esc(u('tryIt'))}</button>` : ''}</header>
         <div class="tool-shots ${t.shots.every(m => m.kind === 'square') ? 'squares' : ''}">${t.shots.map(m => frameBtn(m, 'tools:' + p.slug, ti++, `${T(t.name)}: ${pretty(m.name)}`)).join('')}</div></section>`).join('')}</div>` : '',
     screens: all.length ? `${p.shots.length ? `<div class="shots">${p.shots.map((m, i) => frameBtn(m, g, i, alt(m))).join('')}</div>` : ''}
       ${p.phones.length ? `<div class="shots ph">${p.phones.map((m, i) => frameBtn(m, g, p.shots.length + i, alt(m))).join('')}</div>` : ''}<p class="muted small" style="margin-top:14px">${esc(T(A.ui.sample))}</p>` : '',
@@ -709,6 +745,7 @@ export const notesHTML = () => `<div class="app notes"><div class="nt-grid">
     <div class="nt-top"><b class="nt-h">${esc(u('notes'))}</b><button type="button" class="btn sm nt-new" data-nt="new" title="${esc(u('newNote'))} (Alt+N)">${I.plus}<span>${esc(u('newNote'))}</span></button></div>
     <label class="nt-find">${I.search}<input type="search" data-nt="find" placeholder="${esc(u('notesFind'))}" aria-label="${esc(u('notesFind'))}" autocomplete="off"></label>
     <ul class="nt-list" aria-label="${esc(u('notesList'))}"></ul>
+    <button type="button" class="nt-trash" data-open="trash">${I.trash}<span>${esc(u('trash'))}</span><small class="nt-trash-n"></small></button>
   </aside>
   <section class="nt-main">
     <div class="nt-bar">
@@ -717,6 +754,7 @@ export const notesHTML = () => `<div class="app notes"><div class="nt-grid">
         <button type="button" class="btn sm" data-nt="save" aria-label="${esc(u('notesSave'))}" title="${esc(u('notesSave'))} (${mod()}+S)">${I.check}<span>${esc(u('notesSave'))}</span></button>
         <span class="nt-dlw"><button type="button" class="btn sm" data-nt="dl" aria-label="${esc(u('notesDownload'))}" aria-haspopup="menu" aria-expanded="false">${I.download}<span>${esc(u('notesDownload'))}</span></button>
           <span class="nt-dl glass" role="menu" hidden><button type="button" role="menuitem" data-nt="dl-txt"><b>${esc(u('notesTxt'))}</b><small dir="ltr">.txt</small></button><button type="button" role="menuitem" data-nt="dl-md"><b>${esc(u('notesMd'))}</b><small dir="ltr">.md</small></button></span></span>
+        <button type="button" class="btn sm nt-desk" data-nt="desk" aria-pressed="false">${I.fileI}<span class="nt-desk-l"></span></button>
         <button type="button" class="btn sm nt-del" data-nt="del" aria-label="${esc(u('notesDelete'))}" title="${esc(u('notesDelete'))}">${I.trash}</button>
       </span>
     </div>
@@ -729,13 +767,14 @@ export const TERM = { lines: [], hist: [], hi: 0 };
 export const terminalHTML = () => `<div class="app terminal" dir="ltr"><div class="scroller term-out" data-imp-scroll aria-live="polite">${TERM.lines.join('')}</div>
   <form class="term-in"><label class="prompt" for="term-input">amir@amiros ~ %</label><input id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false"></form></div>`;
 
+const TRY = { 'File Toolbox': 'toolbox', Longshot: 'longshot', Pulse: 'pulse' };
 export const appMeta = id => {
   if (id.startsWith('p:')) { const p = P[id.slice(2)]; return p ? { size: [960, 700], min: [420, 300], html: s => projectHTML(p, s?.tab, s?.key) } : null; }
   return ({
     start: { size: [620, 0], min: [420, 300], html: startHTML }, work: { size: [1000, 690], min: [420, 320], html: workHTML }, films: { size: [1060, 650], min: [480, 340], html: filmsHTML },
     lab: { size: [900, 650], min: [420, 320], html: labHTML }, about: { size: [880, 690], min: [420, 320], html: aboutHTML }, contact: { size: [620, 640], min: [400, 320], html: contactHTML },
     settings: { size: [680, 690], min: [420, 320], html: settingsHTML }, help: { size: [660, 640], min: [420, 300], html: helpHTML }, aboutos: { size: [520, 540], min: [400, 300], html: aboutOSHTML },
-    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notes: { size: [780, 580], min: [420, 340], html: () => notesHTML() }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
+    terminal: { size: [720, 460], min: [420, 260], html: terminalHTML }, privacy: { size: [680, 660], min: [420, 320], html: privacyHTML }, notes: { size: [780, 580], min: [420, 340], html: () => notesHTML() }, trash: { size: [600, 520], min: [380, 300], html: () => `<div class="app trash"><div class="pad"></div></div>` }, notfound: { size: [520, 440], min: [400, 300], html: notFoundHTML }
   })[id] || null;
 };
 // a sheet (phone) as it is drawn; the build draws the page's own window this way so the page reads without JavaScript
@@ -795,6 +834,7 @@ export const homeHTML = () => {
       <div class="cta row">${opener('work', 'btn primary', esc(u('openWork')))}${opener('contact', 'btn', esc(u('contact')))}</div></section>
     <div class="porch-wrap js-only"><div class="porch" data-imp="ledge"><span>${I.paw}${esc(u('porch'))}</span></div></div>
     <section class="widget glass" data-imp="ledge" aria-label="${esc(u('nowShipping'))}"><div class="w-eyebrow">${esc(u('nowShipping'))}</div>${shipRows()}</section>
+    <section class="files-home js-only" aria-label="${esc(u('files'))}" hidden></section>
     <nav class="apps" aria-label="${esc(u('home'))}">${PHONE_APPS().map(id => opener(id, `app-icon ${href(id) ? '' : 'js-only'}`, `${appTile(id)}<span>${esc(appTitle(id))}</span>`, 'data-imp="point"')).join('')}</nav>
     <section class="widget glass" data-imp="ledge" aria-label="${esc(u('edu'))}">${opener('about', 'edu-w', eduInner())}</section>
     <section class="widget glass reach-w" data-imp="ledge" aria-label="${esc(u('reachAmir'))}">${reachInner()}</section>
@@ -807,6 +847,7 @@ export const DOCK_PHONE = ['work', 'films', 'about', 'contact'];
 export const dockHTML = (mins = []) => {
   const item = (id, n) => opener(id, `dock-item ${id.startsWith('p:') ? 'dock-flag' : ''} ${DOCK_PHONE.includes(id) ? '' : 'desk-only'}`, `${appTile(id)}<span class="tip" aria-hidden="true">${esc(appTitle(id))}</span>`, `data-dock="${id}" data-imp="point" style="--n:${n}" aria-label="${esc(appTitle(id))}"`);
   return DOCK_DESK().map((id, n) => id === '|' ? '<span class="dock-sep desk-only" aria-hidden="true"></span>' : item(id, n)).join('') +
+    '<span class="dock-sep desk-only trash-sep" aria-hidden="true"></span>' + item('trash', 0) +
     (mins.length ? '<span class="dock-sep desk-only" aria-hidden="true"></span>' + mins.map((w, n) => `<button type="button" class="dock-item running desk-only" data-restore="${w.key}" data-dock="min:${w.key}" style="--n:${n}" aria-label="${esc(u('minimized'))}: ${esc(appTitle(w.id))}">${appTile(w.id)}<span class="tip" aria-hidden="true">${esc(appTitle(w.id))}</span></button>`).join('') : '');
 };
 

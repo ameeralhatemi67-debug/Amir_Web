@@ -778,14 +778,14 @@ html.is-desk .porch-wrap { display: none; }
 .walls button:hover { transform: translateY(-2px); }
 .walls button[aria-checked="true"] { border-color: var(--acc2); color: var(--ink); box-shadow: 0 0 0 1px var(--acc2); }
 .wthumb { display: block; aspect-ratio: 16 / 10; border-radius: 9px; }
-.wt-corniche { background: linear-gradient(180deg, #0B2733 0 40%, #2B4F55 60%, #0C2A33 62%), radial-gradient(circle at 65% 62%, #FF9B5E, transparent 30%); background-blend-mode: screen; }
-:root[data-theme="light"] .wt-corniche { background: linear-gradient(180deg, #CFE6EC 0 45%, #F7DDB9 60%, #9CC2C4 62%); }
+.wt-corniche { background: radial-gradient(circle at 64% 59%, #FFE6B8 0 5%, rgba(255, 138, 87, .55) 6%, transparent 22%), linear-gradient(180deg, #0E1530 0, #4A3462 36%, #F2925E 55%, #1A1A32 56% 62%, #3D3558 63%, #0D1328 100%); }
+:root[data-theme="light"] .wt-corniche { background: radial-gradient(circle at 75% 24%, #FFFBEE 0 5%, rgba(255, 217, 143, .6) 6%, transparent 18%), linear-gradient(180deg, #7FC3E0 0, #BFE3EE 34%, #FBE7C6 55%, #6E929B 56% 62%, #8CCFD6 63%, #2E8A9A 100%); }
 .wt-aurora { background: radial-gradient(circle at 25% 30%, #1FB5A0, transparent 55%), radial-gradient(circle at 75% 70%, #FF8A5B, transparent 55%), #06141B; }
 :root[data-theme="light"] .wt-aurora { background: radial-gradient(circle at 25% 30%, #A6E3D7, transparent 55%), radial-gradient(circle at 75% 70%, #FFC9A8, transparent 55%), #F6F0E6; }
-.wt-dunes { background: radial-gradient(circle at 70% 40%, #FFB06B, transparent 22%), linear-gradient(170deg, transparent 55%, #2A4B52 56% 70%, #0E2A31 71%), linear-gradient(180deg, #17323A, #3A4D52); }
-:root[data-theme="light"] .wt-dunes { background: radial-gradient(circle at 70% 35%, #FFF1C9, transparent 22%), linear-gradient(170deg, transparent 55%, #EAC48C 56% 70%, #D9A766 71%), linear-gradient(180deg, #CFE5EE, #F3E3C8); }
-.wt-pixel { background: radial-gradient(circle, rgba(255, 255, 255, .25) 1px, transparent 1.6px) 0 0 / 8px 8px, radial-gradient(circle at 60% 55%, #FFB547 0 18%, transparent 19%), linear-gradient(180deg, #102631, #1E3F49); }
-:root[data-theme="light"] .wt-pixel { background: radial-gradient(circle, rgba(0, 0, 0, .14) 1px, transparent 1.6px) 0 0 / 8px 8px, radial-gradient(circle at 60% 55%, #FF8A5B 0 18%, transparent 19%), linear-gradient(180deg, #F7EBD7, #EAD9BD); }
+.wt-dunes { background: radial-gradient(circle at 22% 22%, #FFEFD2 0 3.5%, transparent 4.5%), radial-gradient(circle at 78% 58%, #FFEFD2 0 6%, rgba(255, 154, 92, .5) 7%, transparent 22%), linear-gradient(162deg, transparent 63%, #F2AE62 63.5% 80%, #36182A 80.5%), linear-gradient(200deg, transparent 56%, #D98652 56.5% 70%, #6E3A4A 70.5%), linear-gradient(180deg, #141838, #5A3A63 42%, #F39A62 60%); }
+:root[data-theme="light"] .wt-dunes { background: radial-gradient(circle at 74% 20%, #FFFBEF 0 6%, rgba(255, 227, 166, .6) 7%, transparent 18%), linear-gradient(162deg, transparent 63%, #FADBA4 63.5% 80%, #BC7C45 80.5%), linear-gradient(200deg, transparent 56%, #F2C58B 56.5% 70%, #D9A26C 70.5%), linear-gradient(180deg, #8CC8E2, #D4ECF0 42%, #FAEBD0 60%); }
+.wt-pixel { image-rendering: pixelated; background: radial-gradient(circle at 64% 46%, #FFE08A 0 15%, transparent 15.5%), linear-gradient(180deg, #1A1440 0 14%, #3B1D5A 14% 28%, #6E2A6B 28% 42%, #B0466B 42% 52%, #E9786A 52% 62%, #7A3A6A 62% 74%, #3E2357 74% 87%, #1D1638 87%); }
+:root[data-theme="light"] .wt-pixel { background: radial-gradient(circle at 64% 46%, #FFF8DC 0 15%, transparent 15.5%), linear-gradient(180deg, #6CC0E0 0 14%, #92D2E8 14% 28%, #B9E3EC 28% 42%, #DDF0EA 42% 52%, #FBEFD6 52% 62%, #8FD3D6 62% 74%, #55AFBD 74% 87%, #2F879A 87%); }
 .sizer { display: flex; align-items: center; gap: 8px; }
 .sizer output { min-width: 56px; text-align: center; font: 600 15px var(--f-mono); }
 .btn[disabled] { opacity: .45; pointer-events: none; }
@@ -844,7 +844,7 @@ html.is-desk .porch-wrap { display: none; }
 .tool-mini b { display: block; font: 650 15px var(--f-display); }
 .tool-mini small { display: block; color: var(--ink-3); font-size: 13.5px; }
 .tools { display: grid; gap: 16px; }
-.tool header { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline; margin-bottom: 14px; }
+.tool header { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: baseline; margin-bottom: 14px; }
 .tool-n { font: 600 28px/1 var(--f-display); color: var(--acc2); }
 .tool-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; align-items: start; }
 .tool-shots.squares { grid-template-columns: repeat(3, minmax(0, 1fr)); }
