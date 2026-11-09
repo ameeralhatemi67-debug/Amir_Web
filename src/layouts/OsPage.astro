@@ -1,0 +1,119 @@
+---
+/* One page of Imp OS. The build draws the whole desktop with the same code the browser uses (src/os/core.js),
+   so every address arrives readable: the home screen, and the window the address stands for as a sheet. */
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/onest/index.css';
+import '@fontsource-variable/alexandria/index.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import bricolageLatin from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
+import onestLatin from '@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url';
+import alexandriaArabic from '@fontsource-variable/alexandria/files/alexandria-arabic-wght-normal.woff2?url';
+import alexandriaLatin from '@fontsource-variable/alexandria/files/alexandria-latin-wght-normal.woff2?url';
+import monoLatin from '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2?url';
+import '../os/style.css';
+import * as C from '../os/core.js';
+
+interface Props { lang: 'en' | 'ar'; app?: string; noindex?: boolean }
+const { lang, app = 'start', noindex = false } = Astro.props as Props;
+const origin = 'https://amir-web-alpha.vercel.app';
+
+// everything below is drawn in one synchronous pass, in this page's language
+C.useLang(lang);
+const ar = lang === 'ar', other = C.other();
+const is404 = app === 'notfound';
+const pageHref = (l: 'en' | 'ar') => is404 ? `/${l}/404/` : C.href(app, l) as string;
+const canonical = origin + pageHref(lang);
+const title = C.titleFor(app);
+const description = C.describe(app);
+const topbar = C.topbarHTML({ langHref: pageHref(other) });
+const wall = C.wallHTML(['corniche']); // the default; the browser draws another wallpaper when one is chosen
+const deskH1 = `${C.T(C.A.person.name)} · ${C.T(C.A.person.headline)}`;
+const icons = C.iconsHTML();
+const widgets = C.widgetsHTML();
+const home = C.homeHTML();
+const dock = C.dockHTML();
+const sheet = app === 'start' ? '' : C.sheetHTML(app, 'data-ssr', 'open top');
+const boot = app === 'start' ? C.bootHTML() : '';
+const labels = { desk: C.u('desktop'), icons: C.T(C.A.ui.allWork), home: C.u('home'), dock: C.u('dock'), bar: C.u('menuBar'), widgets: C.u('nowShipping'), snap: C.u('snapLayouts'), assist: C.u('assist'), search: C.u('search'), prev: C.u('prev'), next: C.u('next'), close: C.u('close') };
+// the mono face sets status lines and labels in the first view; arriving late, it re-wraps them, so it is preloaded too
+const fonts = ar ? [alexandriaArabic, alexandriaLatin, monoLatin] : [bricolageLatin, onestLatin, monoLatin];
+const image = `${origin}/images/social-${lang}.png`;
+const imageAlt = ar ? 'سطح مكتب AmirOS: أعمال أمير الحاتمي، مطوّر تطبيقات' : 'The AmirOS desktop: the work of Amir Alhatemi, app developer';
+const person = {
+  '@context': 'https://schema.org', '@type': 'Person', name: 'Amir Alhatemi', alternateName: 'أمير الحاتمي', url: origin + '/', jobTitle: 'App developer',
+  image: origin + C.A.person.portrait, homeLocation: { '@type': 'Place', name: 'Al Khobar, Saudi Arabia' }, knowsLanguage: ['Arabic', 'English'],
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Multimedia University (MMU)' }, sameAs: [C.A.contact.github, C.A.contact.linkedin]
+};
+---
+<!doctype html>
+<html lang={lang} dir={ar ? 'rtl' : 'ltr'} data-theme="dark" data-app={app}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={origin + pageHref('en')} />
+    <link rel="alternate" hreflang="ar" href={origin + pageHref('ar')} />
+    <link rel="alternate" hreflang="x-default" href={origin + pageHref('en')} />
+    {fonts.map(f => <link rel="preload" as="font" type="font/woff2" href={f} crossorigin />)}
+    <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:site_name" content="Amir Alhatemi" /><meta property="og:locale" content={ar ? 'ar_SA' : 'en_US'} /><meta property="og:locale:alternate" content={ar ? 'en_US' : 'ar_SA'} /><meta property="og:image" content={image} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={image} /><meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="theme-color" content="#0B2733" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#EFE3D0" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="manifest" href="/site.webmanifest" />
+    <script is:inline>
+      // settings and form factor before the first paint, so the wallpaper never flashes the wrong time of day
+      (function () {
+        var d = document.documentElement, st = {}, t = null, seen = null;
+        d.classList.add('js');
+        try { st = JSON.parse(localStorage.getItem('pf-a-settings') || '{}') || {}; t = st.theme && st.theme !== 'auto' ? st.theme : localStorage.getItem('pf-a-theme'); } catch (e) {}
+        d.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        d.setAttribute('data-wall', ['aurora', 'dunes', 'pixel'].indexOf(st.wall) > -1 ? st.wall : 'corniche');
+        var ac = { coral: ['#FF9A84', '#E5484D', '#2B0A08'], teal: ['#6BDDC6', '#1F9C8C', '#04201B'], sky: ['#8ECBFF', '#3D63F2', '#061232'], lime: ['#D6EA80', '#7DB343', '#152006'] }[st.accent];
+        if (ac) { d.style.setProperty('--acc1', ac[0]); d.style.setProperty('--acc2', ac[1]); d.style.setProperty('--acc-ink', ac[2]); }
+        var rm = matchMedia('(prefers-reduced-motion: reduce)').matches || st.motion === 'reduce';
+        if (rm) d.classList.add('reduce');
+        d.classList.add(matchMedia('(max-width: 759px)').matches ? 'is-phone' : 'is-desk');
+        try { seen = sessionStorage.getItem('pf-a-boot'); } catch (e) {}
+        if (d.getAttribute('data-app') === 'start' && !seen && !rm) d.classList.add('boot');
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  </head>
+  <body>
+    <div class="wall" aria-hidden="true" set:html={wall} />
+    <header id="topbar" class="glass" role="banner" aria-label={labels.bar} set:html={topbar} />
+    <main id="main">
+      <div id="sheets" set:html={sheet} />
+      <div class="desk" role="region" aria-label={labels.desk}>
+        <h1 class="vh">{deskH1}</h1>
+        <nav class="icons" aria-label={labels.icons} set:html={icons} />
+        <div class="widgets" set:html={widgets} />
+      </div>
+      <div class:list={['home', { behind: !!sheet }]} role="region" aria-label={labels.home} set:html={home} />
+      <div id="wins"></div>
+    </main>
+    <div id="dockwrap"><nav id="dock" class="glass" aria-label={labels.dock} data-imp="ledge" set:html={dock} /></div>
+    <div id="snap-prev" aria-hidden="true"></div>
+    <div id="flyout" class="glass" role="dialog" aria-label={labels.snap} hidden></div>
+    <div id="assist" role="dialog" aria-label={labels.assist} hidden></div>
+    <div id="spot" role="dialog" aria-modal="true" aria-label={labels.search} hidden></div>
+    <div id="toasts" role="status" aria-live="polite"></div>
+    <div id="lightbox" role="dialog" aria-modal="true" hidden>
+      <figure><img alt="" decoding="async" /></figure>
+      <div class="lb-bar"><span class="cap"></span><span class="count" dir="ltr"></span></div>
+      <button type="button" class="lb-btn lb-prev" aria-label={labels.prev}><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" class="lb-btn lb-next" aria-label={labels.next}><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button type="button" class="lb-btn lb-close" aria-label={labels.close}><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    {boot && <div id="boot" class="ssr" role="status" set:html={boot} />}
+    <script>
+      // the desktop; it loads the mascot runtime (public/os/imp-live.js) itself once the page has settled
+      import '../os/app.js';
+    </script>
+  </body>
+</html>

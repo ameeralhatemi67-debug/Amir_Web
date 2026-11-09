@@ -1,6 +1,5 @@
 ---
-import SiteShell from '../layouts/SiteShell.astro';
-import PageContent from '../components/PageContent.astro';
-import { site } from '../data/site';
+// The root shows the English desktop; its canonical address is /en/.
+import OsPage from '../layouts/OsPage.astro';
 ---
-<SiteShell lang="en" title={`${site.name} | ${site.headline.en}`}><PageContent lang="en"/></SiteShell>
+<OsPage lang="en" app="start" />

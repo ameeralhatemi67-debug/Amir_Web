@@ -1,10 +1,12 @@
 # Amir Alhatemi portfolio
 
-A static English/Arabic portfolio for Amir Alhatemi, built with Astro, semantic HTML, native CSS and small browser scripts. The design is "The Lit Board": the home page is a working information board modelled on the LED boards in Saudi mosques, schools and office lobbies. Nine projects are its rows, each with an honest status light, and the real screens light up beside them. Display type is Handjet (dot-matrix) for Latin names and figures; everything in Arabic, and all reading text, is Readex Pro, because dot-matrix Arabic was too hard to read. No AI-generated images, project source code, credentials, or private user records are included.
+A static English/Arabic portfolio for Amir Alhatemi, built with Astro and vanilla JavaScript. The design is **Imp OS** (direction A from the "Lit Board Mascot" mood board): the portfolio behaves like a small desktop operating system, AmirOS. On a laptop, projects are icons and windows you can open, drag, resize, snap, minimise and tile; on a phone it is a home screen whose apps open as sheets. The owner's **Pixel imp** mascot lives on the windows. See `DESIGN.md` for the design system and `PRODUCT.md` for the product brief.
+
+No AI-generated images, project source code, credentials or private user records are included.
 
 ## Run locally
 
-Requires Node.js 22.12+ supported by Astro 6, and npm. Tested with Node.js 22.19.0.
+Requires Node.js 22.12+ (tested with 22.19.0) and npm.
 
 ```powershell
 Set-Location 'D:\Agents\main\projects\ideas\Amir_web'
@@ -12,53 +14,42 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:4321/en/` or `http://localhost:4321/ar/`.
+Open `http://127.0.0.1:4321/en/` or `http://127.0.0.1:4321/ar/`.
 
 ```powershell
 npm run build
 npm run preview
 ```
 
-The output is `dist/`. There is no server adapter, database, account system, analytics, contact form, or application environment configuration. All fonts and images are hosted with the site. The theme override uses localStorage; language lives in the URL.
+The output is `dist/`. There is no server adapter, database, account system, analytics, contact form or environment configuration. Fonts, images and videos are served with the site. If a restricted Windows shell blocks Astro's telemetry preference, set `$env:ASTRO_TELEMETRY_DISABLED = '1'` before building.
 
-If a restricted Windows environment prevents Astro from writing its optional telemetry preference outside the folder, disable telemetry for that shell before running the build:
+## How it is built
 
-```powershell
-$env:ASTRO_TELEMETRY_DISABLED = '1'
-npm run build
-```
+- `src/os/content.json`: all content: the person, contact routes, education, the eleven projects (stage, access, status, problem, audience, highlights, facts, boundary, links, screens, phone screens, films, tools, features), the lab, stages and interface words, in English and Arabic.
+- `src/os/core.js`: words, icons, tiles, routes and the HTML of every window and of the desktop. It does no DOM work, so the build uses it to draw each page and the browser uses it to draw windows.
+- `src/os/app.js`: the desktop in the browser: window manager, sheets, dock, menus, Spotlight search, lightbox, film player, settings, terminal, boot screen, address syncing and the mascot hook-up.
+- `src/os/style.css`: the stylesheet (inlined into every page at build time).
+- `src/layouts/OsPage.astro`: one page: metadata, JSON-LD, the wallpaper, menu bar, icons, widgets, home screen, dock and the page's own window drawn as a sheet.
+- `src/pages/[lang]/[...path].astro`: one page per window with an address, in both languages; `src/pages/index.astro` (the English desktop at `/`) and `404.astro`.
+- `public/os/imp-live.js`: the Pixel imp runtime (sprites, clips, behaviour). It loads with the visitor's first interaction or four seconds after the page loads. `public/os/boot-wave.webp` is the boot screen's waving Imp, rendered from his own wave clip.
+- `public/media/`: project screens, phone screens, films and posters, app icons, logos and the portrait.
 
-This optional build-tool preference is not an application secret and does not need to be configured in Vercel.
+### Addresses
 
-## Editing
+`/en/` and `/ar/` open the desktop (Start here on a laptop, the home screen on a phone). Every other window with an address has a page: `/en/projects/` (Work), `/en/projects/<slug>/` for each project, `/en/films/`, `/en/lab/`, `/en/about/`, `/en/contact/`, `/en/privacy/`, plus a localised `/en/404/`. Opening a window updates the address bar, and the language switch flips the open windows in place and moves to the same address in the other language. Each page arrives with its own window already drawn, so it reads without JavaScript and search engines see the content.
 
-- `src/data/site.ts`: facts, bilingual copy, the nine projects (lifecycle stage, access, status, verified figures with source comments), the lab list, ticker lines, the statuses-as-of date, and owner TODO comments.
-- `src/data/project-media.ts` and `src/data/media.generated.json`: which real capture appears where (board screen, lettered views, phone strips, galleries, videos), with alt text and honest captions.
-- `src/components/Board.astro`: the information board (rows, screen, ticker); also used on the projects page with filters.
-- `src/components/HomePage.astro`, `CaseStudy.astro`, `PageContent.astro`: page compositions.
-- `src/styles/`: `tokens.css` (both themes, fonts), `base.css`, `board.css`, `pages.css`, `arabic.css` (Arabic type: Readex Pro for every Arabic run, larger small print), `motion.css` (view transitions, relight, ticker, reduced motion).
-- `src/scripts/site.ts`: theme switch, row relight, filters, ticker pause, view tabs, ambient video. Everything works without it.
-- `src/layouts/SiteShell.astro`: masthead, language switch, metadata, JSON-LD.
-- `public/images/work/` and `provenance.json`: optimized captures and their origins. `public/media/`: five short videos with poster frames (Comms Hub: launch film and promo film; Memory Card: two promo films; BookQuest: the page flip).
-- `public/fonts/`: static Handjet LED instances generated by `scripts/instance-handjet.py`.
-- `DESIGN.md` and `.impeccable/design.json`: the implemented design system.
+### Adding or changing content
 
-The primary routes are `/en/` and `/ar/`. Each includes projects, nine case studies, about, contact, privacy, and a localized 404. `/` shows the English home with `/en/` as its canonical URL.
-
-Images come from public deployments or from captures already in the owner's project folders, imported read-only by `node scripts/import-project-images.mjs` (crops and exclusions are listed at the top of that script). Sample, demo and synthetic data is labelled in captions. Hedayah TV captures exclude the activity feed, which shows personal names. DnFOM has no screenshots because its prototypes contain realistic personal names; its case study shows the flow instead. HAYZ appears as a paused private build with a concept name that has not been cleared, without its staging URL.
-
-To change the owner's portrait or email, see the comments at the top of `src/data/site.ts`.
-
-### Adding screenshots and videos
-
-- Screens: add an entry to `scripts/import-project-images.mjs`, then run `node scripts/import-project-images.mjs --only=<id prefix>` to import just those (a plain run regenerates every image from the original sources). Add the matching alt text and caption to `shots` in `src/data/project-media.ts`.
-- Videos: encode to H.264 with AAC audio, under the 1.5 MB budget, with a poster frame as WebP next to it in `public/media/`, then list it under `videos` for the project in `src/data/project-media.ts` (two or more videos get a "Films" heading and sit side by side). The current files were made like this:
+- Edit `src/os/content.json`. A project needs a slug, both languages for every text field, and its media.
+- Media: put screens in `public/media/<project>/` as WebP and list them with their pixel size. Then run `node scripts/media-variants.mjs` to make the 800 px copies of wide screens (served to phones through `srcset`), the 192 px app icons and the portrait sizes.
+- Videos: H.264 with AAC audio under the 1.5 MB budget, with a WebP poster. For example:
 
 ```powershell
-ffmpeg -i source.mp4 -vf "scale=540:960:flags=lanczos,fps=30" -c:v libx264 -profile:v high -preset veryslow -crf 27 -pix_fmt yuv420p -c:a aac -b:a 56k -ac 2 -ar 44100 -movflags +faststart out.mp4
+ffmpeg -i source.mp4 -vf "scale=960:540:flags=lanczos,fps=30" -c:v libx264 -profile:v high -preset veryslow -crf 27 -pix_fmt yuv420p -c:a aac -b:a 56k -ac 2 -ar 44100 -movflags +faststart out.mp4
 ```
 
-Use `scale=960:540` for 16:9 films. Starting one film pauses the others.
+- After changing the mascot runtime, run `node scripts/boot-sprite.mjs` to re-render the boot screen's waving Imp.
+- `node scripts/prepare-assets.mjs` re-renders the favicons from the AmirOS mark and copies the font licences; `node scripts/social-images.mjs` (with `npm run preview` running) captures the sharing images from the live desktop.
 
 ## Checks
 
@@ -70,93 +61,34 @@ npm run audit
 node scripts/lighthouse.mjs
 ```
 
-`npm run build` runs Astro's diagnostics, generates static HTML, and checks all 32 output pages, local links, language/direction, metadata, image budgets (300 KB) and video budgets (1.5 MB). The accessibility script runs axe WCAG A/AA checks in both languages, both themes, and desktop/mobile layouts on 15 routes. It also checks filters, theme persistence, the language switch, keyboard skip navigation, reduced motion, narrow screens, no-JavaScript content, and the custom 404. Lighthouse runs mobile checks on the 28 indexable localized pages.
+`npm run build` runs Astro's diagnostics, builds the static pages and checks every page: language and direction, one h1 per form factor, title, description, alternates, structured data, social metadata, no embeds or forms, every local link, `srcset` and poster target, and the 300 KB image and 1.5 MB video budgets. `npm run audit` runs axe (WCAG 2.1 A/AA and best practices) on every route in both languages, both themes, laptop and phone, with the mascot loaded, then checks windows and their addresses, the language switch, theme persistence, Work filters, search, phone sheets and deep links, the boot screen, reduced motion, the mascot arriving, narrow screens, the 404 and the pages without JavaScript. `scripts/lighthouse.mjs` runs mobile Lighthouse on every indexable page.
 
-Verified local results for this build (2026-10-25, after adding Memory Card, the new films and the Arabic type change):
+Verified local results for this build (2026-11-09):
 
 | Check | Result |
 | --- | --- |
-| Astro diagnostics | 0 errors, 0 warnings, 0 hints |
-| Static output | 32 pages; local links, metadata, locale/direction, image and video budgets passed |
-| axe accessibility/layout | 120 language/theme/viewport combinations; 0 issues |
-| Interaction checks | Filters, language path, themes, keyboard, reduced motion, narrow screens, no-JS content, 404 passed |
-| Mobile Lighthouse | All 28 indexable localized pages at 99 or higher in every category (performance 99-100; accessibility, best practices and SEO 100) |
+| Astro diagnostics | 0 errors, 0 warnings |
+| Static output | 40 pages; links, srcset, metadata, language/direction, image and video budgets passed |
+| axe accessibility/layout | 152 language/theme/viewport combinations with the mascot loaded; 0 issues |
+| Interaction checks | 13 of 13 passed |
+| Mobile Lighthouse (36 pages) | Accessibility, best practices and SEO 100 on every page. Performance 95 to 98 on 31 pages; 93 to 94 on Work (English), Hatan (both), Amir Lap (Arabic) and Memory Card (Arabic) |
 
-These are local lab results, not a guarantee for every device. Physical-device and screen-reader acceptance remain unverified.
-
-Handjet is shipped as static instances because its variable outlines made text layout about eighteen times slower on a throttled phone. To regenerate them, run `python scripts/instance-handjet.py` with a Python that has `fontTools` and `brotli`.
-
-To regenerate share images and favicons locally:
-
-```powershell
-node scripts/social-images.mjs
-node scripts/prepare-assets.mjs
-```
-
-Do not copy private app screenshots, raw project folders, environment files, or signing materials into this repository.
+The five pages under 95 are the image-heaviest. Their real first paint and LCP are about 0.6 s on a fast connection; Lighthouse's simulated slow 4G pushes LCP to about 3 s, because fonts, the app bundle and nearby screens share the link before the main screenshot. Details are in `qa/accessibility.json` and `qa/lighthouse-summary.json`. These are local lab results, not a guarantee for every device; physical-device and screen-reader acceptance remain unverified.
 
 ## Owner TODO list
 
-These are explicitly marked `TODO(owner)` in source. Missing details do not become invented claims.
+1. **Hatan** is a client prototype marked proprietary and confidential: confirm the client's OK before this site is pushed or deployed, or remove it from `src/os/content.json` and `public/media/hatan/`.
+2. Supply the personal origin story and motivations, and confirm the working principles on the About window.
+3. Confirm solo/team context and exact contribution on each project.
+4. Confirm public naming and any disclosure restrictions for NBC, Comms Hub, Hida and DnFOM (the DnFOM client stays unnamed until it agrees).
+5. Choose BookQuest versus Marginalia as the final portfolio name.
+6. Provide approved Hadayah app privacy-policy and account-deletion URLs. No placeholder legal links are published.
+7. Recheck Hedayah dashboard source health and confirm contribution scope.
 
-1. Supply the public contact/support email. No personal inbox has been used.
-2. Supply the personal origin story and motivations, and confirm the proposed working principles. Current bio uses only supplied facts and project topics.
-3. Confirm personal proficiency in the listed project technologies. The site currently calls these "Tools in these projects."
-4. Confirm solo/team context and exact contribution on each of the nine projects. Case studies explicitly say the responsibility details need confirmation.
-5. Portrait supplied (2026-10-20) and live as `public/images/amir-640.webp` / `amir-1280.webp`. To replace it, overwrite both files at 4:5.
-6. Confirm public naming and any disclosure restrictions for NBC, Comms Hub, Hida and DnFOM (the DnFOM client stays unnamed until it agrees). Existing public branding appears only inside the real screenshots; private records are excluded.
-7. Choose BookQuest versus Marginalia as the final portfolio name. Its status file records a code-gated alpha with 75 seats.
-8. Provide approved Hadayah app privacy-policy and account-deletion URLs. No placeholder legal links are published.
-9. Recheck Hedayah dashboard source health and confirm contribution scope. Its public deployment was verified; this portfolio does not claim all data sources are healthy.
+The production domain is `https://amir-web-alpha.vercel.app/`. If it moves, update `astro.config.mjs`, the `origin` in `src/layouts/OsPage.astro` and `src/pages/sitemap.xml.ts`, and `public/robots.txt` together.
 
-The production-domain TODO is resolved: Vercel assigned `https://amir-web-alpha.vercel.app/`. If moving domains later, update `astro.config.mjs`, `src/data/site.ts`, and `public/robots.txt` together before rebuilding.
+## Deploying
 
-The five owner-provided public deployment URLs are now linked. Hadayah's Google Play status remains "Preparing for Google Play."
+The repository is linked to the Vercel project `amir-web` (Astro preset, build command `npm run build`, output `dist`, no environment variables). Pushing `main` to `https://github.com/ameeralhatemi67-debug/Amir_Web.git` deploys it. Before pushing, review the staged diff and run `npm run secrets -- --staged`. Do not overwrite or force-push the remote history. After a deploy, open `/en/` and `/ar/` on the production domain, open a project from the desktop, switch languages from a project, flip the theme, open `/en/privacy/`, and check an invalid address shows the 404. Check the phone layout on a real Android phone.
 
-Source projects were inspected read-only. Sensitive configuration files were not opened or copied. Hadayah's source status mentions a historical exposed YouTube key in Git history; the owner should confirm replacement separately. No value or credential is retained here.
-
-## GitHub handoff
-
-For a fresh copy without Git history, these commands initialize the source repository. For this linked checkout, future updates only need review, staging, a commit, and `git push`.
-
-```powershell
-Set-Location 'D:\Agents\main\projects\ideas\Amir_web'
-git init
-git add .
-git status --short
-git diff --cached --check
-npm run secrets -- --staged
-git diff --cached --stat
-git diff --cached
-```
-
-Review the full staged diff locally. The scanner reports locations without printing matching values, but a pattern scan cannot prove the absence of every kind of confidential information. Confirm that no environment files, credentials, signing materials, private screenshots, binaries over the image budget, `node_modules`, or `dist` are staged. Then:
-
-```powershell
-git commit -m "Initial portfolio site"
-git remote add origin https://github.com/ameeralhatemi67-debug/Amir_Web.git
-git branch -M main
-git push -u origin main
-```
-
-If `origin` already exists, inspect it with `git remote -v`; when it is the intended repository, omit `git remote add origin`. Do not overwrite or force-push an existing remote history.
-
-## Vercel, click by click
-
-After choosing and confirming the production domain and pushing:
-
-1. Sign in to Vercel with the GitHub account that can access `Amir_Web`.
-2. Click **Add New → Project**.
-3. Find `ameeralhatemi67-debug/Amir_Web` under **Import Git Repository**, and click **Import**. If absent, grant Vercel access to that repository.
-4. Set **Project Name** to `amir-web`, or another available clean name.
-5. Set **Framework Preset** to **Astro**.
-6. Keep **Root Directory** as the repository root, `./`.
-7. Under **Build and Output Settings**, use **Build Command** `npm run build` and **Output Directory** `dist`. The install command can remain automatic, or use `npm ci`.
-8. Add **no environment variables**. No Vercel adapter, database, analytics, or storage integration is required.
-9. Click **Deploy**. When ready, open the stable production `.vercel.app` domain, not a protected preview URL.
-10. To rename later, open the project’s **Settings → General → Project Name**, change it, and save. Then check **Settings → Domains**. Renaming alone should not be assumed to assign the desired domain. This project's confirmed domain is `amir-web-alpha.vercel.app`. Update the three source domain settings if it changes, then rebuild and push that change.
-11. Verify `https://YOUR-CONFIRMED-DOMAIN/` loads without a sign-in wall or certificate warning. Open `/en/` and `/ar/`, switch languages from a project page, test all theme options, and open `/en/privacy/` and `/ar/privacy/`. Check the layout on a real Android phone. Also open an invalid path to verify the 404.
-
-Official references: [Astro on Vercel](https://docs.astro.build/en/guides/deploy/vercel/) and [Astro's Vercel integration](https://docs.astro.build/en/guides/integrations-guide/vercel/). A plain static Astro site does not require the Vercel adapter.
-
-For the Google Play Console **Website** field, use the verified public HTTPS production root, for example `https://amir-web-alpha.vercel.app/` if that exact domain is assigned. The portfolio's own Privacy page does not replace Hadayah's app-specific privacy policy or account-deletion page.
+For the Google Play Console **Website** field, use the production root, `https://amir-web-alpha.vercel.app/`. The portfolio's Privacy window does not replace Hadayah's app-specific privacy policy or account-deletion page.
