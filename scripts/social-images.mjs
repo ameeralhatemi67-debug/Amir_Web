@@ -17,7 +17,8 @@ try {
     await page.mouse.move(2, 620);
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(1500);
-    await page.screenshot({ path: `public/images/social-${lang}.png` });
+    // JPEG: the wallpaper's gradients make a PNG of this capture about 530 KB, over the 300 KB image budget
+    await page.screenshot({ path: `public/images/social-${lang}.jpg`, type: 'jpeg', quality: 86 });
     await ctx.close();
   }
   console.log('English and Arabic sharing images captured from the desktop.');
