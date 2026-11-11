@@ -1024,3 +1024,7 @@ html.reduce .role-panel { animation: none; }
 .install .steps { margin: 0 0 12px; padding: 0; counter-reset: st; list-style: none; display: grid; gap: 10px; }
 .install .steps li { counter-increment: st; position: relative; padding-inline-start: 38px; min-height: 26px; display: flex; align-items: center; color: var(--ink-2); }
 .install .steps li::before { content: counter(st); position: absolute; inset-inline-start: 0; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--amber); color: #fff; font: 700 13px var(--f-ui); }
+/* downloads follow the visitor's device: Windows apps on Windows, Android apps on Android; otherwise a short note instead */
+.plat-note { display: none; border-style: dashed; }
+html[data-dev]:not([data-dev="win"]) [data-plat="windows"], html[data-dev]:not([data-dev="android"]) [data-plat="android"] { display: none !important; }
+html[data-dev]:not([data-dev="win"]) .plat-note[data-for="windows"], html[data-dev]:not([data-dev="android"]) .plat-note[data-for="android"] { display: block; }

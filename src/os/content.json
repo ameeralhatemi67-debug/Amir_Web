@@ -624,10 +624,46 @@
     "en": "In development, and Android only for now: an iPhone version needs a Mac with Xcode. The source is on GitHub; there is no store release yet. Everything stays on the device, with no account or server. The screens are renders of the built-in sample decks.",
     "ar": "قيد التطوير، ولنظام Android فقط حاليًا، إذ يحتاج إصدار iPhone إلى جهاز Mac وبرنامج Xcode. الشيفرة المصدرية على GitHub، ولا يوجد إصدار في المتاجر بعد. تبقى البيانات على الجهاز دون حساب أو خادم. اللقطات من الرزم التجريبية المضمّنة في التطبيق."
    },
-   "link": "https://github.com/ameeralhatemi67-debug/Memory_card/releases/latest",
+   "link": "https://github.com/ameeralhatemi67-debug/Memory_card/releases/latest/download/MemoryCard.apk",
    "linkLabel": {
-    "en": "Download the APK",
-    "ar": "تنزيل ملف APK"
+    "en": "Download the APK (Android, 155 MB)",
+    "ar": "تنزيل ملف APK (أندرويد، 155 ميغابايت)"
+   },
+   "platform": "android",
+   "install": {
+    "title": {
+     "en": "Install on your Android phone",
+     "ar": "التثبيت على هاتف أندرويد"
+    },
+    "steps": [
+     {
+      "en": "On your phone, tap Download the APK and wait for the file to finish.",
+      "ar": "من هاتفك، اضغط «تنزيل ملف APK» وانتظر حتى يكتمل الملف."
+     },
+     {
+      "en": "Tap the downloaded file to open it.",
+      "ar": "اضغط على الملف الذي نزّلته لفتحه."
+     },
+     {
+      "en": "If Android asks, allow your browser to install unknown apps, then tap Install.",
+      "ar": "إذا طلب أندرويد ذلك، اسمح لمتصفحك بتثبيت التطبيقات غير المعروفة ثم اضغط «تثبيت»."
+     }
+    ],
+    "note": {
+     "en": "It is not on Google Play yet, so Play Protect may say the app is unrecognized: tap More details, then Install anyway. Everything stays on your phone, with no account.",
+     "ar": "التطبيق ليس على Google Play بعد، فقد يقول Play Protect إنه غير معروف: اضغط «مزيد من التفاصيل» ثم «التثبيت على أي حال». تبقى كل البيانات على هاتفك دون حساب."
+    },
+    "wrong": {
+     "en": "Memory Card is an Android app. Open this page on your Android phone to download it. An iPhone version is not available yet.",
+     "ar": "Memory Card تطبيق أندرويد. افتح هذه الصفحة من هاتف أندرويد لتنزيله. نسخة iPhone غير متوفرة بعد."
+    },
+    "feedback": {
+     "href": "https://github.com/ameeralhatemi67-debug/Memory_card/issues/new",
+     "label": {
+      "en": "Send feedback",
+      "ar": "أرسل ملاحظاتك"
+     }
+    }
    },
    "brand": {
     "color": "#E4544B",
@@ -2101,7 +2137,12 @@
     "en": "Install Amir Lap (Windows, 98 MB)",
     "ar": "تثبيت أمير لاب (Windows، 98 ميغابايت)"
    },
+   "platform": "windows",
    "install": {
+    "wrong": {
+     "en": "Amir Lap is a Windows app. Open this page on your Windows PC or laptop to install it.",
+     "ar": "أمير لاب تطبيق لنظام Windows. افتح هذه الصفحة من حاسوب أو لابتوب Windows لتثبيته."
+    },
     "title": {
      "en": "Install in three steps",
      "ar": "التثبيت في ثلاث خطوات"

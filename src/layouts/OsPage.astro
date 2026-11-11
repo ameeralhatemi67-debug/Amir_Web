@@ -79,6 +79,9 @@ const person = {
         var rm = matchMedia('(prefers-reduced-motion: reduce)').matches || st.motion === 'reduce';
         if (rm) d.classList.add('reduce');
         d.classList.add(matchMedia('(max-width: 759px)').matches ? 'is-phone' : 'is-desk');
+        // which device is this? decides which download (Windows or Android) a project page offers
+        var ua = navigator.userAgent || '';
+        d.setAttribute('data-dev', /Android/i.test(ua) ? 'android' : /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'ios' : /Windows/.test(ua) ? 'win' : 'other');
         try { seen = sessionStorage.getItem('pf-a-boot'); } catch (e) {}
         if (d.getAttribute('data-app') === 'start' && !seen && !rm) d.classList.add('boot');
       })();

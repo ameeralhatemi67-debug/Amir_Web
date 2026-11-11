@@ -586,7 +586,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
       <div class="tool-strip role-strip">${p.roles.map(r => `<button type="button" class="tool-mini" data-tab="views" data-role-go="${r.id}"><span class="tm-img">${thumb(r.shots.find(m => m.kind !== 'phone') || r.shots[0])}</span><span><b>${esc(T(r.name))}</b><small>${esc(T(r.line))}</small></span></button>`).join('')}</div></section>` : '';
   const builtStrip = p.under ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(u('builtWithP'))}</h3><button type="button" class="btn sm js-only" data-tab="stack">${esc(u('seeStack'))} ${I.arrow}</button></div><p class="muted small" style="margin:6px 0 10px">${esc(T(p.under.arch))}</p><div class="stack">${p.under.layers.flatMap(l => l.items).slice(0, 10).map(it => `<button type="button" class="chip mono" data-tab="stack" data-find-go="tech-${esc(normKey(it.name))}">${esc(it.name)}</button>`).join('')}</div></section>` : '';
   const rel = related(p0);
-  const links = [p.link ? `<a class="btn primary" href="${p.link}" target="_blank" rel="noopener">${esc(T(p.linkLabel) || T(A.ui.visit))} ${I.out}</a>` : '',
+  const links = [p.link ? `<a class="btn primary"${p.platform ? ` data-plat="${p.platform}"` : ''} href="${p.link}" target="_blank" rel="noopener">${esc(T(p.linkLabel) || T(A.ui.visit))} ${I.out}</a>` : '',
     p.videos.length ? `<button type="button" class="btn js-only" data-tab="films">${I.film}${esc(u('watchFilms'))}</button>` : '',
     all.length > 1 ? `<button type="button" class="btn js-only" data-tab="screens">${I.image}${esc(u('seeScreens'))}</button>` : ''].join('');
   let ti = 0;
@@ -596,7 +596,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
       <div class="card sect"><h3 class="h3">${esc(T(A.ui.highlights))}</h3><ul class="hl">${p.highlights.map((h, i) => `<li data-find="hl-${i}">${esc(T(h))}</li>`).join('')}</ul></div>
       ${builtStrip}
       <div class="card sect boundary"><h3 class="h3">${esc(T(A.ui.currentBoundary))}</h3><p class="muted m0">${esc(T(p.boundary))}</p>${p.note ? `<p class="muted small" style="margin:8px 0 0">${esc(T(p.note))}</p>` : ''}</div>
-      ${p.install ? `<div class="card sect install"><h3 class="h3">${esc(T(p.install.title))}</h3><ol class="steps">${p.install.steps.map(s => `<li>${esc(T(s))}</li>`).join('')}</ol><p class="muted small m0">${esc(T(p.install.note))}</p></div>` : ''}
+      ${p.install ? `<div class="card sect install" data-plat="${p.platform}"><h3 class="h3">${esc(T(p.install.title))}</h3><ol class="steps">${p.install.steps.map(s => `<li>${esc(T(s))}</li>`).join('')}</ol><p class="muted small m0">${esc(T(p.install.note))}</p></div><div class="card sect plat-note" data-for="${p.platform}"><p class="m0">${esc(T(p.install.wrong))}</p></div>` : ''}
       ${links || p.install?.feedback ? `<div class="row sect">${links}${p.install?.feedback ? `<a class="btn" href="${p.install.feedback.href}" target="_blank" rel="noopener">${esc(T(p.install.feedback.label))} ${I.out}</a>` : ''}</div>` : ''}
       ${rel.length ? `<section class="sect"><h3 class="h3">${esc(u('moreLike'))}</h3><div class="rel">${rel.map(q => opener('p:' + q.slug, 'rel-item', `${tileFor(q)}<span><b>${esc(T(q.name))}</b><small>${esc(T(q.category))}</small></span>`, 'data-imp="point"')).join('')}</div></section>` : ''}`,
     tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card" data-find="tool-${k}">
