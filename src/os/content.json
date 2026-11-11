@@ -2023,7 +2023,7 @@
     "OCR"
    ],
    "stage": "building",
-   "reach": "private",
+   "reach": "limited",
    "status": {
     "en": "Version 0.5.3: three tools, new glass design",
     "ar": "الإصدار 0.5.3: ثلاث أدوات وتصميم زجاجي جديد"
@@ -2093,8 +2093,44 @@
     }
    ],
    "boundary": {
-    "en": "A personal build: not published yet, and it runs only on Windows.",
-    "ar": "نسخة شخصية لم تُنشر بعد، وتعمل على Windows فقط."
+    "en": "An early test build for Windows 10 and 11 (64-bit). It is free to try, and your feedback shapes what comes next.",
+    "ar": "نسخة تجريبية مبكرة لنظام Windows 10 و11 (64 بت). التجربة مجانية، وملاحظاتك تحدد ما سيأتي لاحقًا."
+   },
+   "link": "https://github.com/ameeralhatemi67-debug/Amir_Lab/releases/latest/download/AmirLap-latest-win-x64.zip",
+   "linkLabel": {
+    "en": "Install Amir Lap (Windows, 98 MB)",
+    "ar": "تثبيت أمير لاب (Windows، 98 ميغابايت)"
+   },
+   "install": {
+    "title": {
+     "en": "Install in three steps",
+     "ar": "التثبيت في ثلاث خطوات"
+    },
+    "steps": [
+     {
+      "en": "Extract the downloaded zip file (right-click it, then Extract All).",
+      "ar": "فك ضغط الملف الذي نزّلته (انقر بزر الفأرة الأيمن ثم «استخراج الكل»)."
+     },
+     {
+      "en": "Right-click install.ps1.",
+      "ar": "انقر بزر الفأرة الأيمن على الملف install.ps1."
+     },
+     {
+      "en": "Choose Run with PowerShell.",
+      "ar": "اختر «Run with PowerShell»."
+     }
+    ],
+    "note": {
+     "en": "Installs for your user only, with no administrator rights. If Windows says it protected your PC, click More info, then Run anyway: this early build is not code-signed yet.",
+     "ar": "يُثبَّت لحسابك فقط دون صلاحيات المسؤول. إذا ظهرت رسالة أن Windows حمى جهازك، اضغط «مزيد من المعلومات» ثم «تشغيل على أي حال»، فهذه النسخة المبكرة غير موقّعة رقميًا بعد."
+    },
+    "feedback": {
+     "href": "https://github.com/ameeralhatemi67-debug/Amir_Lab/issues/new",
+     "label": {
+      "en": "Send feedback",
+      "ar": "أرسل ملاحظاتك"
+     }
+    }
    },
    "brand": {
     "color": "#3D63F2",

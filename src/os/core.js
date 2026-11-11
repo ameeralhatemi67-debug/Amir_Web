@@ -596,7 +596,8 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
       <div class="card sect"><h3 class="h3">${esc(T(A.ui.highlights))}</h3><ul class="hl">${p.highlights.map((h, i) => `<li data-find="hl-${i}">${esc(T(h))}</li>`).join('')}</ul></div>
       ${builtStrip}
       <div class="card sect boundary"><h3 class="h3">${esc(T(A.ui.currentBoundary))}</h3><p class="muted m0">${esc(T(p.boundary))}</p>${p.note ? `<p class="muted small" style="margin:8px 0 0">${esc(T(p.note))}</p>` : ''}</div>
-      ${links ? `<div class="row sect">${links}</div>` : ''}
+      ${p.install ? `<div class="card sect install"><h3 class="h3">${esc(T(p.install.title))}</h3><ol class="steps">${p.install.steps.map(s => `<li>${esc(T(s))}</li>`).join('')}</ol><p class="muted small m0">${esc(T(p.install.note))}</p></div>` : ''}
+      ${links || p.install?.feedback ? `<div class="row sect">${links}${p.install?.feedback ? `<a class="btn" href="${p.install.feedback.href}" target="_blank" rel="noopener">${esc(T(p.install.feedback.label))} ${I.out}</a>` : ''}</div>` : ''}
       ${rel.length ? `<section class="sect"><h3 class="h3">${esc(u('moreLike'))}</h3><div class="rel">${rel.map(q => opener('p:' + q.slug, 'rel-item', `${tileFor(q)}<span><b>${esc(T(q.name))}</b><small>${esc(T(q.category))}</small></span>`, 'data-imp="point"')).join('')}</div></section>` : ''}`,
     tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card" data-find="tool-${k}">
         <header><span class="tool-n">0${k + 1}</span><div><h3 class="h2 hang-title">${esc(T(t.name))}</h3><p class="muted m0">${esc(T(t.line))}</p></div>${TRY[t.name.en] ? `<button type="button" class="btn sm primary js-only try-btn" data-try="${TRY[t.name.en]}">${I.sparkle}${esc(u('tryIt'))}</button>` : ''}</header>
