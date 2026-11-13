@@ -35,7 +35,7 @@ export const U = {
   impLine: ['Lives on this desktop. Drag him, throw him, poke him.', 'يعيش على هذا المكتب. اسحبه أو ارمه أو المسه.'],
   impOnDesk: ['Imp on the desktop', 'إمب على سطح المكتب'], flip: ['Flip the lights', 'اقلب الإضاءة'], laugh: ['Make him laugh', 'أضحِكه'], hideImp: ['Hide Imp', 'إخفاء إمب'],
   grow: ['Grow', 'كبّره'], shrink: ['Shrink', 'صغّره'], impSize: ['Imp’s size', 'حجم إمب'], porch: ['Imp’s porch · poke him, drag him', 'شرفة إمب · المسه أو اسحبه'],
-  overview: ['Overview', 'نظرة عامة'], screens: ['Screens', 'الشاشات'], facts: ['Facts', 'الأرقام'], tools: ['Tools', 'الأدوات'], all: ['All', 'الكل'],
+  overview: ['Overview', 'نظرة عامة'], screens: ['Screens', 'الشاشات'], facts: ['Facts', 'الأرقام'], tools: ['Tools', 'الأدوات'], changelog: ['What’s new', 'المستجدات'], all: ['All', 'الكل'],
   featured: ['Highlights', 'أبرز ما فيه'], moreLike: ['More like this', 'مشاريع مشابهة'], seeScreens: ['See all screens', 'كل الشاشات'], watchFilms: ['Watch the films', 'شاهد الأفلام'],
   meetTools: ['Meet the three tools', 'تعرّف على الأدوات الثلاث'], playsOnHover: ['Plays on hover', 'يعمل عند التمرير'],
   prev: ['Previous', 'السابق'], next: ['Next', 'التالي'], play: ['Play', 'تشغيل'], pause: ['Pause', 'إيقاف مؤقت'], soundOn: ['Sound on', 'تشغيل الصوت'], soundOff: ['Mute', 'كتم الصوت'], seek: ['Seek', 'التقديم'],
@@ -136,7 +136,7 @@ Object.assign(U, {
   s_screens: ['Screens', 'الشاشات'], s_tech: ['Tech', 'التقنيات'], s_films: ['Films', 'الأفلام'], s_lab: ['Lab', 'المختبر'], s_actions: ['Actions', 'الأوامر'],
   s_all: ['All', 'الكل'], s_recent: ['Recent', 'الأخيرة'], s_suggest: ['Try', 'جرّب'], usedIn: ['Used in', 'مستخدمة في'], s_calc: ['Calculator · Enter copies it', 'الآلة الحاسبة · Enter ينسخ الناتج'],
   t_calc: ['Result copied', 'تم نسخ الناتج'], searchHint: ['↑ ↓ move · Enter open · Ctrl+Enter new tab · Tab filters', '↑ ↓ للتنقل · Enter للفتح · Ctrl+Enter علامة تبويب جديدة · Tab للتصفية'],
-  inHighlights: ['Highlight', 'من أبرز ما فيه'], inFacts: ['Figure', 'رقم'], inViews: ['View', 'واجهة'], inTools: ['Tool', 'أداة'], inProblem: ['The problem', 'المشكلة'],
+  inHighlights: ['Highlight', 'من أبرز ما فيه'], inFacts: ['Figure', 'رقم'], inViews: ['View', 'واجهة'], inTools: ['Tool', 'أداة'], inChangelog: ['Release', 'إصدار'], latestUpdate: ['Latest update', 'آخر تحديث'], seeChangelog: ['All releases', 'كل الإصدارات'], latestChip: ['Latest', 'الأحدث'], releaseNotes: ['Release on GitHub', 'الإصدار على GitHub'], versionL: ['Version', 'الإصدار'], inProblem: ['The problem', 'المشكلة'],
   projectsN: ['projects', 'مشاريع'], noResults: ['Nothing matches. Try “Flutter”, “admin”, “Hatan” or “email”.', 'لا توجد نتائج. جرّب «Flutter» أو «الإدارة» أو «هتّان» أو «البريد».']
 });
 export const u = k => (U[k] || [k, k])[rtl() ? 1 : 0];
@@ -509,6 +509,7 @@ export const lbLists = () => {
   A.projects.forEach(p => { LB['p:' + p.slug] = [...shotsOf(p), ...phonesOf(p)].map(m => ({ ...m, cap: `${T(p.name)} · ${pretty(m.name)}` })); });
   LB.lab = A.lab.map(l => ({ ...l.shot, cap: l.name }));
   const lap = P['amir-lap']; if (lap?.tools) LB['tools:amir-lap'] = lap.tools.flatMap(t => t.shots.map(m => ({ ...m, cap: `${T(t.name)} · ${pretty(m.name)}` })));
+  A.projects.forEach(p => { if (p.changelog) LB['log:' + p.slug] = p.changelog.flatMap(c => c.shots.map(m => ({ ...m, cap: `${T(p.name)} · ${u('versionL')} ${c.version} · ${pretty(m.name)}` }))); });
   A.projects.forEach(p => (p.roles || []).forEach(r => { LB[`role:${p.slug}:${r.id}`] = r.shots.map(m => ({ ...m, cap: `${T(p.name)} · ${T(r.name)} · ${T(m.caption) || pretty(m.name)}` })); }));
   const hat = P.hatan; if (hat?.features) LB['feat:hatan'] = hat.features.map((f, i) => ({ ...featImg(hat, i), cap: `${T(hat.name)} · ${T(f.title)}` }));
   return LB;
@@ -549,7 +550,7 @@ export const workHTML = () => {
 };
 
 /* project windows: Overview, project-specific tabs, Screens, Films, Facts */
-const projectTabs = p => ['overview', ...(p.roles?.length ? ['views'] : []), ...(p.tools ? ['tools'] : []), ...((p.shots.length + p.phones.length) ? ['screens'] : []), ...(p.videos.length ? ['films'] : []), ...(p.under ? ['stack'] : []), 'facts'];
+const projectTabs = p => ['overview', ...(p.roles?.length ? ['views'] : []), ...(p.tools ? ['tools'] : []), ...(p.changelog?.length ? ['changelog'] : []), ...((p.shots.length + p.phones.length) ? ['screens'] : []), ...(p.videos.length ? ['films'] : []), ...(p.under ? ['stack'] : []), 'facts'];
 // every technology a project names, for search and the Work filter
 export const techsOf = p => [...new Set([...(p.stack || []), ...(p.under?.layers || []).flatMap(l => l.items.map(i => i.name))])];
 export const normKey = s => String(s || '').toLowerCase().replace(/[ً-ٟـ]/g, '').replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
@@ -560,6 +561,11 @@ const viewsHTML = p => `<div class="roles"><p class="muted m0 roles-intro">${esc
     ${r.chips?.length ? `<div class="stack role-chips">${r.chips.map(c => `<span class="chip">${esc(T(c))}</span>`).join('')}</div>` : ''}
     <div class="role-shots">${r.shots.map((m, k) => m.kind === 'phone' ? '' : roleShot(p, r, m, k)).join('')}</div>
     ${r.shots.some(m => m.kind === 'phone') ? `<div class="role-shots phones">${r.shots.map((m, k) => m.kind === 'phone' ? roleShot(p, r, m, k) : '').join('')}</div>` : ''}</section>`).join('')}</div>`;
+const changelogHTML = p => { let n = 0; return `<ol class="changelog">${p.changelog.map((c, k) => `<li class="log card" data-find="cl-${k}">
+  <header class="log-head"><span class="ver mono" dir="ltr">v${esc(c.version)}</span>${c.latest ? `<span class="chip stg"><span class="dot" style="--sc:var(--s-live)"></span>${esc(u('latestChip'))}</span>` : ''}<time datetime="${c.iso}" class="muted small">${esc(T(c.date))}</time>${c.href ? `<a class="btn sm log-gh" href="${c.href}" target="_blank" rel="noopener">${esc(u('releaseNotes'))} ${I.out}</a>` : ''}</header>
+  <h3 class="h2 hang-title">${esc(T(c.title))}</h3>
+  <ul class="hl">${c.points.map(x => `<li>${esc(T(x))}</li>`).join('')}</ul>
+  ${c.shots.length ? `<div class="log-shots">${c.shots.map(m => frameBtn(m, 'log:' + p.slug, n++, `${T(p.name)} ${c.version}: ${pretty(m.name)}`, '', false, XS)).join('')}</div>` : ''}</li>`).join('')}</ol>`; };
 const stackHTML = p => { const un = p.under; return `<div class="under">
   <div class="card arch"><h3 class="h3">${esc(u('architecture'))}</h3><p class="m0">${esc(T(un.arch))}</p>${un.platforms?.length ? `<div class="stack plat"><span class="muted small">${esc(u('platforms'))}</span>${un.platforms.map(x => `<span class="chip">${esc(T(x))}</span>`).join('')}</div>` : ''}</div>
   ${un.numbers?.length ? `<div class="facts sect">${un.numbers.map(f => `<div class="fact"><b dir="ltr">${esc(f.value)}</b><span>${esc(T(f.label))}</span></div>`).join('')}</div>` : ''}
@@ -585,13 +591,16 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
   const viewsStrip = p.roles?.length ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(T(p.rolesTitle) || u('views'))}</h3><button type="button" class="btn sm js-only" data-tab="views">${esc(u('seeViews'))} ${I.arrow}</button></div>
       <div class="tool-strip role-strip">${p.roles.map(r => `<button type="button" class="tool-mini" data-tab="views" data-role-go="${r.id}"><span class="tm-img">${thumb(r.shots.find(m => m.kind !== 'phone') || r.shots[0])}</span><span><b>${esc(T(r.name))}</b><small>${esc(T(r.line))}</small></span></button>`).join('')}</div></section>` : '';
   const builtStrip = p.under ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(u('builtWithP'))}</h3><button type="button" class="btn sm js-only" data-tab="stack">${esc(u('seeStack'))} ${I.arrow}</button></div><p class="muted small" style="margin:6px 0 10px">${esc(T(p.under.arch))}</p><div class="stack">${p.under.layers.flatMap(l => l.items).slice(0, 10).map(it => `<button type="button" class="chip mono" data-tab="stack" data-find-go="tech-${esc(normKey(it.name))}">${esc(it.name)}</button>`).join('')}</div></section>` : '';
+  const cl0 = p.changelog?.[0];
+  const logStrip = cl0 ? `<section class="sect"><div class="row" style="justify-content:space-between"><h3 class="h3" style="margin:0">${esc(u('latestUpdate'))}</h3><button type="button" class="btn sm js-only" data-tab="changelog">${esc(u('seeChangelog'))} ${I.arrow}</button></div>
+      <button type="button" class="log-mini card" data-tab="changelog"><span class="ver mono" dir="ltr">v${esc(cl0.version)}</span><span><b>${esc(T(cl0.title))}</b><small>${esc(T(cl0.date))} · ${esc(T(cl0.points[0]))}</small></span></button></section>` : '';
   const rel = related(p0);
   const links = [p.link ? `<a class="btn primary"${p.platform ? ` data-plat="${p.platform}"` : ''} href="${p.link}" target="_blank" rel="noopener">${esc(T(p.linkLabel) || T(A.ui.visit))} ${I.out}</a>` : '',
     p.videos.length ? `<button type="button" class="btn js-only" data-tab="films">${I.film}${esc(u('watchFilms'))}</button>` : '',
     all.length > 1 ? `<button type="button" class="btn js-only" data-tab="screens">${I.image}${esc(u('seeScreens'))}</button>` : ''].join('');
   let ti = 0;
   const panels = {
-    overview: `${hero}${viewsStrip}${toolsStrip}
+    overview: `${hero}${viewsStrip}${toolsStrip}${logStrip}
       <div class="grid2 sect"><div class="card"><h3 class="h3">${esc(T(A.ui.problem))}</h3><p class="muted m0">${esc(T(p.problem))}</p></div><div class="card"><h3 class="h3">${esc(T(A.ui.audience))}</h3><p class="muted m0">${esc(T(p.audience))}</p></div></div>
       <div class="card sect"><h3 class="h3">${esc(T(A.ui.highlights))}</h3><ul class="hl">${p.highlights.map((h, i) => `<li data-find="hl-${i}">${esc(T(h))}</li>`).join('')}</ul></div>
       ${builtStrip}
@@ -602,6 +611,7 @@ export const projectHTML = (p0, tab = 'overview', hostId = '') => {
     tools: p.tools ? `<div class="tools">${p.tools.map((t, k) => `<section class="tool card" data-find="tool-${k}">
         <header><span class="tool-n">0${k + 1}</span><div><h3 class="h2 hang-title">${esc(T(t.name))}</h3><p class="muted m0">${esc(T(t.line))}</p></div>${TRY[t.name.en] ? `<button type="button" class="btn sm primary js-only try-btn" data-try="${TRY[t.name.en]}">${I.sparkle}${esc(u('tryIt'))}</button>` : ''}</header>
         <div class="tool-shots ${t.shots.every(m => m.kind === 'square') ? 'squares' : ''}">${t.shots.map(m => frameBtn(m, 'tools:' + p.slug, ti++, `${T(t.name)}: ${pretty(m.name)}`)).join('')}</div></section>`).join('')}</div>` : '',
+    changelog: p.changelog?.length ? changelogHTML(p0) : '',
     screens: all.length ? `${p.shots.length ? `<div class="shots">${p.shots.map((m, i) => frameBtn(m, g, i, alt(m))).join('')}</div>` : ''}
       ${p.phones.length ? `<div class="shots ph">${p.phones.map((m, i) => frameBtn(m, g, p.shots.length + i, alt(m))).join('')}</div>` : ''}<p class="muted small" style="margin-top:14px">${esc(T(A.ui.sample))}</p>` : '',
     films: p.videos.length ? playerHTML(filmsOf(p0), true, 'pl-p-' + p0.slug) : '',

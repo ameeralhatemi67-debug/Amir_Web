@@ -2061,8 +2061,8 @@
    "stage": "building",
    "reach": "limited",
    "status": {
-    "en": "Version 0.5.3: three tools, new glass design",
-    "ar": "الإصدار 0.5.3: ثلاث أدوات وتصميم زجاجي جديد"
+    "en": "Version 0.6.2: three tools, now with video and a PDF editor",
+    "ar": "الإصدار 0.6.2: ثلاث أدوات، والآن مع الفيديو ومحرر PDF"
    },
    "problem": {
     "en": "Converting a file, grabbing a long screenshot or reading text off an image usually means opening a website or a heavy app. Amir Lap keeps those jobs one gesture away, and nothing leaves the computer.",
@@ -2074,28 +2074,32 @@
    },
    "highlights": [
     {
-     "en": "File Toolbox: drag any file, tap Shift, and drop it on a frosted-glass wheel to convert, edit or Quick Share it.",
-     "ar": "صندوق الملفات: اسحب أي ملف، واضغط Shift، وأفلته على عجلة زجاجية لتحويله أو تعديله أو مشاركته سريعًا."
+     "en": "File Toolbox: drag any file, tap Shift, and drop it on a frosted-glass wheel to convert, edit or Quick Share it, or on the centre to preview it in a full PDF viewer and editor.",
+     "ar": "صندوق الملفات: اسحب أي ملف، واضغط Shift، وأفلته على عجلة زجاجية لتحويله أو تعديله أو مشاركته سريعًا، أو على مركزها لمعاينته في عارض ومحرر PDF كامل."
     },
     {
-     "en": "Longshot: Alt+Shift+S starts a scrolling screenshot on the window in front, with a live preview and a frame you can move and resize.",
-     "ar": "لونق شوت: Alt+Shift+S يبدأ لقطة شاشة طويلة للنافذة الأمامية، مع معاينة حية وإطار يمكن تحريكه وتغيير حجمه."
+     "en": "Longshot: Alt+Shift+S takes a scrolling screenshot of a page or of just the part that scrolls, and Alt+Shift+V records any window, region or screen to MP4.",
+     "ar": "لونق شوت: Alt+Shift+S يلتقط صورة طويلة لصفحة كاملة أو للجزء القابل للتمرير فقط، وAlt+Shift+V يسجّل أي نافذة أو منطقة أو الشاشة كاملة بصيغة MP4."
     },
     {
-     "en": "Pulse: a glass dock on any screen edge with Claude and Codex limits (read on this PC), Claude Code status and your own shortcut tiles.",
-     "ar": "بلس: شريط زجاجي على أي حافة من الشاشة يعرض حدود Claude وCodex (تُقرأ من هذا الجهاز) وحالة Claude Code واختصاراتك."
+     "en": "Hide personal info: blur photos and videos by clicking text, or let Amir Lap find e-mails, phone and card numbers and keys. In videos the boxes follow what is under them.",
+     "ar": "إخفاء المعلومات الشخصية: طمس الصور والفيديوهات بالنقر على النص، أو دع أمير لاب يجد البريد وأرقام الهاتف والبطاقات والمفاتيح. وفي الفيديو تتبع المربعات ما تحتها."
     },
     {
-     "en": "A new glass design in light and dark, English and Arabic, with real snap layouts and resizing.",
-     "ar": "تصميم زجاجي جديد بالوضعين الفاتح والداكن، بالعربية والإنجليزية، مع تقسيم النوافذ وتغيير حجمها."
+     "en": "Pulse: a glass dock on any screen edge with Claude and Codex limits (read on this PC), Claude Code status, your own shortcuts and a colour picker with a Pro window.",
+     "ar": "بلس: شريط زجاجي على أي حافة من الشاشة يعرض حدود Claude وCodex (تُقرأ من هذا الجهاز) وحالة Claude Code واختصاراتك ومنتقي ألوان بنافذة احترافية."
+    },
+    {
+     "en": "A glass design in light and dark, English and Arabic, with real snap layouts and resizing.",
+     "ar": "تصميم زجاجي بالوضعين الفاتح والداكن، بالعربية والإنجليزية، مع تقسيم النوافذ وتغيير حجمها."
     },
     {
      "en": "Arabic and English text recognition, measured at a 0.1% character error rate on clean text.",
      "ar": "قراءة النص العربي والإنجليزي، بنسبة خطأ 0.1% في الحروف على النص الواضح."
     },
     {
-     "en": "Installs for the current user without administrator rights. No accounts, uploads or subscriptions.",
-     "ar": "يُثبَّت للمستخدم الحالي دون صلاحيات المسؤول، بلا حسابات أو رفع ملفات أو اشتراكات."
+     "en": "Installs for the current user without administrator rights, with an installer that shows each step. No accounts, uploads or subscriptions.",
+     "ar": "يُثبَّت للمستخدم الحالي دون صلاحيات المسؤول، بمثبّت يعرض كل خطوة. بلا حسابات أو رفع ملفات أو اشتراكات."
     }
    ],
    "facts": [
@@ -2107,7 +2111,7 @@
      }
     },
     {
-     "value": "168",
+     "value": "438",
      "label": {
       "en": "Automated tests",
       "ar": "اختبارًا آليًا"
@@ -2134,8 +2138,8 @@
    },
    "link": "https://github.com/ameeralhatemi67-debug/Amir_Lab/releases/latest/download/AmirLap-latest-win-x64.zip",
    "linkLabel": {
-    "en": "Install Amir Lap (Windows, 98 MB)",
-    "ar": "تثبيت أمير لاب (Windows، 98 ميغابايت)"
+    "en": "Install Amir Lap (Windows, 99 MB)",
+    "ar": "تثبيت أمير لاب (Windows، 99 ميغابايت)"
    },
    "platform": "windows",
    "install": {
@@ -2162,8 +2166,8 @@
      }
     ],
     "note": {
-     "en": "Installs for your user only, with no administrator rights. If Windows says it protected your PC, click More info, then Run anyway: this early build is not code-signed yet.",
-     "ar": "يُثبَّت لحسابك فقط دون صلاحيات المسؤول. إذا ظهرت رسالة أن Windows حمى جهازك، اضغط «مزيد من المعلومات» ثم «تشغيل على أي حال»، فهذه النسخة المبكرة غير موقّعة رقميًا بعد."
+     "en": "Installs for your user only, with no administrator rights. The installer shows each step and Amir Lap then opens a short welcome. If Windows says it protected your PC, click More info, then Run anyway: this early build is not code-signed yet.",
+     "ar": "يُثبَّت لحسابك فقط دون صلاحيات المسؤول. يعرض المثبّت كل خطوة ثم يفتح أمير لاب نافذة ترحيب قصيرة. إذا ظهرت رسالة أن Windows حمى جهازك، اضغط «مزيد من المعلومات» ثم «تشغيل على أي حال»، فهذه النسخة المبكرة غير موقّعة رقميًا بعد."
     },
     "feedback": {
      "href": "https://github.com/ameeralhatemi67-debug/Amir_Lab/issues/new",
@@ -2196,11 +2200,11 @@
      "name": "dashboard-light"
     },
     {
-     "src": "/media/amirlap/pulse-page.webp",
+     "src": "/media/amirlap/filetoolbox-page.webp",
      "w": 1180,
      "h": 880,
      "kind": "desk",
-     "name": "pulse-page"
+     "name": "filetoolbox-page"
     },
     {
      "src": "/media/amirlap/longshot-page.webp",
@@ -2210,11 +2214,39 @@
      "name": "longshot-page"
     },
     {
-     "src": "/media/amirlap/filetoolbox-page.webp",
+     "src": "/media/amirlap/pulse-page.webp",
      "w": 1180,
      "h": 880,
      "kind": "desk",
-     "name": "filetoolbox-page"
+     "name": "pulse-page"
+    },
+    {
+     "src": "/media/amirlap/pdf-viewer.webp",
+     "w": 1180,
+     "h": 820,
+     "kind": "desk",
+     "name": "pdf-viewer"
+    },
+    {
+     "src": "/media/amirlap/pdf-editor.webp",
+     "w": 1180,
+     "h": 820,
+     "kind": "desk",
+     "name": "pdf-editor"
+    },
+    {
+     "src": "/media/amirlap/photo-blur.webp",
+     "w": 1120,
+     "h": 700,
+     "kind": "desk",
+     "name": "photo-blur"
+    },
+    {
+     "src": "/media/amirlap/video-blur.webp",
+     "w": 1180,
+     "h": 760,
+     "kind": "desk",
+     "name": "video-blur"
     },
     {
      "src": "/media/amirlap/dashboard-ar.webp",
@@ -2234,10 +2266,17 @@
    "phones": [
     {
      "src": "/media/amirlap/longshot-panel.webp",
-     "w": 328,
-     "h": 620,
+     "w": 344,
+     "h": 700,
      "kind": "phone",
      "name": "longshot-panel"
+    },
+    {
+     "src": "/media/amirlap/longshot-video-panel.webp",
+     "w": 344,
+     "h": 600,
+     "kind": "phone",
+     "name": "longshot-video-panel"
     },
     {
      "src": "/media/amirlap/pulse-dock.webp",
@@ -2245,6 +2284,13 @@
      "h": 1000,
      "kind": "phone",
      "name": "pulse-dock"
+    },
+    {
+     "src": "/media/amirlap/colour-pro.webp",
+     "w": 440,
+     "h": 772,
+     "kind": "phone",
+     "name": "colour-pro"
     }
    ],
    "videos": [],
@@ -2255,8 +2301,8 @@
       "ar": "صندوق الملفات"
      },
      "line": {
-      "en": "Drag a file, tap Shift, drop it on the wheel.",
-      "ar": "اسحب ملفًا، اضغط Shift، أفلته على العجلة."
+      "en": "Drag a file, tap Shift, drop it on the wheel, or on its centre to preview and edit.",
+      "ar": "اسحب ملفًا، اضغط Shift، أفلته على العجلة، أو على مركزها لمعاينته وتعديله."
      },
      "shots": [
       {
@@ -2265,6 +2311,20 @@
        "h": 420,
        "kind": "square",
        "name": "wheel-convert"
+      },
+      {
+       "src": "/media/amirlap/wheel-preview.webp",
+       "w": 420,
+       "h": 420,
+       "kind": "square",
+       "name": "wheel-preview"
+      },
+      {
+       "src": "/media/amirlap/wheel-pdf.webp",
+       "w": 420,
+       "h": 420,
+       "kind": "square",
+       "name": "wheel-pdf"
       },
       {
        "src": "/media/amirlap/wheel-tools.webp",
@@ -2279,6 +2339,34 @@
        "h": 420,
        "kind": "square",
        "name": "wheel-share"
+      },
+      {
+       "src": "/media/amirlap/pdf-viewer.webp",
+       "w": 1180,
+       "h": 820,
+       "kind": "desk",
+       "name": "pdf-viewer"
+      },
+      {
+       "src": "/media/amirlap/pdf-editor.webp",
+       "w": 1180,
+       "h": 820,
+       "kind": "desk",
+       "name": "pdf-editor"
+      },
+      {
+       "src": "/media/amirlap/photo-blur-found.webp",
+       "w": 1120,
+       "h": 700,
+       "kind": "desk",
+       "name": "photo-blur-found"
+      },
+      {
+       "src": "/media/amirlap/photo-blur.webp",
+       "w": 1120,
+       "h": 700,
+       "kind": "desk",
+       "name": "photo-blur"
       }
      ]
     },
@@ -2288,16 +2376,23 @@
       "ar": "لونق شوت"
      },
      "line": {
-      "en": "Scrolling screenshots with a live preview.",
-      "ar": "لقطات شاشة طويلة مع معاينة حية."
+      "en": "Scrolling screenshots, screen video and a way to hide personal info.",
+      "ar": "لقطات شاشة طويلة، وتسجيل فيديو للشاشة، وإخفاء المعلومات الشخصية."
      },
      "shots": [
       {
        "src": "/media/amirlap/longshot-panel.webp",
-       "w": 328,
-       "h": 620,
+       "w": 344,
+       "h": 700,
        "kind": "phone",
        "name": "longshot-panel"
+      },
+      {
+       "src": "/media/amirlap/longshot-scene.webp",
+       "w": 1360,
+       "h": 820,
+       "kind": "desk",
+       "name": "longshot-scene"
       },
       {
        "src": "/media/amirlap/longshot-result.webp",
@@ -2305,6 +2400,20 @@
        "h": 700,
        "kind": "desk",
        "name": "longshot-result"
+      },
+      {
+       "src": "/media/amirlap/longshot-video-panel.webp",
+       "w": 344,
+       "h": 600,
+       "kind": "phone",
+       "name": "longshot-video-panel"
+      },
+      {
+       "src": "/media/amirlap/video-blur.webp",
+       "w": 1180,
+       "h": 760,
+       "kind": "desk",
+       "name": "video-blur"
       }
      ]
     },
@@ -2314,8 +2423,8 @@
       "ar": "بلس"
      },
      "line": {
-      "en": "A glass dock on the screen edge: limits, status and shortcuts.",
-      "ar": "شريط زجاجي على حافة الشاشة: الحدود والحالة والاختصارات."
+      "en": "A glass dock on the screen edge: limits, status, shortcuts and a Pro colour picker.",
+      "ar": "شريط زجاجي على حافة الشاشة: الحدود والحالة والاختصارات ومنتقي ألوان احترافي."
      },
      "shots": [
       {
@@ -2327,18 +2436,25 @@
       },
       {
        "src": "/media/amirlap/pulse-cards.webp",
-       "w": 1180,
-       "h": 309,
+       "w": 1300,
+       "h": 340,
        "kind": "desk",
        "name": "pulse-cards"
+      },
+      {
+       "src": "/media/amirlap/colour-pro.webp",
+       "w": 440,
+       "h": 772,
+       "kind": "phone",
+       "name": "colour-pro"
       }
      ]
     }
    ],
    "under": {
     "arch": {
-     "en": "A C# / .NET 9 tray app in five projects: a platform-free core, a processing library (NetVips, SkiaSharp, PDFium, PDFsharp, Open XML), a WPF Windows shell, an OCR adapter and a command-line front end. Three tools plug into a shared registry: File Toolbox (drag a file, tap Shift, pick from a wheel), Longshot (scrolling screenshots) and Pulse (a glass dock). Text recognition uses the OCR engine built into Windows and can write a searchable text layer into PDFs.",
-     "ar": "تطبيق في شريط المهام مكتوب بلغة C# على .NET 9 ومقسّم إلى خمسة مشاريع: نواة مستقلة عن المنصة، ومكتبة معالجة (NetVips وSkiaSharp وPDFium وPDFsharp وOpen XML)، وواجهة Windows مبنية على WPF، ومحوّل للتعرف الضوئي على النصوص، وواجهة لسطر الأوامر. تتصل ثلاث أدوات بسجل مشترك: File Toolbox (اسحب ملفًا واضغط Shift واختر من العجلة)، وLongshot (لقطات شاشة ممتدة)، وPulse (شريط زجاجي). يعتمد التعرف على النصوص على محرك OCR المدمج في Windows، ويمكنه إضافة طبقة نص قابلة للبحث إلى ملفات PDF."
+     "en": "A C# / .NET 9 tray app in five projects: a platform-free core, a processing library (NetVips, SkiaSharp, PDFium, PDFsharp, Open XML), a WPF Windows shell, an OCR adapter and a command-line front end. Three tools plug into a shared registry: File Toolbox (drag a file, tap Shift, pick from a wheel), Longshot (scrolling screenshots) and Pulse (a glass dock). Text recognition uses the OCR engine built into Windows and can write a searchable text layer into PDFs. Longshot also records video with Windows’ own encoder (no FFmpeg), and the PDF viewer and editor draw on PDFium and Skia.",
+     "ar": "تطبيق في شريط المهام مكتوب بلغة C# على .NET 9 ومقسّم إلى خمسة مشاريع: نواة مستقلة عن المنصة، ومكتبة معالجة (NetVips وSkiaSharp وPDFium وPDFsharp وOpen XML)، وواجهة Windows مبنية على WPF، ومحوّل للتعرف الضوئي على النصوص، وواجهة لسطر الأوامر. تتصل ثلاث أدوات بسجل مشترك: File Toolbox (اسحب ملفًا واضغط Shift واختر من العجلة)، وLongshot (لقطات شاشة ممتدة)، وPulse (شريط زجاجي). يعتمد التعرف على النصوص على محرك OCR المدمج في Windows، ويمكنه إضافة طبقة نص قابلة للبحث إلى ملفات PDF. ويسجّل Longshot الفيديو أيضًا بمرمّز Windows نفسه (دون FFmpeg)، ويعتمد عارض ومحرر PDF على PDFium وSkia."
     },
     "platforms": [
      {
@@ -2355,14 +2471,14 @@
       }
      },
      {
-      "value": "168",
+      "value": "438",
       "label": {
        "en": "Automated tests",
        "ar": "اختبارًا آليًا"
       }
      },
      {
-      "value": "31,242",
+      "value": "48,886",
       "label": {
        "en": "Lines of C#",
        "ar": "سطرًا من C#"
@@ -2506,7 +2622,424 @@
       ]
      }
     ]
-   }
+   },
+   "changelog": [
+    {
+     "version": "0.6.2",
+     "iso": "2026-11-14",
+     "date": {
+      "en": "14 Nov 2026",
+      "ar": "14 نوفمبر 2026"
+     },
+     "latest": true,
+     "href": "https://github.com/ameeralhatemi67-debug/Amir_Lab/releases/tag/v0.6.2",
+     "title": {
+      "en": "Installing tells you what happened",
+      "ar": "التثبيت يخبرك بما حدث"
+     },
+     "points": [
+      {
+       "en": "The installer shows four numbered steps and “done”, starts Amir Lap and closes after a short countdown. If something goes wrong, the window stays open with the reason.",
+       "ar": "يعرض المثبّت أربع خطوات مرقّمة ثم «تم»، ويشغّل أمير لاب ويُغلق بعد عدّ تنازلي قصير. وإن حدث خطأ تبقى النافذة مفتوحة مع السبب."
+      },
+      {
+       "en": "After installing or updating, Amir Lap opens a welcome: where it lives (by the clock and in the Start Menu), three things to try with their real shortcuts, and a Start with Windows switch that stays off unless you choose it.",
+       "ar": "بعد التثبيت أو التحديث يفتح أمير لاب نافذة ترحيب: أين يعيش (قرب الساعة وفي قائمة ابدأ)، وثلاثة أشياء لتجربتها مع اختصاراتها الحقيقية، ومفتاح «التشغيل مع Windows» مطفأ ما لم تختره."
+      },
+      {
+       "en": "Installed files no longer carry the “downloaded from the internet” mark, so Amir Lap starts straight away.",
+       "ar": "لم تعد الملفات المثبّتة تحمل علامة «منزّل من الإنترنت»، فيعمل أمير لاب فورًا."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/install-welcome.webp",
+       "w": 560,
+       "h": 640,
+       "kind": "desk",
+       "name": "install-welcome"
+      }
+     ]
+    },
+    {
+     "version": "0.6.1",
+     "iso": "2026-11-14",
+     "date": {
+      "en": "14 Nov 2026",
+      "ar": "14 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Longshot follows the marker",
+      "ar": "لونق شوت يتبع المؤشر الدائري"
+     },
+     "points": [
+      {
+       "en": "The round marker decides what is captured: over a section that scrolls on its own, just that section; over the page, the page. Drag it and what it is over lights up.",
+       "ar": "المؤشر الدائري هو ما يحدد اللقطة: فوق قسم يتمرر بذاته يُلتقط هذا القسم فقط، وفوق الصفحة تُلتقط الصفحة. اسحبه فيضيء ما تحته."
+      },
+      {
+       "en": "Sections are scrolled through Windows’ accessibility interface instead of the mouse wheel, so the page around can’t scroll by accident and your pointer is never touched.",
+       "ar": "تُمرَّر الأقسام عبر واجهة إمكانية الوصول في Windows بدل عجلة الفأرة، فلا تتحرك الصفحة المحيطة بالخطأ ولا يُمسّ مؤشر الفأرة."
+      },
+      {
+       "en": "If the page around moves anyway, Longshot puts it back and stops with a clear message.",
+       "ar": "وإن تحركت الصفحة المحيطة رغم ذلك، يعيدها Longshot ويتوقف برسالة واضحة."
+      },
+      {
+       "en": "The frame and highlight are lighter, so dragging stays smooth, and the preview sits in a fixed dark well so the panel no longer changes height.",
+       "ar": "الإطار والإضاءة أخفّ فيبقى السحب سلسًا، وتقع المعاينة في إطار داكن ثابت فلا يتغير ارتفاع اللوحة."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/longshot-scene.webp",
+       "w": 1360,
+       "h": 820,
+       "kind": "desk",
+       "name": "longshot-scene"
+      }
+     ]
+    },
+    {
+     "version": "0.6.0",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Blur parts of a video",
+      "ar": "طمس أجزاء من الفيديو"
+     },
+     "points": [
+      {
+       "en": "A video blur editor, opened from a recording’s result window or from Preview. Draw a box, press Follow it, and the box stays on what is under it as it scrolls or slides.",
+       "ar": "محرر لطمس الفيديو يُفتح من نافذة نتيجة التسجيل أو من المعاينة. ارسم مربعًا واضغط «تتبّعه» فيبقى على ما تحته أثناء التمرير أو الانزلاق."
+      },
+      {
+       "en": "Find personal info reads the text across the whole video and hides each e-mail, phone or card number, IBAN, IP address and key, following it forward and back so it is hidden from its first frame.",
+       "ar": "«ابحث عن المعلومات الشخصية» يقرأ النص في الفيديو كله ويخفي كل بريد ورقم هاتف أو بطاقة وIBAN وعنوان IP ومفتاح، ويتتبعه للأمام وللخلف فيُخفى من أول إطار."
+      },
+      {
+       "en": "If a box loses what it was following, it stays where it was, so nothing private is uncovered by a lost track.",
+       "ar": "إذا فقد المربع ما كان يتتبعه يبقى في مكانه، فلا ينكشف شيء خاص بسبب فقدان التتبع."
+      },
+      {
+       "en": "Saves “… blurred.mp4” beside the original. There is no sound in the copy yet.",
+       "ar": "يحفظ نسخة «… blurred.mp4» بجانب الأصل. لا يوجد صوت في النسخة بعد."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/video-blur.webp",
+       "w": 1180,
+       "h": 760,
+       "kind": "desk",
+       "name": "video-blur"
+      }
+     ]
+    },
+    {
+     "version": "0.5.9",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Record your screen",
+      "ar": "سجّل شاشتك"
+     },
+     "points": [
+      {
+       "en": "Longshot’s panel gets a Screenshot | Video switch. Record a window, a region or the whole screen at 30 or 60 frames a second, with the pointer, yellow click rings and an optional 3-2-1 countdown.",
+       "ar": "تحصل لوحة Longshot على مفتاح «لقطة | فيديو». سجّل نافذة أو منطقة أو الشاشة كاملة بمعدل 30 أو 60 إطارًا في الثانية، مع المؤشر وحلقات النقر الصفراء وعدّ تنازلي 3-2-1 اختياري."
+      },
+      {
+       "en": "A red frame and a small pill with Pause, Discard and Stop sit outside the recorded area, so neither appears in the video.",
+       "ar": "إطار أحمر وشريط صغير فيه «إيقاف مؤقت» و«تجاهل» و«إيقاف» يقعان خارج المنطقة المسجّلة فلا يظهران في الفيديو."
+      },
+      {
+       "en": "The result window plays at once. Trim with a frame strip, save the trimmed MP4, save as GIF or copy the file.",
+       "ar": "تُشغَّل نافذة النتيجة فورًا. قصّ بشريط الإطارات، واحفظ MP4 المقصوص أو GIF أو انسخ الملف."
+      },
+      {
+       "en": "It uses Windows’ own encoder, with no FFmpeg. The shortcut is Alt+Shift+V. There is no sound yet.",
+       "ar": "يستخدم مرمّز Windows نفسه دون FFmpeg. الاختصار هو Alt+Shift+V. ولا يوجد صوت بعد."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/longshot-video-panel.webp",
+       "w": 344,
+       "h": 600,
+       "kind": "phone",
+       "name": "longshot-video-panel"
+      },
+      {
+       "src": "/media/amirlap/longshot-result.webp",
+       "w": 760,
+       "h": 700,
+       "kind": "desk",
+       "name": "longshot-result"
+      }
+     ]
+    },
+    {
+     "version": "0.5.8",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Blur for photos",
+      "ar": "الطمس للصور"
+     },
+     "points": [
+      {
+       "en": "The image editor’s Redact step is now Blur. It opens from the wheel’s Blur tile, from Longshot’s result and from the image Preview.",
+       "ar": "خطوة «التعتيم» في محرر الصور أصبحت «طمس». تُفتح من خانة الطمس في العجلة ومن نتيجة Longshot ومن معاينة الصورة."
+      },
+      {
+       "en": "Blur and pixelate are stronger and scale to what is hidden, so a line of text is really gone. Solid is labelled the safe choice.",
+       "ar": "الطمس والتبكسل أقوى ويتناسبان مع حجم ما يُخفى، فيختفي سطر النص فعلًا. ويُوصف «الصلب» بأنه الخيار الآمن."
+      },
+      {
+       "en": "Text is read in the background: click a word to hide it, Shift+click for its line, or drag across text to snap to the words.",
+       "ar": "يُقرأ النص في الخلفية: انقر كلمة لإخفائها، أو Shift+نقرة لسطرها، أو اسحب فوق النص لتتحدد الكلمات."
+      },
+      {
+       "en": "Find personal info lists e-mails, phone numbers, checked card numbers and IBANs, IP addresses, keys and passwords, and hides them together in one step.",
+       "ar": "«ابحث عن المعلومات الشخصية» يعرض البريد وأرقام الهاتف وأرقام البطاقات وIBAN بعد التحقق منها وعناوين IP والمفاتيح وكلمات المرور، ويخفيها معًا بخطوة واحدة."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/photo-blur-found.webp",
+       "w": 1120,
+       "h": 700,
+       "kind": "desk",
+       "name": "photo-blur-found"
+      },
+      {
+       "src": "/media/amirlap/photo-blur.webp",
+       "w": 1120,
+       "h": 700,
+       "kind": "desk",
+       "name": "photo-blur"
+      }
+     ]
+    },
+    {
+     "version": "0.5.7",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Preview, and a PDF viewer and editor",
+      "ar": "المعاينة، وعارض ومحرر PDF"
+     },
+     "points": [
+      {
+       "en": "Drop any file on the wheel’s centre to preview it. A short guard stops accidental drops, and Edit is one click away.",
+       "ar": "أفلت أي ملف على مركز العجلة لمعاينته. وهناك حماية قصيرة تمنع الإفلات بالخطأ، والتعديل على بعد نقرة."
+      },
+      {
+       "en": "Each kind of file gets its own Tools ring: PDFs get Edit PDF, Sign, Dark copy and Pages, and shared tools keep their seat.",
+       "ar": "لكل نوع ملف حلقة أدوات خاصة به: فملفات PDF تحصل على تعديل PDF والتوقيع والنسخة الداكنة والصفحات، وتحتفظ الأدوات المشتركة بمكانها."
+      },
+      {
+       "en": "PDF viewer: search, outline, zoom, split view, present mode and page colours including a dark mode that keeps photos. It remembers your place in each file.",
+       "ar": "عارض PDF: بحث وفهرس وتكبير وعرض مقسوم ووضع العرض وألوان للصفحة منها وضع داكن يحافظ على الصور. ويتذكر موضعك في كل ملف."
+      },
+      {
+       "en": "PDF editor: text (Arabic too), pen, highlighter, white cover, pictures, signatures and a pages panel. Save it as a new PDF.",
+       "ar": "محرر PDF: نص (بالعربية أيضًا) وقلم ومظلل وتغطية بيضاء وصور وتواقيع ولوحة صفحات. احفظه كملف PDF جديد."
+      },
+      {
+       "en": "The dark copy stays vector and searchable.",
+       "ar": "تبقى النسخة الداكنة متجهية وقابلة للبحث."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/pdf-viewer.webp",
+       "w": 1180,
+       "h": 820,
+       "kind": "desk",
+       "name": "pdf-viewer"
+      },
+      {
+       "src": "/media/amirlap/pdf-editor.webp",
+       "w": 1180,
+       "h": 820,
+       "kind": "desk",
+       "name": "pdf-editor"
+      },
+      {
+       "src": "/media/amirlap/wheel-preview.webp",
+       "w": 420,
+       "h": 420,
+       "kind": "square",
+       "name": "wheel-preview"
+      },
+      {
+       "src": "/media/amirlap/wheel-pdf.webp",
+       "w": 420,
+       "h": 420,
+       "kind": "square",
+       "name": "wheel-pdf"
+      }
+     ]
+    },
+    {
+     "version": "0.5.6",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "A smoother colour picker",
+      "ar": "منتقي ألوان أسلس"
+     },
+     "points": [
+      {
+       "en": "The picker freezes a picture of the screen and moves the magnifier every frame, so it no longer lags or leaves ghosts.",
+       "ar": "يجمّد المنتقي صورة للشاشة ويحرّك المكبّر في كل إطار، فلا تأخير ولا أشباح بعد الآن."
+      },
+      {
+       "en": "The Pro window no longer stretches to the width of the screen. Every colour code has its own copy button, and greys get grey names.",
+       "ar": "لم تعد النافذة الاحترافية تتمدد بعرض الشاشة. ولكل رمز لون زر نسخ خاص، وتحصل الدرجات الرمادية على أسماء رمادية."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/colour-pro.webp",
+       "w": 440,
+       "h": 772,
+       "kind": "phone",
+       "name": "colour-pro"
+      }
+     ]
+    },
+    {
+     "version": "0.5.5",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Glass wheel, Tap mode and Pro colours",
+      "ar": "عجلة زجاجية ووضع النقر وألوان احترافية"
+     },
+     "points": [
+      {
+       "en": "The wheel’s selected tile is lit glass and its glow stays inside the wheel. The dark wheel shows the wallpaper through it.",
+       "ar": "الخانة المحددة في العجلة زجاج مضاء وتوهّجها يبقى داخل العجلة، وتُظهر العجلة الداكنة الخلفية من خلفها."
+      },
+      {
+       "en": "Pulse has a fourth show mode, Tap: it slides away to a thin line, and only a click on the line brings it back.",
+       "ar": "لبلس وضع عرض رابع هو «النقر»: ينزلق إلى خط رفيع ولا يعود إلا بالنقر على الخط."
+      },
+      {
+       "en": "The colour picker gets a magnifier and a Pro window that opens beside the pick, aware of the screen edges, with 8 codes, 9 steps, contrast checks and saved and recent colours.",
+       "ar": "يحصل منتقي الألوان على مكبّر ونافذة احترافية تُفتح بجانب النقطة المختارة مع مراعاة حواف الشاشة، وفيها 8 رموز و9 درجات وفحص التباين والألوان المحفوظة والأخيرة."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/wheel-convert.webp",
+       "w": 420,
+       "h": 420,
+       "kind": "square",
+       "name": "wheel-convert"
+      },
+      {
+       "src": "/media/amirlap/pulse-dock.webp",
+       "w": 420,
+       "h": 1000,
+       "kind": "phone",
+       "name": "pulse-dock"
+      }
+     ]
+    },
+    {
+     "version": "0.5.4",
+     "iso": "2026-11-13",
+     "date": {
+      "en": "13 Nov 2026",
+      "ar": "13 نوفمبر 2026"
+     },
+     "title": {
+      "en": "Longshot finds the part that scrolls",
+      "ar": "لونق شوت يجد الجزء القابل للتمرير"
+     },
+     "points": [
+      {
+       "en": "It finds the part that scrolls on its own (a chat, a list, a panel beside a fixed sidebar) and narrows the capture to it.",
+       "ar": "يجد الجزء الذي يتمرر بذاته (محادثة أو قائمة أو لوحة بجانب شريط جانبي ثابت) ويحصر اللقطة فيه."
+      },
+      {
+       "en": "A round marker you can drag, and Window, Scroll area and Region targets with hover picking.",
+       "ar": "مؤشر دائري يمكن سحبه، وأهداف «النافذة» و«منطقة التمرير» و«المنطقة» مع التحديد عند التمرير فوقها."
+      },
+      {
+       "en": "The rest of the screen dims, the frame is labelled, and the shortcut saves the capture when pressed again.",
+       "ar": "تُعتَّم بقية الشاشة ويحمل الإطار عنوانًا، وضغط الاختصار مرة أخرى يحفظ اللقطة."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/longshot-panel.webp",
+       "w": 344,
+       "h": 700,
+       "kind": "phone",
+       "name": "longshot-panel"
+      }
+     ]
+    },
+    {
+     "version": "0.5.3",
+     "iso": "2026-11-11",
+     "date": {
+      "en": "11 Nov 2026",
+      "ar": "11 نوفمبر 2026"
+     },
+     "href": "https://github.com/ameeralhatemi67-debug/Amir_Lab/releases/tag/v0.5.3",
+     "title": {
+      "en": "The first public build",
+      "ar": "أول نسخة عامة"
+     },
+     "points": [
+      {
+       "en": "Three tools in one tray app: File Toolbox, Longshot and Pulse.",
+       "ar": "ثلاث أدوات في تطبيق واحد بشريط المهام: صندوق الملفات ولونق شوت وبلس."
+      },
+      {
+       "en": "A new glass design in light and dark, English and Arabic, with real snap layouts and resizing.",
+       "ar": "تصميم زجاجي جديد بالوضعين الفاتح والداكن، بالعربية والإنجليزية، مع تقسيم النوافذ وتغيير حجمها."
+      },
+      {
+       "en": "Installs for the current user without administrator rights.",
+       "ar": "يُثبَّت للمستخدم الحالي دون صلاحيات المسؤول."
+      }
+     ],
+     "shots": [
+      {
+       "src": "/media/amirlap/dashboard-dark.webp",
+       "w": 1180,
+       "h": 880,
+       "kind": "desk",
+       "name": "dashboard-dark"
+      }
+     ]
+    }
+   ]
   },
   {
    "slug": "hayz",

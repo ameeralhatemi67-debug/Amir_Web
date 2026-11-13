@@ -853,8 +853,25 @@ html.is-desk .porch-wrap { display: none; }
 .tool-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; align-items: start; }
 .tool-shots.squares { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .tool-shots .frame.phone { max-width: 220px; justify-self: center; }
-.tool-shots:not(.squares):has(.frame.phone) { grid-template-columns: minmax(140px, 220px) 1fr; }
+.tool-shots:not(.squares) { display: flex; flex-wrap: wrap; }
+.tool-shots:not(.squares) .frame { flex: 1 1 300px; max-width: 460px; }
+.tool-shots:not(.squares) .frame.phone { flex: 0 0 190px; max-width: 190px; }
+.tool-shots:not(.squares) .frame.square { flex: 0 0 150px; max-width: 150px; }
 .frame.square { border-radius: 16px; background: transparent; }
+.changelog { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; position: relative; }
+.log { padding: 18px 18px 16px; }
+.log-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 8px; }
+.log-head time { margin-inline-end: auto; }
+.log .ver, .log-mini .ver { display: inline-block; padding: 3px 10px; border-radius: 999px; font: 600 13.5px var(--f-mono); color: var(--ink); background: var(--card-2); border: 1px solid var(--line); }
+.log h3 { margin: 0 0 10px; }
+.log-shots { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: flex-start; }
+.log-shots .frame { flex: 1 1 260px; max-width: 400px; }
+.log-shots .frame.phone, .log-shots .frame.square { flex: 0 0 150px; max-width: 150px; }
+.log-shots .frame .cap { display: none; }
+.log-mini { display: flex; align-items: center; gap: 14px; width: 100%; margin-top: 10px; padding: 12px 14px; color: var(--ink); text-align: start; cursor: pointer; transition: transform .2s var(--spring), background .15s; }
+.log-mini:hover { transform: translateY(-2px); background: var(--card-2); }
+.log-mini b { display: block; font: 650 15px var(--f-display); }
+.log-mini small { display: block; color: var(--ink-3); font-size: 13.5px; }
 .rel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .rel-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-align: start; cursor: pointer; transition: transform .2s var(--spring), background .15s; }
 .rel-item:hover { transform: translateY(-2px); background: var(--card-2); }
@@ -879,7 +896,11 @@ html.is-phone #spot { padding-top: 10px; }
 html.is-phone .spot-in input { height: 54px; font-size: 17px; }
 .sheet .feat-grid, .sheet .tool-strip, .sheet .rel { grid-template-columns: 1fr; }
 .sheet .tool-shots.squares { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.sheet .tool-shots:not(.squares):has(.frame.phone) { grid-template-columns: 1fr; }
+.sheet .tool-shots:not(.squares) .frame { flex: 1 1 100%; max-width: none; }
+.sheet .tool-shots:not(.squares) .frame.phone { flex: 0 0 calc(50% - 6px); max-width: calc(50% - 6px); }
+.sheet .tool-shots:not(.squares) .frame.square { flex: 0 0 calc(33.3% - 8px); max-width: calc(33.3% - 8px); }
+.sheet .log-shots .frame { flex: 1 1 100%; max-width: none; }
+.sheet .log-shots .frame.phone, .sheet .log-shots .frame.square { flex: 0 0 calc(50% - 6px); max-width: calc(50% - 6px); }
 .sheet .walls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sheet .set-row { align-items: flex-start; flex-direction: column; }
 .sheet .keys td { font-size: 14px; }
